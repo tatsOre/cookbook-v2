@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import styles from './styles/Input.module.scss'
+
 
 function InputLabel(props) {
     const {
@@ -13,7 +13,7 @@ function InputLabel(props) {
     } = props
 
     return (
-        <label htmlFor={htmlFor} id={id} className={styles.label}>
+        <label htmlFor={htmlFor} id={id} className={""}>
             {children}
             {required && <span aria-hidden>{' *'}</span>}
         </label>)

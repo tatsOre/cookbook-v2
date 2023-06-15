@@ -1,32 +1,16 @@
-import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
-import Select from 'react-select'
-import Accordion from '../Accordion'
-
-
-import styles from '@/styles/Form.module.css'
+import { useFieldArray, useFormContext } from 'react-hook-form'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
-import { RECIPE_SCHEMA, RECIPE_FIELDS_ATTRIBUTES } from './utils/constants'
+import Button from '../Button'
 import NumberInput from '../NumberInput'
 import TextInput from '../TextInput'
-import Button from '../Button'
 import SelectInput from '../Select'
+import { RECIPE_SCHEMA } from './utils/constants'
 
-const {
-    INGREDIENTS: {
-        // Name for the 'ingredients' array:
-        NAME: INGS_NAME,
-        RULES,
-        // Attributes for ingredient item:
-        INGR_ATTRS: { QTY, FRACTION, MEASURE, NAME: ITEM_NAME, PREP_NOTE }, ingrLabels
-    },
-} = RECIPE_FIELDS_ATTRIBUTES
+import styles from '@/styles/Form.module.css'
+
 
 const INGR_SCHEMA = RECIPE_SCHEMA.ingredients[0]
-
-const INGR_LABELS = ingrLabels ?? []
-
-
 
 const IconGrip = () => {
     return (
@@ -54,10 +38,23 @@ function DraggableListItem(props) {
     return <li {...rest} ref={innerRef}></li>
 }
 
-function IngredientsFieldset({ assets }) {
+function IngredientsFieldset({ assets, fields }) {
+    const {
+        INGREDIENTS: {
+            // Name for the 'ingredients' array:
+            NAME: INGS_NAME,
+            RULES,
+            // Attributes for ingredient item:
+            INGR_ATTRS: { QTY, FRACTION, MEASURE, NAME: ITEM_NAME, PREP_NOTE }, 
+            ingrLabels
+        },
+    } = fields
+    
+    const INGR_LABELS = ingrLabels ?? []
+
     const { register, control, formState: { errors }, watch } = useFormContext()
 
-    const { fields, append, remove, swap } = useFieldArray({
+    const { fields: arrayItems, append, remove, swap } = useFieldArray({
         control, name: INGS_NAME, rules: {
             required: RULES.REQUIRED
         }
@@ -65,7 +62,7 @@ function IngredientsFieldset({ assets }) {
 
     const watchFieldArray = watch(INGS_NAME)
 
-    const controlledFields = fields.map((field, index) => {
+    const controlledFields = arrayItems.map((field, index) => {
         return {
             ...field,
             ...watchFieldArray[index]
@@ -143,34 +140,31 @@ function IngredientsFieldset({ assets }) {
     })
 
     return (
-        <Accordion.Item>
-            <Accordion.Trigger>Ingredients</Accordion.Trigger>
-            <Accordion.Panel>
-                {/** ↓ Error Message or Input Error? */}
-                {errors?.[INGS_NAME]?.root
-                    && <p role='alert'>{errors[INGS_NAME].root.message}</p>}
+        <>
+            {/** ↓ Error Message or Input Error? */}
+            {errors?.[INGS_NAME]?.root
+                && <p role='alert'>{errors[INGS_NAME].root.message}</p>}
 
-                <DragDropContext
-                    onDragEnd={onDragEndHandler}
-                >
-                    <Droppable droppableId='dnd-ingredients-list' direction='vertical'>
-                        {(provided) => (
-                            <DroppableList
-                                {...provided.droppableProps}
-                                innerRef={provided.innerRef}
-                            >
-                                <div aria-hidden="true" style={{ display: 'flex' }}>
-                                    {ingrItemHeadings}
-                                </div>
-                                {ingrListItems}
-                                {provided.placeholder}
-                            </DroppableList>
-                        )}
-                    </Droppable>
-                </DragDropContext>
-                <Button onClick={() => append(INGR_SCHEMA)}>Add New Ingredient</Button>
-            </Accordion.Panel>
-        </Accordion.Item>
+            <DragDropContext
+                onDragEnd={onDragEndHandler}
+            >
+                <Droppable droppableId='dnd-ingredients-list' direction='vertical'>
+                    {(provided) => (
+                        <DroppableList
+                            {...provided.droppableProps}
+                            innerRef={provided.innerRef}
+                        >
+                            <div aria-hidden="true" style={{ display: 'flex' }}>
+                                {ingrItemHeadings}
+                            </div>
+                            {ingrListItems}
+                            {provided.placeholder}
+                        </DroppableList>
+                    )}
+                </Droppable>
+            </DragDropContext>
+            <Button onClick={() => append(INGR_SCHEMA)}>Add New Ingredient</Button>
+        </>
     )
 }
 

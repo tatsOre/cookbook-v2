@@ -1,33 +1,30 @@
 import { useFieldArray, useFormContext } from 'react-hook-form'
-
-import Accordion from '../Accordion'
 import Button from '../Button'
 import TextareaInput from '../Textarea'
-import { RECIPE_FIELDS_ATTRIBUTES } from './utils/constants'
 
 import styles from '@/styles/Form.module.css'
 
-const {
-    INSTRUCTIONS: { NAME, DESC, RULES, TEXT_ATTRS },
-} = RECIPE_FIELDS_ATTRIBUTES
-
-
 function InstructionItem(props) {
-    const { index, onRemove } = props
+    const {
+        index,
+        onRemove,
+        instItemAtts: TEXT_ATTRS,
+        parentField: PARENT_FIELD
+    } = props
 
     const { register, formState: { errors } } = useFormContext()
 
     const onClickHandler = (index) => onRemove(index)
 
-    const nameError = errors[NAME]?.[index]
-        && errors[NAME][index][TEXT_ATTRS.NAME]?.message
+    const nameError = errors[PARENT_FIELD]?.[index]
+        && errors[PARENT_FIELD][index][TEXT_ATTRS.NAME]?.message
 
     return (
         <li className={styles.instructions}>
             <TextareaInput
                 label={`${TEXT_ATTRS.LABEL} ${index + 1}`} // Step N.
                 error={nameError}
-                {...register(`${NAME}.${index}.${TEXT_ATTRS.NAME}`, {
+                {...register(`${PARENT_FIELD}.${index}.${TEXT_ATTRS.NAME}`, {
                     required: TEXT_ATTRS.RULES.REQUIRED
                 })}
             />
@@ -41,10 +38,14 @@ function InstructionItem(props) {
  * @returns 
  */
 
-function InstructionsFieldset() {
+function InstructionsFieldset({ fields }) {
+    const {
+        INSTRUCTIONS: { NAME, DESC, RULES, TEXT_ATTRS },
+    } = fields
+
     const { control, formState: { errors }, watch } = useFormContext()
 
-    const { fields, append, remove } = useFieldArray({
+    const { fields: arrayFields, append, remove } = useFieldArray({
         control, name: NAME, rules: {
             required: RULES.REQUIRED
         }
@@ -52,7 +53,7 @@ function InstructionsFieldset() {
 
     const watchFieldArray = watch(NAME)
 
-    const controlledFields = fields.map((field, index) => {
+    const controlledFields = arrayFields.map((field, index) => {
         return {
             ...field,
             ...watchFieldArray[index]
@@ -67,22 +68,22 @@ function InstructionsFieldset() {
         <InstructionItem
             key={inst.id}
             index={index}
-            onRemove={onRemoveHandler} />
+            instItemAtts={TEXT_ATTRS}
+            parentField={NAME}
+            onRemove={onRemoveHandler}
+        />
     ))
 
     return (
-        <Accordion.Item>
-            <Accordion.Trigger>How To Make</Accordion.Trigger>
-            <Accordion.Panel>
-                {/** ↓ Error Message or Input Error? */}
-                {errors[NAME]?.root
-                    && <p role='alert'>{errors[NAME].root.message}</p>}
-                <ul>{listItems}</ul>
-                <Button onClick={onAppendHandler}>
-                    Add instruction
-                </Button>
-            </Accordion.Panel>
-        </Accordion.Item>
+        <>
+            {/** ↓ Error Message or Input Error? */}
+            {errors[NAME]?.root
+                && <p role='alert'>{errors[NAME].root.message}</p>}
+            <ul>{listItems}</ul>
+            <Button onClick={onAppendHandler}>
+                Add instruction
+            </Button>
+        </>
     )
 }
 

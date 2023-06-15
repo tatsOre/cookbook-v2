@@ -10,6 +10,23 @@ import { Form } from './Input'
 
 import styles from '@/styles/Form.module.css'
 import Button from './Button'
+import Accordion from './Accordion'
+
+import { RECIPE_FIELDS_ATTRIBUTES } from './RecipeForm/utils/constants'
+
+const {
+    TITLE,
+    DESCRIPTION,
+    MAIN_INGR,
+    SERVINGS,
+    TIME,
+    CUISINE,
+    CATEGORIES,
+    PHOTO,
+    COMMENTS,
+    INGREDIENTS,
+    INSTRUCTIONS
+} = RECIPE_FIELDS_ATTRIBUTES
 
 function deNormalizeData(values) {
     const instructions = values.instructions.length
@@ -61,10 +78,49 @@ function SubmitRecipe({ data, assets }) {
     return (
         <FormProvider {...methods}>
             <Form onSubmit={methods.handleSubmit(onSubmit)} >
-                <GeneralInfoFieldset assets={assets} />
-                <IngredientsFieldset assets={assets} />
-                <InstructionsFieldset />
-                <ExtraInfoFieldset />
+                <Accordion>
+                    <Accordion.Item value="item-1">
+                        <Accordion.Trigger>General Info</Accordion.Trigger>
+                        <Accordion.Panel>
+                            <GeneralInfoFieldset
+                                fields={{
+                                    TITLE,
+                                    DESCRIPTION,
+                                    MAIN_INGR,
+                                    SERVINGS,
+                                    TIME,
+                                    CUISINE,
+                                    CATEGORIES
+                                }}
+                                assets={assets} />
+                        </Accordion.Panel>
+                    </Accordion.Item>
+                    <Accordion.Item value="item-2">
+                        <Accordion.Trigger>Ingredients</Accordion.Trigger>
+                        <Accordion.Panel>
+                            <IngredientsFieldset
+                                fields={{ INGREDIENTS }}
+                                assets={assets} />
+                        </Accordion.Panel>
+                    </Accordion.Item>
+                    <Accordion.Item value="item-3">
+                        <Accordion.Trigger>How To Make</Accordion.Trigger>
+                        <Accordion.Panel>
+                            <InstructionsFieldset
+                                fields={{ INSTRUCTIONS }} />
+                        </Accordion.Panel>
+                    </Accordion.Item>
+                    <Accordion.Item value="item-4">
+                        <Accordion.Trigger>
+                            Extra Comments & Photos
+                        </Accordion.Trigger>
+                        <Accordion.Panel>
+                            <ExtraInfoFieldset
+                                fields={{ PHOTO, COMMENTS }}
+                            />
+                        </Accordion.Panel>
+                    </Accordion.Item>
+                </Accordion>
 
                 <Button type='submit'>Submit</Button>
             </Form>
