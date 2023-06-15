@@ -45,11 +45,12 @@ function Button(props) {
     } = props
 
 
-    const buttonClassname = cx([
+    const classes = cx([
         styles.button,
         variant && styles[`button__${variant}`],
         appearance && styles[`button__${appearance}`],
-        !children && styles['button__icon']
+        !children && styles['button__icon'],
+        className
     ])
 
     const getButtonContent = () => {
@@ -64,8 +65,9 @@ function Button(props) {
                 >
                     <Icon name={leftIcon} />
                 </span>}
-
-                {children && <span>{children + ` ${variant}`}</span>}
+                {/** Fix to accept nodes, see Accordion Trigger: */}
+                {/** Warning: Failed prop type: Invalid prop `children` of type `array` supplied to `Button`, expected `string`. */}
+                {children && <span>{children}</span>}
                 {rightIcon && <span
                     className={cx([
                         styles[`icon__container`],
@@ -83,7 +85,7 @@ function Button(props) {
         <button
             aria-haspopup={ariaHaspopup}
             aria-label={!children ? ariaLabel : undefined}
-            className={buttonClassname}
+            className={classes}
             disabled={disabled || isProcessing}
             {...rest}>
             {getButtonContent()}

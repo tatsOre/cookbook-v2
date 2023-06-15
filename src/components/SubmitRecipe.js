@@ -7,12 +7,14 @@ import InstructionsFieldset from './RecipeForm/InstructionsFieldset'
 import GeneralInfoFieldset from './RecipeForm/GeneralInfoFieldset'
 
 import { Form } from './Input'
-
-import styles from '@/styles/Form.module.css'
 import Button from './Button'
 import Accordion from './Accordion'
 
 import { RECIPE_FIELDS_ATTRIBUTES } from './RecipeForm/utils/constants'
+
+import { deNormalizeData, getFormAccordionState, normalizeData } from './SubmitRecipe/utils'
+
+import styles from '@/styles/Form.module.css'
 
 const {
     TITLE,
@@ -28,27 +30,6 @@ const {
     INSTRUCTIONS
 } = RECIPE_FIELDS_ATTRIBUTES
 
-function deNormalizeData(values) {
-    const instructions = values.instructions.length
-        ? values.instructions.map(inst => ({ text: inst }))
-        : [{ text: '' }]
-    return {
-        ...values,
-        instructions
-    }
-}
-
-function normalizeData(values) {
-    const instructions = values.instructions.map(inst => inst.text)
-    const categories = values.categories.map(cat => cat._id)
-    // TODO: NORMALIZE FRACTION & MEASURE IN INGRE.
-    return {
-        ...values,
-        categories,
-        instructions,
-        cuisine: values.cuisine?._id
-    }
-}
 
 /**
  * Function that:
@@ -59,6 +40,7 @@ function normalizeData(values) {
 
 function SubmitRecipe({ data, assets }) {
     const [payData, setPayData] = useState({})
+    const [accState, setAccState] = useState(['item-1'])
 
     const methods = useForm({
         defaultValues: deNormalizeData(data)
@@ -70,15 +52,23 @@ function SubmitRecipe({ data, assets }) {
             values.photo = values.photo[0]
         }
         console.log('Submit photo', values.photo)
-
         const payload = normalizeData(values)
         setPayData(payload)
     }
 
+    const onErrors = (errors) => {
+        const newAccordionItemsState = getFormAccordionState(errors)
+        setAccState(newAccordionItemsState)
+    }
+
     return (
         <FormProvider {...methods}>
-            <Form onSubmit={methods.handleSubmit(onSubmit)} >
-                <Accordion>
+            <Form onSubmit={methods.handleSubmit(onSubmit, onErrors)} >
+                <Accordion
+                    value={accState}
+                    onChange={setAccState}
+                    className='form-accordion'
+                >
                     <Accordion.Item value="item-1">
                         <Accordion.Trigger>General Info</Accordion.Trigger>
                         <Accordion.Panel>

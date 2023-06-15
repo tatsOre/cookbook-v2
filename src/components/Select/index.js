@@ -28,6 +28,17 @@ function SelectInput(props) {
                             getOptionValue={(option) => `${option['_id']}`}
                             inputId={inputProps.id}
                             instanceId={inputProps.id} // removes `id` warning.
+                            // https://github.com/JedWatson/react-select/issues/1537
+                            // todo: use useEffect to check window
+                            menuPortalTarget={
+                                typeof window !== "undefined" && document.querySelector('body')
+                            }
+                            styles={
+                                {
+                                    menuPortal: base => ({ ...base, zIndex: 9999 }),
+                                    menu: provided => ({ ...provided, zIndex: "9999 !important" })
+                                }
+                            }
                             {...field}
                         />
                     )

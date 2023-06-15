@@ -1,21 +1,30 @@
+import cx from "@/components/utils/cx"
 import { useAccordionContext } from ".."
+import { useAccordionItemContext } from "../AccordionItem/context"
+import Button from "@/components/Button"
 
 function AccordionTrigger(props) {
-    const { children, ...triggerProps } = props
+    const { children, ...rest } = props
     const context = useAccordionContext()
+    const { value } = useAccordionItemContext()
+
+    const isItemActive = context.isItemActive(value)
+    const onClickHandler = () => context.onChange(value)
 
     return (
-        <button
-            aria-controls={context.id}
-            aria-expanded={context.open || false}
-            disabled={context.disabled}
-            onClick={context.onOpenToggle}
-            {...triggerProps}
-            type="button"
-            style={{ paddingBlock: '1rem', width: '100%', backgroundColor: '#F1F9FF' }}
+        <Button // todo make an unstyled button
+            aria-controls={context.getPanelId(value)}
+            aria-expanded={isItemActive}
+            className={cx([context.className])}
+            data-active={isItemActive || undefined}
+            data-accordion-trigger
+            id={context.getTriggerId(value)}
+            onClick={onClickHandler}
+            {...rest}
         >
-            {children}
-        </button>
+            <span>{children}</span>
+            <span>v</span> {/** Add Chevron */}
+        </Button>
     )
 }
 

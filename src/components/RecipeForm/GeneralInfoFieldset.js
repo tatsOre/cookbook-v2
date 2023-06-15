@@ -118,6 +118,17 @@ function GeneralInfoFieldset({ assets, fields }) {
                             isOptionDisabled={() => selectedCategories.length > 2}
                             inputId='cat-select'
                             instanceId='cat-instance-select'
+                            // https://github.com/JedWatson/react-select/issues/1537
+                            // todo: use useEffect to check window
+                            menuPortalTarget={
+                                typeof window !== "undefined" && document.querySelector('body')
+                            }
+                            styles={
+                                {
+                                    menuPortal: base => ({ ...base, zIndex: 9999 }),
+                                    menu: provided => ({ ...provided, zIndex: "9999 !important" })
+                                }
+                            }
                             {...rest}
                         />
                     )}

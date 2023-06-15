@@ -1,59 +1,52 @@
 import { createContext, useCallback, useContext, useId, useState } from "react"
+
+import AccordionItem from "./AccordionItem"
 import AccordionPanel from "./AccordionPanel"
 import AccordionTrigger from "./AccordionTrigger"
+import cx from "../utils/cx"
 
 const AccordionStateContext = createContext()
 const AccordionProvider = AccordionStateContext.Provider
 
 export const useAccordionContext = () => useContext(AccordionStateContext)
 
-const recipeForm = {
-    "item-1": {
-        title: true,
-        description: true,
-        /** ... */
-    },
-    "item-2": {
-        ingredients: true
-    }
-}
 /**
- * todo: every Accordion Item has a value prop, e.g.: value="item-1"
- *  Accordion has a prop defaultValue Array ["item-1", "item-2"}, because for now, we
- *  always want multiple panels opened.
- * 
- * now we need a root that wraps the form, dif to the current approach: 
+ * @returns ACCORDION ROOT
  */
-/**
- * 
- * @returns ROOT
- */
-function Accordion(props) {
-    const { open, defaultOpen, disabled, onChange, children, ...wrapperProps } = props
 
-    const [state, setOpen] = useState(true)
+function Accordion(props) {
+    const { value, onChange, className, children, id, ...rest } = props
+    const _id = id || useId()
+
+    const isItemActive = (item) => value.includes(item)
+
+    const onItemChangeHandler = (item) => {
+        let nextState = []
+        if (value.includes(item)) {
+            nextState = value.filter(i => i !== item)
+        } else {
+            nextState = [...value, item]
+        }
+        onChange(nextState)
+    }
+
+    const classes = cx([className])
 
     return (
         <AccordionProvider value={{
-            open: state,
-            disabled: disabled,
-            id: useId(),
-            onOpenToggle: useCallback(() => setOpen((prevState) => !prevState), [setOpen])
+            id: _id,
+            className,
+            onChange: onItemChangeHandler,
+            isItemActive,
+            getTriggerId: (v) => `${_id}-trigger-${v}`,
+            getPanelId: (v) => `${_id}-panel-${v}`
+
         }}>
-            <div {...wrapperProps}>
-                {children}
-            </div>
+            <div className={classes} {...rest}> {children} </div>
         </AccordionProvider>
     )
 }
 
-function AccordionItem(props) {
-    return (
-        <div>
-            {props.children}
-        </div>
-    )
-}
 
 Accordion.Item = AccordionItem
 Accordion.Trigger = AccordionTrigger
