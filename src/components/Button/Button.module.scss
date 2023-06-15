@@ -1,0 +1,114 @@
+//@use '../../shared/variables' as v;
+@use "sass:map";
+
+
+$color-base: rgb(232, 132, 232);
+$color-accent: grey;
+
+
+
+
+
+// define accent color, por primary button avoid negative buttons
+// https://makeitclear.com/ux-ui-tips-a-guide-to-creating-buttons/#:~:text=Studies%20by%20the%20MIT%20Touch,the%20average%20size%20of%20fingertips.
+
+// primary action
+// secondary action
+$color-medium-grey: grey;
+$button-border-radius: 2px;
+$button-border-color: blue;
+$button-text-color: blue;
+$button-background-color: lightblue;
+$color-white: white;
+$color-secondary-purple: purple;
+
+.button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.85rem; // add variable
+    border: 1px solid $button-border-color;
+    border-radius: $button-border-radius;
+    /* Buttons with label: */
+    padding: 0.625rem 1.5rem;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.8;
+    }
+
+    &__icon {
+        /* Buttons without label: */
+        padding: 0.75rem;
+    }
+
+    &__filled {
+        color: $button-text-color;
+        background-color: $button-background-color;
+
+        &:hover:not([disabled]) {
+            background-color: $color-medium-grey;
+        }
+    }
+
+    &__light {
+        color: $color-white;
+        background-color: $color-secondary-purple;
+        border-color: aqua;
+
+        &:hover:not([disabled]) {
+            background-color: $color-secondary-purple;
+        }
+    }
+
+    &__outline {
+        color: $color-white;
+        background-color: $color-secondary-purple;
+        border-color: aqua;
+
+        &:hover:not([disabled]) {
+            background-color: red;
+        }
+    }
+
+    &--default {
+        color: $button-text-color;
+        background-color: $button-background-color;
+
+        &:hover:not([disabled]) {
+            background-color: $color-medium-grey;
+        }
+    }
+
+    &__text {
+        color: $button-text-color;
+        background-color: $button-background-color;
+
+        &:hover:not([disabled]) {
+            background-color: $color-medium-grey;
+        }
+    }
+
+    &__compact {
+        /* 13px */
+        font-size: 0.813rem;
+        border-radius: 20px;
+        padding: 0.75rem 1.15rem;
+    }
+
+    span.icon__container {
+        display: flex;
+        align-items: center;
+
+        &--left {
+            margin-inline-end: 0.5rem;
+        }
+
+        &--right {
+            margin-inline-start: 0.5rem;
+        }
+    }
+}

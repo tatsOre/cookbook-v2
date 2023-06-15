@@ -1,0 +1,177 @@
+import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
+import Select from 'react-select'
+import Accordion from '../Accordion'
+
+
+import styles from '@/styles/Form.module.css'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+
+import { RECIPE_SCHEMA, RECIPE_FIELDS_ATTRIBUTES } from './utils/constants'
+import NumberInput from '../NumberInput'
+import TextInput from '../TextInput'
+import Button from '../Button'
+import SelectInput from '../Select'
+
+const {
+    INGREDIENTS: {
+        // Name for the 'ingredients' array:
+        NAME: INGS_NAME,
+        RULES,
+        // Attributes for ingredient item:
+        INGR_ATTRS: { QTY, FRACTION, MEASURE, NAME: ITEM_NAME, PREP_NOTE }, ingrLabels
+    },
+} = RECIPE_FIELDS_ATTRIBUTES
+
+const INGR_SCHEMA = RECIPE_SCHEMA.ingredients[0]
+
+const INGR_LABELS = ingrLabels ?? []
+
+
+
+const IconGrip = () => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
+            </path><path d="M9 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
+            </path><path d="M9 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
+            </path><path d="M15 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
+            </path><path d="M15 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
+            </path><path d="M15 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
+            </path>
+        </svg>
+    )
+}
+
+function DroppableList(props) {
+    const { children, innerRef, ordered, ...rest } = props
+    return ordered
+        ? <ol {...rest} ref={innerRef}>{children}</ol>
+        : <ul {...rest} ref={innerRef} >{children}</ul>
+}
+
+function DraggableListItem(props) {
+    const { innerRef, ...rest } = props
+    return <li {...rest} ref={innerRef}></li>
+}
+
+function IngredientsFieldset({ assets }) {
+    const { register, control, formState: { errors }, watch } = useFormContext()
+
+    const { fields, append, remove, swap } = useFieldArray({
+        control, name: INGS_NAME, rules: {
+            required: RULES.REQUIRED
+        }
+    })
+
+    const watchFieldArray = watch(INGS_NAME)
+
+    const controlledFields = fields.map((field, index) => {
+        return {
+            ...field,
+            ...watchFieldArray[index]
+        }
+    })
+
+    const onDragEndHandler = ({ destination, source }) => {
+        // dropped outside the list || same index:
+        if (!destination || destination.index === source.index) {
+            return
+        }
+        // swap	(from: number, to: number):
+        swap(source.index, destination.index)
+    }
+
+    const ingrItemHeadings = INGR_LABELS.map((label, index) => <h3 key={index}>{label}</h3>)
+
+    const ingrListItems = controlledFields.map((ingr, index) => {
+        const ingrNameFieldError = errors[INGS_NAME]
+            && errors[INGS_NAME][index]
+            && errors[INGS_NAME][index][ITEM_NAME.NAME]?.message
+
+        const di_id = `drag-ingr-${index}`
+
+        return (
+            <Draggable key={di_id} draggableId={di_id} index={index}>
+                {(provided) => (
+                    <DraggableListItem
+                        key={ingr.id}
+                        innerRef={provided.innerRef}
+                        {...provided.draggableProps}
+                        className={styles.ingredients}
+                    >
+
+                        <div {...provided.dragHandleProps}>
+                            <IconGrip />
+                        </div>
+
+                        <NumberInput
+                            label={QTY.LABEL} type='number'
+                            {...register(`${INGS_NAME}.${index}.${QTY.NAME}`)}
+                        />
+
+                        <SelectInput
+                            label={FRACTION.LABEL}
+                            name={`${INGS_NAME}.${index}.${FRACTION.NAME}`}
+                            options={assets.FRACTIONS_OPTIONS}
+                        />
+
+                        <SelectInput
+                            label={MEASURE.LABEL}
+                            name={`${INGS_NAME}.${index}.${MEASURE.NAME}`}
+                            options={assets.MEASURE_OPTIONS}
+                        />
+
+                        <TextInput
+                            label={ITEM_NAME.LABEL}
+                            placeholder={ITEM_NAME.PLACEHOLDER}
+                            error={ingrNameFieldError}
+                            {...register(`${INGS_NAME}.${index}.${ITEM_NAME.NAME}`, {
+                                required: ITEM_NAME.RULES.REQUIRED
+                            })}
+                        />
+
+                        <TextInput
+                            label={PREP_NOTE.LABEL}
+                            {...register(`${INGS_NAME}.${index}.${PREP_NOTE.NAME}`)}
+                        />
+
+                        <Button onClick={() => remove(index)}>Delete</Button>
+                    </DraggableListItem>
+                )}
+            </Draggable>
+        )
+    })
+
+    return (
+        <Accordion.Item>
+            <Accordion.Trigger>Ingredients</Accordion.Trigger>
+            <Accordion.Panel>
+                {/** ↓ Error Message or Input Error? */}
+                {errors?.[INGS_NAME]?.root
+                    && <p role='alert'>{errors[INGS_NAME].root.message}</p>}
+
+                <DragDropContext
+                    onDragEnd={onDragEndHandler}
+                >
+                    <Droppable droppableId='dnd-ingredients-list' direction='vertical'>
+                        {(provided) => (
+                            <DroppableList
+                                {...provided.droppableProps}
+                                innerRef={provided.innerRef}
+                            >
+                                <div aria-hidden="true" style={{ display: 'flex' }}>
+                                    {ingrItemHeadings}
+                                </div>
+                                {ingrListItems}
+                                {provided.placeholder}
+                            </DroppableList>
+                        )}
+                    </Droppable>
+                </DragDropContext>
+                <Button onClick={() => append(INGR_SCHEMA)}>Add New Ingredient</Button>
+            </Accordion.Panel>
+        </Accordion.Item>
+    )
+}
+
+export default IngredientsFieldset

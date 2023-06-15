@@ -1,0 +1,135 @@
+.form>div {
+    margin-block: 0.5rem;
+    width: 100%;
+}
+
+.form label {
+    display: block;
+    margin-block-end: 0.25rem;
+    text-transform: capitalize;
+}
+
+.form input,
+.form textarea {
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.form input,
+.form textarea,
+.form button,
+.form select {
+    border: 1px solid lightgrey;
+
+}
+
+.ingredients,
+.instructions {
+    display: flex;
+}
+
+.ingredients div:not(:last-child) {
+    margin-inline-end: 0.5rem;
+}
+
+.ingredients label {
+    visibility: hidden;
+    line-height: 0;
+}
+
+.pre {
+    display: block;
+    background-color: whitesmoke;
+    margin-block: 1rem;
+}
+
+.drop_zone {
+    display: grid;
+    width: 400px;
+    place-content: center;
+    border: 2px dashed lightgray;
+    padding: 16px;
+    text-align: center;
+    background-color: lightgrey;
+}
+
+.dragActive {
+    background-color: #ffffff;
+}
+
+.fplabel {
+    background-color: beige;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.formFileUpload {
+    height: 16rem;
+    width: 28rem;
+    max-width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.inputFileUpload {
+    display: none;
+}
+
+.labelFileUpload {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 2px;
+    border-radius: 1rem;
+    border-style: dashed;
+    border-color: #cbd5e1;
+    background-color: #f8fafc;
+}
+
+.labelFileUpload.dragActive {
+    background-color: #ffffff;
+}
+
+.uploadButton:hover {
+    text-decoration-line: underline;
+}
+
+.dragFileElement {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.box__file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.box__file + label {
+    cursor: pointer;
+}
+
+.box__file + label:hover b {
+    text-decoration: underline;
+}
+
+.box__file:focus + label b {
+    color: #39bfd3;
+    
+}
+
+.box__file:focus + label  {
+    color: #39bfd3;
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
