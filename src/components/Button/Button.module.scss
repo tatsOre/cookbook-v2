@@ -1,27 +1,8 @@
-//@use '../../shared/variables' as v;
-@use "sass:map";
+@use '../../styles/Variables.module.scss' as v;
 
+$button-border-radius: 0px;
 
-$color-base: rgb(232, 132, 232);
-$color-accent: grey;
-
-
-
-
-
-// define accent color, por primary button avoid negative buttons
-// https://makeitclear.com/ux-ui-tips-a-guide-to-creating-buttons/#:~:text=Studies%20by%20the%20MIT%20Touch,the%20average%20size%20of%20fingertips.
-
-// primary action
-// secondary action
-$color-medium-grey: grey;
-$button-border-radius: 2px;
-$button-border-color: blue;
-$button-text-color: blue;
-$button-background-color: lightblue;
-$color-white: white;
-$color-secondary-purple: purple;
-
+/** Unstyled Buttons: **/
 .button {
     --webkit-appearance: none;
     border-radius: 0;
@@ -35,14 +16,17 @@ $color-secondary-purple: purple;
     font: inherit;
 }
 
-.button__styled {
+/** Styled Buttons: **/
+.button__base {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
     font-size: 0.85rem; // add variable
-    border: 1px solid $button-border-color;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+    border: 1px solid transparent;
     border-radius: $button-border-radius;
+
     /* Buttons with label: */
     padding: 0.625rem 1.5rem;
 
@@ -51,62 +35,48 @@ $color-secondary-purple: purple;
         opacity: 0.8;
     }
 
-    &__icon {
+    &--icon {
         /* Buttons without label: */
         padding: 0.75rem;
     }
 
-    &__filled {
-        color: $button-text-color;
-        background-color: $button-background-color;
-
-        &:hover:not([disabled]) {
-            background-color: $color-medium-grey;
-        }
-    }
-
-    &__light {
-        color: $color-white;
-        background-color: $color-secondary-purple;
-        border-color: aqua;
-
-        &:hover:not([disabled]) {
-            background-color: $color-secondary-purple;
-        }
-    }
-
-    &__outline {
-        color: $color-white;
-        background-color: $color-secondary-purple;
-        border-color: aqua;
-
-        &:hover:not([disabled]) {
-            background-color: red;
-        }
-    }
-
     &--default {
-        color: $button-text-color;
-        background-color: $button-background-color;
+        color: v.$color-rich-black;
+        background-color: v.$color-white;
+        border-color: v.$color-rich-black;
 
         &:hover:not([disabled]) {
-            background-color: $color-medium-grey;
+            color: v.$color-white;
+            background-color: v.$color-rich-black;
+            border-color: v.$color-rich-black;
         }
+    }
+
+    &--filled {
+        &:hover:not([disabled]) {}
+    }
+
+    &--light {
+
+
+        &:hover:not([disabled]) {}
+    }
+
+    &--outline {
+
+
+        &:hover:not([disabled]) {}
     }
 
     &__text {
-        color: $button-text-color;
-        background-color: $button-background-color;
 
-        &:hover:not([disabled]) {
-            background-color: $color-medium-grey;
-        }
+
+        &:hover:not([disabled]) {}
     }
 
-    &__compact {
+    &--compact {
         /* 13px */
         font-size: 0.813rem;
-        border-radius: 20px;
         padding: 0.75rem 1.15rem;
     }
 

@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 
-import ExtraInfoFieldset from './RecipeForm/ExtraInfoFieldset'
-import IngredientsFieldset from './RecipeForm/IngredientsFieldset'
-import InstructionsFieldset from './RecipeForm/InstructionsFieldset'
-import GeneralInfoFieldset from './RecipeForm/GeneralInfoFieldset'
+import ExtraInfoFieldset from '../RecipeForm/ExtraInfoFieldset'
+import IngredientsFieldset from '../RecipeForm/IngredientsFieldset'
+import InstructionsFieldset from '../RecipeForm/InstructionsFieldset'
+import GeneralInfoFieldset from '../RecipeForm/GeneralInfoFieldset'
+import { Form } from '../Input'
+import Button from '../Button'
+import Accordion from '../Accordion'
 
-import { Form } from './Input'
-import Button from './Button'
-import Accordion from './Accordion'
-
-import { RECIPE_FIELDS_ATTRIBUTES } from './RecipeForm/utils/constants'
-
-import { deNormalizeData, getFormAccordionState, normalizeData } from './SubmitRecipe/utils'
+import { RECIPE_FIELDS_ATTRIBUTES } from '../RecipeForm/utils/constants'
+import { deNormalizeData, getFormAccordionState, normalizeData } from './utils'
 
 import styles from '@/styles/Form.module.css'
 
@@ -64,6 +62,9 @@ function SubmitRecipe({ data, assets }) {
     return (
         <FormProvider {...methods}>
             <Form onSubmit={methods.handleSubmit(onSubmit, onErrors)} >
+                <p style={{ marginBlockEnd: '1rem', fontSize: '14px' }}>
+                    <b>* Note:</b> An asterisk indicates that the field is required. Be good.
+                </p>
                 <Accordion
                     value={accState}
                     onChange={setAccState}
@@ -112,7 +113,12 @@ function SubmitRecipe({ data, assets }) {
                     </Accordion.Item>
                 </Accordion>
 
-                <Button type='submit'>Submit</Button>
+                <Button
+                    style={{ width: '100%', marginBlockStart: '1rem' }} type='submit'
+                    disabled={!methods.formState.isValid}
+                >
+                    Submit
+                </Button>
             </Form>
 
             <div className={styles.pre}>

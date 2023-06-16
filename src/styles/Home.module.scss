@@ -1,4 +1,12 @@
+@use './Variables.module.scss' as v;
+
 .main {
   padding: 2rem;
   min-height: 100vh;
+}
+
+.heading {
+  font-family: v.$font-accent;
+  font-size: 2.25rem;
+  margin-block-end: 1rem;
 }

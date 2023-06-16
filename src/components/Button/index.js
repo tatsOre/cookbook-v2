@@ -1,26 +1,23 @@
 import PropTypes from 'prop-types'
 import cx from '../utils/cx'
-
 import Icon from '../Icon'
 import UnstyledButton from './UnstyledButton'
 
 import styles from './Button.module.scss'
-// todo: for icons use: tabler icons react
-// TODO handle better lo de primary button, pues que mamera Button.Primary todo el tiempo.
 
-const ButtonAppearances = {
+const BUTTON_APPEARANCES = {
     Primary: 'primary',
     Secondary: 'secondary',
     Danger: 'danger',
     Warning: 'standard'
 }
 
-const ButtonVariants = {
-    Filled: 'filled',
-    Light: 'light',
-    Outline: 'outline',
-    Default: 'default',
-    Text: 'text' // text, hover: color
+const BUTTON_VARIANTS = {
+    FILLED: 'filled',
+    LIGHT: 'light',
+    OUTLINE: 'outline',
+    DEFAULT: 'default',
+    TEXT: 'text' // text, hover: color
 }
 
 /**
@@ -45,9 +42,12 @@ function Button(props) {
         ...rest
     } = props
 
+    const buttonVariantClass = `button__base--${variant || BUTTON_VARIANTS.DEFAULT}`
+
     const classes = cx([
-        styles[`button__${variant || 'filled'}`],
-        appearance && styles[`button__${appearance}`],
+        styles.button__base,
+        styles[buttonVariantClass],
+        appearance && styles[`button--${appearance}`],
         !children && styles['button__icon'],
         className
     ])

@@ -114,8 +114,9 @@ function IngredientsFieldset({ assets, fields }) {
 
                         <TextInput
                             label={ITEM_NAME.LABEL}
-                            placeholder={ITEM_NAME.PLACEHOLDER}
                             error={ingrNameFieldError}
+                            placeholder={ITEM_NAME.PLACEHOLDER}
+                            required
                             {...register(`${INGS_NAME}.${index}.${ITEM_NAME.NAME}`, {
                                 required: ITEM_NAME.RULES.REQUIRED
                             })}

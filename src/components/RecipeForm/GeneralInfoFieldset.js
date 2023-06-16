@@ -29,11 +29,11 @@ function GeneralInfoFieldset({ assets, fields }) {
     return (
         <>
             <TextInput
-            className={'texttito'}
                 label={TITLE.LABEL}
                 description={TITLE.DESC}
-                placeholder={TITLE.PLACEHOLDER}
                 error={errors[TITLE.NAME]?.message}
+                placeholder={TITLE.PLACEHOLDER}
+                required
                 {...register(TITLE.NAME, {
                     required: TITLE.RULES.REQUIRED
                 })}
@@ -44,6 +44,7 @@ function GeneralInfoFieldset({ assets, fields }) {
                 description={DESCRIPTION.DESC}
                 error={errors[DESCRIPTION.NAME]?.message}
                 placeholder={DESCRIPTION.PLACEHOLDER}
+                required
                 {...register(DESCRIPTION.NAME, {
                     required: DESCRIPTION.RULES.REQUIRED
                 })}
@@ -53,6 +54,7 @@ function GeneralInfoFieldset({ assets, fields }) {
                 label={MAIN_INGR.LABEL}
                 error={errors[MAIN_INGR.NAME]?.message}
                 placeholder={MAIN_INGR.PLACEHOLDER}
+                required
                 {...register(MAIN_INGR.NAME, {
                     required: MAIN_INGR.RULES.REQUIRED
                 })}

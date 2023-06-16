@@ -19,7 +19,7 @@ function InputLabel(props) {
     return (
         <label htmlFor={htmlFor} id={id} className={classes}>
             {children}
-            {required && <span aria-hidden>{' *'}</span>}
+            {required && <span aria-hidden>{'*'}</span>}
         </label>)
 }
 

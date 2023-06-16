@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import SubmitRecipe from '@/components/SubmitRecipe'
+import SubmitRecipe from '@/components/SubmitRecipe/SubmitRecipe'
 import styles from '@/styles/Home.module.scss'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -140,7 +140,7 @@ function Page() {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={`${styles.main} ${inter.className}`}>
-            <h1 style={{ lineHeight: '60px'}}>What's Cooking?</h1>
+            <h1 className={styles.heading}>What's Cooking?</h1>
             <SubmitRecipe data={TESTING_EMPTY} assets={ASSETS} />
         </main>
     </>
