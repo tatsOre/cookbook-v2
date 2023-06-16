@@ -2,7 +2,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import Button from '../Button'
 import TextareaInput from '../Textarea'
 
-import styles from '@/styles/Form.module.css'
+import styles from './RecipeForm.module.scss'
 
 function InstructionItem(props) {
     const {
@@ -20,7 +20,7 @@ function InstructionItem(props) {
         && errors[PARENT_FIELD][index][TEXT_ATTRS.NAME]?.message
 
     return (
-        <li className={styles.instructions}>
+        <li className={styles['instructions__list--item']}>
             <TextareaInput
                 label={`${TEXT_ATTRS.LABEL} ${index + 1}`} // Step N.
                 error={nameError}

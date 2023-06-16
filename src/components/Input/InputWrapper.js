@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types'
 import Input from '.'
+import cx from '../utils/cx'
+
+import styles from './Input.module.scss'
 
 function InputWrapper(props) {
     const {
@@ -28,9 +31,11 @@ function InputWrapper(props) {
         </Input.Error>
     )
 
-
     return (
-        <div className={className}>
+        <div
+            className={cx([className, styles.input__wrapper])}
+            data-input-wrapper
+            >
             {_Label}
             {_Description}
             {children}

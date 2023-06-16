@@ -1,0 +1,42 @@
+@use '../../styles/Variables.module.scss' as v;
+
+.accordion__wrapper {
+    width: 100%;
+}
+
+.accordion__trigger {
+    width: 100%;
+    background-color: v.$color-rich-black;
+    color: v.$color-white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    letter-spacing: 0.02rem;
+}
+
+.accordion__trigger--icon {
+    transition: transform 0.1s;
+}
+
+.accordion__trigger[data-active=true] .accordion__trigger--icon {
+    transform: rotate(180deg);
+    top: 0.5rem;
+}
+
+.accordion__panel {
+    height: 100%;
+    background-color: white;
+    padding: 1.5rem 2rem;
+}
+
+.collapse__panel {
+    height: 0px;
+    overflow: hidden;
+}
+
+.collapse__panel[data-active=true] {
+    height: 100%;
+}
+// https://stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css
+.accordion__panel.isActive {}

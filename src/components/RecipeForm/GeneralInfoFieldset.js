@@ -29,6 +29,7 @@ function GeneralInfoFieldset({ assets, fields }) {
     return (
         <>
             <TextInput
+            className={'texttito'}
                 label={TITLE.LABEL}
                 description={TITLE.DESC}
                 placeholder={TITLE.PLACEHOLDER}

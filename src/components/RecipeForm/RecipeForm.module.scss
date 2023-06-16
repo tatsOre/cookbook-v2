@@ -1,0 +1,30 @@
+.ingredients__list {
+    &--item {
+        display: flex;
+        gap: 0.5rem;
+
+        /** Overrides standar wrapper styles: */
+        div[data-input-wrapper] {
+            margin-block-end: 0px;
+        }
+    }
+
+    &--item:not(:first-of-type) {
+        label {
+            visibility: hidden;
+            line-height: 0;
+        }
+    }
+}
+
+.instructions__list {
+    &--item {
+        display: flex;
+        gap: 0.5rem;
+
+        /** Overrides standar wrapper styles: */
+        div[data-input-wrapper] {
+            margin-block-end: 0px;
+        }
+    }
+}

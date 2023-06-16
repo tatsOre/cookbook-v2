@@ -45,8 +45,6 @@ function useInputProps(inputType, props) {
     // ↓ should be trimmed
     const describedBy = `${hasError ? errorId : ''} ${description ? descriptionId : ''}`
 
-    const wrapperClassname = `input--wrapper`
-
     return {
         inputProps: {
             id: _id,
@@ -59,7 +57,7 @@ function useInputProps(inputType, props) {
             ...defaultProps(inputType)
         },
         wrapperProps: {
-            className: wrapperClassname,
+            className,
 
             description: {
                 className,

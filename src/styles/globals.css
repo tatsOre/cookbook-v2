@@ -53,8 +53,3 @@ a {
     color-scheme: dark;
   }
 }
-
-p[role="alert"] {
-  color: blue;
-  font-size: 0.8rem;
-}

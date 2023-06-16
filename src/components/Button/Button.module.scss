@@ -23,11 +23,22 @@ $color-white: white;
 $color-secondary-purple: purple;
 
 .button {
+    --webkit-appearance: none;
+    border-radius: 0;
+    text-align: inherit;
+    background: none;
+    box-shadow: none;
+    padding: 0;
     cursor: pointer;
+    border: none;
+    color: inherit;
+    font: inherit;
+}
+
+.button__styled {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-style: normal;
     font-weight: bold;
     font-size: 0.85rem; // add variable
     border: 1px solid $button-border-color;

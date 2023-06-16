@@ -1,0 +1,31 @@
+/** COLOR **/
+
+$color-state-error: #FF0000;
+$color-state-success: #60bf76;
+
+$color-rich-black: #1b1b1b;
+$color-smoke-gray: #767676;
+$color-white: white;
+$color-cool-grey-400: #B3B3B3;
+$color-cool-grey-100: #D8D8D8;
+$color-warm-grey-400: #DEDDD5;
+$color-warm-grey-200: #F2F3EF;
+$color-warm-grey-100: #F8F9F7;
+
+$color-callout-base: #D87D4A;
+$color-callout-hover: #FBAF85;
+
+
+/** TYPOGRAPHY */
+$font-size-10: 0.625rem;
+$font-size-12: 0.75rem;
+$font-size-14: 0.875rem;
+$font-size-15: 0.938rem;
+
+$line-height-15: 0.938rem;
+$line-height-25: 1.563rem;
+
+@mixin body {
+    font-size: $font-size-15;
+}
+

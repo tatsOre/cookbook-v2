@@ -37,7 +37,7 @@ const BASE_RULES = {
     maxValueErrorMsg(value) {
         return `Must be an integer less than or equal to ${value}`
     },
-    REQUIRED_DEFAULT: 'This field is required'
+    REQUIRED_DEFAULT: 'This field is required 🙁'
 }
 
 const RECIPE_FIELDS_ATTRIBUTES = {
@@ -146,7 +146,7 @@ const RECIPE_FIELDS_ATTRIBUTES = {
             REQUIRED: 'At least one is required',
         },
         TEXT_ATTRS: {
-            LABEL: 'step',
+            LABEL: 'Step',
             NAME: 'text',
             RULES: {
                 REQUIRED: BASE_RULES.REQUIRED_DEFAULT

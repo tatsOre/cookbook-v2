@@ -1,4 +1,7 @@
+import cx from '@/components/utils/cx'
 import PropTypes from 'prop-types'
+
+import styles from '../Input.module.scss'
 
 function InputError(props) {
     const {
@@ -7,7 +10,12 @@ function InputError(props) {
         id,
         ...rest
     } = props
-    return (<p role='alert' id={id}>{children}</p>)
+    return (
+        <p
+            className={cx([className, styles.input__error])} role='alert' id={id}
+        >{children}
+        </p>
+    )
 }
 
 InputError.propTypes = {

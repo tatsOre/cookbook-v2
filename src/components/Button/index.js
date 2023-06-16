@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import cx from '../utils/cx'
 
 import Icon from '../Icon'
+import UnstyledButton from './UnstyledButton'
 
 import styles from './Button.module.scss'
 // todo: for icons use: tabler icons react
@@ -44,52 +45,46 @@ function Button(props) {
         ...rest
     } = props
 
-
     const classes = cx([
-        styles.button,
-        variant && styles[`button__${variant}`],
+        styles[`button__${variant || 'filled'}`],
         appearance && styles[`button__${appearance}`],
         !children && styles['button__icon'],
         className
     ])
 
-    const getButtonContent = () => {
-        return (
-            <>
-                {leftIcon && <span
-                    className={cx([
-                        styles[`icon__container`],
-                        children && styles[`icon__container--left`]
-                    ])}
-                    aria-hidden="true"
-                >
-                    <Icon name={leftIcon} />
-                </span>}
-                {/** Fix to accept nodes, see Accordion Trigger: */}
-                {/** Warning: Failed prop type: Invalid prop `children` of type `array` supplied to `Button`, expected `string`. */}
-                {children && <span>{children}</span>}
-                {rightIcon && <span
-                    className={cx([
-                        styles[`icon__container`],
-                        children && styles[`icon__container--right`]
-                    ])}
-                    aria-hidden="true"
-                >
-                    <Icon name={rightIcon} />
-                </span>}
-            </>
-        )
-    }
+    const getButtonContent = () => (
+        <>
+            {leftIcon && <span
+                className={cx([
+                    styles[`icon__container`],
+                    children && styles[`icon__container--left`]
+                ])}
+                aria-hidden="true"
+            >
+                <Icon name={leftIcon} />
+            </span>}
+            {children && <span>{children}</span>}
+            {rightIcon && <span
+                className={cx([
+                    styles[`icon__container`],
+                    children && styles[`icon__container--right`]
+                ])}
+                aria-hidden="true"
+            >
+                <Icon name={rightIcon} />
+            </span>}
+        </>
+    )
 
     return (
-        <button
-            aria-haspopup={ariaHaspopup}
+        <UnstyledButton
+            aria-haspopup={ariaHaspopup || undefined}
             aria-label={!children ? ariaLabel : undefined}
             className={classes}
             disabled={disabled || isProcessing}
             {...rest}>
             {getButtonContent()}
-        </button>
+        </UnstyledButton>
     )
 }
 
@@ -123,12 +118,6 @@ Button.propTypes = {
 
     /** HTML attribute */
     type: PropTypes.oneOf(['button', 'reset', 'submit'])
-}
-
-Button.defaultProps = {
-
-    type: 'button',
-    variant: 'filled',
 }
 
 export default Button

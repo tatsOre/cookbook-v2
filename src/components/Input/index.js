@@ -1,9 +1,11 @@
 import React from "react"
-import styles from '@/styles/Form.module.css'
 import InputWrapper from "./InputWrapper"
 import InputLabel from "./InputLabel"
 import InputDescription from "./InputDescription"
 import InputError from "./InputError"
+import cx from "../utils/cx"
+
+import styles from './Input.module.scss'
 
 export function Form(props) {
     const { children, onSubmit, ...rest } = props
@@ -22,6 +24,8 @@ const Input = React.forwardRef((props, ref) => {
         ...rest
     } = props
 
+    const classes = cx([styles.input__box])
+
     return (
         <input
             ref={ref}
@@ -29,6 +33,7 @@ const Input = React.forwardRef((props, ref) => {
             aria-label={labelledBy}
             aria-describedby={describedBy} // check if exists and trim
             aria-invalid={hasError}
+            className={classes}
             disabled={disabled}
             required={required}
         />

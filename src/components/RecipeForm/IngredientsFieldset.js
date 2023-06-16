@@ -7,8 +7,7 @@ import TextInput from '../TextInput'
 import SelectInput from '../Select'
 import { RECIPE_SCHEMA } from './utils/constants'
 
-import styles from '@/styles/Form.module.css'
-
+import styles from './RecipeForm.module.scss'
 
 const INGR_SCHEMA = RECIPE_SCHEMA.ingredients[0]
 
@@ -45,12 +44,9 @@ function IngredientsFieldset({ assets, fields }) {
             NAME: INGS_NAME,
             RULES,
             // Attributes for ingredient item:
-            INGR_ATTRS: { QTY, FRACTION, MEASURE, NAME: ITEM_NAME, PREP_NOTE }, 
-            ingrLabels
+            INGR_ATTRS: { QTY, FRACTION, MEASURE, NAME: ITEM_NAME, PREP_NOTE }
         },
     } = fields
-    
-    const INGR_LABELS = ingrLabels ?? []
 
     const { register, control, formState: { errors }, watch } = useFormContext()
 
@@ -78,8 +74,6 @@ function IngredientsFieldset({ assets, fields }) {
         swap(source.index, destination.index)
     }
 
-    const ingrItemHeadings = INGR_LABELS.map((label, index) => <h3 key={index}>{label}</h3>)
-
     const ingrListItems = controlledFields.map((ingr, index) => {
         const ingrNameFieldError = errors[INGS_NAME]
             && errors[INGS_NAME][index]
@@ -94,7 +88,7 @@ function IngredientsFieldset({ assets, fields }) {
                         key={ingr.id}
                         innerRef={provided.innerRef}
                         {...provided.draggableProps}
-                        className={styles.ingredients}
+                        className={styles['ingredients__list--item']}
                     >
 
                         <div {...provided.dragHandleProps}>
@@ -154,9 +148,6 @@ function IngredientsFieldset({ assets, fields }) {
                             {...provided.droppableProps}
                             innerRef={provided.innerRef}
                         >
-                            <div aria-hidden="true" style={{ display: 'flex' }}>
-                                {ingrItemHeadings}
-                            </div>
                             {ingrListItems}
                             {provided.placeholder}
                         </DroppableList>

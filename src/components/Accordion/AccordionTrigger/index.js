@@ -1,7 +1,10 @@
 import cx from "@/components/utils/cx"
 import { useAccordionContext } from ".."
 import { useAccordionItemContext } from "../AccordionItem/context"
-import Button from "@/components/Button"
+import UnstyledButton from "@/components/Button/UnstyledButton"
+import Icon from "@/components/Icon"
+
+import styles from '../Accordion.module.scss'
 
 function AccordionTrigger(props) {
     const { children, ...rest } = props
@@ -12,10 +15,10 @@ function AccordionTrigger(props) {
     const onClickHandler = () => context.onChange(value)
 
     return (
-        <Button // todo make an unstyled button
+        <UnstyledButton
             aria-controls={context.getPanelId(value)}
             aria-expanded={isItemActive}
-            className={cx([context.className])}
+            className={cx([context.className, styles.accordion__trigger])}
             data-active={isItemActive || undefined}
             data-accordion-trigger
             id={context.getTriggerId(value)}
@@ -23,8 +26,10 @@ function AccordionTrigger(props) {
             {...rest}
         >
             <span>{children}</span>
-            <span>v</span> {/** Add Chevron */}
-        </Button>
+            <div className={styles['accordion__trigger--icon']}>
+                <Icon name="chevron" />
+            </div>
+        </UnstyledButton>
     )
 }
 

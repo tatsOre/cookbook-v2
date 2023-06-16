@@ -140,7 +140,7 @@ function Page() {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={`${styles.main} ${inter.className}`}>
-            <h1>New recipe</h1>
+            <h1 style={{ lineHeight: '60px'}}>What's Cooking?</h1>
             <SubmitRecipe data={TESTING_EMPTY} assets={ASSETS} />
         </main>
     </>

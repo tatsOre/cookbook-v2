@@ -2,6 +2,9 @@ import React from "react"
 import useInputProps from "../Input/useInputProps"
 import Input from "../Input"
 
+import styles from '../Input/Input.module.scss'
+import cx from "../utils/cx"
+
 // TODO: ADD textarea to Input Comp.
 export const Textarea = React.forwardRef((props, ref) => {
     const {
@@ -13,6 +16,7 @@ export const Textarea = React.forwardRef((props, ref) => {
         ...rest
     } = props
 
+    const classes = cx([styles.input__textarea])
     return (
         <textarea
             ref={ref}
@@ -20,6 +24,7 @@ export const Textarea = React.forwardRef((props, ref) => {
             aria-label={labelledBy}
             aria-invalid={hasError}
             aria-describedby={describedBy} // check if exists and trim
+            className={classes}
             disabled={disabled}
             required={required}
         />
@@ -31,7 +36,7 @@ const TextareaInput = React.forwardRef((props, ref) => {
 
     return (
         <Input.Wrapper {...wrapperProps}>
-            <Textarea {...inputProps} ref={ref}/>
+            <Textarea {...inputProps} ref={ref} />
         </Input.Wrapper>
     )
 })
