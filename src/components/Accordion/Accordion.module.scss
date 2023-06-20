@@ -27,18 +27,16 @@
     top: 0.5rem;
 }
 
-.accordion__panel {
+.accordion__panel--content {
     height: 100%;
-    background-color: white;
-    padding: 1.5rem 2rem;
 }
 
-.collapse__panel {
+.accordion__panel--collapsible {
     height: 0px;
     overflow: hidden;
 }
 
-.collapse__panel[data-active=true] {
+.accordion__panel--collapsible[data-active=true] {
     height: 100%;
 }
 // https://stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css

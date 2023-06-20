@@ -1,28 +1,77 @@
-.ingredients__list {
-    &--item {
-        display: flex;
-        gap: 0.5rem;
+$gap: 0.5rem;
 
-        /** Overrides standar wrapper styles: */
-        div[data-input-wrapper] {
-            margin-block-end: 0px;
-        }
+.recipe__form--accordion {
+    [data-accordion-content] {
+        background-color: white;
+        padding: 1.5rem 2rem;
+        display: flex;
+        flex-flow: row wrap;
+        gap: $gap;
     }
 
-    &--item:not(:first-of-type) {
-        label {
-            visibility: hidden;
-            line-height: 0;
+    /** General Info */
+    [data-accordion-content]:nth-child(1) {
+
+        [data-input-wrapper="description"],
+        [data-input-wrapper="title"] {
+            flex-basis: 100%;
+        }
+
+        [data-input-wrapper="servings"],
+        [data-input-wrapper="time.prep"],
+        [data-input-wrapper="time.cook"] {
+            flex: 1 1 30%;
+        }
+
+        [data-input-wrapper="mainIngredient"],
+        [data-input-wrapper="cuisine"],
+        [data-input-wrapper="categories"] {
+            flex: 1 1 30%;
+        }
+    }
+}
+
+.ingredients__list {
+    flex-basis: 100%;
+
+    &--item {
+        display: flex;
+        margin-block-end: 0.35rem;
+        gap: $gap;
+        align-items: stretch;
+
+        /** Draggable Button: */
+        &>div:nth-child(1) {
+            flex-basis: 48px;
+            display: flex;
+            align-items: center;
+        }
+
+        /** Ingredient unit input: */
+        &>div:nth-child(2) {
+            flex: 1 0 80px;
+            background-color: chocolate;
+        }
+
+        div[data-input-wrapper] {
+            margin-block-end: 0px;
+
+            label {
+                visibility: hidden;
+                line-height: 0;
+                margin: 0
+            }
         }
     }
 }
 
 .instructions__list {
+    flex-basis: 100%;
+
     &--item {
         display: flex;
-        gap: 0.5rem;
+        gap: $gap;
 
-        /** Overrides standar wrapper styles: */
         div[data-input-wrapper] {
             margin-block-end: 0px;
         }

@@ -52,6 +52,7 @@ function GeneralInfoFieldset({ assets, fields }) {
 
             <TextInput
                 label={MAIN_INGR.LABEL}
+                description={MAIN_INGR.DESC}
                 error={errors[MAIN_INGR.NAME]?.message}
                 placeholder={MAIN_INGR.PLACEHOLDER}
                 required
@@ -60,47 +61,15 @@ function GeneralInfoFieldset({ assets, fields }) {
                 })}
             />
 
-            <NumberInput
-                label={SERVINGS.LABEL}
-                error={errors[SERVINGS.NAME]?.message}
-                {...register(SERVINGS.NAME, {
-                    min: {
-                        value: 0,
-                        message: SERVINGS.RULES.MIN
-                    }
-                })}
-            />
-
-            <NumberInput
-                label={TIME.PREP.LABEL}
-                error={errors.time?.prep?.message}
-                {...register(TIME.PREP.NAME, {
-                    min: {
-                        value: 0,
-                        message: TIME.PREP.RULES.MIN
-                    }
-                })}
-            />
-
-            <NumberInput
-                label={TIME.COOK.LABEL}
-                error={errors.time?.cook?.message}
-                {...register(TIME.COOK.NAME, {
-                    min: {
-                        value: 0,
-                        message: TIME.COOK.RULES.MIN
-                    }
-                })}
-            />
-
             <SelectInput
                 label={CUISINE.LABEL}
+                description={CUISINE.DESC}
                 name={CUISINE.NAME}
                 options={assets.CUISINE_OPTIONS}
             />
 
             {/** TODO: */}
-            <div>
+            <div data-input-wrapper="categories">
                 <Input.Label htmlFor="cat-select" >
                     {CATEGORIES.LABEL}
                 </Input.Label>
@@ -137,6 +106,39 @@ function GeneralInfoFieldset({ assets, fields }) {
                     )}
                 />
             </div>
+
+            <NumberInput
+                label={SERVINGS.LABEL}
+                error={errors[SERVINGS.NAME]?.message}
+                {...register(SERVINGS.NAME, {
+                    min: {
+                        value: 0,
+                        message: SERVINGS.RULES.MIN
+                    }
+                })}
+            />
+
+            <NumberInput
+                label={TIME.PREP.LABEL}
+                error={errors.time?.prep?.message}
+                {...register(TIME.PREP.NAME, {
+                    min: {
+                        value: 0,
+                        message: TIME.PREP.RULES.MIN
+                    }
+                })}
+            />
+
+            <NumberInput
+                label={TIME.COOK.LABEL}
+                error={errors.time?.cook?.message}
+                {...register(TIME.COOK.NAME, {
+                    min: {
+                        value: 0,
+                        message: TIME.COOK.RULES.MIN
+                    }
+                })}
+            />
         </>
     )
 }

@@ -35,7 +35,6 @@ function Accordion(props) {
     return (
         <AccordionProvider value={{
             id: _id,
-            className,
             onChange: onItemChangeHandler,
             isItemActive,
             getTriggerId: (v) => `${_id}-trigger-${v}`,

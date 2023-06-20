@@ -1,6 +1,5 @@
 import { useAccordionContext } from ".."
 import { AccordionItemProvider } from "./context"
-import cx from "@/components/utils/cx"
 
 function AccordionItem(props) {
     const { children, value } = props
@@ -9,7 +8,6 @@ function AccordionItem(props) {
     return (
         <AccordionItemProvider value={{ value }}>
             <div
-                className={cx([context.className])}
                 data-item-active={context.isItemActive(value) || undefined}>
                 {children}
             </div>

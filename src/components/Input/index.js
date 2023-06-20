@@ -7,13 +7,6 @@ import cx from "../utils/cx"
 
 import styles from './Input.module.scss'
 
-export function Form(props) {
-    const { children, onSubmit, ...rest } = props
-    return <form className={`${styles.form}`} onSubmit={onSubmit} noValidate>
-        {children}
-    </form>
-}
-
 const Input = React.forwardRef((props, ref) => {
     const {
         describedBy,

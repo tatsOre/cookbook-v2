@@ -9,19 +9,21 @@ function AccordionPanel(props) {
     const context = useAccordionContext()
     const { value } = useAccordionItemContext()
     const isItemActive = context.isItemActive(value)
-// divide content from collapsible div
+
     return (
         <div
             aria-labelledby={context.getTriggerId(value)}
             data-active={isItemActive || undefined}
             data-accordion-panel
             id={context.getPanelId(value)}
-            className={cx([styles.collapse__panel])}
+            className={cx([styles['accordion__panel--collapsible']])}
             {...rest}
         >
-            <div className={cx([
-                context.className, styles.accordion__panel
-            ])}>
+            <div
+                data-accordion-content
+                className={cx([
+                    styles['accordion__panel--content'],
+                ])}>
                 {children}
             </div>
         </div>

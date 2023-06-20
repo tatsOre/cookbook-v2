@@ -141,7 +141,7 @@ const RECIPE_FIELDS_ATTRIBUTES = {
         }
     },
     CUISINE: {
-        DESC: '',
+        DESC: 'Lorem Impsum Morten',
         LABEL: 'Cuisine',
         NAME: 'cuisine',
     },

@@ -1,9 +1,3 @@
-.pre {
-    display: block;
-    background-color: whitesmoke;
-    margin-block: 1rem;
-}
-
 .drop_zone {
     display: grid;
     width: 400px;

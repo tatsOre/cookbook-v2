@@ -18,7 +18,7 @@ function AccordionTrigger(props) {
         <UnstyledButton
             aria-controls={context.getPanelId(value)}
             aria-expanded={isItemActive}
-            className={cx([context.className, styles.accordion__trigger])}
+            className={cx([styles.accordion__trigger])}
             data-active={isItemActive || undefined}
             data-accordion-trigger
             id={context.getTriggerId(value)}

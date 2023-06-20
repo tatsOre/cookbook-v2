@@ -22,14 +22,14 @@ const TESTING_VALUES = {
         {
             quantity: 0,
             fraction: null,
-            measure: MEASURE_OPTIONS[3],
+            measure: ASSETS.MEASURE_OPTIONS[3],
             name: "dry mung beans",
             prepNote: ""
         },
         {
             quantity: 1,
-            fraction: FRACTIONS_OPTIONS[2],
-            measure: MEASURE_OPTIONS[1],
+            fraction: ASSETS.FRACTIONS_OPTIONS[2],
+            measure: ASSETS.MEASURE_OPTIONS[1],
             name: "ground coriander",
             prepNote: ""
         },
@@ -45,8 +45,8 @@ const TESTING_VALUES = {
         'Soak mung beans in water overnight. Drain.',
         'Heat oil or ghee in a heavy-bottomed pressure cooker. Sauté onions and garlic over medium heat for 2 to 3 minutes, stirring frequently until onions soften. Add turmeric, cumin, coriander, black pepper, fenugreek, and fennel seeds. Stir constantly over medium heat until spices are aromatic.'
     ],
-    categories: [CATEGORIES_OPTIONS[0], CATEGORIES_OPTIONS[1]],
-    cuisine: CUISINE_OPTIONS[0],
+    categories: [ASSETS.CATEGORIES_OPTIONS[0], ASSETS.CATEGORIES_OPTIONS[1]],
+    cuisine: ASSETS.CUISINE_OPTIONS[0],
     public: false,
     comments: "Beans can be replaced with red lentils."
 }

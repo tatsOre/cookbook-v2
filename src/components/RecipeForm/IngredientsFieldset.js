@@ -23,10 +23,12 @@ const IconGrip = () => {
 }
 
 function DroppableList(props) {
-    const { children, innerRef, ordered, ...rest } = props
-    return ordered
-        ? <ol {...rest} ref={innerRef}>{children}</ol>
-        : <ul {...rest} ref={innerRef} >{children}</ul>
+    const { children, innerRef, ...rest } = props
+    return (
+        <ul {...rest} ref={innerRef} className={styles.instructions__list}>
+            {children}
+        </ul>
+    )
 }
 
 function DraggableListItem(props) {
@@ -117,7 +119,7 @@ function IngredientsFieldset({ assets, fields }) {
                             {...register(`${INGS_NAME}.${index}.${PREP_NOTE.NAME}`)}
                         />
 
-                        <Button onClick={() => remove(index)}>Delete</Button>
+                        <Button onClick={() => remove(index)}>✘</Button>
                     </DraggableListItem>
                 )}
             </Draggable>
@@ -145,7 +147,7 @@ function IngredientsFieldset({ assets, fields }) {
                     )}
                 </Droppable>
             </DragDropContext>
-            <Button onClick={() => append(INGR_SCHEMA)}>Add New Ingredient</Button>
+            <Button onClick={() => append(INGR_SCHEMA)}>Add Ingredient</Button>
         </>
     )
 }

@@ -24,11 +24,13 @@
 .input__box {
     width: 100%;
     padding: 0.8rem;
+    border: 1px solid v.$color-warm-grey-300;
 }
 
 .input__textarea {
     width: 100%;
     padding: 0.8rem;
+    border: 1px solid v.$color-warm-grey-300;
 }
 
 .input__textarea::placeholder {

@@ -34,7 +34,7 @@ function InputWrapper(props) {
     return (
         <div
             className={cx([className, styles.input__wrapper])}
-            data-input-wrapper
+            data-input-wrapper={children.props.name}
             >
             {_Label}
             {_Description}

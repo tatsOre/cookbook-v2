@@ -28,7 +28,7 @@ function InstructionItem(props) {
                     required: TEXT_ATTRS.RULES.REQUIRED
                 })}
             />
-            <Button onClick={onClickHandler}>Delete</Button>
+            <Button onClick={onClickHandler}>✘</Button>
         </li>
     )
 }
@@ -70,7 +70,7 @@ function InstructionsFieldset({ fields }) {
             {/** ↓ Error Message or Input Error? */}
             {errors[NAME]?.root
                 && <p role='alert'>{errors[NAME].root.message}</p>}
-            <ul>{listItems}</ul>
+            <ul className={styles.instructions__list}>{listItems}</ul>
             <Button onClick={onAppendHandler}>
                 Add instruction
             </Button>

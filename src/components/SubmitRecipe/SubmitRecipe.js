@@ -5,14 +5,15 @@ import ExtraInfoFieldset from '../RecipeForm/ExtraInfoFieldset'
 import IngredientsFieldset from '../RecipeForm/IngredientsFieldset'
 import InstructionsFieldset from '../RecipeForm/InstructionsFieldset'
 import GeneralInfoFieldset from '../RecipeForm/GeneralInfoFieldset'
-import { Form } from '../Input'
-import Button from '../Button'
+
 import Accordion from '../Accordion'
+import Button from '../Button'
+import { Form } from '../Box'
 
 import { RECIPE_FIELDS_ATTRIBUTES, RECIPE_SCHEMA } from '../RecipeForm/utils/constants'
 import { deNormalizeData, getFormAccordionState, normalizeData } from './utils'
 
-import styles from '@/styles/Form.module.css'
+import styles from '../RecipeForm/RecipeForm.module.scss'
 
 const {
     TITLE,
@@ -70,7 +71,7 @@ function SubmitRecipe({ data, assets, mode }) {
                 <Accordion
                     value={accState}
                     onChange={setAccState}
-                    className='form-accordion'
+                    className={styles['recipe__form--accordion']}
                 >
                     <Accordion.Item value="item-1">
                         <Accordion.Trigger>General Info</Accordion.Trigger>
@@ -92,7 +93,7 @@ function SubmitRecipe({ data, assets, mode }) {
                         <Accordion.Trigger>Ingredients</Accordion.Trigger>
                         <Accordion.Panel>
                             <IngredientsFieldset
-                                /** todo: check this data flow: */ 
+                                /** todo: check this data flow: */
                                 fields={{ INGREDIENTS, INGR_SCHEMA: RECIPE_SCHEMA.ingredients[0] }}
                                 assets={assets}
                             />
@@ -123,8 +124,11 @@ function SubmitRecipe({ data, assets, mode }) {
                     Submit
                 </Button>
             </Form>
-
-            <div className={styles.pre}>
+            <div style={{
+                display: 'block',
+                backgroundColor: 'whitesmoke',
+                marginBlock: '1rem'
+            }}>
                 <p>JSON TO DB:</p>
                 <pre>{JSON.stringify(payData, undefined, 2)}</pre>
             </div>
