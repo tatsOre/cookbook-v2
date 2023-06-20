@@ -23,7 +23,7 @@ function GeneralInfoFieldset({ assets, fields }) {
     const [selectedCategories, setSelectedCategories] = useState(
         defaultValues.categories ?? []
     )
-
+    //console.log(defaultValues)
     const categoriesLeft = `(${3 - selectedCategories.length} left)`
 
     return (
@@ -62,18 +62,18 @@ function GeneralInfoFieldset({ assets, fields }) {
 
             <NumberInput
                 label={SERVINGS.LABEL}
-                error={errors[SERVINGS.NAME]?.message} // TODO: add TIME to constants.
+                error={errors[SERVINGS.NAME]?.message}
                 {...register(SERVINGS.NAME, {
                     min: {
                         value: 0,
                         message: SERVINGS.RULES.MIN
                     }
-                })} // Should be optional?
+                })}
             />
 
             <NumberInput
                 label={TIME.PREP.LABEL}
-                error={errors.time?.prep?.message} // TODO: add TIME to constants.
+                error={errors.time?.prep?.message}
                 {...register(TIME.PREP.NAME, {
                     min: {
                         value: 0,

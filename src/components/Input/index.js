@@ -31,7 +31,7 @@ const Input = React.forwardRef((props, ref) => {
             ref={ref}
             {...rest}
             aria-label={labelledBy}
-            aria-describedby={describedBy} // check if exists and trim
+            aria-describedby={describedBy || undefined} // check if exists and trim
             aria-invalid={hasError}
             className={classes}
             disabled={disabled}

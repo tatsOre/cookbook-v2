@@ -9,7 +9,7 @@ import { Form } from '../Input'
 import Button from '../Button'
 import Accordion from '../Accordion'
 
-import { RECIPE_FIELDS_ATTRIBUTES } from '../RecipeForm/utils/constants'
+import { RECIPE_FIELDS_ATTRIBUTES, RECIPE_SCHEMA } from '../RecipeForm/utils/constants'
 import { deNormalizeData, getFormAccordionState, normalizeData } from './utils'
 
 import styles from '@/styles/Form.module.css'
@@ -36,12 +36,14 @@ const {
  * @returns 
  */
 
-function SubmitRecipe({ data, assets }) {
+function SubmitRecipe({ data, assets, mode }) {
     const [payData, setPayData] = useState({})
     const [accState, setAccState] = useState(['item-1'])
 
+    const initialValues = mode === 'edit' ? deNormalizeData(data) : data
+
     const methods = useForm({
-        defaultValues: deNormalizeData(data)
+        defaultValues: initialValues
     })
 
     const onSubmit = (values) => {
@@ -49,7 +51,7 @@ function SubmitRecipe({ data, assets }) {
             /** If photo file comes from input+event, set 1st value: */
             values.photo = values.photo[0]
         }
-        console.log('Submit photo', values.photo)
+        //console.log('Submit photo', values.photo)
         const payload = normalizeData(values)
         setPayData(payload)
     }
@@ -90,8 +92,10 @@ function SubmitRecipe({ data, assets }) {
                         <Accordion.Trigger>Ingredients</Accordion.Trigger>
                         <Accordion.Panel>
                             <IngredientsFieldset
-                                fields={{ INGREDIENTS }}
-                                assets={assets} />
+                                /** todo: check this data flow: */ 
+                                fields={{ INGREDIENTS, INGR_SCHEMA: RECIPE_SCHEMA.ingredients[0] }}
+                                assets={assets}
+                            />
                         </Accordion.Panel>
                     </Accordion.Item>
                     <Accordion.Item value="item-3">
@@ -115,7 +119,6 @@ function SubmitRecipe({ data, assets }) {
 
                 <Button
                     style={{ width: '100%', marginBlockStart: '1rem' }} type='submit'
-                    disabled={!methods.formState.isValid}
                 >
                     Submit
                 </Button>

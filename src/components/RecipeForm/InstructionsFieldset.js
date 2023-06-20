@@ -22,7 +22,7 @@ function InstructionItem(props) {
     return (
         <li className={styles['instructions__list--item']}>
             <TextareaInput
-                label={`${TEXT_ATTRS.LABEL} ${index + 1}`} // Step N.
+                label={`${TEXT_ATTRS.LABEL} ${index + 1}`} // Step {index}
                 error={nameError}
                 {...register(`${PARENT_FIELD}.${index}.${TEXT_ATTRS.NAME}`, {
                     required: TEXT_ATTRS.RULES.REQUIRED
@@ -43,20 +43,11 @@ function InstructionsFieldset({ fields }) {
         INSTRUCTIONS: { NAME, DESC, RULES, TEXT_ATTRS },
     } = fields
 
-    const { control, formState: { errors }, watch } = useFormContext()
+    const { control, formState: { errors } } = useFormContext()
 
-    const { fields: arrayFields, append, remove } = useFieldArray({
+    const { fields: instructions, append, remove } = useFieldArray({
         control, name: NAME, rules: {
             required: RULES.REQUIRED
-        }
-    })
-
-    const watchFieldArray = watch(NAME)
-
-    const controlledFields = arrayFields.map((field, index) => {
-        return {
-            ...field,
-            ...watchFieldArray[index]
         }
     })
 
@@ -64,7 +55,7 @@ function InstructionsFieldset({ fields }) {
 
     const onRemoveHandler = (index) => remove(index)
 
-    const listItems = controlledFields.map((inst, index) => (
+    const listItems = instructions.map((inst, index) => (
         <InstructionItem
             key={inst.id}
             index={index}

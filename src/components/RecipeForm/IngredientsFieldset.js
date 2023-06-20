@@ -5,11 +5,8 @@ import Button from '../Button'
 import NumberInput from '../NumberInput'
 import TextInput from '../TextInput'
 import SelectInput from '../Select'
-import { RECIPE_SCHEMA } from './utils/constants'
 
 import styles from './RecipeForm.module.scss'
-
-const INGR_SCHEMA = RECIPE_SCHEMA.ingredients[0]
 
 const IconGrip = () => {
     return (
@@ -44,24 +41,16 @@ function IngredientsFieldset({ assets, fields }) {
             NAME: INGS_NAME,
             RULES,
             // Attributes for ingredient item:
-            INGR_ATTRS: { QTY, FRACTION, MEASURE, NAME: ITEM_NAME, PREP_NOTE }
+            INGR_ATTRS: { QTY, FRACTION, MEASURE, NAME: ITEM_NAME, PREP_NOTE },
         },
+        INGR_SCHEMA
     } = fields
 
-    const { register, control, formState: { errors }, watch } = useFormContext()
+    const { register, control, formState: { errors } } = useFormContext()
 
-    const { fields: arrayItems, append, remove, swap } = useFieldArray({
+    const { fields: ingredients, append, remove, swap } = useFieldArray({
         control, name: INGS_NAME, rules: {
             required: RULES.REQUIRED
-        }
-    })
-
-    const watchFieldArray = watch(INGS_NAME)
-
-    const controlledFields = arrayItems.map((field, index) => {
-        return {
-            ...field,
-            ...watchFieldArray[index]
         }
     })
 
@@ -74,7 +63,7 @@ function IngredientsFieldset({ assets, fields }) {
         swap(source.index, destination.index)
     }
 
-    const ingrListItems = controlledFields.map((ingr, index) => {
+    const ingrListItems = ingredients.map((ingr, index) => {
         const ingrNameFieldError = errors[INGS_NAME]
             && errors[INGS_NAME][index]
             && errors[INGS_NAME][index][ITEM_NAME.NAME]?.message
@@ -96,7 +85,7 @@ function IngredientsFieldset({ assets, fields }) {
                         </div>
 
                         <NumberInput
-                            label={QTY.LABEL} type='number'
+                            label={QTY.LABEL}
                             {...register(`${INGS_NAME}.${index}.${QTY.NAME}`)}
                         />
 
@@ -124,6 +113,7 @@ function IngredientsFieldset({ assets, fields }) {
 
                         <TextInput
                             label={PREP_NOTE.LABEL}
+                            placeholder={PREP_NOTE.PLACEHOLDER}
                             {...register(`${INGS_NAME}.${index}.${PREP_NOTE.NAME}`)}
                         />
 
