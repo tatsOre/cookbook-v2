@@ -13,22 +13,16 @@ function InputWrapper(props) {
         label: labelProps,
     } = props
 
-    const _Label = labelProps.content && (
-        <Input.Label {...labelProps}>
-            {labelProps.content}
-        </Input.Label>
+    const _Label = labelProps.children && (
+        <Input.Label {...labelProps} />
     )
 
-    const _Description = descProps.content && (
-        <Input.Description {...descProps}>
-            {descProps?.content}
-        </Input.Description>
+    const _Description = descProps.children && (
+        <Input.Description {...descProps} />
     )
 
-    const _Error = errorProps.content && (
-        <Input.Error {...errorProps}>
-            {errorProps.content}
-        </Input.Error>
+    const _Error = errorProps.children && (
+        <Input.Error {...errorProps} />
     )
 
     return (

@@ -13,14 +13,14 @@ function InputDescription(props) {
     return (
         <p
             className={cx([className, styles.input__description])}
-            id={id}>{children}
+            id={id}>
+            {children}
         </p>
     )
 }
 
 InputDescription.propTypes = {
-    /** Content */
-    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    children: PropTypes.node,
 }
 
 export default InputDescription

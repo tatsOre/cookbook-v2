@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cx from "../utils/cx"
-import Input from '../Input'
 
 import styles from './Checkbox.module.scss'
 
@@ -11,52 +10,54 @@ import styles from './Checkbox.module.scss'
  */
 
 const CheckboxInput = React.forwardRef((props, ref) => {
-  const appearance = props.disabled ? 'disabled' : props.appearance
-console.log(props)
-  const getCheckboxProps = () => {
-    const {
-      appearance,
-      className,
-      errors,
-      label,
-      hintContent,
-      showInputLabel,
-      showCheckedLabel,
-      ...otherProps
-    } = props
-    return { ...otherProps }
-  }
-  return (
-    <div className={cx([props.className, 'checkbox-wrapper'])}>
+  const {
+    appearance,
+    className,
+    disabled,
+    errors,
+    label,
+    hintContent,
+    showInputLabel,
+    showCheckedLabel,
+    ...rest
+  } = props
 
+  const appearancesClasses = disabled ? 'disabled' : appearance
+
+  return (
+    <div 
+      className={cx([className, styles.input__wrapper])}
+      data-input-wrapper={''}
+      >
+      
       <label
         className={cx([
-          'checkbox-label',
-          `checkbox-label--${appearance}`,
-          props.checked && props.showCheckedLabel && 'checkbox-label--checked'
+          styles.input__label,
+          styles[`checkbox__label--${appearance}`],
+          (rest.checked && showCheckedLabel) && styles['input_label--checked']
         ])}>
+
         <input
           ref={ref}
-          className="visually-hidden"
+          className={styles['visually-hidden']}
           type="checkbox"
-          {...getCheckboxProps()}
+          {...rest}
 
         />
 
         <span
           className={cx([
-            'checkbox-checkmark',
-            `checkbox-checkmark--${appearance}`,
-            props.checked && 'checkbox-checkmark--checked'
+            styles.checkbox__icon,
+            styles[`checkbox__icon--${appearance}`]
           ])}
           aria-hidden="true"></span>
 
         <span
           className={cx([
-            'checkbox-label--text',
-            !props.showInputLabel && 'visually-hidden'
+            styles['input__label--text'],
+            !showInputLabel && styles['visually-hidden']
           ])}>
-          {props.label}
+          {label}
         </span>
       </label>
     </div>
@@ -78,7 +79,7 @@ CheckboxInput.propTypes = {
   disabled: PropTypes.bool,
 
   /** Sets the contents for validation errors and will be displayed below the input element. */
-  errors: PropTypes.string,
+  error: PropTypes.string,
 
   /** The text that appears next to the input. Should always be set even when hidden for accessibility support. */
   label: PropTypes.node,
@@ -90,13 +91,7 @@ CheckboxInput.propTypes = {
   showInputLabel: PropTypes.bool,
 
   /** Text displayed directly under the input with additional information about the expected input */
-  hintContent: PropTypes.string,
-  /** Optional change handler
-   */
-  onChange: PropTypes.func,
-
-  /** The input value */
-  value: PropTypes.string
+  description: PropTypes.string,
 }
 
 CheckboxInput.defaultProps = {

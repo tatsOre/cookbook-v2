@@ -38,12 +38,12 @@ function useInputProps(inputType, props) {
 
     const _id = id ?? useId()
     const labelId = `${_id}-label`
-
     const errorId = `${_id}-error`
     const descriptionId = `${_id}-description`
+    
     const hasError = !!error && typeof error === 'string'
-    // ↓ should be trimmed
-    const describedBy = `${hasError ? errorId : ''} ${description ? descriptionId : ''}`
+    const aria_describedBy = `${hasError ? errorId : ''} ${description ? descriptionId : ''}`
+    const describedBy = aria_describedBy.trim()
 
     return {
         inputProps: {
@@ -62,17 +62,17 @@ function useInputProps(inputType, props) {
             description: {
                 className,
                 id: descriptionId,
-                content: description
+                children: description
             },
             error: {
                 className,
-                content: error,
-                id: errorId
+                id: errorId,
+                children: error,
             },
             label: {
                 className,
-                content: label,
                 id: labelId,
+                children: label,
                 htmlFor: _id,
                 required,
                 disabled, // (!) pointer-events: none

@@ -12,18 +12,15 @@ function InputError(props) {
     } = props
     return (
         <p
-            className={cx([className, styles.input__error])} role='alert' id={id}
-        >{children}
+            className={cx([className, styles.input__error])} id={id} role='alert'
+        >
+            {children}
         </p>
     )
 }
 
 InputError.propTypes = {
-    /** Content */
-    children: PropTypes.oneOfType([
-        PropTypes.string, PropTypes.node
-    ]),
-    id: PropTypes.string
+    children: PropTypes.node
 }
 
 export default InputError

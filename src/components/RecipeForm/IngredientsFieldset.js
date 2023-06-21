@@ -25,7 +25,7 @@ const IconGrip = () => {
 function DroppableList(props) {
     const { children, innerRef, ...rest } = props
     return (
-        <ul {...rest} ref={innerRef} className={styles.instructions__list}>
+        <ul {...rest} ref={innerRef} className={styles.ingredients__list}>
             {children}
         </ul>
     )
