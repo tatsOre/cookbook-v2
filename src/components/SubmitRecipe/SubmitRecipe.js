@@ -24,6 +24,7 @@ const {
     CUISINE,
     CATEGORIES,
     PHOTO,
+    PUBLIC,
     COMMENTS,
     INGREDIENTS,
     INSTRUCTIONS
@@ -84,7 +85,8 @@ function SubmitRecipe({ data, assets, mode }) {
                                     SERVINGS,
                                     TIME,
                                     CUISINE,
-                                    CATEGORIES
+                                    CATEGORIES,
+                                    PUBLIC
                                 }}
                                 assets={assets} />
                         </Accordion.Panel>

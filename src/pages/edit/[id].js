@@ -47,7 +47,7 @@ const TESTING_VALUES = {
     ],
     categories: [ASSETS.CATEGORIES_OPTIONS[0], ASSETS.CATEGORIES_OPTIONS[1]],
     cuisine: ASSETS.CUISINE_OPTIONS[0],
-    public: false,
+    public: true,
     comments: "Beans can be replaced with red lentils."
 }
 

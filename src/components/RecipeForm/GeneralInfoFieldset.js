@@ -2,6 +2,7 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { useState } from 'react'
 import Select from 'react-select'
 import Input from '../Input'
+import CheckboxInput from '../Checkbox'
 import NumberInput from '../NumberInput'
 import SelectInput from '../Select'
 import TextInput from '../TextInput'
@@ -15,7 +16,8 @@ function GeneralInfoFieldset({ assets, fields }) {
         SERVINGS,
         TIME,
         CUISINE,
-        CATEGORIES
+        CATEGORIES,
+        PUBLIC
     } = fields
 
     const { register, control, formState: { errors, defaultValues } } = useFormContext()
@@ -83,7 +85,7 @@ function GeneralInfoFieldset({ assets, fields }) {
                         <Select
                             isMulti
                             isClearable
-                            defaultValue={defaultValues.categories}
+                            defaultValue={selectedCategories}
                             options={assets.CATEGORIES_OPTIONS}
                             onChange={(ev) => { setSelectedCategories(ev); onChange(ev) }}
                             getOptionValue={(option) => `${option['_id']}`}
@@ -138,6 +140,11 @@ function GeneralInfoFieldset({ assets, fields }) {
                         message: TIME.COOK.RULES.MIN
                     }
                 })}
+            />
+
+            <CheckboxInput 
+            label={PUBLIC.LABEL}
+            {...register(PUBLIC.NAME)}
             />
         </>
     )

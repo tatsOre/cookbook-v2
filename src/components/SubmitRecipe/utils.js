@@ -11,11 +11,12 @@ const {
     PHOTO,
     COMMENTS,
     INGREDIENTS,
-    INSTRUCTIONS
+    INSTRUCTIONS,
+    PUBLIC
 } = RECIPE_FIELDS_ATTRIBUTES
 
 export const deNormalizeData = (values) => {
-    const instructions = values.instructions.length
+    const instructions = values.instructions?.length
         ? values.instructions.map(inst => ({ text: inst }))
         : [{ text: '' }]
     return {
@@ -25,8 +26,9 @@ export const deNormalizeData = (values) => {
 }
 
 export const normalizeData = (values) => {
-    const instructions = values.instructions.map(inst => inst.text)
-    const categories = values.categories.map(cat => cat._id)
+    console.log(values)
+    const instructions = values.instructions?.map(inst => inst.text)
+    const categories = values.categories?.map(cat => cat._id)
     // TODO: NORMALIZE FRACTION & MEASURE IN INGRE.
     return {
         ...values,
@@ -37,7 +39,15 @@ export const normalizeData = (values) => {
 }
 
 const accordionFormFieldsets = {
-    "item-1": [TITLE.NAME, DESCRIPTION.NAME, MAIN_INGR.NAME, CUISINE.NAME, CATEGORIES.NAME, SERVINGS.NAME],
+    "item-1": [
+        TITLE.NAME,
+        DESCRIPTION.NAME,
+        MAIN_INGR.NAME,
+        CUISINE.NAME,
+        CATEGORIES.NAME,
+        SERVINGS.NAME,
+        PUBLIC.NAME
+    ],
     "item-2": [INGREDIENTS.NAME],
     'item-3': [INSTRUCTIONS.NAME],
     'item-4': [PHOTO.NAME, COMMENTS.NAME]

@@ -150,6 +150,11 @@ const RECIPE_FIELDS_ATTRIBUTES = {
         LABEL: 'Categories',
         NAME: 'categories',
     },
+    PUBLIC: {
+        DESC: '',
+        LABEL: 'Show recipe.',
+        NAME: 'public'
+    },
     INGREDIENTS: {
         NAME: 'ingredients',
         RULES: {
