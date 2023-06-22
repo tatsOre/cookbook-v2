@@ -17,14 +17,16 @@ const Input = React.forwardRef((props, ref) => {
         ...rest
     } = props
 
-    const classes = cx([styles.input__box])
+    const classes = cx([
+        styles.input__box, hasError && styles['input__box--error']
+    ])
 
     return (
         <input
             ref={ref}
             {...rest}
             aria-label={labelledBy}
-            aria-describedby={describedBy || undefined} // check if exists and trim
+            aria-describedby={describedBy || undefined}
             aria-invalid={hasError}
             className={classes}
             disabled={disabled}

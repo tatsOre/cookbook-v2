@@ -67,7 +67,7 @@ function SubmitRecipe({ data, assets, mode }) {
         <FormProvider {...methods}>
             <Form onSubmit={methods.handleSubmit(onSubmit, onErrors)} >
                 <p style={{ marginBlockEnd: '1rem', fontSize: '14px' }}>
-                    <b>* Note:</b> An asterisk indicates that the field is required. Be good.
+                    <b>* Note:</b> An asterisk indicates that the field is required.
                 </p>
                 <Accordion
                     value={accState}
@@ -123,17 +123,9 @@ function SubmitRecipe({ data, assets, mode }) {
                 <Button
                     style={{ width: '100%', marginBlockStart: '1rem' }} type='submit'
                 >
-                    Submit
+                    Save Recipe
                 </Button>
             </Form>
-            <div style={{
-                display: 'block',
-                backgroundColor: 'whitesmoke',
-                marginBlock: '1rem'
-            }}>
-                <p>JSON TO DB:</p>
-                <pre>{JSON.stringify(payData, undefined, 2)}</pre>
-            </div>
         </FormProvider>)
 }
 

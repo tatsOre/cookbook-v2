@@ -27,7 +27,7 @@ const CheckboxInput = React.forwardRef((props, ref) => {
   return (
     <div 
       className={cx([className, styles.input__wrapper])}
-      data-input-wrapper={''}
+      data-input-wrapper={props.name}
       >
       
       <label

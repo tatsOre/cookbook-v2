@@ -19,7 +19,7 @@ export const IconShapes = {
 function Icon(props) {
     const { className, name, ...rest } = props
     const SvgComponent = IconShapes[name]
-    return SvgComponent ? <SvgComponent /> : null
+    return SvgComponent ? <SvgComponent /> : name
 }
 
 export default Icon

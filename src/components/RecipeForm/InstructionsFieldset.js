@@ -3,6 +3,7 @@ import Button from '../Button'
 import TextareaInput from '../Textarea'
 
 import styles from './RecipeForm.module.scss'
+import UnstyledButton from '../Button/UnstyledButton'
 
 function InstructionItem(props) {
     const {
@@ -28,7 +29,11 @@ function InstructionItem(props) {
                     required: TEXT_ATTRS.RULES.REQUIRED
                 })}
             />
-            <Button onClick={onClickHandler}>✘</Button>
+            <UnstyledButton
+                className={styles['button__icon--delete']}
+                onClick={onClickHandler}>
+                ✘
+            </UnstyledButton>
         </li>
     )
 }

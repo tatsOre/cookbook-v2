@@ -2,39 +2,15 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 import Button from '../Button'
+import DroppableList from '../List'
 import NumberInput from '../NumberInput'
 import TextInput from '../TextInput'
 import SelectInput from '../Select'
+import IconGrip from '../Icon/icons/icon-grip'
 
 import styles from './RecipeForm.module.scss'
+import UnstyledButton from '../Button/UnstyledButton'
 
-const IconGrip = () => {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
-            </path><path d="M9 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
-            </path><path d="M9 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
-            </path><path d="M15 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
-            </path><path d="M15 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
-            </path><path d="M15 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
-            </path>
-        </svg>
-    )
-}
-
-function DroppableList(props) {
-    const { children, innerRef, ...rest } = props
-    return (
-        <ul {...rest} ref={innerRef} className={styles.ingredients__list}>
-            {children}
-        </ul>
-    )
-}
-
-function DraggableListItem(props) {
-    const { innerRef, ...rest } = props
-    return <li {...rest} ref={innerRef}></li>
-}
 
 function IngredientsFieldset({ assets, fields }) {
     const {
@@ -43,7 +19,7 @@ function IngredientsFieldset({ assets, fields }) {
             NAME: INGS_NAME,
             RULES,
             // Attributes for ingredient item:
-            INGR_ATTRS: { QTY, FRACTION, MEASURE, NAME: ITEM_NAME, PREP_NOTE },
+            INGR_ATTRS: { QTY, FRACTION, MEASURE, NAME: ITEM_NAME, PREP_NOTE }
         },
         INGR_SCHEMA
     } = fields
@@ -75,7 +51,7 @@ function IngredientsFieldset({ assets, fields }) {
         return (
             <Draggable key={di_id} draggableId={di_id} index={index}>
                 {(provided) => (
-                    <DraggableListItem
+                    <DroppableList.Item
                         key={ingr.id}
                         innerRef={provided.innerRef}
                         {...provided.draggableProps}
@@ -119,8 +95,12 @@ function IngredientsFieldset({ assets, fields }) {
                             {...register(`${INGS_NAME}.${index}.${PREP_NOTE.NAME}`)}
                         />
 
-                        <Button onClick={() => remove(index)}>✘</Button>
-                    </DraggableListItem>
+                        <UnstyledButton
+                            className={styles['button__icon--delete']}
+                            onClick={() => remove(index)}>
+                            ✘
+                        </UnstyledButton>
+                    </DroppableList.Item>
                 )}
             </Draggable>
         )
@@ -140,6 +120,7 @@ function IngredientsFieldset({ assets, fields }) {
                         <DroppableList
                             {...provided.droppableProps}
                             innerRef={provided.innerRef}
+                            className={styles.ingredients__list}
                         >
                             {ingrListItems}
                             {provided.placeholder}

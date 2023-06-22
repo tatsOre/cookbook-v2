@@ -4,7 +4,7 @@ import Select from 'react-select'
 import Input from '../Input'
 import CheckboxInput from '../Checkbox'
 import NumberInput from '../NumberInput'
-import SelectInput from '../Select'
+import SelectInput, { styles } from '../Select'
 import TextInput from '../TextInput'
 import TextareaInput from '../Textarea'
 
@@ -97,12 +97,17 @@ function GeneralInfoFieldset({ assets, fields }) {
                             menuPortalTarget={
                                 typeof window !== "undefined" && document.querySelector('body')
                             }
-                            styles={
-                                {
-                                    menuPortal: base => ({ ...base, zIndex: 9999 }),
-                                    menu: provided => ({ ...provided, zIndex: "9999 !important" })
-                                }
-                            }
+                            styles={styles}
+                            theme={(theme) => ({
+                                ...theme,
+                                borderRadius: 0,
+                                colors: {
+                                    ...theme.colors,
+                                    primary50: '#e9e8e1',
+                                    primary25: '#e9e8e1',
+                                    primary: 'black',
+                                },
+                            })}
                             {...rest}
                         />
                     )}

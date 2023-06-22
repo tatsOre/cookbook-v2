@@ -83,7 +83,7 @@ const BASE_RULES = {
     maxValueErrorMsg(value) {
         return `Must be an integer less than or equal to ${value}`
     },
-    REQUIRED_DEFAULT: 'This field is required 🙁'
+    REQUIRED_DEFAULT: 'This field is required.'
 }
 
 const RECIPE_FIELDS_ATTRIBUTES = {
@@ -93,7 +93,7 @@ const RECIPE_FIELDS_ATTRIBUTES = {
         NAME: 'title',
         PLACEHOLDER: 'e.g. Passion Fruit Dessert',
         RULES: {
-            REQUIRED: BASE_RULES.REQUIRED_DEFAULT
+            REQUIRED: 'Please provide a title for your recipe.'
         }
     },
     DESCRIPTION: {
@@ -102,7 +102,7 @@ const RECIPE_FIELDS_ATTRIBUTES = {
         NAME: 'description',
         PLACEHOLDER: 'e.g Indulge in the tangy and tropical flavors of passion fruit with this refreshing and luscious dessert...',
         RULES: {
-            REQUIRED: BASE_RULES.REQUIRED_DEFAULT
+            REQUIRED: 'Please provide a description for your recipe.'
         }
     },
     MAIN_INGR: {
@@ -111,7 +111,7 @@ const RECIPE_FIELDS_ATTRIBUTES = {
         NAME: 'mainIngredient',
         PLACEHOLDER: 'e.g. Passion Fruit',
         RULES: {
-            REQUIRED: BASE_RULES.REQUIRED_DEFAULT
+            REQUIRED: 'Main ingredient is required.'
         }
     },
     SERVINGS: {
@@ -152,7 +152,7 @@ const RECIPE_FIELDS_ATTRIBUTES = {
     },
     PUBLIC: {
         DESC: '',
-        LABEL: 'Show recipe.',
+        LABEL: 'I agree to make this recipe public and let other members to use it.',
         NAME: 'public'
     },
     INGREDIENTS: {

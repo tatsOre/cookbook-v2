@@ -16,14 +16,17 @@ export const Textarea = React.forwardRef((props, ref) => {
         ...rest
     } = props
 
-    const classes = cx([styles.input__textarea])
+    const classes = cx([
+        styles.input__box, hasError && styles['input__box--error']
+    ])
+
     return (
         <textarea
             ref={ref}
             {...rest}
             aria-label={labelledBy}
             aria-invalid={hasError}
-            aria-describedby={describedBy} // check if exists and trim
+            aria-describedby={describedBy || undefined}
             className={classes}
             disabled={disabled}
             required={required}
