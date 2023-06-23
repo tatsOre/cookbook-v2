@@ -23,6 +23,10 @@ function InputLabel(props) {
         </label>)
 }
 
+InputLabel.defaultProps = {
+    showInputLabel: true
+}
+
 InputLabel.propTypes = {
     /** Content */
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),

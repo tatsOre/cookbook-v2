@@ -4,7 +4,7 @@
 
 export function Form(props) {
     const { children, onSubmit, ...rest } = props
-    return <form onSubmit={onSubmit} noValidate>
+    return <form onSubmit={onSubmit} {...rest} noValidate>
         {children}
     </form>
 }

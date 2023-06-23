@@ -21,7 +21,7 @@ $color-input-outline: #5872f7;
 
 /** TYPOGRAPHY */
 $font-accent: 'Major Mono Display', monospace;
-$font-base: 'Helvetica';
+$font-base: sans-serif;
 
 $font-size-10: 0.625rem;
 $font-size-12: 0.75rem;
@@ -39,8 +39,10 @@ $line-height-25: 1.563rem;
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     height: 1px;
+    width: 1px;
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
-    width: 1px;
+    border: 0;
+    padding: 0;
 }

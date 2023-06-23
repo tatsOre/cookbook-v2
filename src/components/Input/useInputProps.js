@@ -5,6 +5,7 @@ const MIN_ROWS_VALUE = 3
 
 function useInputProps(inputType, props) {
     const {
+        ariaLabel,
         className,
         description,
         disabled,
@@ -48,11 +49,12 @@ function useInputProps(inputType, props) {
     return {
         inputProps: {
             id: _id,
+            ariaLabel,
             hasError,
             required,
-            disabled, // (!) pointer-events: none
+            disabled,
             describedBy,
-            labelledBy: labelId,
+            showInputLabel,
             ...rest,
             ...defaultProps(inputType)
         },

@@ -1,11 +1,7 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import SubmitRecipe from '@/components/SubmitRecipe/SubmitRecipe'
+import SubmitRecipeLayout from '@/components/SubmitRecipe/Layout'
 import { ASSETS } from '@/components/RecipeForm/utils/constants'
-
-import styles from '@/styles/Home.module.scss'
-
-const inter = Inter({ subsets: ['latin'] })
 
 const TESTING_VALUES = {
     title: 'Mung Beans With Veggies',
@@ -60,14 +56,13 @@ const TESTING_VALUES = {
 function Page() {
     return <>
         <Head>
-            <title>Edit</title>
+            <title>Edit Recipe</title>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <main className={`${styles.main} ${inter.className}`}>
-            <h1 className={styles.heading}>Edit {TESTING_VALUES.title}</h1>
-            <SubmitRecipe data={TESTING_VALUES} assets={ASSETS} mode='edit' />
-        </main>
+        <SubmitRecipeLayout title={TESTING_VALUES.title}>
+            <SubmitRecipe data={TESTING_VALUES} assets={ASSETS} />
+        </SubmitRecipeLayout>
     </>
 }
 

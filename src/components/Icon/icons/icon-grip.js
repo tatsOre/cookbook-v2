@@ -6,7 +6,7 @@ function IconGrip() {
             viewBox="0 0 24 24" fill="none"
             stroke="currentColor"
             strokeWidth="2"
-            trokeLinecap="round"
+            strokeLinecap="round"
             strokeLinejoin="round">
             <path d="M9 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">
             </path><path d="M9 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0">

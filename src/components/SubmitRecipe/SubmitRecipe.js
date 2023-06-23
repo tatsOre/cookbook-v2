@@ -39,7 +39,6 @@ const {
  */
 
 function SubmitRecipe({ data, assets, mode }) {
-    const [payData, setPayData] = useState({})
     const [accState, setAccState] = useState(['item-1'])
 
     const initialValues = mode === 'edit' ? deNormalizeData(data) : data
@@ -55,7 +54,6 @@ function SubmitRecipe({ data, assets, mode }) {
         }
         //console.log('Submit photo', values.photo)
         const payload = normalizeData(values)
-        setPayData(payload)
     }
 
     const onErrors = (errors) => {
@@ -63,17 +61,26 @@ function SubmitRecipe({ data, assets, mode }) {
         setAccState(newAccordionItemsState)
     }
 
+    const onChange = (ev) => {
+        // TODO: Save draft to session storage
+    }
+
     return (
         <FormProvider {...methods}>
-            <Form onSubmit={methods.handleSubmit(onSubmit, onErrors)} >
-                <p style={{ marginBlockEnd: '1rem', fontSize: '14px' }}>
-                    <b>* Note:</b> An asterisk indicates that the field is required.
-                </p>
-                <Accordion
-                    value={accState}
-                    onChange={setAccState}
-                    className={styles['recipe__form--accordion']}
+            <Accordion
+                value={accState}
+                onChange={setAccState}
+                className={styles['recipe__form--accordion']}
+            >
+                <Form
+                    id="submit-recipe-form"
+                    onChange={onChange}
+                    onSubmit={methods.handleSubmit(onSubmit, onErrors)}
                 >
+                    <p style={{ marginBlockEnd: '1rem', fontSize: '14px' }}>
+                        <b>* Note:</b> An asterisk indicates that the field is required.
+                    </p>
+
                     <Accordion.Item value="item-1">
                         <Accordion.Trigger>General Info</Accordion.Trigger>
                         <Accordion.Panel>
@@ -118,14 +125,8 @@ function SubmitRecipe({ data, assets, mode }) {
                             />
                         </Accordion.Panel>
                     </Accordion.Item>
-                </Accordion>
-
-                <Button
-                    style={{ width: '100%', marginBlockStart: '1rem' }} type='submit'
-                >
-                    Save Recipe
-                </Button>
-            </Form>
+                </Form>
+            </Accordion>
         </FormProvider>)
 }
 

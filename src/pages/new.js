@@ -1,10 +1,7 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import SubmitRecipe from '@/components/SubmitRecipe/SubmitRecipe'
-import styles from '@/styles/Home.module.scss'
+import SubmitRecipeLayout from '@/components/SubmitRecipe/Layout'
 import { ASSETS, RECIPE_SCHEMA } from '@/components/RecipeForm/utils/constants'
-
-const inter = Inter({ subsets: ['latin'] })
 
 const TESTING_EMPTY = {
     'ingredients': RECIPE_SCHEMA.ingredients,
@@ -24,10 +21,9 @@ function Page() {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <main className={`${styles.main} ${inter.className}`}>
-            <h1 className={styles.heading}>What's Cooking?</h1>
+        <SubmitRecipeLayout title="new recipe">
             <SubmitRecipe data={TESTING_EMPTY} assets={ASSETS} />
-        </main>
+        </SubmitRecipeLayout>
     </>
 }
 

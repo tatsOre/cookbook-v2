@@ -9,11 +9,12 @@ import styles from './Input.module.scss'
 
 const Input = React.forwardRef((props, ref) => {
     const {
+        ariaLabel,
         describedBy,
         disabled,
         hasError,
-        labelledBy,
         required,
+        showInputLabel,
         ...rest
     } = props
 
@@ -25,7 +26,7 @@ const Input = React.forwardRef((props, ref) => {
         <input
             ref={ref}
             {...rest}
-            aria-label={labelledBy}
+            aria-label={!showInputLabel ? ariaLabel : undefined}
             aria-describedby={describedBy || undefined}
             aria-invalid={hasError}
             className={classes}

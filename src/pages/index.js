@@ -1,11 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.scss'
-import Button from '@/components/Button'
-
-
-const inter = Inter({ subsets: ['latin'] })
+import Link from 'next/link'
 
 export default function Home() {
 
@@ -17,36 +11,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <h1>Cookbook 2.0</h1>
-        <p>This kitchen is on fire 🔥</p>
-
-        <hr />
-        <Button type='submit' variant='filled' disabled>Button</Button>
-        <hr />
-        <Button type='submit' variant='filled' isProcessing>Button</Button>
-        <hr />
-        <Button leftIcon='check' type='submit' variant='filled' compact>Button</Button>
-        <hr />
-        <Button rightIcon='check' type='submit' variant='filled' compact>Button</Button>
-        <hr />
-        <Button rightIcon='check' type='submit' />
-
-        <div style={{ height: '100px' }}></div>
-        <h2>Button Filled</h2>
-        <Button type='submit'>Button</Button>
-
-        <h2>Button Outlined</h2>
-        <Button type='submit' variant='outline'>Button</Button>
-
-        <h2>Button Light</h2>
-        <Button type='submit' variant='light'>Button</Button>
-
-        <h2>Button Default</h2>
-        <Button type='submit' variant='default'>Button</Button>
-
-        <h2>Button Text</h2>
-        <Button type='submit' variant='text'>Button</Button>
+      <main>
+        <Link href="/new">Create recipe</Link>
       </main>
     </>
   )

@@ -152,7 +152,7 @@ const RECIPE_FIELDS_ATTRIBUTES = {
     },
     PUBLIC: {
         DESC: '',
-        LABEL: 'I agree to make this recipe public and let other members to use it.',
+        LABEL: 'I agree to make this recipe public and let other members use it.',
         NAME: 'public'
     },
     INGREDIENTS: {
