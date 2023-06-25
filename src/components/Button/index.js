@@ -1,23 +1,22 @@
 import PropTypes from 'prop-types'
-import cx from '../utils/cx'
-import Icon from '../Icon'
 import UnstyledButton from './UnstyledButton'
+import cx from '../utils/cx'
 
 import styles from './Button.module.scss'
 
 const BUTTON_APPEARANCES = {
-    Primary: 'primary',
-    Secondary: 'secondary',
-    Danger: 'danger',
-    Warning: 'standard'
+    PRIMARY: 'primary',
+    SECONDARY: 'secondary',
+    TERTIARY: 'tertiary',
+    DANGER: 'danger',
+    SUCCESS: 'success'
 }
 
 const BUTTON_VARIANTS = {
     FILLED: 'filled',
     LIGHT: 'light',
     OUTLINE: 'outline',
-    DEFAULT: 'default',
-    TEXT: 'text' // text, hover: color
+    TEXT: 'text'
 }
 
 /**
@@ -27,9 +26,7 @@ const BUTTON_VARIANTS = {
 
 function Button(props) {
     const {
-        appearance,
-        ariaHaspopup,
-        ariaLabel,
+        appearance = BUTTON_APPEARANCES.PRIMARY,
         children,
         className,
         compact,
@@ -38,83 +35,64 @@ function Button(props) {
         leftIcon,
         rightIcon,
         uppercase,
-        variant,
+        variant = BUTTON_VARIANTS.FILLED,
         ...rest
     } = props
 
-    const buttonVariantClass = `button__base--${variant || BUTTON_VARIANTS.DEFAULT}`
-
     const classes = cx([
-        styles.button__base,
-        styles[buttonVariantClass],
-        appearance && styles[`button--${appearance}`],
-        !children && styles['button__icon'],
-        className
+        className,
+        styles.button,
+        styles[`button--${appearance}`],
+        styles[`button--${variant}`]
     ])
-
-    const getButtonContent = () => (
-        <>
-            {leftIcon && <span
-                className={cx([
-                    styles[`icon__container`],
-                    children && styles[`icon__container--left`]
-                ])}
-                aria-hidden="true"
-            >
-                <Icon name={leftIcon} />
-            </span>}
-            {children && <span>{children}</span>}
-            {rightIcon && <span
-                className={cx([
-                    styles[`icon__container`],
-                    children && styles[`icon__container--right`]
-                ])}
-                aria-hidden="true"
-            >
-                <Icon name={rightIcon} />
-            </span>}
-        </>
-    )
 
     return (
         <UnstyledButton
-            aria-haspopup={ariaHaspopup || undefined}
             aria-label={!children ? ariaLabel : undefined}
             className={classes}
             disabled={disabled || isProcessing}
             {...rest}>
-            {getButtonContent()}
+            {leftIcon && (
+                <span
+                    aria-hidden="true"
+                    className={cx([
+                        styles[`icon__container`],
+                        styles[`icon__container--left`]
+                    ])}
+                >
+                    {leftIcon}
+                </span>
+            )}
+            {<span
+                className={cx([styles['button--label']])}
+                style={{ textTransform: uppercase ? 'uppercase' : undefined }}
+            >
+                {children}
+            </span>}
+            {rightIcon && (
+                <span
+                    aria-hidden="true"
+                    className={cx([
+                        styles[`icon__container`],
+                        styles[`icon__container--right`]
+                    ])}
+                >
+                    {rightIcon}
+                </span>
+            )}
         </UnstyledButton>
     )
 }
 
 Button.propTypes = {
-    /** If the button triggers new content to appear (e.g.: modals and dropdowns) */
-    ariaHaspopup: PropTypes.bool,
-
-    /** If the button does not contain text children. (e.g.: icon buttons) */
-    ariaLabel: PropTypes.string,
-
-    /** Is the button is enabled? */
-    disabled: PropTypes.bool,
-
     /** Icon before the button text */
-    leftIcon: PropTypes.string,
+    leftIcon: PropTypes.node,
 
     /** Icon after the button text */
-    rightIcon: PropTypes.string,
+    rightIcon: PropTypes.node,
 
     /** Is the action intended to be finished or not? */
     isProcessing: PropTypes.bool,
-
-    /** Button text content */
-    children: PropTypes.string,
-
-    /** Optional click handler */
-    onClick: PropTypes.func,
-
-    /** Optional focus handler */
-    onFocus: PropTypes.func,
 
     /** HTML attribute */
     type: PropTypes.oneOf(['button', 'reset', 'submit'])

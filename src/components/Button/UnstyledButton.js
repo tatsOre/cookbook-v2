@@ -3,20 +3,26 @@ import cx from '../utils/cx'
 
 import styles from './Button.module.scss'
 
+/**
+ * This component accepts all the HTML button attributes
+ * @returns   React Component
+ */
+
 function UnstyledButton(props) {
     const {
+        ariaLabel,
         children,
         className,
-        disabled,
-        type,
+        disabled = false,
+        type = 'button',
         ...rest
     } = props
-
     return (
         <button
-            className={cx([styles.button, className])}
+            aria-label={ariaLabel}
+            className={cx([styles.button__base, className])}
             disabled={disabled}
-            type={type || 'button'}
+            type={type}
             {...rest}>
             {children}
         </button>
@@ -24,13 +30,19 @@ function UnstyledButton(props) {
 }
 
 UnstyledButton.propTypes = {
+    /** If the button triggers new content to appear (e.g.: modals and dropdowns) */
+    ariaHaspopup: PropTypes.bool,
+
+    /** If the button does not contain text children. (e.g.: icon buttons) */
+    ariaLabel: PropTypes.string,
+
     /** Is the button is enabled? */
     disabled: PropTypes.bool,
 
     /** Button text content */
-    children: PropTypes.any,
+    children: PropTypes.node,
 
-    /** Click handler */
+    /** Optional click handler */
     onClick: PropTypes.func,
 
     /** Optional focus handler */

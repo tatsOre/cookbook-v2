@@ -7,9 +7,10 @@ function SubmitRecipeLayout(props) {
         <>
             <header>
                 <Nav className='nav__bar'>
+                    <Button>iii</Button>
                     <Button>COOKBOOK</Button>
                     <Button style={{ marginLeft: 'auto' }}>CANCEL</Button>
-                    <Button style={{ marginLeft: '0.5rem' }} form="submit-recipe-form" type='submit'>
+                    <Button form="submit-recipe-form" type='submit'>
                         Save Recipe
                     </Button>
                 </Nav>

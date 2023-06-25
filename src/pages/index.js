@@ -1,3 +1,7 @@
+
+import Button from '@/components/Button'
+import { IconCheck } from '@/components/Icon/icons'
+import IconGridDots from '@/components/Icon/icons/icon-grid-dots'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -12,7 +16,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+
         <Link href="/new">Create recipe</Link>
+
+        <Button leftIcon={<IconGridDots />}>Button</Button>
+        <Button rightIcon={<IconGridDots />}>Button</Button>
+        <Button leftIcon={<IconGridDots />} rightIcon={<IconGridDots />}>Button</Button>
+
+        <Button variant='outline' leftIcon={<IconGridDots />}>Button</Button>
+
+        <Button leftIcon={<IconCheck />}>Button</Button>
+        <Button rightIcon={<IconCheck />}>Button</Button>
+        <Button leftIcon={<IconCheck />} rightIcon={<IconCheck />}>Button</Button>
+
+        <Button variant='outline' leftIcon={<IconCheck />}>Button</Button>
+        <Button  variant='outline' rightIcon={<IconCheck />}>Button</Button>
+        <Button  variant='outline' leftIcon={<IconCheck />} rightIcon={<IconCheck />}>Button</Button>
       </main>
     </>
   )

@@ -2,8 +2,13 @@
 
 $button-border-radius: 0px;
 
+$button-color: v.$color-white;
+$button-color-background: v.$color-rich-black;
+$button-color-hover: v.$color-smoke-gray;
+$button-color-shade: v.$color-cool-grey-100;
+
 /** Unstyled Buttons: **/
-.button {
+.button__base {
     --webkit-appearance: none;
     border-radius: 0;
     text-align: inherit;
@@ -14,64 +19,27 @@ $button-border-radius: 0px;
     border: none;
     color: inherit;
     font: inherit;
-}
-
-/** Styled Buttons: **/
-.button__base {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem; // add variable
-    letter-spacing: 0.15rem;
-    text-transform: uppercase;
-    border: 1px solid transparent;
-    border-radius: $button-border-radius;
-
-    /* Buttons with label: */
-    padding: 0.625rem 1.5rem;
 
     &:disabled {
         cursor: not-allowed;
         opacity: 0.8;
     }
+}
 
-    &--icon {
-        /* Buttons without label: */
-        padding: 0.75rem;
-    }
+/** Styled Buttons: **/
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $button-color-background;
+    border-radius: $button-border-radius;
+    padding: 0.625rem 1.5rem;
+    background-color: $button-color-background;
+    color: $button-color;
 
-    &--default {
-        color: v.$color-rich-black;
-        background-color: v.$color-white;
-        border-color: v.$color-rich-black;
-
-        &:hover:not([disabled]) {
-            color: v.$color-white;
-            background-color: v.$color-rich-black;
-            border-color: v.$color-rich-black;
-        }
-    }
-
-    &--filled {
-        &:hover:not([disabled]) {}
-    }
-
-    &--light {
-
-
-        &:hover:not([disabled]) {}
-    }
-
-    &--outline {
-
-
-        &:hover:not([disabled]) {}
-    }
-
-    &__text {
-
-
-        &:hover:not([disabled]) {}
+    &--label {
+        font-size: 0.85rem;
+        letter-spacing: 0.15rem;
     }
 
     &--compact {
@@ -79,6 +47,21 @@ $button-border-radius: 0px;
         font-size: 0.813rem;
         padding: 0.75rem 1.15rem;
     }
+
+    &:hover:not([disabled]) {
+        background-color: $button-color-hover;
+    }
+
+    &--secondary {}
+
+    &--danger {
+        $button-color: v.$color-white;
+        $button-color-background: v.$color-state-error;
+        $button-color-hover: v.$color-smoke-gray;
+        $button-color-shade: v.$color-rich-black;
+    }
+
+    &--success {}
 
     span.icon__container {
         display: flex;
@@ -90,6 +73,30 @@ $button-border-radius: 0px;
 
         &--right {
             margin-inline-start: 0.5rem;
+        }
+    }
+}
+
+/** Button Variants: */
+.button {
+    &--filled {
+        color: v.$color-white;
+        background-color: $button-color-background;
+        border-color: $button-color-background;
+
+        &:hover:not([disabled]) {
+            background-color: $button-color-hover;
+            border-color: $button-color-hover;
+        }
+    }
+
+    &--outline {
+        color: $button-color-background;
+        background-color: v.$color-white;
+        border-color: $button-color-background;
+
+        &:hover:not([disabled]) {
+            background-color: $button-color-shade;
         }
     }
 }

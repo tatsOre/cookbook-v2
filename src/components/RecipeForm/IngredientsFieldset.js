@@ -6,7 +6,7 @@ import DroppableList from '../List'
 import NumberInput from '../NumberInput'
 import TextInput from '../TextInput'
 import SelectInput from '../Select'
-import IconGrip from '../Icon/icons/icon-grip'
+import IconGridDots from '../Icon/icons/icon-grid-dots'
 
 import styles from './RecipeForm.module.scss'
 import UnstyledButton from '../Button/UnstyledButton'
@@ -59,7 +59,7 @@ function IngredientsFieldset({ assets, fields }) {
                     >
 
                         <div {...provided.dragHandleProps}>
-                            <IconGrip />
+                            <IconGridDots size={20}/>
                         </div>
 
                         <NumberInput
