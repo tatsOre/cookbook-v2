@@ -1,32 +1,3 @@
-// Enter one or two sentences that describe the recipe. Is it easy to make or hard? What would you serve it with? How long does it take?
-
-const RECIPE_SCHEMA = {
-    title: '',
-    description: '',
-    mainIngredient: '',
-    time: {
-        prep: '', /** Number */
-        cook: '', /** Number */
-        total: '' /** Number */
-    },
-    photo: '',
-    servings: '', /** Number */
-    ingredients: [
-        {
-            quantity: '', /** Number */
-            fraction: null, /** Object */
-            measure: null, /** Object */
-            name: '',
-            prepNote: ''
-        }
-    ],
-    instructions: [{ text: '' }],
-    categories: [], /** [Object] */
-    cuisine: null, /** Object */
-    public: false,
-    comments: ''
-}
-
 const BASE_RULES = {
     minValueErrorMsg(value) {
         return `Must be an integer greater than or equal to ${value}`
@@ -37,7 +8,7 @@ const BASE_RULES = {
     REQUIRED_DEFAULT: 'This field is required.'
 }
 
-const RECIPE_FIELDS_ATTRIBUTES = {
+export const RECIPE_FIELDS_ATTRIBUTES = {
     TITLE: {
         DESC: 'The description for the field Title',
         LABEL: 'Title',
@@ -48,7 +19,7 @@ const RECIPE_FIELDS_ATTRIBUTES = {
         }
     },
     DESCRIPTION: {
-        DESC: 'The description for the field Description',
+        DESC: 'Enter one or two sentences that describe the recipe. Is it easy to make or hard? What would you serve it with? How long does it take?',
         LABEL: 'Description',
         NAME: 'description',
         PLACEHOLDER: 'e.g Indulge in the tangy and tropical flavors of passion fruit with this refreshing and luscious dessert...',
@@ -168,4 +139,68 @@ const RECIPE_FIELDS_ATTRIBUTES = {
     }
 }
 
-export { RECIPE_FIELDS_ATTRIBUTES, RECIPE_SCHEMA }
+export const deNormalizeData = (values) => {
+    const instructions = values.instructions?.length
+        ? values.instructions.map(inst => ({ text: inst }))
+        : [{ text: '' }]
+    return {
+        ...values,
+        instructions
+    }
+}
+
+export const normalizeData = (values) => {
+    const instructions = values.instructions?.map(inst => inst.text)
+    const categories = values.categories?.map(cat => cat._id)
+    // TODO: NORMALIZE FRACTION & MEASURE IN INGRE.
+    return {
+        ...values,
+        categories,
+        instructions,
+        cuisine: values.cuisine?._id
+    }
+}
+
+const {
+    TITLE,
+    DESCRIPTION,
+    MAIN_INGR,
+    SERVINGS,
+    TIME,
+    CUISINE,
+    CATEGORIES,
+    PHOTO,
+    PUBLIC,
+    COMMENTS,
+    INGREDIENTS,
+    INSTRUCTIONS
+} = RECIPE_FIELDS_ATTRIBUTES
+
+const accordionFormFieldsets = {
+    "item-1": [
+        TITLE.NAME,
+        DESCRIPTION.NAME,
+        MAIN_INGR.NAME,
+        CUISINE.NAME,
+        CATEGORIES.NAME,
+        SERVINGS.NAME,
+        PUBLIC.NAME
+    ],
+    "item-2": [INGREDIENTS.NAME],
+    'item-3': [INSTRUCTIONS.NAME],
+    'item-4': [PHOTO.NAME, COMMENTS.NAME]
+}
+
+export const getFormAccordionState = (errors) => {
+    let state = []
+    for (const key in accordionFormFieldsets) {
+        for (const field of accordionFormFieldsets[key]) {
+            if (errors[field]) {
+                state = [...state, key]
+                break
+            }
+        }
+    }
+    return state
+}
+

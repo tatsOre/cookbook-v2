@@ -13,7 +13,7 @@ function UnstyledButton(props) {
         ariaLabel,
         children,
         className,
-        disabled = false,
+        disabled,
         type = 'button',
         ...rest
     } = props

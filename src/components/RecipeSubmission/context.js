@@ -1,22 +1,18 @@
 import React from "react"
-
+// unused
 
 const RecipeSubmissionContext = React.createContext()
 const RecipeSubmissionProvider = RecipeSubmissionContext.Provider
 
 export const useRecipeSubmissionContext =
-    () => useContext(RecipeSubmissionProvider)
+    () => React.useContext(RecipeSubmissionProvider)
 
-function x(props) {
-
+function context(props) {
     return (
-        <RecipeSubmissionProvider value={{
-         
-
-        }}>
+        <RecipeSubmissionProvider value={{}}>
             {props.children}
         </RecipeSubmissionProvider>
     )
 }
 
-export default x
+export default context

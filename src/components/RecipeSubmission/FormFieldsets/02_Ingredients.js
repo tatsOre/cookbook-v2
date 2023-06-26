@@ -1,16 +1,15 @@
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
-import Button from '../Button'
-import DroppableList from '../List'
-import NumberInput from '../Form/NumberInput'
-import TextInput from '../Form/TextInput'
-import SelectInput from '../Select'
-import IconGridDots from '../Icon/icons/icon-grid-dots'
+import Button from '../../Button'
+import DroppableList from '../../List'
+import IconGridDots from '../../Icon/icons/icon-grid-dots'
+import NumberInput from '../../Form/NumberInput'
+import TextInput from '../../Form/TextInput'
+import SelectInput from '../../Select'
+import UnstyledButton from '../../Button/UnstyledButton'
 
-import styles from './RecipeForm.module.scss'
-import UnstyledButton from '../Button/UnstyledButton'
-
+import styles from '../styles.module.scss'
 
 function IngredientsFieldset({ assets, fields }) {
     const {

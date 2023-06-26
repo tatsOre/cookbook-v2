@@ -1,7 +1,4 @@
-import * as React from 'react'
-import Login from '../Login'
-import Spinner from '../LoadingOverlay'
-
+import React from 'react'
 
 function formSubmissionReducer(state, action) {
     switch (action.type) {
@@ -27,7 +24,7 @@ function formSubmissionReducer(state, action) {
     }
 }
 
-export function useFormSubmission({ endpoint, data }) {
+function useFormSubmission({ endpoint, data, method }) {
     const [state, dispatch] = React.useReducer(formSubmissionReducer, {
         status: 'idle',
         responseData: null,
@@ -37,50 +34,31 @@ export function useFormSubmission({ endpoint, data }) {
     const fetchBody = data ? JSON.stringify(data) : null
 
     React.useEffect(() => {
-
-        console.log(fetchBody)
+        console.log('Submitting payload:', fetchBody)
+        return // For testing.
 
         if (fetchBody) {
-            const delay = ms => new Promise(res => setTimeout(res, ms));
-
-            const delayFuncion = async () => {
-                await delay(5000);
-                console.log("Waited 5s");
-
-                await delay(5000);
-                console.log("Waited an additional 5s");
-
-                dispatch({ type: 'RESOLVE', responseData: data })
-            };
-
-            delayFuncion()
+            dispatch({ type: 'START' })
+            window
+                .fetch(endpoint, {
+                    method,
+                    body: fetchBody,
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                })
+                .then(async response => {
+                    const data = await response.json()
+                    if (response.ok) {
+                        dispatch({ type: 'RESOLVE', responseData: data })
+                    } else {
+                        dispatch({ type: 'REJECT', error: data })
+                    }
+                })
         }
-
-
-        /**
-                if (fetchBody) {
-                    dispatch({ type: 'START' })
-                    window
-                        .fetch(endpoint, {
-                            method: 'POST',
-                            body: fetchBody,
-                            headers: {
-                                'content-type': 'application/json',
-                            },
-                        })
-                        .then(async response => {
-                            const data = await response.json()
-                            if (response.ok) {
-                                dispatch({ type: 'RESOLVE', responseData: data })
-                            } else {
-                                dispatch({ type: 'REJECT', error: data })
-                            }
-                        })
-                } 
-        
-        
-         */
-    }, [fetchBody, endpoint])
+    }, [fetchBody, endpoint, method])
 
     return state
 }
+
+export default useFormSubmission

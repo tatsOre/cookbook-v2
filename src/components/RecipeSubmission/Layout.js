@@ -4,8 +4,8 @@ import Button from "../Button"
 import NavLink from "../Button/NavLink"
 
 function Layout({ children }) {
-    const title = "New Baby" // temporary, will come from context.
-    
+    const title = "New Friend." // temporary, will come from context.
+
     return (
         <>
             <header>
@@ -26,6 +26,9 @@ function Layout({ children }) {
             </header>
             <main>
                 <h1 style={{ marginBlockStart: '6rem', marginBlockEnd: '0.75rem' }}>{title}</h1>
+                <p style={{ marginBlockEnd: '1rem', fontSize: '14px' }}>
+                    <b>* Note:</b> An asterisk indicates that the field is required.
+                </p>
                 {children}
             </main>
 

@@ -1,12 +1,31 @@
 import Head from 'next/head'
-
-import {RECIPE_SCHEMA } from '@/components/RecipeForm/utils/constants'
-
 import RecipeSubmission from '@/components/RecipeSubmission'
 
-const TESTING_EMPTY = {
-    'ingredients': RECIPE_SCHEMA.ingredients,
-    'instructions': RECIPE_SCHEMA.instructions
+const RECIPE_SCHEMA = {
+    title: '',
+    description: '',
+    mainIngredient: '',
+    time: {
+        prep: '', /** Number */
+        cook: '', /** Number */
+        total: '' /** Number */
+    },
+    photo: '',
+    servings: '', /** Number */
+    ingredients: [
+        {
+            quantity: '', /** Number */
+            fraction: null, /** Object */
+            measure: null, /** Object */
+            name: '',
+            prepNote: ''
+        }
+    ],
+    instructions: [{ text: '' }],
+    categories: [], /** [Object] */
+    cuisine: null, /** Object */
+    public: false,
+    comments: ''
 }
 
 export const CUISINE_OPTIONS = [
@@ -54,13 +73,14 @@ export const ASSETS = {
     CUISINE_OPTIONS: CUISINE_OPTIONS,
     CATEGORIES_OPTIONS: CATEGORIES_OPTIONS,
     MEASURE_OPTIONS: MEASURE_OPTIONS,
-    FRACTIONS_OPTIONS: FRACTIONS_OPTIONS
+    FRACTIONS_OPTIONS: FRACTIONS_OPTIONS,
+    RECIPE_SCHEMA: RECIPE_SCHEMA,
+    INGR_SCHEMA: RECIPE_SCHEMA.ingredients[0]
 }
-
 
 /**
  * Initial values and assets will come from API.
- * will be responsible for: send recipe schema, get assets
+ * will be responsible for: get recipe schema, get assets
  * @returns Page for Create New Recipe
  */
 
@@ -72,7 +92,14 @@ function Page() {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <RecipeSubmission.Layout title="New Recipe">
-            <RecipeSubmission data={TESTING_EMPTY} assets={ASSETS} />
+            <RecipeSubmission
+                endpoint={''}
+                method='POST'
+                data={{
+                    'ingredients': RECIPE_SCHEMA.ingredients,
+                    'instructions': RECIPE_SCHEMA.instructions
+                }}
+                assets={ASSETS} />
         </RecipeSubmission.Layout>
     </>
 }

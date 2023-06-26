@@ -1,6 +1,5 @@
 import Head from 'next/head'
-import SubmitRecipe from '@/components/RecipeSubmission/SubmitRecipe'
-import SubmitRecipeLayout from '@/components/RecipeSubmission/Layout'
+
 import { ASSETS } from '../new'
 
 const TESTING_VALUES = {
@@ -60,9 +59,7 @@ function Page() {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <SubmitRecipeLayout title={TESTING_VALUES.title}>
-            <SubmitRecipe data={TESTING_VALUES} assets={ASSETS} />
-        </SubmitRecipeLayout>
+        <h1>Edit Page</h1>
     </>
 }
 

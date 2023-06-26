@@ -1,9 +1,9 @@
 import { useFieldArray, useFormContext } from 'react-hook-form'
-import Button from '../Button'
-import TextareaInput from '../Form/TextareaInput'
+import Button from '../../Button'
+import UnstyledButton from '../../Button/UnstyledButton'
+import TextareaInput from '../../Form/TextareaInput'
 
-import styles from './RecipeForm.module.scss'
-import UnstyledButton from '../Button/UnstyledButton'
+import styles from '../styles.module.scss'
 
 function InstructionItem(props) {
     const {
