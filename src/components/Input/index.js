@@ -14,7 +14,6 @@ const Input = React.forwardRef((props, ref) => {
         disabled,
         hasError,
         required,
-        showInputLabel,
         ...rest
     } = props
 
@@ -26,7 +25,7 @@ const Input = React.forwardRef((props, ref) => {
         <input
             ref={ref}
             {...rest}
-            aria-label={!showInputLabel ? ariaLabel : undefined}
+            aria-label={ariaLabel}
             aria-describedby={describedBy || undefined}
             aria-invalid={hasError}
             className={classes}

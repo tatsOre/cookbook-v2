@@ -1,6 +1,6 @@
 import React from "react"
-import useInputProps from "../Input/useInputProps"
 import Input from "../Input"
+import useInputProps from "../Input/useInputProps"
 import cx from "../utils/cx"
 
 import styles from '../Input/Input.module.scss'
@@ -12,7 +12,6 @@ export const Textarea = React.forwardRef((props, ref) => {
         disabled,
         hasError,
         required,
-        showInputLabel,
         ...rest
     } = props
 
@@ -23,12 +22,13 @@ export const Textarea = React.forwardRef((props, ref) => {
     return (
         <textarea
             ref={ref}
-            {...rest}
+            aria-label={ariaLabel}
             aria-invalid={hasError}
             aria-describedby={describedBy || undefined}
             className={classes}
             disabled={disabled}
             required={required}
+            {...rest}
         />
     )
 })

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import Input from '.'
 import cx from '../utils/cx'
 

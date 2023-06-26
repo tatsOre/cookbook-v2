@@ -41,11 +41,10 @@ function Accordion(props) {
             getPanelId: (v) => `${_id}-panel-${v}`
 
         }}>
-            <div className={classes} {...rest}> {children} </div>
+            <div className={classes} {...rest}>{children}</div>
         </AccordionProvider>
     )
 }
-
 
 Accordion.Item = AccordionItem
 Accordion.Trigger = AccordionTrigger

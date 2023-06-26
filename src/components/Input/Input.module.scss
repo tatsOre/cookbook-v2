@@ -49,3 +49,7 @@
     margin-block-start: 0.25rem;
     color: v.$color-state-error;
 }
+
+.visually-hidden {
+    @include v.visually-hidden;
+}

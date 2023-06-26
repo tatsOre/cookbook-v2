@@ -1,12 +1,12 @@
-import { Controller, useFormContext } from 'react-hook-form'
-import { useState } from 'react'
+import React from 'react'
 import Select from 'react-select'
-import Input from '../Input'
+import { Controller, useFormContext } from 'react-hook-form'
 import CheckboxInput from '../Checkbox'
-import NumberInput from '../NumberInput'
+import Input from '../Input'
+import NumberInput from '../Form/NumberInput'
 import SelectInput, { styles } from '../Select'
-import TextInput from '../TextInput'
-import TextareaInput from '../Textarea'
+import TextInput from '../Form/TextInput'
+import TextareaInput from '../Form/TextareaInput'
 
 function GeneralInfoFieldset({ assets, fields }) {
     const {
@@ -22,7 +22,7 @@ function GeneralInfoFieldset({ assets, fields }) {
 
     const { register, control, formState: { errors, defaultValues } } = useFormContext()
 
-    const [selectedCategories, setSelectedCategories] = useState(
+    const [selectedCategories, setSelectedCategories] = React.useState(
         defaultValues.categories ?? []
     )
 

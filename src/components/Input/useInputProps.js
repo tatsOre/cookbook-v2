@@ -13,7 +13,7 @@ function useInputProps(inputType, props) {
         id,
         label,
         required,
-        showInputLabel,
+        hideInputLabel,
         ...rest
     } = props
 
@@ -49,12 +49,11 @@ function useInputProps(inputType, props) {
     return {
         inputProps: {
             id: _id,
-            ariaLabel,
+            ariaLabel: ariaLabel || label,
             hasError,
             required,
             disabled,
             describedBy,
-            showInputLabel,
             ...rest,
             ...defaultProps(inputType)
         },
@@ -77,8 +76,8 @@ function useInputProps(inputType, props) {
                 children: label,
                 htmlFor: _id,
                 required,
-                disabled, // (!) pointer-events: none
-                showInputLabel: showInputLabel ?? true
+                disabled,
+                hideInputLabel
             }
         }
     }

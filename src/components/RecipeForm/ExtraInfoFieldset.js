@@ -2,7 +2,8 @@ import { useFormContext } from 'react-hook-form'
 
 import FileInput from '../FileInput'
 import RecipePhotoFileInput from '../DraggableFileInput'
-import TextareaInput from '../Textarea'
+import TextareaInput from '../Form/TextareaInput'
+
 import { DraggableFile } from '../DraggableFileInput'
 
 function ExtraInfoFieldset({ fields }) {

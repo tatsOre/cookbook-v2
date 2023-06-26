@@ -1,14 +1,10 @@
 import PropTypes from 'prop-types'
-
-import styles from '../Input.module.scss'
 import cx from '@/components/utils/cx'
 
+import styles from './Input.module.scss'
+
 function InputDescription(props) {
-    const {
-        children,
-        className,
-        id,
-    } = props
+    const { children, className, id } = props
 
     return (
         <p

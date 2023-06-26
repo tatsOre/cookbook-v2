@@ -3,8 +3,8 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 import Button from '../Button'
 import DroppableList from '../List'
-import NumberInput from '../NumberInput'
-import TextInput from '../TextInput'
+import NumberInput from '../Form/NumberInput'
+import TextInput from '../Form/TextInput'
 import SelectInput from '../Select'
 import IconGridDots from '../Icon/icons/icon-grid-dots'
 
@@ -64,23 +64,27 @@ function IngredientsFieldset({ assets, fields }) {
 
                         <NumberInput
                             label={QTY.LABEL}
+                            hideInputLabel
                             {...register(`${INGS_NAME}.${index}.${QTY.NAME}`)}
                         />
 
                         <SelectInput
                             label={FRACTION.LABEL}
+                            hideInputLabel
                             name={`${INGS_NAME}.${index}.${FRACTION.NAME}`}
                             options={assets.FRACTIONS_OPTIONS}
                         />
 
                         <SelectInput
                             label={MEASURE.LABEL}
+                            hideInputLabel
                             name={`${INGS_NAME}.${index}.${MEASURE.NAME}`}
                             options={assets.MEASURE_OPTIONS}
                         />
 
                         <TextInput
                             label={ITEM_NAME.LABEL}
+                            hideInputLabel
                             error={ingrNameFieldError}
                             placeholder={ITEM_NAME.PLACEHOLDER}
                             required
@@ -91,6 +95,7 @@ function IngredientsFieldset({ assets, fields }) {
 
                         <TextInput
                             label={PREP_NOTE.LABEL}
+                            hideInputLabel
                             placeholder={PREP_NOTE.PLACEHOLDER}
                             {...register(`${INGS_NAME}.${index}.${PREP_NOTE.NAME}`)}
                         />

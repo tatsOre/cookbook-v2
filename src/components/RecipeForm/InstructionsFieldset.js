@@ -1,6 +1,6 @@
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import Button from '../Button'
-import TextareaInput from '../Textarea'
+import TextareaInput from '../Form/TextareaInput'
 
 import styles from './RecipeForm.module.scss'
 import UnstyledButton from '../Button/UnstyledButton'

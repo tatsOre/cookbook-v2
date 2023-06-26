@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import cx from '@/components/utils/cx'
 
-import styles from '../Input.module.scss'
+import styles from './Input.module.scss'
 
 function InputLabel(props) {
     const {
@@ -10,11 +10,14 @@ function InputLabel(props) {
         htmlFor,
         id,
         required,
-        showInputLabel,
-        ...rest
+        hideInputLabel
     } = props
 
-    const classes = cx([className, styles.input__label, !showInputLabel && 'hidden'])
+    const classes = cx([
+        className,
+        styles.input__label,
+        hideInputLabel && styles['visually-hidden']
+    ])
 
     return (
         <label htmlFor={htmlFor} id={id} className={classes}>
@@ -24,7 +27,7 @@ function InputLabel(props) {
 }
 
 InputLabel.defaultProps = {
-    showInputLabel: true
+    hideInputLabel: false
 }
 
 InputLabel.propTypes = {
@@ -35,7 +38,7 @@ InputLabel.propTypes = {
     required: PropTypes.bool,
 
     /** Defaults to true, but set to `false` to visibly hide the content passed to `label` */
-    showInputLabel: PropTypes.bool,
+    hideInputLabel: PropTypes.bool,
 }
 
 export default InputLabel

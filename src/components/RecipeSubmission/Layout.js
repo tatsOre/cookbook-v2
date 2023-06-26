@@ -3,8 +3,9 @@ import Nav from "../Box/Nav"
 import Button from "../Button"
 import NavLink from "../Button/NavLink"
 
-function SubmitRecipeLayout(props) {
-    const { children, title } = props
+function Layout({ children }) {
+    const title = "New Baby" // temporary, will come from context.
+    
     return (
         <>
             <header>
@@ -33,4 +34,4 @@ function SubmitRecipeLayout(props) {
 
 }
 
-export default SubmitRecipeLayout
+export default Layout

@@ -1,4 +1,4 @@
-import { RECIPE_FIELDS_ATTRIBUTES } from "../RecipeForm/utils/constants"
+import { RECIPE_FIELDS_ATTRIBUTES } from "./constants"
 
 const {
     TITLE,
@@ -26,7 +26,6 @@ export const deNormalizeData = (values) => {
 }
 
 export const normalizeData = (values) => {
-    console.log(values)
     const instructions = values.instructions?.map(inst => inst.text)
     const categories = values.categories?.map(cat => cat._id)
     // TODO: NORMALIZE FRACTION & MEASURE IN INGRE.

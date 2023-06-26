@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import SubmitRecipe from '@/components/SubmitRecipe/SubmitRecipe'
-import SubmitRecipeLayout from '@/components/SubmitRecipe/Layout'
-import { ASSETS } from '@/components/RecipeForm/utils/constants'
+import SubmitRecipe from '@/components/RecipeSubmission/SubmitRecipe'
+import SubmitRecipeLayout from '@/components/RecipeSubmission/Layout'
+import { ASSETS } from '../new'
 
 const TESTING_VALUES = {
     title: 'Mung Beans With Veggies',
