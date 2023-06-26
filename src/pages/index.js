@@ -1,7 +1,9 @@
 
 import Button from '@/components/Button'
-import { IconCheck } from '@/components/Icon/icons'
+import {  IconCheck } from '@/components/Icon/icons'
+
 import IconGridDots from '@/components/Icon/icons/icon-grid-dots'
+import IconTrash from '@/components/Icon/icons/icon-trash'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -17,6 +19,7 @@ export default function Home() {
       </Head>
       <main>
 
+        <hr />
         <Link href="/new">Create recipe</Link>
 
         <Button leftIcon={<IconGridDots />}>Button</Button>
@@ -30,8 +33,8 @@ export default function Home() {
         <Button leftIcon={<IconCheck />} rightIcon={<IconCheck />}>Button</Button>
 
         <Button variant='outline' leftIcon={<IconCheck />}>Button</Button>
-        <Button  variant='outline' rightIcon={<IconCheck />}>Button</Button>
-        <Button  variant='outline' leftIcon={<IconCheck />} rightIcon={<IconCheck />}>Button</Button>
+        <Button variant='outline' rightIcon={<IconCheck />}>Button</Button>
+        <Button variant='outline' leftIcon={<IconCheck />} rightIcon={<IconCheck />}>Button</Button>
       </main>
     </>
   )

@@ -1,5 +1,7 @@
+import Link from "next/link"
 import Nav from "../Box/Nav"
 import Button from "../Button"
+import NavLink from "../Button/NavLink"
 
 function SubmitRecipeLayout(props) {
     const { children, title } = props
@@ -8,9 +10,15 @@ function SubmitRecipeLayout(props) {
             <header>
                 <Nav className='nav__bar'>
                     <Button>iii</Button>
-                    <Button>COOKBOOK</Button>
-                    <Button style={{ marginLeft: 'auto' }}>CANCEL</Button>
-                    <Button form="submit-recipe-form" type='submit'>
+                    <Link href='/' passHref legacyBehavior>
+                        <NavLink label="Cookbook" uppercase />
+                    </Link>
+
+                    <Link href='/' passHref legacyBehavior>
+                        <NavLink label="Cancel" style={{ marginLeft: 'auto' }} uppercase />
+                    </Link>
+
+                    <Button form="submit-recipe-form" type='submit' uppercase>
                         Save Recipe
                     </Button>
                 </Nav>

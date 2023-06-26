@@ -2,7 +2,6 @@ import cx from "@/components/utils/cx"
 import { useAccordionContext } from ".."
 import { useAccordionItemContext } from "../AccordionItem/context"
 import UnstyledButton from "@/components/Button/UnstyledButton"
-import Icon from "@/components/Icon"
 
 import styles from '../Accordion.module.scss'
 
@@ -12,6 +11,7 @@ function AccordionTrigger(props) {
     const { value } = useAccordionItemContext()
 
     const isItemActive = context.isItemActive(value)
+    
     const onClickHandler = () => context.onChange(value)
 
     return (
@@ -27,7 +27,7 @@ function AccordionTrigger(props) {
         >
             <span>{children}</span>
             <div className={styles['accordion__trigger--icon']}>
-                <Icon name="chevron" />
+                {isItemActive ? '-' : '+'}
             </div>
         </UnstyledButton>
     )

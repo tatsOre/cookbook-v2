@@ -77,7 +77,7 @@ function InstructionsFieldset({ fields }) {
                 && <p role='alert'>{errors[NAME].root.message}</p>}
             <ul className={styles.instructions__list}>{listItems}</ul>
             <Button onClick={onAppendHandler}>
-                Add instruction
+                Add new step
             </Button>
         </>
     )

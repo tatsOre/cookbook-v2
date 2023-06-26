@@ -54,6 +54,7 @@ function SubmitRecipe({ data, assets, mode }) {
         }
         //console.log('Submit photo', values.photo)
         const payload = normalizeData(values)
+        console.log(payload)
     }
 
     const onErrors = (errors) => {

@@ -11,13 +11,13 @@ import styles from './Checkbox.module.scss'
 
 const CheckboxInput = React.forwardRef((props, ref) => {
   const {
-    appearance,
+    appearance = 'standard',
     className,
     disabled,
     errors,
     label,
     hintContent,
-    showInputLabel,
+    showInputLabel = true,
     showCheckedLabel,
     ...rest
   } = props
@@ -92,11 +92,6 @@ CheckboxInput.propTypes = {
 
   /** Text displayed directly under the input with additional information about the expected input */
   description: PropTypes.string,
-}
-
-CheckboxInput.defaultProps = {
-  appearance: 'standard',
-  showInputLabel: true
 }
 
 export default CheckboxInput

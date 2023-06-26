@@ -1,4 +1,4 @@
-export default function IconGridDots({
+export default function GridDots({
     size = 24,
     color = 'currentColor',
     ...restProps

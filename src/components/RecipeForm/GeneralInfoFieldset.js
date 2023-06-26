@@ -25,7 +25,7 @@ function GeneralInfoFieldset({ assets, fields }) {
     const [selectedCategories, setSelectedCategories] = useState(
         defaultValues.categories ?? []
     )
-    //console.log(defaultValues)
+
     const categoriesLeft = `(${3 - selectedCategories.length} left)`
 
     return (
@@ -147,9 +147,9 @@ function GeneralInfoFieldset({ assets, fields }) {
                 })}
             />
 
-            <CheckboxInput 
-            label={PUBLIC.LABEL}
-            {...register(PUBLIC.NAME)}
+            <CheckboxInput
+                label={PUBLIC.LABEL}
+                {...register(PUBLIC.NAME)}
             />
         </>
     )

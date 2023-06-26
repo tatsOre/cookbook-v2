@@ -1,6 +1,8 @@
-export { default as IconAddPlus } from './icon-add-plus'
+
 export { default as IconCheck } from './icon-check'
-export { default as IconChevron } from './icon-chevron'
+
 export { default as IconCross } from './icon-cross'
 export { default as IconGridDots } from './icon-grid-dots'
 export { default as IconVerticalEllipsis } from './icon-vertical-ellipsis'
+
+// Icons from: tabler-icons-react

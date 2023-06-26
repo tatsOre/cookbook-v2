@@ -16,25 +16,21 @@ $size: 14px;
 
             &:after {
                 position: absolute;
-                content: "✔";
-                font-size: 0.75rem;
+                content: "✗";
+                font-size: 0.9rem;
                 color: v.$color-white;
-                bottom: -0.1rem;
-                left: 0.07s5rem;
+                bottom: -2px;
+                right: 2px;
             }
         }
 
         //✘
-        //✗
+        //✗ ✔
         &:focus~.checkbox__icon {
-
             // OnFocus visual effect:
-            &::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                outline: 2px solid blue;
-            }
+            outline: none;
+            box-shadow: 0 0 0 1px black;
+            border-color: black;
         }
     }
 
@@ -48,11 +44,11 @@ $size: 14px;
         border: 1px solid rgba(130, 143, 163, 0.25);
 
         &--error {
-            border: 1px solid v.$color-state-error;;
+            border: 1px solid v.$color-state-error;
         }
 
         &--success {
-            border: 1px solid v.$color-state-success;;
+            border: 1px solid v.$color-state-success;
         }
     }
 

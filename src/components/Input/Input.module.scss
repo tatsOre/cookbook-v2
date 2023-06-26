@@ -29,12 +29,19 @@
     width: 100%;
     padding: 0.8rem;
     border: 1px solid v.$color-warm-grey-300;
-    background-color: transparent;
+    background-color: v.$color-warm-grey-100;
     font-family: v.$font-base;
+    cursor: pointer;
 
     &--error {
         border-color: v.$color-state-error;
     }
+}
+
+.input__box:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px black;
+    border-color: black;
 }
 
 .input__error {
