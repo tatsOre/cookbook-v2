@@ -1,7 +1,7 @@
 import Input from '.'
 import cx from '../utils/cx'
 
-import styles from './Input.module.scss'
+import styles from './styles.module.scss'
 
 function InputWrapper(props) {
     const {

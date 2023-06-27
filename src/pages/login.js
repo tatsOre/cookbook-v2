@@ -1,8 +1,6 @@
-const { default: LoginSubmission } = require("@/components/FormSubmission");
-
 function Page() {
     return (
-        <LoginSubmission />
+       <h1>Welcome</h1>
     )
 }
 

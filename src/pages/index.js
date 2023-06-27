@@ -1,9 +1,10 @@
 
+import Alert from '@/components/Alert'
 import Button from '@/components/Button'
-import {  IconCheck } from '@/components/Icon/icons'
+import { IconCheck } from '@/components/Icon/icons'
 
 import IconGridDots from '@/components/Icon/icons/icon-grid-dots'
-import IconTrash from '@/components/Icon/icons/icon-trash'
+
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -18,8 +19,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <Alert appearance="danger">This is danger, I am danger.</Alert>
+        <Alert appearance="info" variant="outline">Hakuna Matata</Alert>
+        <Alert appearance="warning" variant="outline">Hey!</Alert>
 
         <hr />
+        <hr />
+
         <Link href="/new">Create recipe</Link>
 
         <Button leftIcon={<IconGridDots />}>Button</Button>

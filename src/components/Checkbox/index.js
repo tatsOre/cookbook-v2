@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cx from "../utils/cx"
 
-import styles from './Checkbox.module.scss'
+import styles from './styles.module.scss'
 
 /**
  * This component accepts all the HTML Textarea attributes

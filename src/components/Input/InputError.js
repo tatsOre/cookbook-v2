@@ -1,7 +1,7 @@
 import cx from '@/components/utils/cx'
 import PropTypes from 'prop-types'
 
-import styles from './Input.module.scss'
+import styles from './styles.module.scss'
 
 function InputError(props) {
     const { children, className, id } = props

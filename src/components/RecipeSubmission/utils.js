@@ -10,7 +10,7 @@ const BASE_RULES = {
 
 export const RECIPE_FIELDS_ATTRIBUTES = {
     TITLE: {
-        DESC: 'The description for the field Title',
+        DESC: '',
         LABEL: 'Title',
         NAME: 'title',
         PLACEHOLDER: 'e.g. Passion Fruit Dessert',

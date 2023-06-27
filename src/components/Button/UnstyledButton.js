@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import cx from '../utils/cx'
 
-import styles from './Button.module.scss'
+import styles from './styles.module.scss'
 
 /**
  * This component accepts all the HTML button attributes

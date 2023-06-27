@@ -91,7 +91,7 @@ function Page() {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <RecipeSubmission.Layout title="New Recipe">
+        <RecipeSubmission.Layout title="Hello Friend.">
             <RecipeSubmission
                 endpoint={''}
                 method='POST'

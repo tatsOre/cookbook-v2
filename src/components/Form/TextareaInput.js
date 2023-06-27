@@ -3,7 +3,7 @@ import Input from "../Input"
 import useInputProps from "../Input/useInputProps"
 import cx from "../utils/cx"
 
-import styles from '../Input/Input.module.scss'
+import styles from '../Input/styles.module.scss'
 
 export const Textarea = React.forwardRef((props, ref) => {
     const {

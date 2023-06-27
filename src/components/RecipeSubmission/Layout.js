@@ -3,9 +3,7 @@ import Nav from "../Box/Nav"
 import Button from "../Button"
 import NavLink from "../Button/NavLink"
 
-function Layout({ children }) {
-    const title = "New Friend." // temporary, will come from context.
-
+function Layout({ children, title }) {
     return (
         <>
             <header>

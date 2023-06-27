@@ -5,7 +5,7 @@ import InputDescription from "./InputDescription"
 import InputError from "./InputError"
 import cx from "../utils/cx"
 
-import styles from './Input.module.scss'
+import styles from './styles.module.scss'
 
 const Input = React.forwardRef((props, ref) => {
     const {

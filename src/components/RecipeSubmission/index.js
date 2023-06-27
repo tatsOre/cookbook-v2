@@ -1,7 +1,7 @@
 import React from "react"
 import { FormProvider, useForm } from "react-hook-form"
 
-import  useFormSubmission  from "../FormSubmission"
+import useFormSubmission from "../FormSubmission"
 import Accordion from "../Accordion"
 import Layout from "./Layout"
 import Spinner from "../LoadingOverlay"
@@ -10,6 +10,7 @@ import RecipeForm from "./Form"
 import { deNormalizeData, normalizeData, getFormAccordionState } from "./utils"
 
 import styles from './styles.module.scss'
+import Alert from "../Alert"
 
 function RecipeSubmission({ endpoint, method, data, assets, mode }) {
     const [formData, setFormData] = React.useState(null)
@@ -51,11 +52,8 @@ function RecipeSubmission({ endpoint, method, data, assets, mode }) {
     return (
         <>
             {status === 'rejected' ? (
-                <div role="alert" style={{ color: 'red' }}>
-                    {errorMessage}
-                </div>
+                <Alert>{errorMessage}</Alert>
             ) : null}
-
             <FormProvider {...methods}>
                 <Accordion
                     value={accState}

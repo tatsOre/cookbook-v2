@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import UnstyledButton from './UnstyledButton'
 import cx from '../utils/cx'
 
-import styles from './Button.module.scss'
+import styles from './styles.module.scss'
 
 const BUTTON_APPEARANCES = {
     PRIMARY: 'primary',
