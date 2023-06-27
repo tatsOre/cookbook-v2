@@ -1,4 +1,5 @@
 /** COLOR **/
+@use "sass:color";
 
 $color-rich-black: #1b1b1b;
 $color-smoke-gray: #767676;
@@ -15,9 +16,15 @@ $color-callout-hover: #FBAF85;
 
 $color-input-outline: #5872f7;
 
-$color-state-error: #FF0000;
-$color-state-success: #60bf76;
-$color-state-info: teal;
+$color-danger-base: #FA5252;
+$color-danger-shade: color.scale($color-danger-base, $lightness: 90%);
+
+$color-success-base: #60bf76;
+$color-success-shade: color.scale($color-success-base, $lightness: 80%);
+
+$color-info-base: $color-smoke-gray;
+$color-info-shade: color.scale($color-info-base, $lightness: 85%);
+
 
 /** TYPOGRAPHY */
 $font-accent: 'Major Mono Display', monospace;

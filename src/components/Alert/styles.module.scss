@@ -1,4 +1,5 @@
 @use '../../styles/Variables.module.scss' as v;
+@use "sass:color";
 
 .alert {
     width: 100%;
@@ -13,26 +14,89 @@
         font-size: 0.85rem;
     }
 
+    &__heading {
+        font-weight: bold;
+    }
+
+    a {
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
     button {
         position: absolute;
         right: 1rem;
     }
 
-    &--filled {
+    &--filled#{&}--danger {
         color: v.$color-white;
+        background-color: v.$color-danger-base;
+        border-color: v.$color-danger-base;
     }
 
-    &--outline {
-        
+    &--outline#{&}--danger {
+        background-color: v.$color-white;
+        border-color: v.$color-danger-base;
+
+        .alert__heading {
+            color: v.$color-danger-base;
+        }
     }
 
-    &--danger {
-        background-color: v.$color-state-error;
-        border-color: v.$color-state-error;
+    &--light#{&}--danger {
+        background-color: v.$color-danger-shade;
+        border-color: v.$color-danger-shade;
+
+        .alert__heading {
+            color: v.$color-danger-base;
+        }
     }
 
-    &--info {
-        background-color: v.$color-state-info;
-        border-color: v.$color-state-info;
+    &--filled#{&}--success {
+        color: v.$color-white;
+        background-color: v.$color-success-base;
+        border-color: v.$color-success-base;
+    }
+
+    &--outline#{&}--success {
+        background-color: v.$color-white;
+        border-color: v.$color-success-base;
+
+        .alert__heading {
+            color: v.$color-success-base;
+        }
+    }
+
+    &--light#{&}--success {
+        background-color: v.$color-success-shade;
+        border-color: v.$color-success-shade;
+
+        .alert__heading {
+            color: v.$color-success-base;
+        }
+    }
+
+    &--filled#{&}--info {
+        color: v.$color-white;
+        background-color: v.$color-info-base;
+        border-color: v.$color-info-base;
+    }
+
+    &--outline#{&}--info {
+        background-color: v.$color-white;
+        border-color: v.$color-info-base;
+
+        .alert__heading {
+            color: v.$color-info-base;
+        }
+    }
+
+    &--light#{&}--info {
+        background-color: v.$color-info-shade;
+        border-color: v.$color-info-shade;
+
+        .alert__heading {
+            color: v.$color-info-base;
+        }
     }
 }

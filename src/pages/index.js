@@ -19,10 +19,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Alert appearance="danger">This is danger, I am danger.</Alert>
-        <Alert appearance="info" variant="outline">Hakuna Matata</Alert>
-        <Alert appearance="warning" variant="outline">Hey!</Alert>
+        <Alert appearance="danger" title="Error">
+          This is danger, I am danger. <a href='/'>Follow the rabbit.</a>
+          </Alert>
+        <Alert appearance="danger" title="Error" variant="outline">Hakuna Matata</Alert>
+        <Alert appearance="danger" title="Error" variant="light">Hey!</Alert>
 
+        <Alert appearance="success" title="Success">This is success, I am success.</Alert>
+        <Alert appearance="success" title="Success" variant="outline">Hakuna Matata</Alert>
+        <Alert appearance="success" title="Success" variant="light">Hey!</Alert>
+
+        <Alert appearance="info" title="Info">This is info, I am Info.</Alert>
+        <Alert appearance="info" title="Info" variant="outline">Hakuna Matata</Alert>
+        <Alert appearance="info" title="Info" variant="light">Hey!</Alert>
         <hr />
         <hr />
 

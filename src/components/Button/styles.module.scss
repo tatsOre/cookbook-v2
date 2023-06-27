@@ -54,12 +54,6 @@ $button-color-shade: v.$color-cool-grey-100;
 
     &--secondary {}
 
-    &--danger {
-        $button-color: v.$color-white;
-        $button-color-background: v.$color-state-error;
-        $button-color-hover: v.$color-smoke-gray;
-        $button-color-shade: v.$color-rich-black;
-    }
 
     &--success {}
 

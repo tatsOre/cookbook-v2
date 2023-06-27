@@ -34,7 +34,7 @@
     cursor: pointer;
 
     &--error {
-        border-color: v.$color-state-error;
+        border-color: v.$color-danger-base;
     }
 }
 
@@ -47,7 +47,7 @@
 .input__error {
     font-size: v.$font-size-12;
     margin-block-start: 0.25rem;
-    color: v.$color-state-error;
+    color: v.$color-danger-base;
 }
 
 .visually-hidden {

@@ -11,7 +11,7 @@ $size: 14px;
             }
 
             &--success {
-                background-color: v.$color-state-success;
+                background-color: v.$color-success-base;
             }
 
             &:after {
@@ -29,8 +29,8 @@ $size: 14px;
         &:focus~.checkbox__icon {
             // OnFocus visual effect:
             outline: none;
-            box-shadow: 0 0 0 1px black;
-            border-color: black;
+            box-shadow: 0 0 0 1px v.$color-smoke-gray;
+            border-color: v.$color-smoke-gray;
         }
     }
 
@@ -41,14 +41,14 @@ $size: 14px;
         min-width: $size;
         position: relative;
         background-color: v.$color-white;
-        border: 1px solid rgba(130, 143, 163, 0.25);
+        border: 1px solid v.$color-cool-grey-400;
 
         &--error {
-            border: 1px solid v.$color-state-error;
+            border: 1px solid v.$color-danger-base;
         }
 
         &--success {
-            border: 1px solid v.$color-state-success;
+            border: 1px solid v.$color-success-base;
         }
     }
 
