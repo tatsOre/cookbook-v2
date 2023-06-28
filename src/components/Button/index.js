@@ -4,7 +4,7 @@ import cx from '../utils/cx'
 
 import styles from './styles.module.scss'
 
-const BUTTON_APPEARANCES = {
+export const BUTTON_APPEARANCES = {
     PRIMARY: 'primary',
     SECONDARY: 'secondary',
     TERTIARY: 'tertiary',
@@ -12,7 +12,7 @@ const BUTTON_APPEARANCES = {
     SUCCESS: 'success'
 }
 
-const BUTTON_VARIANTS = {
+export const BUTTON_VARIANTS = {
     FILLED: 'filled',
     LIGHT: 'light',
     OUTLINE: 'outline',
@@ -26,7 +26,7 @@ const BUTTON_VARIANTS = {
 
 function Button(props) {
     const {
-        appearance = BUTTON_APPEARANCES.PRIMARY,
+        appearance,
         children,
         className,
         compact,
@@ -35,7 +35,7 @@ function Button(props) {
         leftIcon,
         rightIcon,
         uppercase,
-        variant = BUTTON_VARIANTS.FILLED,
+        variant,
         ...rest
     } = props
 
@@ -43,12 +43,12 @@ function Button(props) {
         className,
         styles.button,
         styles[`button--${appearance}`],
-        styles[`button--${variant}`]
+        styles[`button--${variant}`],
+        compact && styles[`button--compact`]
     ])
 
     return (
         <UnstyledButton
-            aria-label={!children ? ariaLabel : undefined}
             className={classes}
             disabled={disabled || isProcessing}
             {...rest}>
@@ -82,6 +82,11 @@ function Button(props) {
             )}
         </UnstyledButton>
     )
+}
+
+Button.defaultProps = {
+    appearance: BUTTON_APPEARANCES.PRIMARY,
+    variant: BUTTON_VARIANTS.FILLED,
 }
 
 Button.propTypes = {

@@ -1,25 +1,6 @@
-import cx from '../utils/cx'
+export { default as IconCheck } from './icons/icon-check'
+export { default as IconCross } from './icons/icon-cross'
+export { default as IconGridDots } from './icons/icon-grid-dots'
+export { default as IconVerticalEllipsis } from './icons/icon-vertical-ellipsis'
 
-import {
-    IconCheck,
-    IconCross,
-    IconBoard,
-    IconChevron,
-    IconAddPlus
-} from './icons'
-
-export const IconShapes = {
-    'add-plus': IconAddPlus,
-    check: IconCheck,
-    cross: IconCross,
-    board: IconBoard,
-    chevron: IconChevron
-}
-
-function Icon(props) {
-    const { className, name, ...rest } = props
-    const SvgComponent = IconShapes[name]
-    return SvgComponent ? <SvgComponent /> : name
-}
-
-export default Icon
+// Icons from: tabler-icons-react

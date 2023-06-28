@@ -1,17 +1,25 @@
-function IconCross() {
-  return (
-    <svg
-      width="15"
-      height="15"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="#FFF"
-      fillRule="evenodd">
-      <g>
-        <path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z" />
-        <path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z" />
-      </g>
-    </svg>
-  )
+export default function IconCross({
+    size = 24,
+    color = 'currentColor',
+    ...restProps
+}) {
+    return (
+        <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className='icon icon-tabler icon-tabler-x'
+            width={size}
+            height={size}
+            viewBox='0 0 24 24'
+            stroke={color}
+            strokeWidth='2'
+            fill='none'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            {...restProps}
+        >
+            <path stroke='none' d='M0 0h24v24H0z' fill='none' />
+            <line x1='18' y1='6' x2='6' y2='18' />
+            <line x1='6' y1='6' x2='18' y2='18' />
+        </svg>
+    );
 }
-
-export default IconCross

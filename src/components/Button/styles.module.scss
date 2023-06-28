@@ -1,11 +1,7 @@
+@use "sass:color";
 @use '../../styles/Variables.module.scss' as v;
 
 $button-border-radius: 0px;
-
-$button-color: v.$color-white;
-$button-color-background: v.$color-rich-black;
-$button-color-hover: v.$color-smoke-gray;
-$button-color-shade: v.$color-cool-grey-100;
 
 /** Unstyled Buttons: **/
 .button__base {
@@ -26,36 +22,28 @@ $button-color-shade: v.$color-cool-grey-100;
     }
 }
 
-/** Styled Buttons: **/
+/** Styled Buttons with label: **/
 .button {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid $button-color-background;
+    border: 1px solid transparent;
     border-radius: $button-border-radius;
-    padding: 0.625rem 1.5rem;
-    background-color: $button-color-background;
-    color: $button-color;
+    padding: 0.5rem 1rem;
 
     &--label {
         font-size: 0.85rem;
-        letter-spacing: 0.15rem;
+        letter-spacing: 0.1rem;
     }
 
     &--compact {
-        /* 13px */
-        font-size: 0.813rem;
-        padding: 0.75rem 1.15rem;
+        padding: 0.3rem 0.5rem;
+
+        span.button--label {
+            font-size: 0.75rem;
+            letter-spacing: 0.05rem;
+        }
     }
-
-    &:hover:not([disabled]) {
-        background-color: $button-color-hover;
-    }
-
-    &--secondary {}
-
-
-    &--success {}
 
     span.icon__container {
         display: flex;
@@ -72,25 +60,102 @@ $button-color-shade: v.$color-cool-grey-100;
 }
 
 /** Button Variants: */
+// Todo: implement 'text' variant, 'success' appearance & mixin
+
 .button {
-    &--filled {
+    &--filled#{&}--primary {
         color: v.$color-white;
-        background-color: $button-color-background;
-        border-color: $button-color-background;
+        background-color: v.$color-primary-base;
+        border-color: v.$color-primary-base;
 
         &:hover:not([disabled]) {
-            background-color: $button-color-hover;
-            border-color: $button-color-hover;
+            background-color: v.$color-primary-hover;
+            border-color: v.$color-primary-hover;
         }
     }
 
-    &--outline {
-        color: $button-color-background;
+    &--outline#{&}--primary {
+        color: v.$color-primary-hover;
         background-color: v.$color-white;
-        border-color: $button-color-background;
+        border-color: v.$color-primary-hover;
 
         &:hover:not([disabled]) {
-            background-color: $button-color-shade;
+            background-color: v.$color-primary-shade;
+        }
+    }
+
+    &--light#{&}--primary {
+        color: v.$color-primary-base;
+        background-color: v.$color-primary-shade;
+        border-color: v.$color-primary-shade;
+
+        &:hover:not([disabled]) {
+            background-color: color.scale(v.$color-primary-base, $lightness: 90%);
+            border-color: color.scale(v.$color-primary-base, $lightness: 90%);
+        }
+    }
+
+    &--filled#{&}--secondary {
+        color: v.$color-white;
+        background-color: v.$color-rich-black;
+        border-color: v.$color-rich-black;
+
+        &:hover:not([disabled]) {
+            background-color: v.$color-smoke-gray;
+            border-color: v.$color-smoke-gray;
+        }
+    }
+
+    &--outline#{&}--secondary {
+        color: v.$color-rich-black;
+        background-color: v.$color-white;
+        border-color: v.$color-rich-black;
+
+        &:hover:not([disabled]) {
+            background-color: v.$color-cool-grey-100;
+        }
+    }
+
+    &--light#{&}--secondary {
+        color: v.$color-rich-black;
+        background-color: v.$color-cool-grey-100;
+        border-color: v.$color-cool-grey-100;
+
+        &:hover:not([disabled]) {
+            background-color: color.scale(v.$color-rich-black, $lightness: 90%);
+            border-color: color.scale(v.$color-rich-black, $lightness: 90%);
+        }
+    }
+
+    &--filled#{&}--danger {
+        color: v.$color-white;
+        background-color: v.$color-danger-base;
+        border-color: v.$color-danger-base;
+
+        &:hover:not([disabled]) {
+            background-color: v.$color-danger-hover;
+            border-color: v.$color-danger-hover;
+        }
+    }
+
+    &--outline#{&}--danger {
+        color: v.$color-danger-base;
+        background-color: v.$color-white;
+        border-color: v.$color-danger-base;
+
+        &:hover:not([disabled]) {
+            background-color: v.$color-danger-shade;
+        }
+    }
+
+    &--light#{&}--danger {
+        color: v.$color-danger-base;
+        background-color: v.$color-danger-shade;
+        border-color: v.$color-danger-shade;
+
+        &:hover:not([disabled]) {
+            background-color: color.scale(v.$color-danger-base, $lightness: 90%);
+            border-color: color.scale(v.$color-danger-base, $lightness: 90%);
         }
     }
 }

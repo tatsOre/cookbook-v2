@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import UnstyledButton from '../Button/UnstyledButton'
+import { IconCross } from '../Icon'
 import cx from '@/components/utils/cx'
 
 import styles from './styles.module.scss'
+
 
 const ALERT_APPEARANCES = {
     INFO: 'info',
@@ -47,7 +49,7 @@ function Alert(props) {
         styles[`alert--${appearance}`],
         styles[`alert--${variant}`],
     ])
-    console.log(classes, 'props:', props)
+
     return (
         <div
             role="alert"
@@ -56,7 +58,7 @@ function Alert(props) {
             className={classes}
         >
             {icon ? (
-                <div className={styles.alert__icon}>{icon}</div>
+                <span className={styles.alert__icon}>{icon}</span>
             ) : null}
             {title ? (
                 <span className={styles.alert__heading} id={label}>{title}</span>
@@ -68,7 +70,7 @@ function Alert(props) {
                 <UnstyledButton
                     ariaLabel={closeLabel}
                     onClick={onCloseHandler}
-                    children="x"
+                    children={<IconCross size={18}/>}
                 />
             ) : null}
         </div>

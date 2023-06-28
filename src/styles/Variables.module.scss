@@ -11,20 +11,22 @@ $color-warm-grey-300: #e9e8e1;
 $color-warm-grey-200: #F2F3EF;
 $color-warm-grey-100: #F8F9F7;
 
-$color-callout-base: #D87D4A;
-$color-callout-hover: #FBAF85;
-
-$color-input-outline: #5872f7;
+$color-primary-base: #D87D4A;
+$color-primary-hover: #FBAF85;
+$color-primary-shade: color.scale($color-primary-base, $lightness: 95%);
 
 $color-danger-base: #FA5252;
-$color-danger-shade: color.scale($color-danger-base, $lightness: 90%);
+$color-danger-shade: color.scale($color-danger-base, $lightness: 95%);
+$color-danger-hover: color.scale($color-danger-base, $lightness: -30%);
 
 $color-success-base: #60bf76;
 $color-success-shade: color.scale($color-success-base, $lightness: 80%);
+$color-success-hover: color.scale($color-success-base, $lightness: -30%);
 
 $color-info-base: $color-smoke-gray;
 $color-info-shade: color.scale($color-info-base, $lightness: 85%);
 
+$color-input-outline: #5872f7;
 
 /** TYPOGRAPHY */
 $font-accent: 'Major Mono Display', monospace;
