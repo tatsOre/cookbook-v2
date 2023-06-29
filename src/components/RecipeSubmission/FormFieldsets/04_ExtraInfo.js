@@ -33,7 +33,9 @@ function ExtraInfoFieldset({ fields }) {
             </DraggableFile>
 
             <TextareaInput
+                description={COMMENTS.DESC}
                 label={COMMENTS.LABEL}
+                placeholder={COMMENTS.PLACEHOLDER}
                 {...register(COMMENTS.NAME)}
             />
         </>

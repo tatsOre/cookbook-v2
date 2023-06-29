@@ -10,19 +10,19 @@ const BASE_RULES = {
 
 export const RECIPE_FIELDS_ATTRIBUTES = {
     TITLE: {
-        DESC: '',
+        DESC: 'Enter a catchy and descriptive title for your recipe. This will be the main identifier for your dish.',
         LABEL: 'Title',
         NAME: 'title',
-        PLACEHOLDER: 'e.g. Passion Fruit Dessert',
+        PLACEHOLDER: 'e.g. "Spicy Thai Chicken Curry" or "Decadent Chocolate Brownies"',
         RULES: {
             REQUIRED: 'Please provide a title for your recipe.'
         }
     },
     DESCRIPTION: {
-        DESC: 'Enter one or two sentences that describe the recipe. Is it easy to make or hard? What would you serve it with? How long does it take?',
+        DESC: 'Provide a brief overview or summary of your recipe. Include any unique features, flavors, or highlights that make it special.',
         LABEL: 'Description',
         NAME: 'description',
-        PLACEHOLDER: 'e.g Indulge in the tangy and tropical flavors of passion fruit with this refreshing and luscious dessert...',
+        PLACEHOLDER: 'e.g. This aromatic curry combines tender chicken, vibrant vegetables, and a rich blend of Thai spices, resulting in a mouthwatering fusion of flavors...',
         RULES: {
             REQUIRED: 'Please provide a description for your recipe.'
         }
@@ -63,7 +63,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
         }
     },
     CUISINE: {
-        DESC: 'Lorem Impsum Morten',
+        DESC: 'The regional or cultural category that your recipe belongs to.',
         LABEL: 'Cuisine',
         NAME: 'cuisine',
     },
@@ -133,8 +133,9 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
         NAME: 'photo'
     },
     COMMENTS: {
-        DESC: 'Include any specific comments on what should be improved, added, etc.',
+        DESC: 'Share any additional notes or comments about your recipe. You can mention personal anecdotes, serving suggestions, variations, or any helpful tips.',
         LABEL: 'Comments & Notes',
+        PLACEHOLDER: 'e.g. Feel free to adjust the spiciness level by adding more or less red curry paste. This dish pairs wonderfully with steamed jasmine rice and a refreshing cucumber salad...',
         NAME: 'comments'
     }
 }

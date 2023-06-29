@@ -1,14 +1,13 @@
-import { createContext, useCallback, useContext, useId, useState } from "react"
-
+import React from "react"
 import AccordionItem from "./AccordionItem"
 import AccordionPanel from "./AccordionPanel"
 import AccordionTrigger from "./AccordionTrigger"
 import cx from "../utils/cx"
 
-const AccordionStateContext = createContext()
+const AccordionStateContext = React.createContext()
 const AccordionProvider = AccordionStateContext.Provider
 
-export const useAccordionContext = () => useContext(AccordionStateContext)
+export const useAccordionContext = () => React.useContext(AccordionStateContext)
 
 /**
  * @returns ACCORDION ROOT
@@ -16,7 +15,7 @@ export const useAccordionContext = () => useContext(AccordionStateContext)
 
 function Accordion(props) {
     const { value, onChange, className, children, id, ...rest } = props
-    const _id = id || useId()
+    const _id = id || React.useId()
 
     const isItemActive = (item) => value.includes(item)
 

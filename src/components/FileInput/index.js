@@ -1,6 +1,6 @@
 import React from "react"
 
-import styles from '@/styles/Form.module.css'
+import styles from './styles.module.scss'
 
 const FileInput = React.forwardRef((props, ref) => {
     const {
@@ -31,8 +31,9 @@ const FileInput = React.forwardRef((props, ref) => {
             />
 
             <label htmlFor={_id}>
+                
+                <span className={styles.box__dragndrop}>Drag and drop here or</span>
                 <b>Choose a file</b>
-                <span className={styles.box__dragndrop}> or drag it here.</span>
             </label>
         </>
     )

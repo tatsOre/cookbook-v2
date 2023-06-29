@@ -1,8 +1,8 @@
 import cx from "@/components/utils/cx"
-import { useAccordionContext } from ".."
-import { useAccordionItemContext } from "../AccordionItem/context"
+import { useAccordionContext } from "."
+import { useAccordionItemContext } from "./AccordionItem"
 
-import styles from '../Accordion.module.scss'
+import styles from './styles.module.scss'
 
 function AccordionPanel(props) {
     const { children, ...rest } = props

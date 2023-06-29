@@ -34,14 +34,14 @@ function useFormSubmission({ endpoint, data, method }) {
     const fetchBody = data ? JSON.stringify(data) : null
 
     React.useEffect(() => {
-        console.log('Submitting payload:', fetchBody)
+        console.log('Submitting payload:', fetchBody, 'Endpoint:', endpoint)
         return // For testing.
 
         if (fetchBody) {
             dispatch({ type: 'START' })
             window
                 .fetch(endpoint, {
-                    method,
+                    method: method || 'POST',
                     body: fetchBody,
                     headers: {
                         'content-type': 'application/json',

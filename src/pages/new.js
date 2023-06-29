@@ -94,7 +94,6 @@ function Page() {
         <RecipeSubmission.Layout title="Hello Friend.">
             <RecipeSubmission
                 endpoint={''}
-                method='POST'
                 data={{
                     'ingredients': RECIPE_SCHEMA.ingredients,
                     'instructions': RECIPE_SCHEMA.instructions

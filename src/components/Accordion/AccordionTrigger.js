@@ -1,9 +1,9 @@
 import cx from "@/components/utils/cx"
-import { useAccordionContext } from ".."
-import { useAccordionItemContext } from "../AccordionItem/context"
+import { useAccordionContext } from "."
+import { useAccordionItemContext } from "./AccordionItem"
 import UnstyledButton from "@/components/Button/UnstyledButton"
 
-import styles from '../Accordion.module.scss'
+import styles from './styles.module.scss'
 
 function AccordionTrigger(props) {
     const { children, ...rest } = props

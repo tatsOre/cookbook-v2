@@ -29,7 +29,7 @@ $color-info-shade: color.scale($color-info-base, $lightness: 85%);
 $color-input-outline: #5872f7;
 
 /** TYPOGRAPHY */
-$font-accent: 'Major Mono Display', monospace;
+$font-accent: sans-serif;
 $font-base: sans-serif;
 
 $font-size-10: 0.625rem;

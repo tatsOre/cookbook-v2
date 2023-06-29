@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { createContext, useContext, useEffect, useState } from "react"
-import styles from '@/styles/Form.module.css'
+import styles from './styles.module.scss'
 
 // https://www.nngroup.com/articles/drag-drop/
 
