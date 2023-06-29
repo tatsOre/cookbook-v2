@@ -33,6 +33,10 @@
     font-family: v.$font-base;
     cursor: pointer;
 
+    &::placeholder {
+        opacity: 0.5;
+    }
+
     &--error {
         border-color: v.$color-danger-base;
     }

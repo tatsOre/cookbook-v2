@@ -31,11 +31,14 @@ function RecipeSubmission({ endpoint, method, data, assets, mode }) {
     }, [methods.setFocus])
 
     const onSubmit = (values) => {
-        if (values.photo.length > 0) {
+        // if string, photo did not change, check that.
+        //console.log('raw values from onsubmit', values)
+        if (values.photo?.length > 0 && typeof values.photo !== 'string') {
             /** If photo file comes from input+event, set 1st value: */
             values.photo = values.photo[0]
         }
         const payload = normalizeData(values)
+        //console.log('onSubmitRecipe', payload)
         setFormData(payload) // submit info
     }
 

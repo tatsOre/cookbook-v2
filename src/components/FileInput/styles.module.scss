@@ -164,7 +164,7 @@
 .box__button:focus {
     background-color: #0f3c4b;
 }
-
+/*
 .box__file {
     width: 0.1px;
     height: 0.1px;
@@ -173,7 +173,7 @@
     position: absolute;
     z-index: -1;
 }
-
+*/
 .box__file + label {
     cursor: pointer;
 }

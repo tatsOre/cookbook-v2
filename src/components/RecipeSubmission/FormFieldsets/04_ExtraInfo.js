@@ -9,27 +9,28 @@ function ExtraInfoFieldset({ fields }) {
     const { PHOTO, COMMENTS } = fields
 
     const {
-        register, formState: { errors }, resetField, setValue
+        register, formState: { errors }, setValue, watch
     } = useFormContext()
 
-    const onRemovePhotoHandler = () => resetField(PHOTO.NAME)
+    const removePhotoHandler = () => setValue(PHOTO.NAME, "")
 
-    const setPhotoValueHandler = (file) => setValue(PHOTO.NAME, file)
+    const setPhotoHandler = (file) => setValue(PHOTO.NAME, file)
+
+    const photo = watch('photo')
 
     return (
         <>
-            <DraggableFile
-                setFileValue={setPhotoValueHandler}>
+            <DraggableFile onChange={setPhotoHandler}> 
                 <RecipePhotoFileInput
-                    resetFileValue={onRemovePhotoHandler}
-                    renderInput={(onFileChange) => (
-                        <FileInput
-                            id={'recipe-draggable-photo'}
-                            onFileChange={onFileChange}
-                            {...register(PHOTO.NAME)}
-                        />
-                    )}
-                />
+                    onChange={setPhotoHandler}
+                    resetFileValue={removePhotoHandler}
+                    photo={photo}
+                >
+                    <FileInput
+                        id='recipe-draggable-photo'
+                        {...register(PHOTO.NAME)}
+                    />
+                </RecipePhotoFileInput>
             </DraggableFile>
 
             <TextareaInput

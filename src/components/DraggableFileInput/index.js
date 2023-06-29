@@ -5,8 +5,7 @@ import styles from './styles.module.scss'
 // https://www.nngroup.com/articles/drag-drop/
 
 import Button from "../Button";
-
-const DEFAULT_PICTURE = '/default_recipe_photo.jpg'
+import { useFormContext } from "react-hook-form";
 
 const DraggableFileContext = createContext()
 export const DraggableFileProvider = DraggableFileContext.Provider
@@ -20,9 +19,7 @@ export function DraggableFile(props) {
     const onDropHandler = (ev) => {
         ev.preventDefault()
         ev.stopPropagation()
-        // TODO: error can come from formState
         let file = null
-        let error = null
 
         if (ev.dataTransfer.items) {
             /** Use DataTransferItemList interface to access the file(s): */
@@ -39,7 +36,7 @@ export function DraggableFile(props) {
         setFile(file)
         setDragActive(false)
         /** SetValue in Hook Form: */
-        props.setFileValue(file)
+        props.onChange(file)
     };
 
     const onDragHandler = (ev) => {
@@ -51,17 +48,17 @@ export function DraggableFile(props) {
         }
     }
 
-    const onRemoveFileHandler = () => setFile(null)
+    const removeFile = () => setFile(null)
 
     return (
         <DraggableFileProvider value={{
             state: {
                 dragActive: isDragActive,
-                pathname: file && URL.createObjectURL(file)
+                file
             },
             onDrag: onDragHandler,
             onDrop: onDropHandler,
-            onRemoveFile: onRemoveFileHandler
+            removeFile
         }}>
 
             {props.children}
@@ -71,39 +68,34 @@ export function DraggableFile(props) {
 
 
 function RecipePhotoFileInput(props) {
-    const [filename, setFilename] = useState('')
-
     const {
         state,
         onDrag,
         onDrop,
-        onRemoveFile
-    } = useDraggableFileContext()
-
-    useEffect(() => {
-        /** Change local state every time a file is dropped: */
-        state.pathname && setFilename(state.pathname)
-    }, [state.pathname])
-
+        removeFile
+    } = useDraggableFileContext({
+        onChange: props.setFileValue
+    })
 
     const onClickHandler = () => {
         /** Reset File in DnD context: */
-        onRemoveFile()
+        removeFile()
         /** Reset field in the react hook form: */
         props.resetFileValue()
-        setFilename('')
     }
+    
+    const getFilepath = (value) => {
+        console.log('getting filepath', value)
+        if (!value) return null
 
-    const onFileChange = (ev) => {
-        try {
-            const path = URL.createObjectURL(ev.target.files[0])
-            setFilename(path);
-        } catch (e) {
-            console.log('FileInput is not available: ', e)
+        if (typeof value === 'string') {
+            return value
+        } else {
+            const image = value.length > 0 ? value[0] : value
+            return image ? URL.createObjectURL(image) : null
         }
     }
-
-    const photoObjectURL = filename
+    const photoObjectURL = getFilepath(props.photo)
 
     return (
         <div>
@@ -129,7 +121,7 @@ function RecipePhotoFileInput(props) {
                 onDragLeave={onDrag}
                 onDragOver={onDrag}
             >
-                {props.renderInput(onFileChange)}
+                {props.children}
             </div>
         </div>
     )
