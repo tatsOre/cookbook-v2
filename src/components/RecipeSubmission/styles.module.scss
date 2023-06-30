@@ -2,17 +2,17 @@
 
 $gap: 0.5rem;
 
-.recipe__form--accordion {
+.recipe__form--wrapper {
     [data-accordion-content] {
         background-color: white;
         padding: 1.5rem 2rem;
-        display: flex;
-        flex-flow: row wrap;
-        gap: $gap;
     }
 
     /** General Info */
-    [data-accordion-content]:nth-child(1) {
+    [data-accordion-content].about__fieldset {
+        display: flex;
+        flex-flow: row wrap;
+        gap: $gap;
 
         [data-input-wrapper="description"],
         [data-input-wrapper="title"] {
@@ -31,58 +31,59 @@ $gap: 0.5rem;
             flex: 1 1 30%;
         }
     }
-}
 
-.ingredients__list {
-    flex-basis: 100%;
+    /** Ingredients */
+    [data-accordion-content].ingredients__fieldset {
+        .ingredients__list {
+            &--item {
+                display: flex;
+                align-items: flex-start;
+                margin-block-end: 0.35rem;
+                gap: $gap;
 
-    &--item {
-        display: flex;
-        align-items: flex-start;
-        margin-block-end: 0.35rem;
-        gap: $gap;
 
+                /** Draggable Button: */
+                &>div:nth-child(1) {
+                    flex: 1 0 20px;
+                    padding-block-start: 0.6rem;
+                }
 
-        /** Draggable Button: */
-        &>div:nth-child(1) {
-            flex: 1 0 20px;
-            padding-block-start: 0.6rem;
-        }
+                /** Ingredient unit input: */
+                &>div:nth-child(2) {
+                    flex: 1 0 80px;
+                }
 
-        /** Ingredient unit input: */
-        &>div:nth-child(2) {
-            flex: 1 0 80px;
-        }
+                /** Ingredient fraction input: */
+                &>div:nth-child(3) {
+                    flex: 1 0 110px;
+                }
 
-        /** Ingredient fraction input: */
-        &>div:nth-child(3) {
-            flex: 1 0 110px;
-        }
+                /** Ingredient measure input: */
+                &>div:nth-child(4) {
+                    flex: 1 0 135px;
+                }
 
-        /** Ingredient measure input: */
-        &>div:nth-child(4) {
-            flex: 1 0 135px;
-        }
-
-        div[data-input-wrapper] {
-            margin-block-end: 0px;
-
-      
-        }
-    }
-}
-
-.instructions__list {
-    flex-basis: 100%;
-
-    &--item {
-        display: flex;
-        gap: $gap;
-
-        div[data-input-wrapper] {
-            margin-block-end: 0px;
+                div[data-input-wrapper] {
+                    margin-block-end: 0px;
+                }
+            }
         }
     }
+
+    [data-accordion-content].instructions__fieldset {
+        .instructions__list {
+            &--item {
+                display: flex;
+                gap: $gap;
+
+                div[data-input-wrapper] {
+                    margin-block-end: 0px;
+                }
+            }
+        }
+    }
+
+    [data-accordion-content].extracontent__fieldset {}
 }
 
 .button__icon--delete {

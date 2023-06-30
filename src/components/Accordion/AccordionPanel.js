@@ -5,7 +5,7 @@ import { useAccordionItemContext } from "./AccordionItem"
 import styles from './styles.module.scss'
 
 function AccordionPanel(props) {
-    const { children, ...rest } = props
+    const { className, children, ...rest } = props
     const context = useAccordionContext()
     const { value } = useAccordionItemContext()
     const isItemActive = context.isItemActive(value)
@@ -13,7 +13,7 @@ function AccordionPanel(props) {
     return (
         <div
             aria-labelledby={context.getTriggerId(value)}
-            data-active={isItemActive || undefined}
+            data-active={isItemActive}
             data-accordion-panel
             id={context.getPanelId(value)}
             className={cx([styles['accordion__panel--collapsible']])}
@@ -22,6 +22,7 @@ function AccordionPanel(props) {
             <div
                 data-accordion-content
                 className={cx([
+                    className,
                     styles['accordion__panel--content'],
                 ])}>
                 {children}

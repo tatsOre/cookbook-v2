@@ -60,7 +60,7 @@ function RecipeSubmission({ endpoint, method, data, assets, mode }) {
                 <Accordion
                     value={accState}
                     onChange={setAccState}
-                    className={styles['recipe__form--accordion']}
+                    className={styles['recipe__form--wrapper']}
                 >
                     <RecipeForm
                         id="submit-recipe-form"

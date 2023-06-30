@@ -3,7 +3,6 @@ import { useFormContext } from 'react-hook-form'
 import FileInput from '../../FileInput'
 import RecipePhotoFileInput from '../../DraggableFileInput'
 import TextareaInput from '../../Form/TextareaInput'
-import { DraggableFile } from '../../DraggableFileInput'
 
 function ExtraInfoFieldset({ fields }) {
     const { PHOTO, COMMENTS } = fields
@@ -20,18 +19,16 @@ function ExtraInfoFieldset({ fields }) {
 
     return (
         <>
-            <DraggableFile onChange={setPhotoHandler}> 
-                <RecipePhotoFileInput
-                    onChange={setPhotoHandler}
-                    resetFileValue={removePhotoHandler}
-                    photo={photo}
-                >
-                    <FileInput
-                        id='recipe-draggable-photo'
-                        {...register(PHOTO.NAME)}
-                    />
-                </RecipePhotoFileInput>
-            </DraggableFile>
+            <RecipePhotoFileInput
+                onFileChange={setPhotoHandler}
+                onFileRemove={removePhotoHandler}
+                photo={photo}
+            >
+                <FileInput
+                    id='recipe-draggable-photo'
+                    {...register(PHOTO.NAME)}
+                />
+            </RecipePhotoFileInput>
 
             <TextareaInput
                 description={COMMENTS.DESC}

@@ -164,6 +164,7 @@
 .box__button:focus {
     background-color: #0f3c4b;
 }
+
 /*
 .box__file {
     width: 0.1px;
@@ -174,20 +175,20 @@
     z-index: -1;
 }
 */
-.box__file + label {
+.box__file+label {
     cursor: pointer;
 }
 
-.box__file + label:hover b {
+.box__file+label:hover b {
     text-decoration: underline;
 }
 
-.box__file:focus + label b {
+.box__file:focus+label b {
     color: #39bfd3;
-    
+
 }
 
-.box__file:focus + label  {
+.box__file:focus+label {
     color: #39bfd3;
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;

@@ -7,6 +7,8 @@ import ExtraInfoFieldset from "./FormFieldsets/04_ExtraInfo"
 
 import { RECIPE_FIELDS_ATTRIBUTES } from "./utils"
 
+import styles from './styles.module.scss'
+
 const {
     TITLE,
     DESCRIPTION,
@@ -33,8 +35,8 @@ function RecipeForm(props) {
             onSubmit={onSubmit}
         >
             <Accordion.Item value="item-1">
-                <Accordion.Trigger>General Info</Accordion.Trigger>
-                <Accordion.Panel>
+                <Accordion.Trigger>About</Accordion.Trigger>
+                <Accordion.Panel className={styles.about__fieldset}>
                     <GeneralInfoFieldset
                         fields={{
                             TITLE,
@@ -51,7 +53,7 @@ function RecipeForm(props) {
             </Accordion.Item>
             <Accordion.Item value="item-2">
                 <Accordion.Trigger>Ingredients</Accordion.Trigger>
-                <Accordion.Panel>
+                <Accordion.Panel className={styles.ingredients__fieldset}>
                     <IngredientsFieldset
                         fields={{ INGREDIENTS, INGR_SCHEMA: assets.INGR_SCHEMA }}
                         assets={assets}
@@ -60,7 +62,7 @@ function RecipeForm(props) {
             </Accordion.Item>
             <Accordion.Item value="item-3">
                 <Accordion.Trigger>How To Make</Accordion.Trigger>
-                <Accordion.Panel>
+                <Accordion.Panel className={styles.instructions__fieldset}>
                     <InstructionsFieldset
                         fields={{ INSTRUCTIONS }} />
                 </Accordion.Panel>
@@ -69,7 +71,7 @@ function RecipeForm(props) {
                 <Accordion.Trigger>
                     Extra Comments & Photos
                 </Accordion.Trigger>
-                <Accordion.Panel>
+                <Accordion.Panel className={styles.extracontent__fieldset}>
                     <ExtraInfoFieldset
                         fields={{ PHOTO, COMMENTS }}
                     />

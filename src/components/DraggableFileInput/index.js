@@ -1,20 +1,27 @@
 import Image from "next/image";
-import React, { createContext, useContext, useEffect, useState } from "react"
+import React from "react"
+import Button from "../Button";
+
 import styles from './styles.module.scss'
+import cx from "../utils/cx";
 
 // https://www.nngroup.com/articles/drag-drop/
 
-import Button from "../Button";
-import { useFormContext } from "react-hook-form";
+const getImageSrc = (imageFile) => {
+    console.log('getting filepath', imageFile)
+    if (!imageFile) return null
 
-const DraggableFileContext = createContext()
-export const DraggableFileProvider = DraggableFileContext.Provider
+    if (typeof imageFile === 'string') {
+        return imageFile
+    } else {
+        const src = imageFile.length > 0 ? imageFile[0] : imageFile
+        return src ? URL.createObjectURL(src) : null
+    }
+}
 
-export const useDraggableFileContext = () => useContext(DraggableFileContext)
-
-export function DraggableFile(props) {
-    const [isDragActive, setDragActive] = useState(false)
-    const [file, setFile] = useState(null)
+function useDraggableImageFile(props) {
+    const [isDragActive, setDragActive] = React.useState(false)
+    const [file, setFile] = React.useState(null)
 
     const onDropHandler = (ev) => {
         ev.preventDefault()
@@ -32,7 +39,6 @@ export function DraggableFile(props) {
             file = ev.dataTransfer.files[0];
         }
         // TODO: validate if file === img
-
         setFile(file)
         setDragActive(false)
         /** SetValue in Hook Form: */
@@ -50,22 +56,16 @@ export function DraggableFile(props) {
 
     const removeFile = () => setFile(null)
 
-    return (
-        <DraggableFileProvider value={{
-            state: {
-                dragActive: isDragActive,
-                file
-            },
-            onDrag: onDragHandler,
-            onDrop: onDropHandler,
-            removeFile
-        }}>
-
-            {props.children}
-        </DraggableFileProvider>
-    );
+    return {
+        state: {
+            dragActive: isDragActive,
+            file
+        },
+        onDrag: onDragHandler,
+        onDrop: onDropHandler,
+        removeFile
+    }
 }
-
 
 function RecipePhotoFileInput(props) {
     const {
@@ -73,56 +73,51 @@ function RecipePhotoFileInput(props) {
         onDrag,
         onDrop,
         removeFile
-    } = useDraggableFileContext({
-        onChange: props.setFileValue
+    } = useDraggableImageFile({
+        onChange: props.onFileChange
     })
 
     const onClickHandler = () => {
         /** Reset File in DnD context: */
         removeFile()
         /** Reset field in the react hook form: */
-        props.resetFileValue()
+        props.onFileRemove()
     }
-    
-    const getFilepath = (value) => {
-        console.log('getting filepath', value)
-        if (!value) return null
 
-        if (typeof value === 'string') {
-            return value
-        } else {
-            const image = value.length > 0 ? value[0] : value
-            return image ? URL.createObjectURL(image) : null
-        }
-    }
-    const photoObjectURL = getFilepath(props.photo)
+    const photoObjectURL = getImageSrc(props.photo)
 
     return (
-        <div>
-            {photoObjectURL ? ( <>
-                    <Button onClick={onClickHandler}>Delete Photo</Button>
+        <div className={styles['photo__section']}>
+            <div className={styles['image__input--wrapper']}>
+                <h3>Liven up your recipe with a picture</h3>
+                <p>Take photos using a phone or camera. You can always edit this field later.</p>
+                {/** File Input for Large Devices: */}
+                <div
+                    className={cx([
+                        styles.drop__zone,
+                        state?.dragActive && styles['drag--active']
+                    ])}
+                    onDrop={onDrop}
+                    onDragEnter={onDrag}
+                    onDragLeave={onDrag}
+                    onDragOver={onDrag}
+                >
+                    {props.children}
+                </div>
+            </div>
 
+            {photoObjectURL ? (
+                <div className={styles['image__view--wrapper']}>
                     <div style={{ maxWidth: '150px', maxHeight: '150px', overflow: 'hidden' }}>
                         <Image
                             src={photoObjectURL}
                             width={150}
                             height={150}
-                            alt="Picture of the author" />
-
+                            alt="Picture of the dish" />
                     </div>
-                </>
+                    <Button onClick={onClickHandler}>Delete Photo</Button>
+                </div>
             ) : null}
-
-            {/** File Input for Large Devices: */}
-            <div
-                className={`${styles.drop_zone} ${state?.dragActive ? styles.dragActive : ""}`}
-                onDrop={onDrop}
-                onDragEnter={onDrag}
-                onDragLeave={onDrag}
-                onDragOver={onDrag}
-            >
-                {props.children}
-            </div>
         </div>
     )
 }
