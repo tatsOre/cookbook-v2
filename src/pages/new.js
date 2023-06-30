@@ -48,7 +48,6 @@ export const CATEGORIES_OPTIONS = [
 ]
 
 export const FRACTIONS_OPTIONS = [
-    { _id: 'X0001', label: "0", decimal: 0 },
     { _id: 'X0002', label: "⅛", decimal: 0.125 }, // 1/8  ⅛ &#8539;
     { _id: 'X0003', label: "¼", decimal: 0.25 }, // 1/4 ¼  &#188;
     { _id: 'X0004', label: "⅓", decimal: 0.33333333333333 }, // 1/3  ⅓  &#8531;

@@ -6,11 +6,11 @@ import styles from './styles.module.scss'
 function InputError(props) {
     const { children, className, id } = props
     return (
-        <p
+        <span
             className={cx([className, styles.input__error])} id={id} role='alert'
         >
             {children}
-        </p>
+        </span>
     )
 }
 

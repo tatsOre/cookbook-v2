@@ -1,20 +1,26 @@
 import React from "react"
+import dynamic from "next/dynamic"
 import { FormProvider, useForm } from "react-hook-form"
 import useFormSubmission from "../FormSubmission"
 import Accordion from "../Accordion"
 import Alert from "../Alert"
 import Layout from "./Layout"
 import Spinner from "../LoadingOverlay"
-import RecipeForm from "./Form"
 
 import { deNormalizeData, normalizeData, getFormAccordionState } from "./utils"
 
 import styles from './styles.module.scss'
 
+const DynamicRecipeForm = dynamic(() => import('./Form'), {
+    ssr: false
+})
+
 function RecipeSubmission({ endpoint, method, data, assets, mode }) {
     const [formData, setFormData] = React.useState(null)
 
-    const [accState, setAccState] = React.useState(['item-4'])
+    const [activeFieldsetPanel, setActiveFieldsetPanel] = React.useState(
+        ['item-2']
+    )
 
     const { status, responseData, errorMessage } = useFormSubmission({
         endpoint,
@@ -43,8 +49,8 @@ function RecipeSubmission({ endpoint, method, data, assets, mode }) {
     }
 
     const onErrors = (errors) => {
-        const newAccordionItemsState = getFormAccordionState(errors)
-        setAccState(newAccordionItemsState)
+        const newState = getFormAccordionState(errors)
+        setActiveFieldsetPanel(newState)
     }
 
     const onChange = (ev) => {
@@ -58,11 +64,11 @@ function RecipeSubmission({ endpoint, method, data, assets, mode }) {
             ) : null}
             <FormProvider {...methods}>
                 <Accordion
-                    value={accState}
-                    onChange={setAccState}
+                    active={activeFieldsetPanel}
+                    setActive={setActiveFieldsetPanel}
                     className={styles['recipe__form--wrapper']}
                 >
-                    <RecipeForm
+                    <DynamicRecipeForm
                         id="submit-recipe-form"
                         onChange={onChange}
                         onSubmit={methods.handleSubmit(onSubmit, onErrors)}

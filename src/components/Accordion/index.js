@@ -1,8 +1,8 @@
 import React from "react"
+import PropTypes from 'prop-types'
 import AccordionItem from "./AccordionItem"
 import AccordionPanel from "./AccordionPanel"
 import AccordionTrigger from "./AccordionTrigger"
-import cx from "../utils/cx"
 
 const AccordionStateContext = React.createContext()
 const AccordionProvider = AccordionStateContext.Provider
@@ -14,22 +14,20 @@ export const useAccordionContext = () => React.useContext(AccordionStateContext)
  */
 
 function Accordion(props) {
-    const { value, onChange, className, children, id, ...rest } = props
+    const { active, setActive, children, id, ...rest } = props
     const _id = id || React.useId()
 
-    const isItemActive = (item) => value.includes(item)
+    const isItemActive = (item) => active.includes(item)
 
     const onItemChangeHandler = (item) => {
         let nextState = []
-        if (value.includes(item)) {
-            nextState = value.filter(i => i !== item)
+        if (active.includes(item)) {
+            nextState = active.filter(i => i !== item)
         } else {
-            nextState = [...value, item]
+            nextState = [...active, item]
         }
-        onChange(nextState)
+        setActive(nextState)
     }
-
-    const classes = cx([className])
 
     return (
         <AccordionProvider value={{
@@ -40,9 +38,20 @@ function Accordion(props) {
             getPanelId: (v) => `${_id}-panel-${v}`
 
         }}>
-            <div className={classes} {...rest}>{children}</div>
+            <div {...rest}>{children}</div>
         </AccordionProvider>
     )
+}
+
+Accordion.defaultProps = {
+    active: []
+}
+
+Accordion.propTypes = {
+    active: PropTypes.arrayOf(PropTypes.string),
+    setActive: PropTypes.func,
+    children: PropTypes.node,
+    id: PropTypes.string
 }
 
 Accordion.Item = AccordionItem

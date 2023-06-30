@@ -8,7 +8,7 @@ import cx from "../utils/cx";
 // https://www.nngroup.com/articles/drag-drop/
 
 const getImageSrc = (imageFile) => {
-    console.log('getting filepath', imageFile)
+    //console.log('getting filepath', imageFile)
     if (!imageFile) return null
 
     if (typeof imageFile === 'string') {

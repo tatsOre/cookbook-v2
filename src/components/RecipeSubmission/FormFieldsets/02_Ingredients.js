@@ -25,19 +25,23 @@ function IngredientsFieldset({ assets, fields }) {
 
     const { register, control, formState: { errors } } = useFormContext()
 
-    const { fields: ingredients, append, remove, swap } = useFieldArray({
+    const { fields: ingredients, append, remove, move } = useFieldArray({
         control, name: INGS_NAME, rules: {
             required: RULES.REQUIRED
         }
     })
 
     const onDragEndHandler = ({ destination, source }) => {
-        // dropped outside the list || same index:
-        if (!destination || destination.index === source.index) {
+        // dropped outside the list:
+        if (!destination) return
+        // same item:
+        if (
+            destination.droppableId === source.droppableId &&
+            destination.index === source.index
+        ) {
             return
         }
-        // swap	(from: number, to: number):
-        swap(source.index, destination.index)
+        move(source.index, destination.index)
     }
 
     const ingrListItems = ingredients.map((ingr, index) => {
@@ -45,8 +49,8 @@ function IngredientsFieldset({ assets, fields }) {
             && errors[INGS_NAME][index]
             && errors[INGS_NAME][index][ITEM_NAME.NAME]?.message
 
-        const di_id = `drag-ingr-${index}`
-
+        const di_id = `drag-ingr-${ingr.id}`
+        
         return (
             <Draggable key={di_id} draggableId={di_id} index={index}>
                 {(provided) => (
@@ -58,7 +62,7 @@ function IngredientsFieldset({ assets, fields }) {
                     >
 
                         <div {...provided.dragHandleProps}>
-                            <IconGridDots size={20}/>
+                            <IconGridDots size={20} />
                         </div>
 
                         <NumberInput
@@ -116,9 +120,7 @@ function IngredientsFieldset({ assets, fields }) {
             {errors?.[INGS_NAME]?.root
                 && <p role='alert'>{errors[INGS_NAME].root.message}</p>}
 
-            <DragDropContext
-                onDragEnd={onDragEndHandler}
-            >
+            <DragDropContext onDragEnd={onDragEndHandler}>
                 <Droppable droppableId='dnd-ingredients-list' direction='vertical'>
                     {(provided) => (
                         <DroppableList

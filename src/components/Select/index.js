@@ -1,8 +1,8 @@
 import React from "react"
 import { Controller, useFormContext } from "react-hook-form"
+import useInputProps from "../Input/useInputProps"
 import Select from 'react-select'
 import Input from "../Input"
-import useInputProps from "../Input/useInputProps"
 
 export const styles = {
     menuPortal: (base) => ({
