@@ -4,6 +4,7 @@ import { useAccordionItemContext } from "./AccordionItem"
 import UnstyledButton from "@/components/Button/UnstyledButton"
 
 import styles from './styles.module.scss'
+import { IconArrowDownRight } from "../Icon"
 
 function AccordionTrigger(props) {
     const { children, ...rest } = props
@@ -27,7 +28,7 @@ function AccordionTrigger(props) {
         >
             <span>{children}</span>
             <div className={styles['accordion__trigger--icon']}>
-                {isItemActive ? '-' : '+'}
+                <IconArrowDownRight size={36} strokeWidth={1}/>
             </div>
         </UnstyledButton>
     )

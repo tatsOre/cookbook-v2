@@ -6,11 +6,13 @@
 
 button.accordion__trigger {
     width: 100%;
-    background-color: v.$color-rich-black;
-    color: v.$color-white;
-    padding: 1rem 2rem;
+    background-color: v.$color-warm-grey-200;
+    color: v.$color-rich-black;
+    border: 1px solid v.$color-rich-black;
+    padding: 1rem 1.5rem 0.75rem 2rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     /** update: */
     font-family: v.$font-accent;
     font-size: 1.5rem;
@@ -22,8 +24,7 @@ button.accordion__trigger {
 }
 
 .accordion__trigger[data-active=true] .accordion__trigger--icon {
-    transform: rotate(180deg);
-    top: 0.5rem;
+    transform: rotate(-90deg);
 }
 
 .accordion__panel--content {
@@ -38,5 +39,6 @@ button.accordion__trigger {
 .accordion__panel--collapsible[data-active=true] {
     height: 100%;
 }
+
 // https://stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css
 .accordion__panel.isActive {}

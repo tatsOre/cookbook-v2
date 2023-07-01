@@ -1,7 +1,5 @@
 @use '../../styles/Variables.module.scss' as v;
 
-$gap: 0.5rem;
-
 .recipe__form--wrapper {
     [data-accordion-content] {
         background-color: white;
@@ -12,7 +10,7 @@ $gap: 0.5rem;
     [data-accordion-content].about__fieldset {
         display: flex;
         flex-flow: row wrap;
-        gap: $gap;
+        gap: 1rem;
 
         [data-input-wrapper="description"],
         [data-input-wrapper="title"] {
@@ -38,9 +36,8 @@ $gap: 0.5rem;
             &--item {
                 display: flex;
                 align-items: flex-start;
-                margin-block-end: 0.35rem;
-                gap: $gap;
-
+                margin-block-end: 0.5rem;
+                gap: 0.5rem;
 
                 /** Draggable Button: */
                 &>div:nth-child(1) {
@@ -63,10 +60,12 @@ $gap: 0.5rem;
                     flex: 1 0 135px;
                 }
 
-                div[data-input-wrapper] {
-                    margin-block-end: 0px;
-                }
+                .button__icon--delete {}
             }
+        }
+
+        button {
+            margin-block-start: 0.5rem;
         }
     }
 
@@ -74,23 +73,25 @@ $gap: 0.5rem;
         .instructions__list {
             &--item {
                 display: flex;
-                gap: $gap;
+                margin-block-end: 0.5rem;
+                position: relative;
 
-                div[data-input-wrapper] {
-                    margin-block-end: 0px;
+                label {
+                    margin-block-end: 0.5rem;
+                }
+
+                .button__icon--delete {
+                    position: absolute;
+                    right: 0;
+                    top: -0.5rem;
                 }
             }
+        }
+
+        button {
+            margin-block-start: 0.5rem;
         }
     }
 
     [data-accordion-content].extracontent__fieldset {}
-}
-
-.button__icon--delete {
-    font-size: 1.5rem;
-    color: v.$color-smoke-gray;
-
-    &:hover {
-        color: v.$color-danger-base;
-    }
 }

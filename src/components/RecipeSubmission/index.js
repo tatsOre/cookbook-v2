@@ -5,15 +5,15 @@ import useFormSubmission from "../FormSubmission"
 import Accordion from "../Accordion"
 import Alert from "../Alert"
 import Layout from "./Layout"
-import Spinner from "../LoadingOverlay"
 
 import { deNormalizeData, normalizeData, getFormAccordionState } from "./utils"
 
 import styles from './styles.module.scss'
 
-const DynamicRecipeForm = dynamic(() => import('./Form'), {
-    ssr: false
-})
+const DynamicRecipeForm = dynamic(() => import('./Form')
+    .catch(() => <span>Something went wrong.</span>),
+    { ssr: false }
+)
 
 function RecipeSubmission({ endpoint, method, data, assets, mode }) {
     const [formData, setFormData] = React.useState(null)
@@ -49,7 +49,8 @@ function RecipeSubmission({ endpoint, method, data, assets, mode }) {
     }
 
     const onErrors = (errors) => {
-        const newState = getFormAccordionState(errors)
+        const withErrors = getFormAccordionState(errors)
+        const newState = [...activeFieldsetPanel, ...withErrors]
         setActiveFieldsetPanel(newState)
     }
 

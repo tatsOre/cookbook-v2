@@ -80,7 +80,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
     INGREDIENTS: {
         NAME: 'ingredients',
         RULES: {
-            REQUIRED: 'At least one ingredient is required'
+            REQUIRED: 'At least one ingredient is required.'
         },
         INGR_ATTRS: {
             QTY: {
@@ -114,10 +114,10 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
         }
     },
     INSTRUCTIONS: {
-        DESC: 'Como se hace esta vuelta?',
+        DESC: '',
         NAME: 'instructions',
         RULES: {
-            REQUIRED: 'At least one is required',
+            REQUIRED: 'At least one step is required.',
         },
         TEXT_ATTRS: {
             LABEL: 'Step',

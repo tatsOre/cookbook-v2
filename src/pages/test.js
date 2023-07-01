@@ -1,11 +1,36 @@
 import Alert from '@/components/Alert'
 import Button from '@/components/Button'
-import { IconCheck } from '@/components/Icon'
+import {
+    IconArrowDownRight,
+    IconArrowForward,
+    IconBookmark,
+    IconCalendarEvent,
+    IconCheck,
+    IconChecklist,
+    IconChefHat,
+    IconChevronUp,
+    IconChevronsUp,
+    IconCloudUpload,
+    IconCross,
+    IconDotsVertical,
+    IconEqual,
+    IconGripVertical,
+    IconLoader,
+    IconMenuOrder,
+    IconMinus,
+    IconNotebook,
+    IconPlus,
+    IconShoppingCartPlus,
+    IconTrash,
+    IconVerticalEllipsis
+} from '@/components/Icon'
 
 import IconGridDots from '@/components/Icon/icons/icon-grid-dots'
 
 import Head from 'next/head'
 import Link from 'next/link'
+
+
 
 export default function Home() {
 
@@ -49,6 +74,33 @@ export default function Home() {
                 <Alert appearance="info" title="Info">This is info, I am Info.</Alert>
                 <Alert appearance="info" title="Info" variant="outline" removable>Hakuna Matata</Alert>
                 <Alert appearance="info" title="Info" variant="light">Hey!</Alert>
+
+                <hr />
+                <hr />
+                <div>
+                    <IconArrowDownRight />
+                    <IconArrowForward />
+                    <IconBookmark />
+                    <IconCalendarEvent />
+                    <IconCheck />
+                    <IconCross />
+                    <IconChecklist />
+                    <IconChefHat />
+                    <IconChevronUp />
+                    <IconChevronsUp />
+                    <IconCloudUpload />
+                    <IconDotsVertical />
+                    <IconEqual />
+                    <IconGripVertical />
+                    <IconLoader />
+                    <IconMenuOrder />
+                    <IconMinus />
+                    <IconNotebook />
+                    <IconPlus />
+                    <IconShoppingCartPlus />
+                    <IconTrash />
+                    <IconVerticalEllipsis />
+                </div>
             </main>
         </>
     )

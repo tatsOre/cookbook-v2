@@ -69,7 +69,7 @@ function RecipeForm(props) {
             </Accordion.Item>
             <Accordion.Item value="item-4">
                 <Accordion.Trigger>
-                    Extra Comments & Photos
+                    Comments & Photos
                 </Accordion.Trigger>
                 <Accordion.Panel className={styles.extracontent__fieldset}>
                     <ExtraInfoFieldset

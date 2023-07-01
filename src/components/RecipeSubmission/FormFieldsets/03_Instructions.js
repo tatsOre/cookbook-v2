@@ -4,6 +4,8 @@ import UnstyledButton from '../../Button/UnstyledButton'
 import TextareaInput from '../../Form/TextareaInput'
 
 import styles from '../styles.module.scss'
+import CloseButton from '@/components/Button/CloseButton'
+import Alert from '@/components/Alert'
 
 function InstructionItem(props) {
     const {
@@ -29,11 +31,10 @@ function InstructionItem(props) {
                     required: TEXT_ATTRS.RULES.REQUIRED
                 })}
             />
-            <UnstyledButton
+            <CloseButton
                 className={styles['button__icon--delete']}
-                onClick={onClickHandler}>
-                ✘
-            </UnstyledButton>
+                onClick={onClickHandler}
+            />
         </li>
     )
 }
@@ -72,13 +73,14 @@ function InstructionsFieldset({ fields }) {
 
     return (
         <>
-            {/** ↓ Error Message or Input Error? */}
-            {errors[NAME]?.root
-                && <p role='alert'>{errors[NAME].root.message}</p>}
+            {errors[NAME]?.root || !listItems.length ? (
+                <Alert appearance="danger" title="Ups!" variant="outline">
+                    {/** Solo está apareciendo cuando hay error desde hook form: */}
+                    {errors[NAME]?.root.message}
+                </Alert>
+            ) : null}
             <ul className={styles.instructions__list}>{listItems}</ul>
-            <Button onClick={onAppendHandler}>
-                Add new step
-            </Button>
+            <Button onClick={onAppendHandler}>Add step</Button>
         </>
     )
 }

@@ -10,6 +10,8 @@ import SelectInput from '../../Select'
 import UnstyledButton from '../../Button/UnstyledButton'
 
 import styles from '../styles.module.scss'
+import CloseButton from '@/components/Button/CloseButton'
+import Alert from '@/components/Alert'
 
 function IngredientsFieldset({ assets, fields }) {
     const {
@@ -50,7 +52,7 @@ function IngredientsFieldset({ assets, fields }) {
             && errors[INGS_NAME][index][ITEM_NAME.NAME]?.message
 
         const di_id = `drag-ingr-${ingr.id}`
-        
+
         return (
             <Draggable key={di_id} draggableId={di_id} index={index}>
                 {(provided) => (
@@ -103,11 +105,11 @@ function IngredientsFieldset({ assets, fields }) {
                             {...register(`${INGS_NAME}.${index}.${PREP_NOTE.NAME}`)}
                         />
 
-                        <UnstyledButton
+                        <CloseButton
+                            size="lg"
                             className={styles['button__icon--delete']}
-                            onClick={() => remove(index)}>
-                            ✘
-                        </UnstyledButton>
+                            onClick={() => remove(index)}
+                        />
                     </DroppableList.Item>
                 )}
             </Draggable>
@@ -116,9 +118,12 @@ function IngredientsFieldset({ assets, fields }) {
 
     return (
         <>
-            {/** ↓ Error Message or Input Error? */}
-            {errors?.[INGS_NAME]?.root
-                && <p role='alert'>{errors[INGS_NAME].root.message}</p>}
+            {errors?.[INGS_NAME]?.root || !ingrListItems.length ? (
+                <Alert appearance="danger" title="Ups!" variant="outline">
+                    {/** Solo está apareciendo cuando hay error desde hook form: */}
+                    {errors?.[INGS_NAME]?.root.message}
+                </Alert>
+            ) : null}
 
             <DragDropContext onDragEnd={onDragEndHandler}>
                 <Droppable droppableId='dnd-ingredients-list' direction='vertical'>
