@@ -1,3 +1,4 @@
+export { default as IconAlertCircle } from './icons/icon-alert-circle'
 export { default as IconArrowDownRight } from './icons/icon-arrow-down-right'
 export { default as IconArrowForward } from './icons/icon-arrow-forward'
 export { default as IconBookmark } from './icons/icon-bookmark'

@@ -11,6 +11,6 @@ export const getImageSrc = (imageFile) => {
         return imageFile
     } else {
         const src = imageFile.length > 0 ? imageFile[0] : imageFile
-        return src && IsValidImageFile(src) ? URL.createObjectURL(src) : null
+        return src && isValidImageFile(src) ? URL.createObjectURL(src) : null
     }
 }

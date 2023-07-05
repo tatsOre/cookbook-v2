@@ -9,30 +9,17 @@ import cx from '@/components/utils/cx'
 
 import styles from '../styles.module.scss'
 
-
-function ExtraInfoFieldset({ fields }) {
-    const { PHOTO, COMMENTS } = fields
-
+function useDraggableFile({ name, onChange }) {
     const [isDragActive, setDragActive] = React.useState(false)
+    const [imageFile, setImageFile] = React.useState(null)
+    const [error, setError] = React.useState('')
 
-    const {
-        register, formState: { errors }, setValue, watch
-    } = useFormContext()
-
-    const photo = watch('photo')
-
-    const onFileChangeHandler = (file) => {
-        file ? setValue(PHOTO.NAME, file) : setValue(PHOTO.NAME, "")
-    }
-
-    const onDeleteFileHandler = () => onFileChangeHandler(null)
-
-    const photoObjectURL = photo && getImageSrc(photo)
-
-    const onDropHandler = (ev) => {
+    const onDrop = (ev) => {
         ev.preventDefault()
         ev.stopPropagation()
         let file = null
+
+        error && setError('')
 
         if (ev.dataTransfer.items) {
             /** Use DataTransferItemList interface to access the file(s): */
@@ -46,12 +33,17 @@ function ExtraInfoFieldset({ fields }) {
         }
 
         if (isValidImageFile(file)) {
-            onFileChangeHandler(file)
+            setImageFile(file)
+            /** Set Photo in Hook Form: */
+            onChange && onChange(name, file)
+        } else {
+            setError('Wrong file type')
         }
+
         setDragActive(false)
     };
 
-    const onDragHandler = (ev) => {
+    const onDrag = (ev) => {
         ev.preventDefault()
         if (ev.type === "dragenter" || ev.type === "dragover") {
             setDragActive(true)
@@ -60,22 +52,73 @@ function ExtraInfoFieldset({ fields }) {
         }
     }
 
+    const onDeleteFile = () => setImageFile(null)
+
+    return ({
+        state: {
+            isDragActive,
+            file: imageFile,
+            fileError: error
+        },
+        onDeleteFile,
+        onDropFile: onDrop,
+        onDragFile: onDrag,
+    })
+}
+
+function ExtraInfoFieldset({ fields }) {
+    const { PHOTO, COMMENTS } = fields
+
+    const {
+        register, formState: { errors }, setValue, setError, watch, clearErrors
+    } = useFormContext()
+
+    const {
+        state,
+        onDeleteFile,
+        onDropFile,
+        onDragFile
+    } = useDraggableFile({
+        name: PHOTO.NAME,
+        onChange: setValue,
+    })
+
+    React.useEffect(() => {
+        // Set error from DND hook in Hook Form:
+        // TODO: Check image workflow, check file validation with RHF
+        state.fileError
+            ? setError(PHOTO.NAME,
+                { type: "custom", message: state.fileError })
+            : clearErrors(PHOTO.NAME)
+    }, [state.fileError])
+
+    const photo = watch('photo')
+
+    const onDeleteFileHandler = () => {
+        setValue(PHOTO.NAME, "")
+        // Clear draggable hook state:
+        onDeleteFile()
+    }
+
+    const photoObjectURL = photo && getImageSrc(photo)
+
     return (
         <>
             <div className={styles['photo__section']}>
                 <div className={styles['image__input--wrapper']}>
                     <h3>Liven up your recipe post with a picture</h3>
                     <p>Take photos using a phone or camera. You can always edit this field later.</p>
+                    <p role='alert' style={{ color: 'red' }}>{errors.photo && errors.photo.message}</p>
 
                     <div
                         className={cx([
                             styles.drop__zone,
-                            isDragActive && styles['drag--active']
+                            state.isDragActive && styles['drag--active']
                         ])}
-                        onDrop={onDropHandler}
-                        onDragEnter={onDragHandler}
-                        onDragLeave={onDragHandler}
-                        onDragOver={onDragHandler}
+                        onDrop={onDropFile}
+                        onDragEnter={onDragFile}
+                        onDragLeave={onDragFile}
+                        onDragOver={onDragFile}
                     >
 
                         <FileInput
@@ -110,9 +153,3 @@ function ExtraInfoFieldset({ fields }) {
 }
 
 export default ExtraInfoFieldset
-
-/*
-const DraggableFileContext = createContext()
-export const DraggableFileProvider = DraggableFileContext.Provider
-export const useDraggableFileContext = () => useContext(DraggableFileContext)
-*/
