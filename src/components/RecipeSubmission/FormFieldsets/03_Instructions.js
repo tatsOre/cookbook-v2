@@ -74,13 +74,12 @@ function InstructionsFieldset({ fields }) {
     return (
         <>
             {errors[NAME]?.root || !listItems.length ? (
-                <Alert appearance="danger" title="Ups!" variant="outline">
-                    {/** Solo está apareciendo cuando hay error desde hook form: */}
-                    {errors[NAME]?.root.message}
+                <Alert appearance="danger" variant="outline">
+                    {errors[NAME]?.root.message || RULES.REQUIRED}
                 </Alert>
             ) : null}
             <ul className={styles.instructions__list}>{listItems}</ul>
-            <Button onClick={onAppendHandler}>Add step</Button>
+            <Button onClick={onAppendHandler}>+ Add step</Button>
         </>
     )
 }

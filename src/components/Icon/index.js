@@ -3,6 +3,7 @@ export { default as IconArrowForward } from './icons/icon-arrow-forward'
 export { default as IconBookmark } from './icons/icon-bookmark'
 export { default as IconCalendarEvent } from './icons/icon-calendar'
 export { default as IconCheck } from './icons/icon-check'
+export { default as IconCircleMinus } from './icons/icon-circle-minus'
 export { default as IconCross } from './icons/icon-cross'
 export { default as IconChecklist } from './icons/icon-checklist'
 export { default as IconChefHat } from './icons/icon-chef-hat'
@@ -21,6 +22,5 @@ export { default as IconPlus } from './icons/icon-plus'
 export { default as IconShoppingCartPlus } from './icons/icon-shopping-cart-plus'
 export { default as IconTrash } from './icons/icon-trash'
 export { default as IconVerticalEllipsis } from './icons/icon-vertical-ellipsis'
-
 
 // Icons from: tabler-icons-react

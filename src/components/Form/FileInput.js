@@ -1,6 +1,6 @@
 import React from "react"
 
-import styles from './styles.module.scss'
+const styles = {}
 
 const FileInput = React.forwardRef((props, ref) => {
     const { id, ...rest } = props

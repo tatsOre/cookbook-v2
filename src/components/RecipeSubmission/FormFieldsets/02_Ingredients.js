@@ -119,9 +119,8 @@ function IngredientsFieldset({ assets, fields }) {
     return (
         <>
             {errors?.[INGS_NAME]?.root || !ingrListItems.length ? (
-                <Alert appearance="danger" title="Ups!" variant="outline">
-                    {/** Solo está apareciendo cuando hay error desde hook form: */}
-                    {errors?.[INGS_NAME]?.root.message}
+                <Alert appearance="danger" variant="outline">
+                    {errors?.[INGS_NAME]?.root.message || RULES.REQUIRED}
                 </Alert>
             ) : null}
 
@@ -139,7 +138,7 @@ function IngredientsFieldset({ assets, fields }) {
                     )}
                 </Droppable>
             </DragDropContext>
-            <Button onClick={() => append(INGR_SCHEMA)}>Add Ingredient</Button>
+            <Button onClick={() => append(INGR_SCHEMA)}>+ Add Ingredient</Button>
         </>
     )
 }

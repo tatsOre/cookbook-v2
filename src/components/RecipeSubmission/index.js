@@ -19,7 +19,7 @@ function RecipeSubmission({ endpoint, method, data, assets, mode }) {
     const [formData, setFormData] = React.useState(null)
 
     const [activeFieldsetPanel, setActiveFieldsetPanel] = React.useState(
-        ['item-2']
+        ['item-4']
     )
 
     const { status, responseData, errorMessage } = useFormSubmission({

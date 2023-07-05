@@ -1,7 +1,7 @@
 import React from "react"
 import cx from "../utils/cx"
 import UnstyledButton from "./UnstyledButton"
-import { IconCross } from "../Icon"
+import { IconCircleMinus, IconCross } from "../Icon"
 
 import styles from './styles.module.scss'
 
@@ -14,7 +14,7 @@ function CloseButton(props) {
             className={cx([className, styles['button__icon--close']])}
             ariaLabel={ariaLabel}
             {...rest}>
-            <IconCross size={sizeOptions[size]} />
+            <IconCircleMinus size={sizeOptions[size]}/>
         </UnstyledButton>
     )
 }
