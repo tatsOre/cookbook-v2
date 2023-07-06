@@ -48,6 +48,7 @@ export const CATEGORIES_OPTIONS = [
 ]
 
 export const FRACTIONS_OPTIONS = [
+    { _id: 'X0001', label: "-", decimal: 0 },
     { _id: 'X0002', label: "⅛", decimal: 0.125 }, // 1/8  ⅛ &#8539;
     { _id: 'X0003', label: "¼", decimal: 0.25 }, // 1/4 ¼  &#188;
     { _id: 'X0004', label: "⅓", decimal: 0.33333333333333 }, // 1/3  ⅓  &#8531;
@@ -87,8 +88,6 @@ function Page() {
     return <>
         <Head>
             <title>New Recipe</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="icon" href="/favicon.ico" />
         </Head>
         <RecipeSubmission.Layout title="Hello Friend.">
             <RecipeSubmission

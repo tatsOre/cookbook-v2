@@ -13,7 +13,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
         DESC: 'Enter a catchy and descriptive title for your recipe. This will be the main identifier for your dish.',
         LABEL: 'Title',
         NAME: 'title',
-        PLACEHOLDER: 'e.g. "Spicy Thai Chicken Curry" or "Decadent Chocolate Brownies"',
+        PLACEHOLDER: 'e.g. Spicy Thai Chicken Curry',
         RULES: {
             REQUIRED: 'Please provide a title for your recipe.'
         }
@@ -22,7 +22,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
         DESC: 'Provide a brief overview or summary of your recipe. Include any unique features, flavors, or highlights that make it special.',
         LABEL: 'Description',
         NAME: 'description',
-        PLACEHOLDER: 'e.g. This aromatic curry combines tender chicken, vibrant vegetables, and a rich blend of Thai spices, resulting in a mouthwatering fusion of flavors...',
+        PLACEHOLDER: 'e.g. This aromatic curry combines tender chicken, vibrant vegetables, and a rich blend of Thai spices...',
         RULES: {
             REQUIRED: 'Please provide a description for your recipe.'
         }

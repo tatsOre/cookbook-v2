@@ -7,9 +7,7 @@ import Link from 'next/link'
 function Page() {
     return <>
         <Head>
-            <title>New Recipe</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="icon" href="/favicon.ico" />
+            <title>Welcome</title>
         </Head>
         <header>
             <Nav className='nav__bar'>

@@ -75,7 +75,6 @@ function RecipeSubmission({ endpoint, method, data, assets, mode }) {
                         onSubmit={methods.handleSubmit(onSubmit, onErrors)}
                         assets={assets}
                     />
-
                 </Accordion>
             </FormProvider>
 

@@ -1,7 +1,8 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
-import Nav from "../Box/Nav"
+import Alert from "../Alert"
 import Button from "../Button"
+import Nav from "../Box/Nav"
 import NavLink from "../Button/NavLink"
 
 function Layout({ children, title }) {
@@ -33,11 +34,9 @@ function Layout({ children, title }) {
                 <div style={{ color: 'white', opacity: '0.2' }}>new recipe ✘ new recipe ✘ new recipe ✘ new recipe ✘ new recipe ✘ new recipe</div>
             </div>
             <main>
-                <div style={{ border: '2px dotted grey', marginBlock: '1rem', padding: '0.75rem 1.5rem' }}>
-                    <p style={{ fontSize: '14px' }}>
-                        <b>* Note:</b> An asterisk indicates that the field is required.
-                    </p>
-                </div>
+                <Alert appearance="info" title="* Note:" variant="outline">
+                    An asterisk indicates that the field is required.
+                </Alert>
                 {children}
             </main>
 

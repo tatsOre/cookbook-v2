@@ -107,6 +107,7 @@ function ExtraInfoFieldset({ fields }) {
                 description={COMMENTS.DESC}
                 label={COMMENTS.LABEL}
                 placeholder={COMMENTS.PLACEHOLDER}
+                rows={4}
                 {...register(COMMENTS.NAME)}
             />
         </>
