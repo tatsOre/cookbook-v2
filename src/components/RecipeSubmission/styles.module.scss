@@ -1,3 +1,4 @@
+@use "sass:color";
 @use '../../styles/Variables.module.scss' as v;
 
 .recipe__form--wrapper {
@@ -6,7 +7,6 @@
         padding: 1.5rem 2rem;
     }
 
-    /** General Info */
     [data-accordion-content].about__fieldset {
         display: flex;
         flex-flow: row wrap;
@@ -30,7 +30,6 @@
         }
     }
 
-    /** Ingredients */
     [data-accordion-content].ingredients__fieldset {
         .ingredients__list {
             &--item {
@@ -98,7 +97,6 @@
 
 .photo__section {
     display: flex;
-    margin-block-end: 1rem;
     gap: 1rem;
 }
 
@@ -108,7 +106,8 @@
     flex-grow: 1;
 
     h3 {
-        font-size: 1rem;
+        color: v.$color-rich-black;
+        font-size: 0.9rem;
     }
 
     p {
@@ -117,69 +116,92 @@
         color: v.$color-smoke-gray;
         margin-block-start: 0.25rem;
     }
-
-   
 }
 
 .image__view--wrapper {
-    flex-basis: 150px;
-
     button {
         width: 100%;
     }
 }
 
-.drop__zone {
+// has drag and drop feature:
+.box.advanced--upload {
     flex-grow: 1;
-    border: 2px dotted v.$color-warm-grey-300;
     background-color: v.$color-warm-grey-100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-block-start: 1rem;
+    text-align: center;
+    margin-block: 1rem;
     padding: 2rem;
-
-    &.drag--active {
-        background-color: v.$color-white;
-    }
-}
-.box {
-    font-size: 1.25rem;
-    /* 20 */
-    background-color: #c8dadf;
-    position: relative;
-    padding: 100px 20px;
-}
-
-.box.has-advanced-upload {
-    outline: 2px dashed #92b0b3;
+    outline: 2px dashed v.$color-warm-grey-400;
     outline-offset: -10px;
 
     -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
     transition: outline-offset .15s ease-in-out, background-color .15s linear;
+
+    &.drag--active {
+        background-color: v.$color-white;
+        outline-offset: -20px;
+    }
+
+    .box__icon {
+        stroke: color.scale(v.$color-smoke-gray , $lightness: 60%);
+    }
+
+    .box__file {
+        &+label {
+            color: v.$color-rich-black;
+
+            &:hover b {
+                text-decoration: underline;
+            }
+        }
+
+        &:focus+label {
+            // todo:
+            outline: 1px dotted v.$color-input-outline;
+            outline: -webkit-focus-ring-color auto 4px;
+        }
+    }
 }
 
-.box.is-dragover {
-    outline-offset: -20px;
-    outline-color: #c8dadf;
-    background-color: #fff;
+.box__file {
+    @include v.visually-hidden;
+
+    &+label {
+        cursor: pointer;
+    }
 }
 
-.box__dragndrop,
-.box__icon {
-    display: none;
-}
+.box.no--advanced--upload {
+    position: relative;
 
-.box.has-advanced-upload .box__dragndrop {
-    display: inline;
-}
+    .box__file+label {
+        max-width: 100%;
+        display: inline-block;
+        padding: 0.5rem 1.25rem 0.5rem 2.5rem;
+        margin-block: 0.25rem;
+        background-color: v.$color-primary-base;
 
-.box.has-advanced-upload .box__icon {
-    width: 100%;
-    height: 80px;
-    fill: #92b0b3;
-    display: block;
-    margin-bottom: 40px;
+        b {
+            color: v.$color-white;
+            font-size: 0.9rem;
+            font-weight: normal
+        }
+
+        span {
+            @include v.visually-hidden;
+        }
+
+        &:hover {
+            background-color: v.$color-primary-hover;
+        }
+    }
+
+    svg {
+        position: absolute;
+        stroke: v.$color-white;
+        top: 0.5rem;
+        left: 1rem;
+    }
 }
 
 .box.is-uploading .box__input,
@@ -216,6 +238,15 @@
     animation: appear-from-inside .25s ease-in-out;
 }
 
+.box__restart {
+    font-weight: 700;
+}
+
+.box__restart:focus,
+.box__restart:hover {
+    color: #39bfd3;
+}
+
 @-webkit-keyframes appear-from-inside {
     from {
         -webkit-transform: translateY(-50%) scale(0);
@@ -242,99 +273,4 @@
     to {
         transform: translateY(-50%) scale(1);
     }
-}
-
-.box__restart {
-    font-weight: 700;
-}
-
-.box__restart:focus,
-.box__restart:hover {
-    color: #39bfd3;
-}
-
-.js .box__file {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-}
-
-.js .box__file+label {
-    max-width: 80%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    cursor: pointer;
-    display: inline-block;
-    overflow: hidden;
-}
-
-.js .box__file+label:hover strong,
-.box__file:focus+label strong,
-.box__file.has-focus+label strong {
-    color: #39bfd3;
-}
-
-.js .box__file:focus+label,
-.js .box__file.has-focus+label {
-    outline: 1px dotted #000;
-    outline: -webkit-focus-ring-color auto 5px;
-}
-
-.js .box__file+label * {
-    /* pointer-events: none; */
-    /* in case of FastClick lib use */
-}
-
-.no-js .box__file+label {
-    display: none;
-}
-
-.no-js .box__button {
-    display: block;
-}
-
-.box__button {
-    font-weight: 700;
-    color: #e5edf1;
-    background-color: #39bfd3;
-    display: none;
-    padding: 8px 16px;
-    margin: 40px auto 0;
-}
-
-.box__button:hover,
-.box__button:focus {
-    background-color: #0f3c4b;
-}
-
-/*
-.box__file {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-}
-*/
-.box__file+label {
-    cursor: pointer;
-}
-
-.box__file+label:hover b {
-    text-decoration: underline;
-}
-
-.box__file:focus+label b {
-    color: #39bfd3;
-
-}
-
-.box__file:focus+label {
-    color: #39bfd3;
-    outline: 1px dotted #000;
-    outline: -webkit-focus-ring-color auto 5px;
 }

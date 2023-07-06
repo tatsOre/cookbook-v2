@@ -1,11 +1,9 @@
 import React from "react"
 
-const styles = {}
-
 const FileInput = React.forwardRef((props, ref) => {
     const { id, ...rest } = props
 
-    const _id = id ?? useId()
+    const _id = id ?? React.useId()
 
     return (
         <>
@@ -13,14 +11,13 @@ const FileInput = React.forwardRef((props, ref) => {
                 id={_id}
                 type="file"
                 accept="image/png, image/jpeg"
-                className={styles.box__file}
                 ref={ref}
                 {...rest}
             />
 
             <label htmlFor={_id}>
-                <span className={styles.box__dragndrop}>Drag and drop here or</span>
                 <b>Choose a file</b>
+                <span> or drag and drop here</span>
             </label>
         </>
     )

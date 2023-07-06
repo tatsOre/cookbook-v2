@@ -1,70 +1,15 @@
 import React from 'react'
 import Image from 'next/image'
 import { useFormContext } from 'react-hook-form'
+import useDraggableFile from '@/components/hooks/useDraggableFile'
 import Button from '@/components/Button'
 import { FileInput } from '@/components/Form'
 import TextareaInput from '../../Form/TextareaInput'
-import { getImageSrc, isValidImageFile } from '@/components/utils/file'
+import { getImageSrc } from '@/components/utils/file'
+import { IconCloudUpload } from '@/components/Icon'
 import cx from '@/components/utils/cx'
 
 import styles from '../styles.module.scss'
-
-function useDraggableFile({ name, onChange }) {
-    const [isDragActive, setDragActive] = React.useState(false)
-    const [imageFile, setImageFile] = React.useState(null)
-    const [error, setError] = React.useState('')
-
-    const onDrop = (ev) => {
-        ev.preventDefault()
-        ev.stopPropagation()
-        let file = null
-
-        error && setError('')
-
-        if (ev.dataTransfer.items) {
-            /** Use DataTransferItemList interface to access the file(s): */
-            file =
-                [...ev.dataTransfer.items]
-                    .find((item) => item.kind === "file")
-                    .getAsFile();
-        } else {
-            /** Use DataTransfer interface to access the file(s): */
-            file = ev.dataTransfer.files[0];
-        }
-
-        if (isValidImageFile(file)) {
-            setImageFile(file)
-            /** Set Photo in Hook Form: */
-            onChange && onChange(name, file)
-        } else {
-            setError('Wrong file type')
-        }
-
-        setDragActive(false)
-    };
-
-    const onDrag = (ev) => {
-        ev.preventDefault()
-        if (ev.type === "dragenter" || ev.type === "dragover") {
-            setDragActive(true)
-        } else if (ev.type === "dragleave") {
-            setDragActive(false)
-        }
-    }
-
-    const onDeleteFile = () => setImageFile(null)
-
-    return ({
-        state: {
-            isDragActive,
-            file: imageFile,
-            fileError: error
-        },
-        onDeleteFile,
-        onDropFile: onDrop,
-        onDragFile: onDrag,
-    })
-}
 
 function ExtraInfoFieldset({ fields }) {
     const { PHOTO, COMMENTS } = fields
@@ -74,14 +19,8 @@ function ExtraInfoFieldset({ fields }) {
     } = useFormContext()
 
     const {
-        state,
-        onDeleteFile,
-        onDropFile,
-        onDragFile
-    } = useDraggableFile({
-        name: PHOTO.NAME,
-        onChange: setValue,
-    })
+        state, onDeleteFile, onDropFile, onDragFile
+    } = useDraggableFile({ name: PHOTO.NAME, onChange: setValue })
 
     React.useEffect(() => {
         // Set error from DND hook in Hook Form:
@@ -110,37 +49,59 @@ function ExtraInfoFieldset({ fields }) {
                     <p>Take photos using a phone or camera. You can always edit this field later.</p>
                     <p role='alert' style={{ color: 'red' }}>{errors.photo && errors.photo.message}</p>
 
-                    <div
-                        className={cx([
-                            styles.drop__zone,
-                            state.isDragActive && styles['drag--active']
-                        ])}
-                        onDrop={onDropFile}
-                        onDragEnter={onDragFile}
-                        onDragLeave={onDragFile}
-                        onDragOver={onDragFile}
-                    >
+                    {false ? (
+                        <div
+                            className={cx([
+                                styles.box,
+                                styles['advanced--upload'],
+                                state.isDragActive && styles['drag--active']
+                            ])}
+                            onDrop={onDropFile}
+                            onDragEnter={onDragFile}
+                            onDragLeave={onDragFile}
+                            onDragOver={onDragFile}
+                        >
+                            <div>
+                                <IconCloudUpload size={60} strokeWidth={1.5} className={styles.box__icon} />
+                            </div>
 
-                        <FileInput
-                            id='recipe-draggable-photo'
-                            {...register(PHOTO.NAME)}
-                        />
-                    </div>
+                            <FileInput
+                                className={styles.box__file}
+                                id='recipe-draggable-photo'
+                                {...register(PHOTO.NAME)}
+                            />
+                        </div>
+                    ) : (
+                        <div
+                            className={cx([
+                                styles.box,
+                                styles['no--advanced--upload']
+                            ])}>
+
+                            <IconCloudUpload size={18} className={styles.box__icon} aria-hidden="true" />
+
+                            <FileInput
+                                className={styles.box__file}
+                                {...register(PHOTO.NAME)}
+                            />
+                            <p>{typeof photo !== 'string' && photo[0]?.name}</p>
+                        </div>
+                    )}
                 </div>
 
                 {photoObjectURL ? (
                     <div className={styles['image__view--wrapper']}>
-                        <div style={{ maxWidth: '150px', maxHeight: '150px', overflow: 'hidden' }}>
-                            <Image
-                                src={photoObjectURL}
-                                width={150}
-                                height={150}
-                                alt="Picture of the dish" />
-                        </div>
+                        <Image
+                            src={photoObjectURL}
+                            width={150}
+                            height={150}
+                            alt="Picture of the dish" />
+
                         <Button onClick={onDeleteFileHandler}>Delete Photo</Button>
                     </div>
                 ) : null}
             </div>
+
 
             <TextareaInput
                 description={COMMENTS.DESC}
