@@ -47,6 +47,7 @@ function GeneralInfoFieldset({ assets, fields }) {
                 error={errors[DESCRIPTION.NAME]?.message}
                 placeholder={DESCRIPTION.PLACEHOLDER}
                 required
+                rows={4}
                 {...register(DESCRIPTION.NAME, {
                     required: DESCRIPTION.RULES.REQUIRED
                 })}
