@@ -12,6 +12,7 @@ import UnstyledButton from '../../Button/UnstyledButton'
 import styles from '../styles.module.scss'
 import CloseButton from '@/components/Button/CloseButton'
 import Alert from '@/components/Alert'
+import { IconCircleMinus } from '@/components/Icon'
 
 function IngredientsFieldset({ assets, fields }) {
     const {
@@ -62,54 +63,53 @@ function IngredientsFieldset({ assets, fields }) {
                         {...provided.draggableProps}
                         className={styles['ingredients__list--item']}
                     >
+                        <UnstyledButton
+                            className={styles['button__drag--handler']}
+                            {...provided.dragHandleProps}>
+                            <IconGridDots size={26} />
+                        </UnstyledButton>
 
-                        <div {...provided.dragHandleProps}>
-                            <IconGridDots size={20} />
+                        <div className={styles['ingredient__item--wrapper']}>
+                            <NumberInput
+                                label={QTY.LABEL}
+                                {...register(`${INGS_NAME}.${index}.${QTY.NAME}`)}
+                            />
+
+                            <SelectInput
+                                label={FRACTION.LABEL}
+                                name={`${INGS_NAME}.${index}.${FRACTION.NAME}`}
+                                options={assets.FRACTIONS_OPTIONS}
+                            />
+
+                            <SelectInput
+                                label={MEASURE.LABEL}
+                                name={`${INGS_NAME}.${index}.${MEASURE.NAME}`}
+                                options={assets.MEASURE_OPTIONS}
+                            />
+
+                            <TextInput
+                                label={ITEM_NAME.LABEL}
+                                error={ingrNameFieldError}
+                                placeholder={ITEM_NAME.PLACEHOLDER}
+                                required
+                                {...register(`${INGS_NAME}.${index}.${ITEM_NAME.NAME}`, {
+                                    required: ITEM_NAME.RULES.REQUIRED
+                                })}
+                            />
+
+                            <TextInput
+                                label={PREP_NOTE.LABEL}
+                                placeholder={PREP_NOTE.PLACEHOLDER}
+                                {...register(`${INGS_NAME}.${index}.${PREP_NOTE.NAME}`)}
+                            />
                         </div>
 
-                        <NumberInput
-                            label={QTY.LABEL}
-                            hideInputLabel
-                            {...register(`${INGS_NAME}.${index}.${QTY.NAME}`)}
-                        />
-
-                        <SelectInput
-                            label={FRACTION.LABEL}
-                            hideInputLabel
-                            name={`${INGS_NAME}.${index}.${FRACTION.NAME}`}
-                            options={assets.FRACTIONS_OPTIONS}
-                        />
-
-                        <SelectInput
-                            label={MEASURE.LABEL}
-                            hideInputLabel
-                            name={`${INGS_NAME}.${index}.${MEASURE.NAME}`}
-                            options={assets.MEASURE_OPTIONS}
-                        />
-
-                        <TextInput
-                            label={ITEM_NAME.LABEL}
-                            hideInputLabel
-                            error={ingrNameFieldError}
-                            placeholder={ITEM_NAME.PLACEHOLDER}
-                            required
-                            {...register(`${INGS_NAME}.${index}.${ITEM_NAME.NAME}`, {
-                                required: ITEM_NAME.RULES.REQUIRED
-                            })}
-                        />
-
-                        <TextInput
-                            label={PREP_NOTE.LABEL}
-                            hideInputLabel
-                            placeholder={PREP_NOTE.PLACEHOLDER}
-                            {...register(`${INGS_NAME}.${index}.${PREP_NOTE.NAME}`)}
-                        />
-
-                        <CloseButton
-                            size="lg"
+                        <UnstyledButton
                             className={styles['button__icon--delete']}
                             onClick={() => remove(index)}
-                        />
+                        >
+                            <IconCircleMinus size={30} />
+                        </UnstyledButton>
                     </DroppableList.Item>
                 )}
             </Draggable>
@@ -138,7 +138,7 @@ function IngredientsFieldset({ assets, fields }) {
                     )}
                 </Droppable>
             </DragDropContext>
-            <Button onClick={() => append(INGR_SCHEMA)}>+ Add Ingredient</Button>
+            <Button onClick={() => append(INGR_SCHEMA)}>+ Add New Ingredient</Button>
         </>
     )
 }

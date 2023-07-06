@@ -1,10 +1,10 @@
-import cx from "@/components/utils/cx"
 import { useAccordionContext } from "."
 import { useAccordionItemContext } from "./AccordionItem"
 import UnstyledButton from "@/components/Button/UnstyledButton"
+import { IconPlus } from "../Icon"
+import cx from "@/components/utils/cx"
 
 import styles from './styles.module.scss'
-import { IconArrowDownRight } from "../Icon"
 
 function AccordionTrigger(props) {
     const { children, ...rest } = props
@@ -12,7 +12,7 @@ function AccordionTrigger(props) {
     const { value } = useAccordionItemContext()
 
     const isItemActive = context.isItemActive(value)
-    
+
     const onClickHandler = () => context.onChange(value)
 
     return (
@@ -27,9 +27,7 @@ function AccordionTrigger(props) {
             {...rest}
         >
             <span>{children}</span>
-            <div className={styles['accordion__trigger--icon']}>
-                <IconArrowDownRight size={36} strokeWidth={1}/>
-            </div>
+            <IconPlus size={30} strokeWidth={1.5} />
         </UnstyledButton>
     )
 }

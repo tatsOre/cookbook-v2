@@ -79,7 +79,7 @@ function InstructionsFieldset({ fields }) {
                 </Alert>
             ) : null}
             <ul className={styles.instructions__list}>{listItems}</ul>
-            <Button onClick={onAppendHandler}>+ Add step</Button>
+            <Button onClick={onAppendHandler}>+ Add New Step</Button>
         </>
     )
 }

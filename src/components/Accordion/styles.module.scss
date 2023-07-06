@@ -6,25 +6,17 @@
 
 button.accordion__trigger {
     width: 100%;
-    background-color: v.$color-warm-grey-200;
-    color: v.$color-rich-black;
-    border: 1px solid v.$color-rich-black;
-    padding: 1rem 1.5rem 0.75rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /** update: */
-    font-family: v.$font-accent;
-    font-size: 1.5rem;
-    letter-spacing: 0.02rem;
-}
 
-.accordion__trigger--icon {
-    transition: transform 0.1s;
-}
+    svg {
+        transition: transform 0.1s;
+    }
 
-.accordion__trigger[data-active=true] .accordion__trigger--icon {
-    transform: rotate(-90deg);
+    &[data-active=true] svg {
+        transform: rotate(-45deg);
+    }
 }
 
 .accordion__panel--content {

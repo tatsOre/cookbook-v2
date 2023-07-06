@@ -7,6 +7,19 @@
 */
 
 .recipe__form--wrapper {
+
+    /** Accordion Trigger / Form Fieldset Headings: */
+    [data-accordion-trigger] {
+        background-color: v.$color-warm-grey-200;
+        color: v.$color-rich-black;
+        border: 1px solid v.$color-rich-black;
+        font-family: v.$font-accent;
+        font-size: calc(1.5rem + 0.390625vw);
+        letter-spacing: 0.02rem;
+        padding: 0.75rem 1rem;
+    }
+
+    /** Accordion Panels / Form Fieldsets: */
     [data-accordion-content] {
         background-color: white;
         padding: 1rem;
@@ -18,51 +31,86 @@
         gap: 1rem;
     }
 
-
     [data-accordion-content].ingredients__fieldset {
-        position: relative;
-
         .ingredients__list {
-            &--item {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .ingredients__list--item {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-between;
+                background-color: v.$color-warm-grey-100;
+                padding: 0.5rem;
+
+                .ingredient__item--wrapper {
+                    flex-basis: 100%;
+                    order: 3;
+                }
+            }
+
+            .ingredient__item--wrapper {
                 display: flex;
                 flex-flow: row wrap;
                 gap: 0.5rem;
 
-                /** Draggable Button: */
-                &>div:nth-child(1) {
-                    flex-basis: 100%;
-                }
-
                 /** Ingredient unit input: */
-                &>div:nth-child(2) {
+                &>div:nth-child(1) {
                     flex: 10%;
                 }
 
                 /** Ingredient fraction input: */
-                &>div:nth-child(3) {
+                &>div:nth-child(2) {
                     flex: 2;
                 }
 
                 /** Ingredient measure input: */
-                &>div:nth-child(4) {
+                &>div:nth-child(3) {
                     flex: 3;
-                }
-
-                .button__icon--delete {
-                    position: absolute;
-                    top: 0;
-                    right: 1rem;
                 }
             }
         }
 
-        button {
-            margin-block-start: 0.75rem;
+        /** Add new ingredient button: */
+        &>button {
+            width: 100%;
+            margin-block-start: 1rem;
+        }
+    }
+
+    [data-accordion-content].instructions__fieldset {
+        .instructions__list {
+            &--item {
+                display: flex;
+                margin-block-end: 0.5rem;
+                position: relative;
+
+                label {
+                    margin-block-end: 0.5rem;
+                }
+
+                .button__icon--delete {
+                    position: absolute;
+                    right: 0;
+                    top: -0.5rem;
+                }
+            }
+        }
+
+        /** Add new step button: */
+        &>button {
+            width: 100%;
+            margin-block-start: 1rem;
         }
     }
 
     /** 768px and above: */
     @media only screen and (min-width: v.$breakpoint-medium) {
+        [data-accordion-trigger] {
+            padding: 1rem 1.5rem 0.75rem 2rem;
+        }
+
         [data-accordion-content] {
             padding: 1.5rem 2rem;
         }
@@ -89,38 +137,54 @@
         }
 
         [data-accordion-content].ingredients__fieldset {
-            .ingredients__list {
-                &--item {
-                    display: flex;
-                    align-items: flex-start;
-                    margin-block-end: 0.5rem;
-                    gap: 0.5rem;
 
-                    /** Draggable Button: */
-                    &>div:nth-child(1) {
-                        flex: 1 0 20px;
-                        padding-block-start: 0.6rem;
+            .ingredients__list {
+                gap: 0.5rem;
+
+                .ingredients__list--item {
+                    flex-wrap: nowrap;
+                    align-items: center;
+                    gap: 0.5rem;
+                    background-color: transparent;
+                    padding: 0;
+
+                    .button__drag--handler {
+                        order: 1;
+                    }
+
+                    .ingredient__item--wrapper {
+                        order: 2;
+                    }
+
+                    .button__icon--delete {
+                        order: 3;
+                    }
+                }
+
+                .ingredient__item--wrapper {
+                    flex-wrap: nowrap;
+
+                    [data-input-wrapper] {
+                        label {
+                            @include v.visually-hidden;
+                        }
                     }
 
                     /** Ingredient unit input: */
-                    &>div:nth-child(2) {
-                        flex: 1 0 80px;
+                    &>div:nth-child(1) {
+                        flex: 1 0 70px;
                     }
 
                     /** Ingredient fraction input: */
-                    &>div:nth-child(3) {
-                        flex: 1 0 110px;
+                    &>div:nth-child(2) {
+                        flex: 1 0 115px;
                     }
 
                     /** Ingredient measure input: */
-                    &>div:nth-child(4) {
+                    &>div:nth-child(3) {
                         flex: 1 0 135px;
                     }
                 }
-            }
-
-            button {
-                margin-block-start: 0.75rem;
             }
         }
 
