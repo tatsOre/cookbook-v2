@@ -3,6 +3,11 @@
 
 $button-border-radius: 0px;
 
+@mixin icon--button {
+    min-height: 40px;
+    min-width: 40px;
+}
+
 /** Unstyled Buttons: **/
 .button__base {
     --webkit-appearance: none;
@@ -68,9 +73,11 @@ $button-border-radius: 0px;
         background-color: v.$color-primary-base;
         border-color: v.$color-primary-base;
 
-        &:hover:not([disabled]) {
-            background-color: v.$color-primary-hover;
-            border-color: v.$color-primary-hover;
+        @media (hover: hover) {
+            &:hover:not([disabled]) {
+                background-color: v.$color-primary-hover;
+                border-color: v.$color-primary-hover;
+            }
         }
     }
 
@@ -79,8 +86,10 @@ $button-border-radius: 0px;
         background-color: v.$color-white;
         border-color: v.$color-primary-hover;
 
-        &:hover:not([disabled]) {
-            background-color: v.$color-primary-shade;
+        @media (hover: hover) {
+            &:hover:not([disabled]) {
+                background-color: v.$color-primary-shade;
+            }
         }
     }
 
@@ -89,9 +98,11 @@ $button-border-radius: 0px;
         background-color: v.$color-primary-shade;
         border-color: v.$color-primary-shade;
 
-        &:hover:not([disabled]) {
-            background-color: color.scale(v.$color-primary-base, $lightness: 90%);
-            border-color: color.scale(v.$color-primary-base, $lightness: 90%);
+        @media (hover: hover) {
+            &:hover:not([disabled]) {
+                background-color: color.scale(v.$color-primary-base, $lightness: 90%);
+                border-color: color.scale(v.$color-primary-base, $lightness: 90%);
+            }
         }
     }
 
@@ -111,8 +122,10 @@ $button-border-radius: 0px;
         background-color: v.$color-white;
         border-color: v.$color-rich-black;
 
-        &:hover:not([disabled]) {
-            background-color: v.$color-cool-grey-100;
+        @media (hover: hover) {
+            &:hover:not([disabled]) {
+                background-color: v.$color-cool-grey-100;
+            }
         }
     }
 
@@ -121,9 +134,11 @@ $button-border-radius: 0px;
         background-color: v.$color-cool-grey-100;
         border-color: v.$color-cool-grey-100;
 
-        &:hover:not([disabled]) {
-            background-color: color.scale(v.$color-rich-black, $lightness: 90%);
-            border-color: color.scale(v.$color-rich-black, $lightness: 90%);
+        @media (hover: hover) {
+            &:hover:not([disabled]) {
+                background-color: color.scale(v.$color-rich-black, $lightness: 90%);
+                border-color: color.scale(v.$color-rich-black, $lightness: 90%);
+            }
         }
     }
 
@@ -132,9 +147,11 @@ $button-border-radius: 0px;
         background-color: v.$color-danger-base;
         border-color: v.$color-danger-base;
 
-        &:hover:not([disabled]) {
-            background-color: v.$color-danger-hover;
-            border-color: v.$color-danger-hover;
+        @media (hover: hover) {
+            &:hover:not([disabled]) {
+                background-color: v.$color-danger-hover;
+                border-color: v.$color-danger-hover;
+            }
         }
     }
 
@@ -143,8 +160,10 @@ $button-border-radius: 0px;
         background-color: v.$color-white;
         border-color: v.$color-danger-base;
 
-        &:hover:not([disabled]) {
-            background-color: v.$color-danger-shade;
+        @media (hover: hover) {
+            &:hover:not([disabled]) {
+                background-color: v.$color-danger-shade;
+            }
         }
     }
 
@@ -153,9 +172,11 @@ $button-border-radius: 0px;
         background-color: v.$color-danger-shade;
         border-color: v.$color-danger-shade;
 
-        &:hover:not([disabled]) {
-            background-color: color.scale(v.$color-danger-base, $lightness: 90%);
-            border-color: color.scale(v.$color-danger-base, $lightness: 90%);
+        @media (hover: hover) {
+            &:hover:not([disabled]) {
+                background-color: color.scale(v.$color-danger-base, $lightness: 90%);
+                border-color: color.scale(v.$color-danger-base, $lightness: 90%);
+            }
         }
     }
 }

@@ -1,18 +1,17 @@
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
+import Alert from '@/components/Alert'
 import Button from '../../Button'
 import DroppableList from '../../List'
-import IconGridDots from '../../Icon/icons/icon-grid-dots'
 import NumberInput from '../../Form/NumberInput'
 import TextInput from '../../Form/TextInput'
 import SelectInput from '../../Select'
 import UnstyledButton from '../../Button/UnstyledButton'
+import { IconCircleMinus, IconGridDots } from '@/components/Icon'
 
 import styles from '../styles.module.scss'
-import CloseButton from '@/components/Button/CloseButton'
-import Alert from '@/components/Alert'
-import { IconCircleMinus } from '@/components/Icon'
+
 
 function IngredientsFieldset({ assets, fields }) {
     const {
@@ -66,7 +65,7 @@ function IngredientsFieldset({ assets, fields }) {
                         <UnstyledButton
                             className={styles['button__drag--handler']}
                             {...provided.dragHandleProps}>
-                            <IconGridDots size={26} />
+                            <IconGridDots size={28} />
                         </UnstyledButton>
 
                         <div className={styles['ingredient__item--wrapper']}>
@@ -108,7 +107,7 @@ function IngredientsFieldset({ assets, fields }) {
                             className={styles['button__icon--delete']}
                             onClick={() => remove(index)}
                         >
-                            <IconCircleMinus size={30} />
+                            <IconCircleMinus size={32} />
                         </UnstyledButton>
                     </DroppableList.Item>
                 )}
@@ -119,9 +118,11 @@ function IngredientsFieldset({ assets, fields }) {
     return (
         <>
             {errors?.[INGS_NAME]?.root || !ingrListItems.length ? (
-                <Alert appearance="danger" variant="outline">
-                    {errors?.[INGS_NAME]?.root.message || RULES.REQUIRED}
-                </Alert>
+                <Alert
+                    appearance="danger"
+                    variant='light'
+                    title={errors?.[INGS_NAME]?.root.message || RULES.REQUIRED}
+                />
             ) : null}
 
             <DragDropContext onDragEnd={onDragEndHandler}>

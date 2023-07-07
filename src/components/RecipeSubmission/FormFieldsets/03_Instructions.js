@@ -1,11 +1,11 @@
 import { useFieldArray, useFormContext } from 'react-hook-form'
+import Alert from '@/components/Alert'
+import { IconCircleMinus } from '@/components/Icon'
 import Button from '../../Button'
 import UnstyledButton from '../../Button/UnstyledButton'
 import TextareaInput from '../../Form/TextareaInput'
 
 import styles from '../styles.module.scss'
-import CloseButton from '@/components/Button/CloseButton'
-import Alert from '@/components/Alert'
 
 function InstructionItem(props) {
     const {
@@ -31,10 +31,12 @@ function InstructionItem(props) {
                     required: TEXT_ATTRS.RULES.REQUIRED
                 })}
             />
-            <CloseButton
+            <UnstyledButton
                 className={styles['button__icon--delete']}
                 onClick={onClickHandler}
-            />
+            >
+                <IconCircleMinus size={32} />
+            </UnstyledButton>
         </li>
     )
 }
@@ -74,9 +76,11 @@ function InstructionsFieldset({ fields }) {
     return (
         <>
             {errors[NAME]?.root || !listItems.length ? (
-                <Alert appearance="danger" variant="outline">
-                    {errors[NAME]?.root.message || RULES.REQUIRED}
-                </Alert>
+                <Alert
+                    appearance="danger"
+                    variant='light'
+                    title={errors[NAME]?.root.message || RULES.REQUIRED}
+                />
             ) : null}
             <ul className={styles.instructions__list}>{listItems}</ul>
             <Button onClick={onAppendHandler}>+ Add New Step</Button>

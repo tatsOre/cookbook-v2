@@ -43,6 +43,10 @@ body {
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
+ul, li {
+  list-style: none;
+}
+
 @media only screen and (min-width: 768px) {
   main {
     width: 90%;

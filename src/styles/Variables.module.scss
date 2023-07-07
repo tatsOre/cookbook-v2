@@ -42,31 +42,30 @@ $line-height-25: 1.563rem;
 
 /** BREAKPOINTS */
 
-/* For extremely small screen devices (595px and below) */
-@media only screen and (max-width: 595px) {}
+/* Small screen devices (640px and below) */
+@media only screen and (max-width: 640px) {}
 
-$breakpoint-extra-small: 595px;
-
-/* Small screen devices (600px and above) */
-@media only screen and (min-width: 600px) {}
-
-$breakpoint-small: 600px;
+$breakpoint-small: 640px;
 
 /* Medium screen devices (768px and above) */
 @media only screen and (min-width: 768px) {}
 
-$breakpoint-medium: 780px;
+$breakpoint-medium: 768px;
 
-/* Big screen devices (889px and above) */
-@media only screen and (min-width: 889px) {}
+/* Large screen devices (1024px and above) */
+@media only screen and (min-width: 1024px) {}
 
-$breakpoint-big: 889px;
+$breakpoint-large: 1024px;
 
-/* Extra big screen devices (1200px and above) */
-@media only screen and (min-width: 1200px) {}
+/* Extra large screen devices (1280px and above) */
+@media only screen and (min-width: 1280px) {}
 
-$breakpoint-large: 1200px;
+$breakpoint-xlarge: 1280px;
 
+/* 2xl screen devices (1536px and above) */
+@media only screen and (min-width: 1536px) {}
+
+$breakpoint-2xlarge: 1536px;
 
 @mixin body {
     font-size: $font-size-15;

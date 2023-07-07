@@ -68,7 +68,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
         NAME: 'cuisine',
     },
     CATEGORIES: {
-        DESC: 'Please choose up to three.',
+        DESC: 'Choose up to three.',
         LABEL: 'Categories',
         NAME: 'categories',
     },

@@ -7,7 +7,6 @@
 .input__label {
     font-size: v.$font-size-12;
     font-weight: 500;
-    line-height: v.$line-height-25;
     color: v.$color-rich-black;
 
     &::after {
@@ -19,14 +18,16 @@
     font-size: v.$font-size-12;
     line-height: calc(0.75rem * 1.5);
     color: v.$color-smoke-gray;
-    margin-block-end: 0.5rem;
+    margin-block-start: 0.2rem;
 }
+
 //if the body text is 18px, then the line height would need to be 27px (18*1.5).
 .input__box {
     width: 100%;
     padding: 0.7rem;
     border: 1px solid v.$color-warm-grey-300;
-    background-color: v.$color-warm-grey-100;
+    margin-block-start: 0.5rem;
+    background-color: v.$color-white;
     font-family: v.$font-base;
     font-size: 1rem;
     line-height: calc(1rem * 1.25);

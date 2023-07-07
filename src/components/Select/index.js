@@ -34,6 +34,7 @@ export const styles = {
     control: (provided) => ({
         ...provided,
         cursor: 'pointer',
+        marginTop: '0.5rem'
 
     }),
     option: (provided) => ({
@@ -71,7 +72,6 @@ function SelectInput(props) {
                             inputId={inputProps.id}
                             instanceId={inputProps.id} // removes `id` warning.
                             // https://github.com/JedWatson/react-select/issues/1537
-                            // todo: use useEffect to check window
                             menuPortalTarget={
                                 typeof window !== "undefined" && document.querySelector('body')
                             }

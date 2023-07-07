@@ -64,9 +64,19 @@ function GeneralInfoFieldset({ assets, fields }) {
                 })}
             />
 
+            <NumberInput
+                label={SERVINGS.LABEL}
+                error={errors[SERVINGS.NAME]?.message}
+                {...register(SERVINGS.NAME, {
+                    min: {
+                        value: 0,
+                        message: SERVINGS.RULES.MIN
+                    }
+                })}
+            />
+
             <SelectInput
                 label={CUISINE.LABEL}
-                description={CUISINE.DESC}
                 name={CUISINE.NAME}
                 options={assets.CUISINE_OPTIONS}
             />
@@ -76,9 +86,7 @@ function GeneralInfoFieldset({ assets, fields }) {
                 <Input.Label htmlFor="cat-select" >
                     {CATEGORIES.LABEL}
                 </Input.Label>
-                <Input.Description>
-                    {CATEGORIES.DESC} <span>{categoriesLeft}</span>
-                </Input.Description>
+                <span style={{ fontSize: '12px' }}> {CATEGORIES.DESC} {categoriesLeft}</span>
                 <Controller
                     name={CATEGORIES.NAME}
                     control={control}
@@ -86,6 +94,7 @@ function GeneralInfoFieldset({ assets, fields }) {
                         <Select
                             isMulti
                             isClearable
+                            className="react-select-container"
                             defaultValue={selectedCategories}
                             options={assets.CATEGORIES_OPTIONS}
                             onChange={(ev) => { setSelectedCategories(ev); onChange(ev) }}
@@ -94,7 +103,6 @@ function GeneralInfoFieldset({ assets, fields }) {
                             inputId='cat-select'
                             instanceId='cat-instance-select'
                             // https://github.com/JedWatson/react-select/issues/1537
-                            // todo: use useEffect to check window
                             menuPortalTarget={
                                 typeof window !== "undefined" && document.querySelector('body')
                             }
@@ -114,17 +122,6 @@ function GeneralInfoFieldset({ assets, fields }) {
                     )}
                 />
             </div>
-
-            <NumberInput
-                label={SERVINGS.LABEL}
-                error={errors[SERVINGS.NAME]?.message}
-                {...register(SERVINGS.NAME, {
-                    min: {
-                        value: 0,
-                        message: SERVINGS.RULES.MIN
-                    }
-                })}
-            />
 
             <NumberInput
                 label={TIME.PREP.LABEL}

@@ -2,7 +2,7 @@
 
 .alert {
     width: 100%;
-    padding: 0.5rem 1rem 0.65rem 1rem;
+    padding: 0.5rem 1rem;
     border: 1px solid black;
     position: relative;
 
@@ -15,6 +15,7 @@
         font-weight: bold;
         display: inline-block;
         margin-block-end: 0.25rem;
+        letter-spacing: 0.015rem;
     }
 
     a {
