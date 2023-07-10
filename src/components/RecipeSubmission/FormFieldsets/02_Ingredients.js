@@ -107,7 +107,7 @@ function IngredientsFieldset({ assets, fields }) {
                             className={styles['button__icon--delete']}
                             onClick={() => remove(index)}
                         >
-                            <IconCircleMinus size={32} />
+                            <IconCircleMinus size={30} />
                         </UnstyledButton>
                     </DroppableList.Item>
                 )}

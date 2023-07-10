@@ -1,95 +1,58 @@
 @use '../../styles/Variables.module.scss' as v;
 
-$size: 14px;
+$size: 1rem;
 
 .input__wrapper {
+    display: flex;
+    align-items: flex-start;
+
     [type="checkbox"] {
-        &:checked~.checkbox__icon {
-            &--standard {
-                background-color: v.$color-cool-grey-400;
-                border: 1px solid v.$color-cool-grey-400;
-            }
-
-            &--success {
-                background-color: v.$color-success-base;
-            }
-
-            &:after {
-                position: absolute;
-                content: "✗";
-                font-size: 0.9rem;
-                color: v.$color-white;
-                bottom: -2px;
-                right: 2px;
-            }
-        }
-
-        //✘
-        //✗ ✔
-        &:focus~.checkbox__icon {
-            // OnFocus visual effect:
-            outline: none;
-            box-shadow: 0 0 0 1px v.$color-smoke-gray;
-            border-color: v.$color-smoke-gray;
-        }
-    }
-
-    .checkbox__icon {
-        display: inline-block;
+        -webkit-appearance: none;
+        appearance: none;
         height: $size;
         width: $size;
         min-width: $size;
-        position: relative;
-        background-color: v.$color-white;
         border: 1px solid v.$color-cool-grey-400;
+        outline: none;
+        cursor: pointer;
 
-        &--error {
-            border: 1px solid v.$color-danger-base;
+        &:checked {
+            position: relative;
+
+            &:after {
+                content: "\2714";
+                font-size: 0.9em;
+                position: absolute;
+                right: 2px;
+                top: 0px;
+            }
         }
 
-        &--success {
-            border: 1px solid v.$color-success-base;
+        &:focus {
+            box-shadow: 0 0 0 2px v.$color-rich-black;
         }
     }
 
-    .input__label {
-        display: flex;
-        align-items: center;
-
+    label {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
         cursor: pointer;
-
-        &--filled {
-            padding: 0.75rem 0.85rem;
-            background-color: grey;
-
-            &:hover {
-                background-color: purple;
-            }
-        }
-
-        &--text {
-            margin-inline-start: 0.5rem;
-            font-size: v.$font-size-12;
-            font-weight: 500;
-            color: v.$color-rich-black;
-        }
+        font-size: v.$font-size-12;
+        font-weight: 500;
+        color: v.$color-rich-black;
+        margin-inline-start: 0.5rem;
 
         &--checked {
-            color: grey;
+            color: v.$color-cool-grey-100;
             text-decoration: line-through;
         }
+    }
 
-        &--disabled {
-            pointer-events: none;
-
-            .checkbox-label--text {
-                opacity: 0.5;
-            }
-        }
+    /** 640px and above: */
+    @media only screen and (min-width: v.$breakpoint-small) {
+        align-items: center;
     }
 }
 

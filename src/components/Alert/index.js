@@ -56,6 +56,7 @@ function Alert(props) {
             aria-labelledby={label}
             aria-describedby={describedby}
             className={classes}
+            {...rest}
         >
             {icon ? (
                 <span className={styles.alert__icon}>{icon}</span>

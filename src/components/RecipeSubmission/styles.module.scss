@@ -5,16 +5,15 @@
 /* Form & Accordion Layout
 ============================ */
 .recipe__form--wrapper {
-
     /** Accordion Trigger / Form Fieldset Headings: */
     [data-accordion-trigger] {
         background-color: v.$color-warm-grey-200;
         color: v.$color-rich-black;
-        border: 1px solid v.$color-rich-black;
+        border-top: 2px solid v.$color-rich-black;
         font-family: v.$font-accent;
-        font-size: calc(1.5rem + 0.390625vw);
+        font-size: calc(1.25rem + 0.390625vw);
         letter-spacing: 0.02rem;
-        padding: 0.75rem 1rem;
+        padding: 0.5rem 1rem;
     }
 
     /** Accordion Panels / Form Fieldsets: */
@@ -26,7 +25,7 @@
     /** 768px and above: */
     @media only screen and (min-width: v.$breakpoint-medium) {
         [data-accordion-trigger] {
-            padding: 1rem 1.5rem 0.75rem 2rem;
+            padding: 0.75rem 1.5rem 0.75rem 2rem;
         }
 
         [data-accordion-content] {

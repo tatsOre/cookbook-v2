@@ -35,7 +35,7 @@ function InstructionItem(props) {
                 className={styles['button__icon--delete']}
                 onClick={onClickHandler}
             >
-                <IconCircleMinus size={32} />
+                <IconCircleMinus size={30} />
             </UnstyledButton>
         </li>
     )

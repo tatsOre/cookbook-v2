@@ -26,15 +26,11 @@ function Layout({ children, title }) {
                     </Button>
                 </Nav>
             </header>
-            <div style={{
-                marginBlockStart: '4.1rem', height: '60px',
-                background: 'black', fontSize: '3rem', overflow: 'hidden',
-                fontWeight: 'bold'
-            }}>
-                <div style={{ color: 'white', opacity: '0.2' }}>new recipe ✘ new recipe ✘ new recipe ✘ new recipe ✘ new recipe ✘ new recipe</div>
-            </div>
+
             <main>
-                <Alert appearance="info" title="* Note:" variant="outline">
+                <Alert
+                    style={{ marginTop: '6rem', marginBottom: '1rem' }}
+                    appearance="info" title="* Note:" variant="outline">
                     An asterisk indicates that the field is required.
                 </Alert>
                 {children}
