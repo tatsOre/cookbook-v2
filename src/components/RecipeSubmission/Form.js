@@ -71,7 +71,7 @@ function RecipeForm(props) {
                 <Accordion.Trigger>
                     Comments & Photos
                 </Accordion.Trigger>
-                <Accordion.Panel className={styles.extracontent__fieldset}>
+                <Accordion.Panel className={styles.extrainfo__fieldset}>
                     <ExtraInfoFieldset
                         fields={{ PHOTO, COMMENTS }}
                     />
