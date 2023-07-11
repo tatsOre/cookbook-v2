@@ -283,19 +283,12 @@
                 outline: 2px dashed v.$color-warm-grey-400;
                 outline-offset: -10px;
                 padding-block: 2rem;
+                -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                transition: outline-offset .15s ease-in-out, background-color .15s linear;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-
-                -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-                transition: outline-offset .15s ease-in-out, background-color .15s linear;
-
-
-                @media only screen and (max-width: v.$breakpoint-small) {
-                    flex-flow: row wrap;
-                    gap: 1rem;
-                }
 
                 &.drag--active {
                     background-color: v.$color-white;
