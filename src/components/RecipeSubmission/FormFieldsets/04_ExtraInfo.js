@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { useFormContext } from 'react-hook-form'
+import useDeviceDetect from '@/components/hooks/useDeviceDetect'
 import useDraggableFile from '@/components/hooks/useDraggableFile'
 import Button from '@/components/Button'
 import { FileInput } from '@/components/Form'
@@ -21,6 +22,8 @@ function ExtraInfoFieldset({ fields }) {
     const {
         state, onDeleteFile, onDropFile, onDragFile
     } = useDraggableFile({ name: PHOTO.NAME, onChange: setValue })
+
+    const { isMobile } = useDeviceDetect()
 
     React.useEffect(() => {
         // Set error from DND hook in Hook Form:
@@ -49,7 +52,22 @@ function ExtraInfoFieldset({ fields }) {
                     <p>Take photos using a phone or camera. You can always edit this field later.</p>
                     <p role='alert' style={{ color: 'red' }}>{errors.photo && errors.photo.message}</p>
 
-                    {false ? (
+                    {isMobile ? (
+                        <div
+                            className={cx([
+                                styles.box,
+                                styles['no--advanced--upload']
+                            ])}>
+
+                            <IconCloudUpload size={18} className={styles.box__icon} aria-hidden="true" />
+
+                            <FileInput
+                                className={styles.box__file}
+                                {...register(PHOTO.NAME)}
+                            />
+                            <p>{typeof photo !== 'string' && photo[0]?.name}</p>
+                        </div>
+                    ) : (
                         <div
                             className={cx([
                                 styles.box,
@@ -67,35 +85,20 @@ function ExtraInfoFieldset({ fields }) {
 
                             <FileInput
                                 className={styles.box__file}
-                                id='recipe-draggable-photo'
+                                id='recipe-photo'
                                 {...register(PHOTO.NAME)}
                             />
-                        </div>
-                    ) : (
-                        <div
-                            className={cx([
-                                styles.box,
-                                styles['no--advanced--upload']
-                            ])}>
-
-                            <IconCloudUpload size={18} className={styles.box__icon} aria-hidden="true" />
-
-                            <FileInput
-                                className={styles.box__file}
-                                {...register(PHOTO.NAME)}
-                            />
-                            <p>{typeof photo !== 'string' && photo[0]?.name}</p>
                         </div>
                     )}
                 </div>
 
                 {photoObjectURL ? (
                     <div className={styles['image__view--wrapper']}>
-                        <Image
-                            src={photoObjectURL}
-                            width={150}
-                            height={150}
-                            alt="Picture of the dish" />
+                            <Image
+                                fill={true}
+                                priority={true}
+                                src={photoObjectURL}
+                                alt="Picture of the dish" />
 
                         <Button onClick={onDeleteFileHandler}>Delete Photo</Button>
                     </div>
