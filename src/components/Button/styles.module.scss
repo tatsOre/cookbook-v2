@@ -35,6 +35,8 @@ $button-border-radius: 0px;
     border: 1px solid transparent;
     border-radius: $button-border-radius;
     padding: 0.75rem 1rem;
+    font-family: v.$font-base;
+    outline: none;
 
     &--label {
         font-size: 0.85rem;
