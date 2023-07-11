@@ -11,6 +11,7 @@ import { IconCloudUpload } from '@/components/Icon'
 import cx from '@/components/utils/cx'
 
 import styles from '../styles.module.scss'
+import Alert from '@/components/Alert'
 
 function ExtraInfoFieldset({ fields }) {
     const { PHOTO, COMMENTS } = fields
@@ -46,12 +47,19 @@ function ExtraInfoFieldset({ fields }) {
 
     return (
         <>
-            <div className={styles['photo__section']}>
-                <div className={styles['image__input--wrapper']}>
-                    <h3>Liven up your recipe post with a picture</h3>
-                    <p>Take photos using a phone or camera. You can always edit this field later.</p>
-                    <p role='alert' style={{ color: 'red' }}>{errors.photo && errors.photo.message}</p>
+            <div className={styles['image__section']}>
+                <h3>Liven up your recipe post with a picture</h3>
+                <p>Take photos using a phone or camera. You can always edit this field later.</p>
 
+                {errors && errors.photo ? (
+                    <Alert
+                        appearance="danger"
+                        variant='light'
+                        title={errors.photo.message}
+                    />
+                ) : null}
+
+                <div className={styles['image__input--wrapper']}>
                     {isMobile ? (
                         <div
                             className={cx([
@@ -79,10 +87,6 @@ function ExtraInfoFieldset({ fields }) {
                             onDragLeave={onDragFile}
                             onDragOver={onDragFile}
                         >
-                            <div>
-                                <IconCloudUpload size={60} strokeWidth={1.5} className={styles.box__icon} />
-                            </div>
-
                             <FileInput
                                 className={styles.box__file}
                                 id='recipe-photo'
@@ -94,11 +98,11 @@ function ExtraInfoFieldset({ fields }) {
 
                 {photoObjectURL ? (
                     <div className={styles['image__view--wrapper']}>
-                            <Image
-                                fill={true}
-                                priority={true}
-                                src={photoObjectURL}
-                                alt="Picture of the dish" />
+                        <Image
+                            fill={true}
+                            priority={true}
+                            src={photoObjectURL}
+                            alt="Picture of the dish" />
 
                         <Button onClick={onDeleteFileHandler}>Delete Photo</Button>
                     </div>
