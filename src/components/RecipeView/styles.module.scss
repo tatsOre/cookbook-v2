@@ -1,3 +1,5 @@
+@use '../../styles/Variables.module.scss' as v;
+
 .cards__section {
     display: flex;
     flex-flow: row wrap;
@@ -82,20 +84,56 @@
 }
 
 .about__view {
-    p::first-letter {
+    p:first-of-type::first-letter {
         -webkit-initial-letter: 2;
         initial-letter: 2;
-        font-weight: 700;
+        font-weight: 500;
         font-family: inherit;
         margin-inline-end: 0.35rem;
     }
 
-    p {
+    div.a p {
         font-size: calc(1rem + 0.390625vw);
         margin-block: 1em;
         line-height: 1.5;
     }
 
+    p.b {
+        span {
+            display: inline-block;
+            margin-inline-end: 1rem;
+            padding: 0.25rem 0.5rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background-color: white;
+            letter-spacing: 0.025rem;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 2px;
+                left: 2px;
+                background-color: rgb(0, 221, 255);
+                z-index: -1;
+            }
+        }
+    }
+
+    .recipe__photo {
+        position: relative;
+        overflow: hidden;
+        height: 300px;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: auto;
+        }
+    }
 
     div:last-of-type {
         font-size: 0.9rem;
@@ -109,6 +147,50 @@
         letter-spacing: 0.01rem;
     }
 }
+
+/* Large screen devices (1024px and above) */
+@media only screen and (min-width: v.$breakpoint-large) {
+
+    .about__view {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 1rem;
+
+        h1 {
+            flex-basis: 100%;
+            font-size: 2rem;
+        }
+
+        .recipe__photo {
+            flex-basis: 250px;
+            max-width: 250px;
+            width: 250px;
+            height: 250px;
+        }
+
+        div.a {
+            flex: 1;
+            margin-block: 0;
+        }
+
+        div.a p {
+            margin-block: 0;
+            line-height: 1.5;
+        }
+
+
+
+
+        div:last-of-type {
+            flex-basis: 100%;
+            text-align: center;
+
+        }
+    }
+
+
+}
+
 
 .ingredients__view {
     h2 {
@@ -142,9 +224,9 @@
         margin-block: 1rem;
         font-size: calc(1.5rem + 0.390625vw);
         position: relative;
-        
+
     }
-    
+
     h2::after {
         content: '';
         width: 100%;
@@ -218,5 +300,6 @@
 
     p {
         font-size: calc(0.825rem + 0.390625vw);
+        white-space: pre-wrap;
     }
 }

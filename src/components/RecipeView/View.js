@@ -6,6 +6,7 @@ import Alert from "../Alert"
 
 import styles from './styles.module.scss'
 import CheckboxInput from "../Checkbox"
+import Image from "next/image"
 
 function IngredientItem({ data }) {
     const { quantity, fraction, measure, name, prepNote } = data
@@ -13,7 +14,7 @@ function IngredientItem({ data }) {
     const quantityElement = quantity ? quantity + ' ' : ''
     const fractionElement = fraction?.label ? fraction?.label + ' ' : ''
     const measureElement = measure?.label
-        ? measure?.label + (quantity > 1 || fractionElement ? 's' : '') + ' '
+        ? measure?.label + (quantity > 1 || (quantity && fractionElement) ? 's' : '') + ' '
         : ''
     const prepNoteElement = prepNote ? ' ' + prepNote : ''
 
@@ -53,7 +54,18 @@ function RecipeView({ data }) {
             <main className={styles['recipe__view--wrapper']}>
                 <section className={styles.about__view}>
                     <h1>{title}</h1>
-                    <p>{description}</p>
+                    {photo ? (
+                        <div className={styles.recipe__photo}>
+                            <Image fill={true} src={photo} />
+                        </div>
+                    ) : null}
+                    <div className={styles.a} >
+                        <p>{description}</p>
+                        <p className={styles.b}>
+                            {categories.map(cat => <span>{cat.label}</span>)}
+                            <span>{cuisine.label}</span>
+                        </p>
+                    </div>
                     <div>
                         <span>By Lipa Echeverry</span>
                         <span aria-hidden="true">&nbsp; &nbsp; • &nbsp; &nbsp;</span>
