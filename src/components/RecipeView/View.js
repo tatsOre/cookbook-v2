@@ -56,6 +56,7 @@ function RecipeView({ data }) {
                     <p>{description}</p>
                     <div>
                         <span>By Lipa Echeverry</span>
+                        <span aria-hidden="true">&nbsp; &nbsp; • &nbsp; &nbsp;</span>
                         <span>Published Mar. 07, 2023</span>
                     </div>
                 </section>
