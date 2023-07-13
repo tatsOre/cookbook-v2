@@ -62,14 +62,14 @@ function RecipeView({ data }) {
                 </section>
 
                 <section className={styles.ingredients__view}>
-                    <h2>ingredients</h2>
+                    <h2>Ingredients</h2>
                     <ul>
                         {ingredients.map(item => <IngredientItem data={item} />)}
                     </ul>
                 </section>
 
                 <section className={styles.instructions__view}>
-                    <h2>how to make</h2>
+                    <h2>How to make</h2>
                     <ul>
                         {instructions.map((step, index) => (
                             <li>
