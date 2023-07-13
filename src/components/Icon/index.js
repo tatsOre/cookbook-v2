@@ -1,5 +1,7 @@
 export { default as IconAlertCircle } from './icons/icon-alert-circle'
 export { default as IconArrowDownRight } from './icons/icon-arrow-down-right'
+export { default as IconArrowRight } from './icons/icon-arrow-right'
+export { default as IconArrowNarrowRight } from './icons/icon-arrow-narrow-right'
 export { default as IconArrowForward } from './icons/icon-arrow-forward'
 export { default as IconBookmark } from './icons/icon-bookmark'
 export { default as IconCalendarEvent } from './icons/icon-calendar'

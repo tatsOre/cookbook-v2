@@ -11,7 +11,7 @@ function Layout({ children, title }) {
     return (
         <>
             <header>
-                <Nav className='nav__bar'>
+                <Nav className='nav__bar nav__bar--fixed'>
                     <Button>iii</Button>
                     <Link href='/' passHref legacyBehavior>
                         <NavLink label="Cookbook" uppercase />
@@ -38,7 +38,6 @@ function Layout({ children, title }) {
 
         </>
     )
-
 }
 
 export default Layout

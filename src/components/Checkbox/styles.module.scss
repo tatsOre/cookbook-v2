@@ -4,7 +4,6 @@ $size: 1.15rem;
 
 .input__wrapper {
     display: flex;
-    align-items: flex-start;
 
     [type="checkbox"] {
         /* remove browser chrome */
@@ -15,11 +14,11 @@ $size: 1.15rem;
         font: inherit;
         color: currentColor;
         width: $size;
+        min-width: $size;
         height: $size;
         border: 1px solid currentColor;
         border-radius: 0%;
         transform: translateY(-0.075em);
-
         display: grid;
         place-content: center;
 
@@ -30,7 +29,7 @@ $size: 1.15rem;
             clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
             transform: scale(0);
             transform-origin: bottom left;
-            transition: 100ms transform ease-in-out;
+            transition: 80ms transform ease-in-out;
             background-color: v.$color-rich-black;
         }
 
@@ -52,7 +51,6 @@ $size: 1.15rem;
         user-select: none;
         cursor: pointer;
         font-size: v.$font-size-12;
-        font-weight: 500;
         color: v.$color-rich-black;
         margin-inline-start: 0.5rem;
 
@@ -60,11 +58,6 @@ $size: 1.15rem;
             color: v.$color-cool-grey-100;
             text-decoration: line-through;
         }
-    }
-
-    /** 640px and above: */
-    @media only screen and (min-width: v.$breakpoint-small) {
-        align-items: center;
     }
 }
 

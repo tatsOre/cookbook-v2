@@ -102,8 +102,8 @@ function ExtraInfoFieldset({ fields }) {
                             fill={true}
                             priority={true}
                             src={photoObjectURL}
-                            alt="Picture of the dish" />
-
+                            alt="Picture of the dish"
+                        />
                         <Button onClick={onDeleteFileHandler}>Delete Photo</Button>
                     </div>
                 ) : null}
