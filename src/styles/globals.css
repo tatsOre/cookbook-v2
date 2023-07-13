@@ -6,7 +6,7 @@
   --font-mono: 'Courier New', monospace;
 
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: 247, 247, 247;
   --background-end-rgb: 255, 255, 255;
 
   --callout-rgb: 238, 240, 241;
@@ -44,7 +44,8 @@ body {
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
 }
 

@@ -43,12 +43,12 @@
         }
 
         div.arrow__wrapper {
-            margin-left: auto;
+            margin-inline-start: auto;
             position: relative;
 
             svg {
                 background-color: aqua;
-                margin-right: auto;
+                margin-inline-end: auto;
             }
 
             &::after {
@@ -86,10 +86,12 @@
         -webkit-initial-letter: 2;
         initial-letter: 2;
         font-weight: 700;
-        margin-right: 0.25em;
+        font-family: inherit;
+        margin-inline-end: 0.35rem;
     }
 
     p {
+        font-size: calc(1rem + 0.390625vw);
         margin-block: 1em;
         line-height: 1.5;
     }
@@ -102,7 +104,7 @@
         border-top: 2px solid black;
         border-bottom: 4px solid black;
         text-transform: uppercase;
-        font-size: 0.75rem;
+        font-size: calc(0.75rem + 0.390625vw);
         font-weight: 600;
         letter-spacing: 0.01rem;
     }
@@ -111,6 +113,19 @@
 .ingredients__view {
     h2 {
         margin-block: 1rem;
+        font-size: calc(1.5rem + 0.390625vw);
+        position: relative;
+    }
+
+    h2::after {
+        content: '';
+        width: 100%;
+        height: 16px;
+        position: absolute;
+        bottom: 0rem;
+        left: 0;
+        background-color: rgb(255, 221, 0);
+        z-index: -1;
     }
 
     ul>li {
@@ -118,18 +133,32 @@
     }
 
     label {
-        font-size: 0.9rem !important;
+        font-size: calc(1rem + 0.390625vw) !important;
     }
 }
 
 .instructions__view {
     h2 {
         margin-block: 1rem;
+        font-size: calc(1.5rem + 0.390625vw);
+        position: relative;
+        
+    }
+    
+    h2::after {
+        content: '';
+        width: 100%;
+        height: 16px;
+        position: absolute;
+        bottom: 0rem;
+        left: 0;
+        background-color: rgb(255, 221, 0);
+        z-index: -1;
     }
 
     h3 {
-        font-size: 1rem;
-        margin-bottom: 0.75rem;
+        font-size: calc(1rem + 0.390625vw);
+        margin-bottom: 1rem;
         position: relative;
     }
 
@@ -139,7 +168,7 @@
         width: 100%;
         height: 2px;
         position: absolute;
-        bottom: -0.25rem;
+        bottom: -0.5rem;
         left: 0;
     }
 
@@ -158,7 +187,7 @@
     }
 
     li>p {
-        font-size: 0.9rem;
+        font-size: calc(1rem + 0.390625vw);
         line-height: 1.5;
     }
 }
@@ -167,6 +196,7 @@
     border: 2px solid black;
     padding: 0.75rem;
     position: relative;
+    margin-block-start: 2rem;
 
     &::after {
         content: '';
@@ -180,12 +210,13 @@
     }
 
     h2 {
-        font-size: 0.9rem;
+        font-size: calc(1rem + 0.390625vw);
         margin-bottom: 0.25rem;
 
     }
 
+
     p {
-        font-size: 0.85rem;
+        font-size: calc(0.825rem + 0.390625vw);
     }
 }
