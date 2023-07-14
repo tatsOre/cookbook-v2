@@ -1,9 +1,9 @@
-@use '../../styles/Variables.module.scss' as v;
+@use '../../styles/globals.module.scss' as g;
 
 .alert {
     width: 100%;
     padding: 0.5rem 1rem;
-    border: 1px solid black;
+    border: 1px solid g.$color-rich-black;
     position: relative;
 
     &__heading,
@@ -32,74 +32,74 @@
     }
 
     &--filled#{&}--danger {
-        color: v.$color-white;
-        background-color: v.$color-danger-base;
-        border-color: v.$color-danger-base;
+        color: g.$color-white;
+        background-color: g.$color-danger-base;
+        border-color: g.$color-danger-base;
     }
 
     &--outline#{&}--danger {
-        background-color: v.$color-white;
-        border-color: v.$color-danger-base;
+        background-color: g.$color-white;
+        border-color: g.$color-danger-base;
 
         .alert__heading {
-            color: v.$color-danger-base;
+            color: g.$color-danger-base;
         }
     }
 
     &--light#{&}--danger {
-        background-color: v.$color-danger-shade;
-        border-color: v.$color-danger-shade;
+        background-color: g.$color-danger-shade;
+        border-color: g.$color-danger-shade;
 
         .alert__heading {
-            color: v.$color-danger-base;
+            color: g.$color-danger-base;
         }
     }
 
     &--filled#{&}--success {
-        color: v.$color-white;
-        background-color: v.$color-success-base;
-        border-color: v.$color-success-base;
+        color: g.$color-white;
+        background-color: g.$color-success-base;
+        border-color: g.$color-success-base;
     }
 
     &--outline#{&}--success {
-        background-color: v.$color-white;
-        border-color: v.$color-success-base;
+        background-color: g.$color-white;
+        border-color: g.$color-success-base;
 
         .alert__heading {
-            color: v.$color-success-base;
+            color: g.$color-success-base;
         }
     }
 
     &--light#{&}--success {
-        background-color: v.$color-success-shade;
-        border-color: v.$color-success-shade;
+        background-color: g.$color-success-shade;
+        border-color: g.$color-success-shade;
 
         .alert__heading {
-            color: v.$color-success-base;
+            color: g.$color-success-base;
         }
     }
 
     &--filled#{&}--info {
-        color: v.$color-white;
-        background-color: v.$color-info-base;
-        border-color: v.$color-info-base;
+        color: g.$color-white;
+        background-color: g.$color-info-base;
+        border-color: g.$color-info-base;
     }
 
     &--outline#{&}--info {
-        background-color: v.$color-white;
-        border-color: v.$color-info-base;
+        background-color: g.$color-white;
+        border-color: g.$color-info-base;
 
         .alert__heading {
-            color: v.$color-info-base;
+            color: g.$color-info-base;
         }
     }
 
     &--light#{&}--info {
-        background-color: v.$color-info-shade;
-        border-color: v.$color-info-shade;
+        background-color: g.$color-info-shade;
+        border-color: g.$color-info-shade;
 
         .alert__heading {
-            color: v.$color-info-base;
+            color: g.$color-info-base;
         }
     }
 }

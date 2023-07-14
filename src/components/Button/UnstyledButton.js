@@ -23,7 +23,8 @@ function UnstyledButton(props) {
             className={cx([styles.button__base, className])}
             disabled={disabled}
             type={type}
-            {...rest}>
+            {...rest}
+        >
             {children}
         </button>
     )

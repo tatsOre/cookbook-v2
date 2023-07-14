@@ -1,4 +1,4 @@
-@use '../../styles/Variables.module.scss' as v;
+@use '../../styles/globals.module.scss' as g;
 
 .cards__section {
     display: flex;
@@ -84,6 +84,12 @@
 }
 
 .about__view {
+    h1 {
+        font-size: calc(2rem + 0.390625vw);
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
     p:first-of-type::first-letter {
         -webkit-initial-letter: 2;
         initial-letter: 2;
@@ -92,13 +98,15 @@
         margin-inline-end: 0.35rem;
     }
 
-    div.a p {
+    dig.a p {
         font-size: calc(1rem + 0.390625vw);
         margin-block: 1em;
         line-height: 1.5;
     }
 
     p.b {
+        padding-block-start: 1rem;
+
         span {
             display: inline-block;
             margin-inline-end: 1rem;
@@ -143,13 +151,13 @@
         border-bottom: 4px solid black;
         text-transform: uppercase;
         font-size: calc(0.75rem + 0.390625vw);
-        font-weight: 600;
+
         letter-spacing: 0.01rem;
     }
 }
 
 /* Large screen devices (1024px and above) */
-@media only screen and (min-width: v.$breakpoint-large) {
+@media only screen and (min-width: g.$breakpoint-large) {
 
     .about__view {
         display: flex;
@@ -158,7 +166,7 @@
 
         h1 {
             flex-basis: 100%;
-            font-size: 2rem;
+            font-size: calc(3rem + 0.390625vw);
         }
 
         .recipe__photo {
@@ -206,7 +214,7 @@
         position: absolute;
         bottom: 0rem;
         left: 0;
-        background-color: rgb(255, 221, 0);
+        background-color: rgb(243, 243, 243);
         z-index: -1;
     }
 
@@ -234,7 +242,7 @@
         position: absolute;
         bottom: 0rem;
         left: 0;
-        background-color: rgb(255, 221, 0);
+        background-color: rgb(223, 223, 223);
         z-index: -1;
     }
 

@@ -2,7 +2,8 @@
 const path = require('path')
 
 module.exports = {
-    reactStrictMode: true,
+    // set to false for dnd 
+    reactStrictMode: false,
     images: {
         remotePatterns: [
             {

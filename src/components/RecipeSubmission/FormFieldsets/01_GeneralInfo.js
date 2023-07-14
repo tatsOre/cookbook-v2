@@ -86,7 +86,7 @@ function GeneralInfoFieldset({ assets, fields }) {
                 <Input.Label htmlFor="cat-select" >
                     {CATEGORIES.LABEL}
                 </Input.Label>
-                <span style={{ fontSize: '12px' }}> {CATEGORIES.DESC} {categoriesLeft}</span>
+                <span style={{ fontSize: '12px' }}>. {CATEGORIES.DESC} {categoriesLeft}</span>
                 <Controller
                     name={CATEGORIES.NAME}
                     control={control}

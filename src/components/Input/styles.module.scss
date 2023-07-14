@@ -1,59 +1,51 @@
-@use '../../styles/Variables.module.scss' as v;
+@use '../../styles/globals.module.scss' as g;
 
 .input__wrapper {
     width: 100%;
+    @include g.caption;
 }
 
 .input__label {
-    font-size: v.$font-size-12;
+    @include g.caption;
     font-weight: 500;
-    color: v.$color-rich-black;
-
-    &::after {
-        content: ':';
-    }
 }
 
 .input__description {
-    font-size: v.$font-size-12;
-    line-height: calc(0.75rem * 1.5);
-    color: v.$color-smoke-gray;
+    color: g.$color-smoke-gray;
     margin-block-start: 0.2rem;
 }
 
-//if the body text is 18px, then the line height would need to be 27px (18*1.5).
 .input__box {
     width: 100%;
-    padding: 0.7rem;
-    border: 1px solid v.$color-warm-grey-300;
+    border: 1px solid g.$color-warm-grey-300;
     margin-block-start: 0.5rem;
-    background-color: v.$color-white;
-    font-family: v.$font-base;
-    font-size: 1rem;
-    line-height: calc(1rem * 1.35);
+    background-color: g.$color-white;
+    font-family: g.$font-base;
     cursor: pointer;
+    @include g.body--1;
+    padding: 0.75rem;
 
     &::placeholder {
         opacity: 0.5;
     }
 
     &--error {
-        border-color: v.$color-danger-base;
+        border-color: g.$color-danger-base;
     }
 }
 
 .input__box:focus {
     outline: none;
-    box-shadow: 0 0 0 1px v.$color-rich-black;
-    border-color: v.$color-rich-black;
+    box-shadow: 0 0 0 1px g.$color-rich-black;
+    border-color: g.$color-rich-black;
 }
 
 .input__error {
-    font-size: v.$font-size-12;
+    display: inline-block;
     margin-block-start: 0.25rem;
-    color: v.$color-danger-base;
+    color: g.$color-danger-base;
 }
 
 .visually-hidden {
-    @include v.visually-hidden;
+    @include g.visually-hidden;
 }

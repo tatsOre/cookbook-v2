@@ -10,7 +10,7 @@ export const styles = {
         zIndex: 9999,
         fontFamily: 'Arial, Helvetica, sans-serif',
         color: 'black',
-        fontSize: '0.8rem',
+        fontSize: '0.875rem',
         textTransform: 'capitalize'
     }),
     menu: (provided) => ({
@@ -22,13 +22,13 @@ export const styles = {
     }),
     singleValue: (provided) => ({
         ...provided,
-        fontSize: '0.85rem',
+        fontSize: '0.875rem',
         textTransform: 'capitalize',
 
     }),
     valueContainer: (provided) => ({
         ...provided,
-        paddingBlock: '7px',
+        paddingBlock: '10.5px',
 
     }),
     control: (provided) => ({
@@ -43,7 +43,7 @@ export const styles = {
     }),
     placeholder: (provided) => ({
         ...provided,
-        fontSize: '0.85rem',
+        fontSize: '0.875rem',
     }),
 }
 

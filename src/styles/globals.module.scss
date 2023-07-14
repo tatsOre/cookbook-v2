@@ -1,0 +1,158 @@
+/** COLOR **/
+@use "sass:color";
+
+$color-rich-black: #1b1b1b;
+$color-smoke-gray: #767676;
+$color-white: white;
+$color-cool-grey-400: #B3B3B3;
+$color-cool-grey-100: #D8D8D8;
+$color-warm-grey-400: #DEDDD5;
+$color-warm-grey-300: #e9e8e1;
+$color-warm-grey-200: #F2F3EF;
+$color-warm-grey-100: #F8F9F7;
+//#D87D4A
+$color-primary-base: #5872f7;
+$color-primary-hover: #FBAF85;
+$color-primary-shade: color.scale($color-primary-base, $lightness: 95%);
+
+$color-danger-base: #FA5252;
+$color-danger-shade: color.scale($color-danger-base, $lightness: 95%);
+$color-danger-hover: color.scale($color-danger-base, $lightness: -30%);
+
+$color-success-base: #60bf76;
+$color-success-shade: color.scale($color-success-base, $lightness: 80%);
+$color-success-hover: color.scale($color-success-base, $lightness: -30%);
+
+$color-info-base: $color-smoke-gray;
+$color-info-shade: color.scale($color-info-base, $lightness: 85%);
+
+$color-input-outline: #5872f7;
+
+/** BREAKPOINTS */
+
+/* Small screen devices (640px and below) */
+@media only screen and (max-width: 640px) {}
+
+$breakpoint-small: 640px;
+
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {}
+
+$breakpoint-medium: 768px;
+
+/* Large screen devices (1024px and above) */
+@media only screen and (min-width: 1024px) {}
+
+$breakpoint-large: 1024px;
+
+/* Extra large screen devices (1280px and above) */
+@media only screen and (min-width: 1280px) {}
+
+$breakpoint-xlarge: 1280px;
+
+/* 2xl screen devices (1536px and above) */
+@media only screen and (min-width: 1536px) {}
+
+$breakpoint-2xlarge: 1536px;
+
+/** TYPOGRAPHY */
+$font-accent: sans-serif;
+$font-base: 'Chivo', sans-serif;
+
+$line-height-base: 1.5;
+$line-height-headline: 1.35;
+
+$font-size-12: 0.75rem;
+$font-size-14: 0.875rem;
+$font-size-15: 0.938rem;
+$font-size-16: 1rem;
+$font-size-18: 1.125rem;
+$font-size-20: 1.25rem;
+$font-size-24: 1.5rem;
+
+$line-height-15: 0.938rem;
+$line-height-25: 1.563rem;
+
+
+@mixin body--1 {
+    font-size: $font-size-16;
+    line-height: calc($font-size-16 * $line-height-headline);
+    font-weight: normal;
+    letter-spacing: 0.5px;
+
+    @media only screen and (min-width: $breakpoint-xlarge) {
+        font-size: $font-size-18;
+        line-height: calc($font-size-18 * $line-height-base);
+    }
+}
+
+@mixin body--2 {
+    font-size: $font-size-14;
+    line-height: calc($font-size-14 * $line-height-base);
+    font-weight: normal;
+    letter-spacing: 0.25px;
+}
+
+@mixin caption {
+    font-size: $font-size-12;
+    line-height: calc($font-size-12 * $line-height-headline);
+    font-weight: normal;
+    letter-spacing: 0.25px;
+}
+
+@mixin overline {
+    font-size: $font-size-14;
+    line-height: calc($font-size-14 * $line-height-base);
+    font-weight: 600;
+    letter-spacing: 0.125rem;
+    text-transform: uppercase;
+}
+
+@mixin button {
+    font-size: $font-size-14;
+    line-height: calc($font-size-14 * $line-height-base);
+    font-weight: 500;
+    letter-spacing: 1.25px;
+}
+
+@mixin headline--1 {}
+
+@mixin headline--2 {
+    font-size: 2.5rem;
+    line-height: calc(2.5rem * $line-height-headline);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+@mixin headline--3 {
+    font-size: 2rem;
+    line-height: calc(2rem * $line-height-headline);
+    font-weight: 700;
+    letter-spacing: 1.15px;
+}
+
+@mixin headline--4 {
+    font-size: 1.75rem;
+    line-height: calc(1.75rem * $line-height-headline);
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+@mixin headline--6 {
+    font-size: 1rem;
+    line-height: calc(1rem * $line-height-headline);
+    font-weight: 700;
+    letter-spacing: 0.25px;
+}
+
+@mixin visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    border: 0;
+    padding: 0;
+}
