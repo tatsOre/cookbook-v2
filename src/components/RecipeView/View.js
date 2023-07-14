@@ -47,24 +47,25 @@ function RecipeView({ data }) {
                     <Link href='/' passHref legacyBehavior>
                         <NavLink label="Cookbook" uppercase />
                     </Link>
-                    <Button>user</Button>
+                    <Button>?</Button>
                 </Nav>
             </header>
 
             <main className={styles['recipe__view--wrapper']}>
-                <section className={styles.about__view}>
-                    <h1>{title}</h1>
+                <h1>{title}</h1>
+
+                <section>
                     {photo ? (
-                        <div className={styles.recipe__photo}>
+                        <figure>
                             <Image fill={true} src={photo} />
-                        </div>
+                        </figure>
                     ) : null}
-                    <div className={styles.a} >
-                        <p>{description}</p>
-                        <p className={styles.b}>
-                            {categories.map(cat => <span>{cat.label}</span>)}
-                            <span>{cuisine.label}</span>
-                        </p>
+                    <div>
+                        <p className={styles.recipe__description}>{description}</p>
+                        <ul className={styles.recipe__tags}>
+                            <li>{cuisine.label}</li>
+                            {categories.map(cat => <li>{cat.label}</li>)}
+                        </ul>
                     </div>
                     <div>
                         <span>By Lipa Echeverry</span>
@@ -73,15 +74,15 @@ function RecipeView({ data }) {
                     </div>
                 </section>
 
-                <section className={styles.ingredients__view}>
+                <section>
                     <h2>Ingredients</h2>
                     <ul>
                         {ingredients.map(item => <IngredientItem data={item} />)}
                     </ul>
                 </section>
 
-                <section className={styles.instructions__view}>
-                    <h2>How to make</h2>
+                <section>
+                    <h2>How To Make</h2>
                     <ul>
                         {instructions.map((step, index) => (
                             <li>
@@ -92,8 +93,8 @@ function RecipeView({ data }) {
                     </ul>
                 </section>
 
-                <section className={styles.comments__view}>
-                    <h2>Cooking notes</h2>
+                <section>
+                    <h2>Cooking Notes</h2>
                     <p>{comments}</p>
                 </section>
 

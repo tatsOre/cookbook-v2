@@ -30,6 +30,7 @@ function Button(props) {
         children,
         className,
         compact,
+        fullWidth,
         disabled,
         isProcessing,
         leftIcon,
@@ -44,7 +45,8 @@ function Button(props) {
         styles.button,
         styles[`button--${appearance}`],
         styles[`button--${variant}`],
-        compact && styles[`button--compact`]
+        compact && styles['button--compact'],
+        fullWidth && styles['button--full']
     ])
 
     return (

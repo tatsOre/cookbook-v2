@@ -8,7 +8,7 @@ export const styles = {
     menuPortal: (base) => ({
         ...base,
         zIndex: 9999,
-        fontFamily: 'Arial, Helvetica, sans-serif',
+        fontFamily: 'inherit',
         color: 'black',
         fontSize: '0.875rem',
         textTransform: 'capitalize'
@@ -28,13 +28,14 @@ export const styles = {
     }),
     valueContainer: (provided) => ({
         ...provided,
-        paddingBlock: '10.5px',
+        minHeight: '46px'
 
     }),
     control: (provided) => ({
         ...provided,
         cursor: 'pointer',
-        marginTop: '0.5rem'
+        marginTop: '0.5rem',
+        border: '1px solid black',
 
     }),
     option: (provided) => ({

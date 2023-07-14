@@ -55,7 +55,6 @@ function GeneralInfoFieldset({ assets, fields }) {
 
             <TextInput
                 label={MAIN_INGR.LABEL}
-                description={MAIN_INGR.DESC}
                 error={errors[MAIN_INGR.NAME]?.message}
                 placeholder={MAIN_INGR.PLACEHOLDER}
                 required

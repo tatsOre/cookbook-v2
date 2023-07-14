@@ -5,53 +5,45 @@
 /* Form & Accordion Layout
 ============================ */
 .recipe__form--wrapper {
+    background-color: g.$color-warm-grey-100;
 
     /** Accordion Trigger / Form Fieldset Headings: */
     [data-accordion-trigger] {
-        background-color: g.$color-warm-grey-200;
+
         color: g.$color-rich-black;
         border-top: 2px solid g.$color-rich-black;
-        font-family: 'Chivo', sans-serif;
         font-size: calc(1.35rem + 0.390625vw);
-        letter-spacing: 0.02rem;
-        padding: 0.5rem 1rem;
-        outline: none;
+        letter-spacing: 0.1px;
+        padding-block: 1.125rem;
 
         &:focus {
             border-top: 2px solid g.$color-primary-base;
-            outline: none;
+        }
+
+        &[data-active="true"] {
+            background-color: g.$color-white;
         }
 
         @media (hover: hover) {
             &:hover:not([disabled]) {
-                background-color: g.$color-primary-base;
+                background-color: g.$color-rich-black;
                 color: g.$color-white;
-                border-color: g.$color-primary-base;
+                background-color: g.$color-rich-black;
             }
         }
     }
 
     /** Accordion Panels / Form Fieldsets: */
-    [data-accordion-content] {
-        background-color: white;
-        padding: 1.5rem 1rem;
-    }
-
-    /** 768px and above: */
-    @media only screen and (min-width: g.$breakpoint-medium) {
-        [data-accordion-trigger] {
-            padding: 0.75rem 1.5rem 0.75rem 2rem;
-        }
-
-        [data-accordion-content] {
-            padding: 1.5rem 2rem;
-        }
+    [data-accordion-content],
+    [data-accordion-trigger] {
+        padding-inline: calc(0.75rem + 1.5625vw);
     }
 }
 
 /* 01. About Fieldset
 ============================ */
 .about__fieldset {
+    padding-block: 1.5rem;
     display: flex;
     gap: 1rem;
 
@@ -59,7 +51,6 @@
         flex-direction: column;
     }
 
-    /** 768px and above: */
     @media only screen and (min-width: g.$breakpoint-small) {
         flex-flow: row wrap;
 
@@ -68,58 +59,34 @@
             flex-basis: 100%;
         }
 
-        [data-input-wrapper="servings"],
-        [data-input-wrapper="time.prep"],
-        [data-input-wrapper="time.cook"],
-        [data-input-wrapper="mainIngredient"],
-        [data-input-wrapper="cuisine"],
-        [data-input-wrapper="categories"] {
-            flex-basis: calc(50% - 1rem);
+        [data-input-wrapper]:nth-child(n+3):not(:last-child) {
+            flex-basis: calc(52.25% - calc(0.75rem + 1.5625vw));
         }
-
     }
 
-    /** 768px and above: */
     @media only screen and (min-width: g.$breakpoint-large) {
-        flex-flow: row wrap;
-
-        [data-input-wrapper="description"],
-        [data-input-wrapper="title"] {
-            flex-basis: 100%;
+        [data-input-wrapper]:nth-child(n+3):not(:last-child) {
+            flex-basis: calc(35.25% - calc(0.75rem + 1.5625vw));
         }
-
-        [data-input-wrapper="servings"],
-        [data-input-wrapper="time.prep"],
-        [data-input-wrapper="time.cook"] {
-            flex: 1 1 30%;
-        }
-
-        [data-input-wrapper="mainIngredient"],
-        [data-input-wrapper="cuisine"],
-        [data-input-wrapper="categories"] {
-            flex: 1 1 30%;
-        }
-
     }
 }
 
 /* 02. Ingredients Fieldset
 ============================ */
 .ingredients__fieldset {
+    padding-block: 1rem;
+
     .ingredients__list {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
 
         .ingredients__list--item {
             display: flex;
             flex-flow: row wrap;
             justify-content: space-between;
-            background-color: g.$color-warm-grey-100;
-            padding: 0.5rem;
+            background-color: g.$color-white;
+            padding-block: 0.5rem;
+            padding-inline: 0.75rem;
 
             .button__drag--handler {
-                color: g.$color-smoke-gray;
                 @include button.icon--button;
             }
 
@@ -129,16 +96,14 @@
             }
 
             .button__icon--delete {
-                color: g.$color-danger-base;
                 @include button.icon--button;
-                text-align: right;
             }
         }
 
         .ingredient__item--wrapper {
             display: flex;
             flex-flow: row wrap;
-            gap: 0.5rem;
+            gap: 1rem;
 
             input {
                 background-color: g.$color-white;
@@ -151,26 +116,28 @@
 
             /** Ingredient fraction input: */
             &>div:nth-child(2) {
-                flex: 3;
+                flex: 1;
+
+                label {
+                    color: transparent;
+                }
             }
 
             /** Ingredient measure input: */
             &>div:nth-child(3) {
-                flex: 3;
+                flex: 1;
             }
         }
     }
 
     /** Add new ingredient button: */
     &>button {
-        width: 100%;
         margin-block-start: 1rem;
     }
 
     /** 1024px and above: */
     @media only screen and (min-width: g.$breakpoint-large) {
         .ingredients__list {
-            gap: 0.5rem;
 
             .ingredients__list--item {
                 flex-wrap: nowrap;
@@ -179,7 +146,7 @@
                 padding: 0;
 
                 .button__drag--handler {
-                    margin-block-start: 0.875rem;
+                    margin-block-start: 8px;
                     order: 1;
                 }
 
@@ -188,12 +155,16 @@
                 }
 
                 .button__icon--delete {
-                    margin-block-start: 0.875rem;
                     order: 3;
+                    margin-block-start: 8px;
+                    margin-inline-start: 8px;
+                    background-color: g.$color-white;
+                    border: 1px solid g.$color-rich-black;
                 }
             }
 
             .ingredient__item--wrapper {
+                gap: 0.65rem;
                 flex-wrap: nowrap;
 
                 [data-input-wrapper] {
@@ -222,32 +193,32 @@
 /* 03. Instructions Fieldset
 ============================ */
 .instructions__fieldset {
+    padding-block: 1.5rem;
+
     .instructions__list {
         &--item {
             position: relative;
 
             // Input Label:
             label {
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
 
             .button__icon--delete {
                 position: absolute;
-                top: -0.75rem;
+                top: -1rem;
                 right: -0.5rem;
-                color: g.$color-danger-base;
                 @include button.icon--button;
             }
 
             &:not(:first-of-type) {
-                margin-block-start: 1rem;
+                margin-block-start: 1.25rem;
             }
         }
     }
 
     /** Add new step button: */
     &>button {
-        width: 100%;
         margin-block-start: 1rem;
     }
 }
@@ -255,10 +226,13 @@
 /* 04. Extra Info Fieldset
 ============================ */
 .extrainfo__fieldset {
+    padding-block: 1.5rem;
+
     .image__section {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        margin-block-end: 1rem;
 
         h3 {
             color: g.$color-rich-black;
@@ -281,25 +255,23 @@
 
             // File input with drag and drop feature:
             .box.advanced--upload {
-                background-color: g.$color-warm-grey-100;
-                outline: 2px dashed g.$color-warm-grey-400;
+                background-color: g.$color-white;
+                outline: 2px dashed g.$color-rich-black;
                 outline-offset: -10px;
                 padding-block: 2rem;
                 -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
                 transition: outline-offset .15s ease-in-out, background-color .15s linear;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
+                display: grid;
+                place-content: center;
 
                 &.drag--active {
-                    background-color: g.$color-white;
                     outline-offset: -20px;
                 }
 
                 .box__file {
                     &+label {
                         color: g.$color-rich-black;
+                        width: 100%;
 
                         &:hover b {
                             text-decoration: underline;
@@ -378,11 +350,6 @@
 
                 .box.advanced--upload {
                     height: 100%;
-
-                    label {
-                        max-width: 80%;
-                        text-align: center;
-                    }
                 }
             }
 
@@ -391,10 +358,6 @@
                 height: 200px;
             }
         }
-    }
-
-    [data-input-wrapper="comments"] {
-        margin-block-start: 1rem;
     }
 }
 

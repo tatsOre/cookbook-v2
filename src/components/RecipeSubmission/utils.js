@@ -29,7 +29,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
     },
     MAIN_INGR: {
         DESC: 'The description for the field Main Ingredient',
-        LABEL: 'Main Ingredient',
+        LABEL: 'Main ingredient',
         NAME: 'mainIngredient',
         PLACEHOLDER: 'e.g. Passion Fruit',
         RULES: {
@@ -88,7 +88,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
                 NAME: 'quantity'
             },
             FRACTION: {
-                LABEL: 'Fraction(?)',
+                LABEL: 'Fraction',
                 NAME: 'fraction'
             },
             MEASURE: {

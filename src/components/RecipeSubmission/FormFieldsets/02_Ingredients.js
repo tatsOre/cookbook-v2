@@ -8,7 +8,7 @@ import NumberInput from '../../Form/NumberInput'
 import TextInput from '../../Form/TextInput'
 import SelectInput from '../../Select'
 import UnstyledButton from '../../Button/UnstyledButton'
-import { IconCircleMinus, IconGridDots } from '@/components/Icon'
+import { IconGridDots, IconMenuOrder, IconTrash } from '@/components/Icon'
 
 import styles from '../styles.module.scss'
 
@@ -65,7 +65,7 @@ function IngredientsFieldset({ assets, fields }) {
                         <UnstyledButton
                             className={styles['button__drag--handler']}
                             {...provided.dragHandleProps}>
-                            <IconGridDots size={28} />
+                            <IconMenuOrder size={24} />
                         </UnstyledButton>
 
                         <div className={styles['ingredient__item--wrapper']}>
@@ -107,7 +107,7 @@ function IngredientsFieldset({ assets, fields }) {
                             className={styles['button__icon--delete']}
                             onClick={() => remove(index)}
                         >
-                            <IconCircleMinus size={30} />
+                            <IconTrash size={20} />
                         </UnstyledButton>
                     </DroppableList.Item>
                 )}
@@ -139,7 +139,9 @@ function IngredientsFieldset({ assets, fields }) {
                     )}
                 </Droppable>
             </DragDropContext>
-            <Button onClick={() => append(INGR_SCHEMA)}>+ Add New Ingredient</Button>
+            <Button onClick={() => append(INGR_SCHEMA)} fullWidth variant='outline' appearance='secondary'>
+                + Add New Ingredient
+            </Button>
         </>
     )
 }

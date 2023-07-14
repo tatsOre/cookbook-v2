@@ -16,7 +16,7 @@ const FileInput = React.forwardRef((props, ref) => {
             />
 
             <label htmlFor={_id}>
-                <b>Choose a file</b>
+                <b>Upload your file</b>
                 <span> or drag and drop here</span>
             </label>
         </>

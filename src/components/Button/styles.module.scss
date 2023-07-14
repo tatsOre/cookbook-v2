@@ -6,6 +6,13 @@ $button-border-radius: 0px;
 @mixin icon--button {
     min-height: 40px;
     min-width: 40px;
+    display: grid;
+    place-content: center;
+
+    @media only screen and (min-width: g.$breakpoint-large) {
+        width: 48px;
+        height: 48px;
+    }
 }
 
 /** Unstyled Buttons: **/
@@ -19,7 +26,8 @@ $button-border-radius: 0px;
     cursor: pointer;
     border: none;
     color: inherit;
-    font: inherit;
+    font-family: g.$font-base;
+    outline: none;
 
     &:disabled {
         cursor: not-allowed;
@@ -35,8 +43,6 @@ $button-border-radius: 0px;
     border: 1px solid transparent;
     border-radius: $button-border-radius;
     padding: 0.75rem 1rem;
-    font-family: g.$font-base;
-    outline: none;
 
     &--label {
         font-size: 0.85rem;
@@ -50,6 +56,10 @@ $button-border-radius: 0px;
             font-size: 0.75rem;
             letter-spacing: 0.05rem;
         }
+    }
+
+    &--full {
+        width: 100%;
     }
 
     span.icon__container {
