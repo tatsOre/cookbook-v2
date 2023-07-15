@@ -58,8 +58,8 @@ export const FRACTIONS_OPTIONS = [
 ]
 
 export const MEASURE_OPTIONS = [
-    { _id: "MO001", label: "tsp" },
-    { _id: "MO002", label: "tbsp" },
+    { _id: "MO001", label: "teaspoon" },
+    { _id: "MO002", label: "tablespoon" },
     { _id: "MO003", label: "cup" },
     { _id: "MO004", label: "gallon" },
     { _id: "MO005", label: "gram" },

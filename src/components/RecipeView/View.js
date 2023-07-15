@@ -1,14 +1,15 @@
+import React from "react"
 import Link from "next/link"
-import Nav from "../Box/Nav"
+import Image from "next/image"
 import Button from "../Button"
+import CheckboxInput from "../Checkbox"
+import Nav from "../Box/Nav"
 import NavLink from "../Button/NavLink"
 import Alert from "../Alert"
 
 import styles from './styles.module.scss'
-import CheckboxInput from "../Checkbox"
-import Image from "next/image"
 
-function IngredientItem({ data }) {
+function IngredientItem({ data, ...rest }) {
     const { quantity, fraction, measure, name, prepNote } = data
 
     const quantityElement = quantity ? quantity + ' ' : ''
@@ -22,7 +23,53 @@ function IngredientItem({ data }) {
         {quantityElement}{fractionElement}{measureElement}<b>{name}</b>{prepNoteElement}
     </>
     return (
-        <li><CheckboxInput className="ingredient--item" label={label} /></li>
+        <li>
+            <CheckboxInput className="ingredient--item" label={label} {...rest} />
+        </li>
+    )
+}
+
+function IngredientsSubmission({ items }) {
+    const initialState = Array.isArray(items)
+        ? items.map(ingredient => ({
+            ...ingredient, checked: false
+        }))
+        : []
+
+    const [checked, setChecked] = React.useState(initialState)
+
+    const selected = checked && checked.filter(ingredient => ingredient.checked)
+    const count = selected.length ?? 0
+    const label = `Add ${count ? count : "ALL"} ingredient(s) selected --- soon`
+
+    const handleInputChange = (ev) => {
+        const updatedState = checked.map((ingredient, index) =>
+            ev.target.value == index
+                ? { ...ingredient, checked: !ingredient.checked }
+                : ingredient
+        )
+        setChecked(updatedState)
+    }
+
+    const handleSubmit = (ev) => ev.preventDefault()
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <ul>
+                {items.map((item, index) => (
+                    <IngredientItem
+                        key={index} // change to id
+                        data={item}
+                        name={item.name}
+                        value={index}
+                        onChange={handleInputChange}
+                    />
+                ))}
+            </ul>
+            <Button type="submit" variant='outline' appearance='secondary'>
+                {label}
+            </Button>
+        </form>
     )
 }
 
@@ -45,7 +92,7 @@ function RecipeView({ data }) {
                 <Nav>
                     <Button variant='outline' appearance='secondary'>iii</Button>
                     <Link href='/' passHref legacyBehavior>
-                        <NavLink label="Cookbook" uppercase variant='outline' appearance='secondary'/>
+                        <NavLink label="Cookbook" uppercase variant='outline' appearance='secondary' />
                     </Link>
                     <Button variant='outline' appearance='secondary'>?</Button>
                 </Nav>
@@ -81,16 +128,14 @@ function RecipeView({ data }) {
 
                 <section>
                     <h2>Ingredients</h2>
-                    <ul>
-                        {ingredients.map(item => <IngredientItem data={item} />)}
-                    </ul>
+                    <IngredientsSubmission items={ingredients} />
                 </section>
 
                 <section>
                     <h2>How To Make</h2>
                     <ul>
                         {instructions.map((step, index) => (
-                            <li>
+                            <li key={`step ${index}`}>
                                 <h3>{`${index < 10 ? '0' : ''}${index + 1}`}</h3>
                                 <p>{step}</p>
                             </li>

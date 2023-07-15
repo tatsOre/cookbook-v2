@@ -117,7 +117,7 @@
 
             /** Ingredient unit input: */
             &>div:nth-child(1) {
-                flex-basis: 60px;
+                flex-basis: 20%;
             }
 
             /** Ingredient fraction input: */
@@ -128,17 +128,31 @@
                     color: transparent;
                 }
             }
-
-            /** Ingredient measure input: */
-            &>div:nth-child(3) {
-                flex: 1;
-            }
         }
     }
 
     /** Add new ingredient button: */
     &>button {
         margin-block-start: 1rem;
+    }
+
+    /** 1024px and above: */
+    @media only screen and (min-width: 540px) {
+        .ingredient__item--wrapper {
+
+            &>div:nth-child(1) {
+                flex-basis: 20%;
+            }
+
+            &>div:nth-child(2) {
+                flex: 1;
+            }
+
+            /** Ingredient measure input: */
+            &>div:nth-child(3) {
+                flex: 1;
+            }
+        }
     }
 
     /** 1024px and above: */
@@ -175,14 +189,13 @@
 
                 [data-input-wrapper] {
                     label {
-                        @include g.visually-hidden;
+                        @include g.visually--hidden;
                     }
                 }
 
                 &>div:nth-child(1) {
                     flex: 1 0 70px;
                 }
-
 
                 &>div:nth-child(2) {
                     flex: 1 0 110px;
@@ -252,7 +265,7 @@
 
         .image__input--wrapper {
             .box__file {
-                @include g.visually-hidden;
+                @include g.visually--hidden;
 
                 &+label {
                     cursor: pointer;
@@ -308,7 +321,7 @@
                     }
 
                     span {
-                        @include g.visually-hidden;
+                        @include g.visually--hidden;
                     }
 
                     &:hover {

@@ -9,9 +9,9 @@ $button-border-radius: 0px;
     display: grid;
     place-content: center;
 
-    @media only screen and (min-width: g.$breakpoint-large) {
-        width: 48px;
-        height: 48px;
+    @media only screen and (min-width: g.$breakpoint-medium) {
+        min-height: 48px;
+        min-width: 48px;
     }
 }
 

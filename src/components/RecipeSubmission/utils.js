@@ -55,7 +55,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
         },
         PREP: {
             DESC: 'The description for the field Cook.Prep',
-            LABEL: 'Prep time',
+            LABEL: 'Prep. time',
             NAME: 'time.prep', // (*)Added `time` field name.
             RULES: {
                 MIN: BASE_RULES.minValueErrorMsg(0)
@@ -104,7 +104,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
                 }
             },
             PREP_NOTE: {
-                LABEL: 'Prep Note',
+                LABEL: 'Prep. Note',
                 NAME: 'prepNote',
                 PLACEHOLDER: 'e.g. sifted'
             }

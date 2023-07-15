@@ -32,6 +32,7 @@ $color-input-outline: #5872f7;
 /** BREAKPOINTS */
 
 $max-width: 1100px;
+$page-width: 90%;
 
 /* Small screen devices (640px and below) */
 @media only screen and (max-width: 640px) {}
@@ -63,6 +64,7 @@ $font-accent: 'Mona Sans';
 $font-base: 'Chivo', sans-serif;
 
 $line-height-base: 1.5;
+$line-height-extra: 1.6;
 $line-height-headline: 1.35;
 
 $font-size-12: 0.75rem;
@@ -72,10 +74,6 @@ $font-size-16: 1rem;
 $font-size-18: 1.125rem;
 $font-size-20: 1.25rem;
 $font-size-24: 1.5rem;
-
-$line-height-15: 0.938rem;
-$line-height-25: 1.563rem;
-
 
 @mixin body--1 {
     font-size: $font-size-16;
@@ -112,7 +110,12 @@ $line-height-25: 1.563rem;
 }
 
 @mixin headline--1 {
-    font-size: 3rem;
+    font-size: 2rem;
+    line-height: $line-height-headline;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+        font-size: 3rem;
+    }
 }
 
 @mixin headline--2 {
@@ -143,7 +146,7 @@ $line-height-25: 1.563rem;
     letter-spacing: 0.25px;
 }
 
-@mixin visually-hidden {
+@mixin visually--hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     height: 1px;
@@ -157,6 +160,5 @@ $line-height-25: 1.563rem;
 
 @mixin main--wrapper {
     max-width: $max-width;
-    width: 90%;
     margin: 6rem auto 0;
 }

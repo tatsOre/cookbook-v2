@@ -62,5 +62,5 @@ $size: 1.15rem;
 }
 
 .visually-hidden {
-    @include g.visually-hidden;
+    @include g.visually--hidden;
 }

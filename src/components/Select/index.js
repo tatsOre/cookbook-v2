@@ -28,7 +28,7 @@ export const styles = {
     }),
     valueContainer: (provided) => ({
         ...provided,
-        minHeight: '46px'
+        minHeight: '48px'
 
     }),
     control: (provided) => ({
@@ -44,7 +44,7 @@ export const styles = {
     }),
     placeholder: (provided) => ({
         ...provided,
-        fontSize: '0.875rem',
+        fontSize: '1rem',
     }),
 }
 
