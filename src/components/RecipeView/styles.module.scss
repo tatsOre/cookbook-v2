@@ -79,7 +79,43 @@
 }
 
 .recipe__view--wrapper {
-    padding: 3rem 1.25rem;
+    @include g.body--1;
+    @include g.main--wrapper;
+
+    h1 {
+        margin-block-start: 2rem;
+        margin-block-end: 1rem;
+        @include g.headline--1;
+        font-family: 'Mona Sans';
+        font-stretch: 100%;
+        font-weight: 500;
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-family: 'Mona Sans';
+        font-stretch: 125%;
+        font-weight: 800;
+    }
+
+    p {
+        max-width: 64ch;
+    }
+
+    .recipe__tags {
+        @include g.overline;
+
+        ul {
+            padding-block-start: 1rem;
+            display: inline-flex;
+            gap: 0.5rem;
+
+            li {
+                padding: 0.15rem 0.5rem;
+                border: 1px solid g.$color-rich-black;
+            }
+        }
+    }
 
     section:nth-of-type(1) {
         display: flex;
@@ -90,18 +126,10 @@
             -webkit-initial-letter: 2;
             initial-letter: 2;
             margin-inline-end: 0.35rem;
-            font-family: g.$font-accent;
-        }
-
-        ul.recipe__tags {
-            padding-block-start: 1rem;
-            display: flex;
-            gap: 0.5rem;
-
-            li {
-                padding: 0.25rem 0.5rem;
-                border: 2px solid g.$color-rich-black;
-            }
+            font-size: 2rem;
+            font-family: 'Mona Sans';
+            font-stretch: 125%;
+            font-weight: 700;
         }
 
         figure {
@@ -119,31 +147,27 @@
         div:last-of-type {
             padding-block: 0.75rem;
             margin-block: 0.5rem;
-            border: 2px solid g.$color-rich-black;
-            text-transform: uppercase;
+            border: 1px solid g.$color-rich-black;
             text-align: center;
+
+            a {
+                text-decoration: underline;
+                font-weight: 500;
+            }
         }
 
         /* Large screen devices (1024px and above) */
         @media only screen and (min-width: g.$breakpoint-large) {
-            flex-direction: row;
-            flex-flow: wrap;
-
             figure {
                 $size: 250px;
-                flex-basis: $size;
                 max-width: $size;
                 width: $size;
                 height: $size;
             }
 
-            div:nth-of-type(2) {
-                
-            }
+            .recipe__description {}
 
-            div:last-of-type {
-                flex-basis: 100%;
-            }
+            div:last-of-type {}
         }
     }
 
@@ -157,7 +181,9 @@
             margin-bottom: 0.75rem;
         }
 
-        label {}
+        label {
+            font-size: 1rem;
+        }
     }
 
     section:nth-of-type(3) {
@@ -168,13 +194,18 @@
 
         h3 {
             position: relative;
+            font-size: 1rem;
+            font-family: 'Mona Sans';
+            font-stretch: 90%;
+            font-style: italic;
+            font-weight: 800;
         }
 
         h3::before {
             content: '';
             background-color: g.$color-rich-black;
             width: 100%;
-            height: 2px;
+            height: 1px;
             position: absolute;
             bottom: -0.5rem;
             left: 0;
@@ -182,7 +213,7 @@
 
         h3::after {
             content: '*';
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 200;
             color: g.$color-rich-black;
             position: absolute;
@@ -196,15 +227,17 @@
 
         li>p {
             margin-block-start: 1rem;
+            hyphens: auto;
         }
     }
 
     section:nth-of-type(4) {
         background-color: g.$color-white;
         border: 2px solid g.$color-rich-black;
-        padding: 0.75rem;
+        padding: 0.75rem 1.5rem;
         position: relative;
         margin-block-start: 2rem;
+        width: fit-content;
 
         &::after {
             content: '';
@@ -218,13 +251,12 @@
         }
 
         h2 {
-            font-size: calc(1rem + 0.390625vw);
             margin-bottom: 0.25rem;
         }
 
         p {
-            font-size: calc(0.825rem + 0.390625vw);
             white-space: pre-wrap;
+            @include g.body--2;
         }
     }
 }

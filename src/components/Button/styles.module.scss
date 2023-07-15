@@ -26,7 +26,6 @@ $button-border-radius: 0px;
     cursor: pointer;
     border: none;
     color: inherit;
-    font-family: g.$font-base;
     outline: none;
 
     &:disabled {
@@ -45,17 +44,13 @@ $button-border-radius: 0px;
     padding: 0.75rem 1rem;
 
     &--label {
-        font-size: 0.85rem;
-        letter-spacing: 0.1rem;
+        @include g.font--button;
     }
 
     &--compact {
         padding: 0.3rem 0.5rem;
 
-        span.button--label {
-            font-size: 0.75rem;
-            letter-spacing: 0.05rem;
-        }
+        span.button--label {}
     }
 
     &--full {
@@ -63,8 +58,8 @@ $button-border-radius: 0px;
     }
 
     span.icon__container {
-        display: flex;
-        align-items: center;
+        display: grid;
+        place-content: center;
 
         &--left {
             margin-inline-end: 0.5rem;

@@ -58,13 +58,13 @@ export const FRACTIONS_OPTIONS = [
 ]
 
 export const MEASURE_OPTIONS = [
-    { _id: "MO001", label: "teaspoon" },
-    { _id: "MO002", label: "tablespoon" },
+    { _id: "MO001", label: "tsp" },
+    { _id: "MO002", label: "tbsp" },
     { _id: "MO003", label: "cup" },
     { _id: "MO004", label: "gallon" },
     { _id: "MO005", label: "gram" },
     { _id: "MO006", label: "pound" },
-    { _id: "MO007", label: "kilogram" },
+    { _id: "MO007", label: "kg" },
     { _id: "MO008", label: "ounce" },
     { _id: "MO009", label: "litre" }
 ]

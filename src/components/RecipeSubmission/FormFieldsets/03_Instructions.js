@@ -81,7 +81,7 @@ function InstructionsFieldset({ fields }) {
                 />
             ) : null}
             <ul className={styles.instructions__list}>{listItems}</ul>
-            <Button onClick={onAppendHandler} fullWidth variant='outline' appearance='secondary'>
+            <Button onClick={onAppendHandler} uppercase fullWidth variant='outline' appearance='secondary'>
                 + Add New Step
             </Button>
         </>

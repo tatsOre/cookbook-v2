@@ -5,31 +5,45 @@ import Button from "../Button"
 import Nav from "../Box/Nav"
 import NavLink from "../Button/NavLink"
 
-function Layout({ children, title }) {
+import styles from './styles.module.scss'
+
+function Layout({ children }) {
     const router = useRouter()
 
     return (
         <>
             <header>
-                <Nav className='nav__bar nav__bar--fixed'>
-                    <Button>iii</Button>
+                <Nav>
+                    <Button variant='outline' appearance='secondary'>iii</Button>
                     <Link href='/' passHref legacyBehavior>
-                        <NavLink label="Cookbook" uppercase />
+                        <NavLink variant='outline' appearance='secondary' label="Cookbook" uppercase />
                     </Link>
 
-                    <Button onClick={() => router.back()} uppercase style={{ marginLeft: 'auto' }}>
+                    <Button
+                        onClick={() => router.back()} u
+                        ppercase
+                        style={{ marginLeft: 'auto' }}
+                        variant='outline'
+                        appearance='secondary'
+                    >
                         Cancel
                     </Button>
 
-                    <Button form="submit-recipe-form" type='submit' uppercase>
+                    <Button
+                        variant='outline'
+                        appearance='secondary'
+                        form="submit-recipe-form"
+                        type='submit'
+                        uppercase
+                    >
                         Save Recipe
                     </Button>
                 </Nav>
             </header>
 
-            <main>
+            <main className={styles['recipe__form--wrapper']}>
                 <Alert
-                    style={{ marginTop: '6rem', marginBottom: '1rem' }}
+                    style={{ marginBottom: '1rem' }}
                     appearance="info" title="* Note:" variant="outline">
                     An asterisk indicates that the field is required.
                 </Alert>

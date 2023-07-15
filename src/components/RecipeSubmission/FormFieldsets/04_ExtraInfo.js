@@ -3,15 +3,15 @@ import Image from 'next/image'
 import { useFormContext } from 'react-hook-form'
 import useDeviceDetect from '@/components/hooks/useDeviceDetect'
 import useDraggableFile from '@/components/hooks/useDraggableFile'
-import Button from '@/components/Button'
+import Alert from '@/components/Alert'
 import { FileInput } from '@/components/Form'
 import TextareaInput from '../../Form/TextareaInput'
+import { IconCloudUpload, IconTrash } from '@/components/Icon'
+import UnstyledButton from '@/components/Button/UnstyledButton'
 import { getImageSrc } from '@/components/utils/file'
-import { IconCloudUpload } from '@/components/Icon'
 import cx from '@/components/utils/cx'
 
 import styles from '../styles.module.scss'
-import Alert from '@/components/Alert'
 
 function ExtraInfoFieldset({ fields }) {
     const { PHOTO, COMMENTS } = fields
@@ -104,7 +104,14 @@ function ExtraInfoFieldset({ fields }) {
                             src={photoObjectURL}
                             alt="Picture of the dish"
                         />
-                        <Button onClick={onDeleteFileHandler}>Delete Photo</Button>
+
+                        <UnstyledButton
+                            className={styles['button__icon--delete']}
+                            onClick={onDeleteFileHandler}
+                        >
+                            <IconTrash size={20} />
+                        </UnstyledButton>
+
                     </div>
                 ) : null}
             </div>

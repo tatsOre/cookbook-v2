@@ -42,35 +42,40 @@ function RecipeView({ data }) {
     return (
         <>
             <header>
-                <Nav className='nav__bar'>
-                    <Button>iii</Button>
+                <Nav>
+                    <Button variant='outline' appearance='secondary'>iii</Button>
                     <Link href='/' passHref legacyBehavior>
-                        <NavLink label="Cookbook" uppercase />
+                        <NavLink label="Cookbook" uppercase variant='outline' appearance='secondary'/>
                     </Link>
-                    <Button>?</Button>
+                    <Button variant='outline' appearance='secondary'>?</Button>
                 </Nav>
             </header>
 
             <main className={styles['recipe__view--wrapper']}>
+                <div className={styles.recipe__tags}>
+                    <span>Recipe under: </span>
+                    <ul>
+                        <li key='cuisine-tag'>{cuisine.label}</li>
+                        {categories.map(cat => <li key={`category-${cat._id}`} >{cat.label}</li>)}
+                    </ul>
+                </div>
+
                 <h1>{title}</h1>
 
                 <section>
                     {photo ? (
                         <figure>
-                            <Image fill={true} src={photo} />
+                            <Image fill={true} src={photo} alt={`${title} picture`} />
                         </figure>
                     ) : null}
+
+                    <p className={styles.recipe__description}>{description}</p>
+
                     <div>
-                        <p className={styles.recipe__description}>{description}</p>
-                        <ul className={styles.recipe__tags}>
-                            <li>{cuisine.label}</li>
-                            {categories.map(cat => <li>{cat.label}</li>)}
-                        </ul>
-                    </div>
-                    <div>
-                        <span>By Lipa Echeverry</span>
-                        <span aria-hidden="true">&nbsp; &nbsp; • &nbsp; &nbsp;</span>
-                        <span>Published Mar. 07, 2023</span>
+                        <span>by </span>
+                        <a>Lipa Echeverry</a>
+                        <span aria-hidden="true">&nbsp; &nbsp;•&nbsp; &nbsp;</span>
+                        <span style={{ fontWeight: 300 }}>Published Mar. 07, 2023</span>
                     </div>
                 </section>
 

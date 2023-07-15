@@ -8,8 +8,6 @@ import Layout from "./Layout"
 
 import { deNormalizeData, normalizeData, getFormAccordionState } from "./utils"
 
-import styles from './styles.module.scss'
-
 const DynamicRecipeForm = dynamic(() => import('./Form')
     .catch(() => <span>Something went wrong.</span>),
     { ssr: false }
@@ -67,7 +65,7 @@ function RecipeSubmission({ endpoint, method, data, assets, mode }) {
                 <Accordion
                     active={activeFieldsetPanel}
                     setActive={setActiveFieldsetPanel}
-                    className={styles['recipe__form--wrapper']}
+                    
                 >
                     <DynamicRecipeForm
                         id="submit-recipe-form"

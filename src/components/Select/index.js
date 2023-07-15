@@ -10,7 +10,7 @@ export const styles = {
         zIndex: 9999,
         fontFamily: 'inherit',
         color: 'black',
-        fontSize: '0.875rem',
+        fontSize: '1rem',
         textTransform: 'capitalize'
     }),
     menu: (provided) => ({
@@ -22,7 +22,7 @@ export const styles = {
     }),
     singleValue: (provided) => ({
         ...provided,
-        fontSize: '0.875rem',
+        fontSize: '1rem',
         textTransform: 'capitalize',
 
     }),

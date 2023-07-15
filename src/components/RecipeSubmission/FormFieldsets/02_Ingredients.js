@@ -139,7 +139,7 @@ function IngredientsFieldset({ assets, fields }) {
                     )}
                 </Droppable>
             </DragDropContext>
-            <Button onClick={() => append(INGR_SCHEMA)} fullWidth variant='outline' appearance='secondary'>
+            <Button onClick={() => append(INGR_SCHEMA)} fullWidth uppercase variant='outline' appearance='secondary'>
                 + Add New Ingredient
             </Button>
         </>
