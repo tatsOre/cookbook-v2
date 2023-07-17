@@ -19,8 +19,8 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
         }
     },
     DESCRIPTION: {
-        DESC: 'Provide a brief overview or summary of your recipe. Include any unique features, flavors, or highlights that make it special.',
-        LABEL: 'Description',
+        DESC: 'Include any unique features, flavors, or highlights that make it special.',
+        LABEL: 'Summary',
         NAME: 'description',
         PLACEHOLDER: 'e.g. This aromatic curry combines tender chicken, vibrant vegetables, and a rich blend of Thai spices...',
         RULES: {
@@ -28,8 +28,8 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
         }
     },
     MAIN_INGR: {
-        DESC: 'The description for the field Main Ingredient',
-        LABEL: 'Main ingredient',
+        DESC: '',
+        LABEL: 'What is the main ingredient of your dish?',
         NAME: 'mainIngredient',
         PLACEHOLDER: 'e.g. Passion Fruit',
         RULES: {
@@ -37,7 +37,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
         }
     },
     SERVINGS: {
-        DESC: 'The description for the field Serving',
+        DESC: '',
         LABEL: 'Servings',
         NAME: 'servings',
         RULES: {
@@ -46,7 +46,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
     },
     TIME: {
         COOK: {
-            DESC: 'The description for the field Cook.Time',
+            DESC: '',
             LABEL: 'Cook time',
             NAME: 'time.cook', // (*)Added `time` field name.
             RULES: {
@@ -54,7 +54,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
             }
         },
         PREP: {
-            DESC: 'The description for the field Cook.Prep',
+            DESC: '',
             LABEL: 'Prep. time',
             NAME: 'time.prep', // (*)Added `time` field name.
             RULES: {

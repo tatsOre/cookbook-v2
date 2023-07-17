@@ -161,4 +161,5 @@ $font-size-24: 1.5rem;
 @mixin main--wrapper {
     max-width: $max-width;
     margin: 6rem auto 0;
+    padding-block-end: 2rem;
 }

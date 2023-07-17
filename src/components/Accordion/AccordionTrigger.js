@@ -27,7 +27,7 @@ function AccordionTrigger(props) {
             {...rest}
         >
             <span>{children}</span>
-            <IconPlus size={30} strokeWidth={1.5} />
+            <IconPlus size={30} />
         </UnstyledButton>
     )
 }

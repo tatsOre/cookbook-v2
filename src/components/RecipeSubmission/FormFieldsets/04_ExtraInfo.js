@@ -109,7 +109,7 @@ function ExtraInfoFieldset({ fields }) {
                             className={styles['button__icon--delete']}
                             onClick={onDeleteFileHandler}
                         >
-                            <IconTrash size={20} />
+                            <IconTrash size={20} strokeWidth={1.5} />
                         </UnstyledButton>
 
                     </div>

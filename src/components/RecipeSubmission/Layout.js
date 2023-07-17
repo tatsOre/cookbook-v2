@@ -1,11 +1,11 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
-import Alert from "../Alert"
 import Button from "../Button"
 import Nav from "../Box/Nav"
 import NavLink from "../Button/NavLink"
 
 import styles from './styles.module.scss'
+import UnstyledButton from "../Button/UnstyledButton"
 
 function Layout({ children }) {
     const router = useRouter()
@@ -14,42 +14,34 @@ function Layout({ children }) {
         <>
             <header>
                 <Nav>
-                    <Button variant='outline' appearance='secondary'>iii</Button>
+                    <UnstyledButton variant='outline' appearance='secondary'>iii</UnstyledButton>
+
                     <Link href='/' passHref legacyBehavior>
-                        <NavLink variant='outline' appearance='secondary' label="Cookbook" uppercase />
+                        <UnstyledButton>Cookbook</UnstyledButton>
                     </Link>
 
-                    <Button
-                        onClick={() => router.back()} u
-                        ppercase
+                    <UnstyledButton
+                        onClick={() => router.back()}
                         style={{ marginLeft: 'auto' }}
-                        variant='outline'
-                        appearance='secondary'
                     >
                         Cancel
-                    </Button>
+                    </UnstyledButton>
 
-                    <Button
-                        variant='outline'
-                        appearance='secondary'
+                    <UnstyledButton
                         form="submit-recipe-form"
                         type='submit'
-                        uppercase
                     >
-                        Save Recipe
-                    </Button>
+                        Save
+                    </UnstyledButton>
                 </Nav>
             </header>
 
             <main className={styles['recipe__form--wrapper']}>
-                <Alert
-                    style={{ marginBottom: '1rem' }}
-                    appearance="info" title="* Note:" variant="outline">
-                    An asterisk indicates that the field is required.
-                </Alert>
+                <p style={{ paddingInline: '1.5rem', paddingBlockEnd: '1.25rem', fontSize: '0.825rem' }}>
+                    <b>* Note:</b> An asterisk indicates that the field is required.
+                </p>
                 {children}
             </main>
-
         </>
     )
 }

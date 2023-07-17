@@ -10,7 +10,6 @@ export const styles = {
         zIndex: 9999,
         fontFamily: 'inherit',
         color: 'black',
-        fontSize: '1rem',
         textTransform: 'capitalize'
     }),
     menu: (provided) => ({
@@ -22,7 +21,6 @@ export const styles = {
     }),
     singleValue: (provided) => ({
         ...provided,
-        fontSize: '1rem',
         textTransform: 'capitalize',
 
     }),
@@ -35,16 +33,17 @@ export const styles = {
         ...provided,
         cursor: 'pointer',
         marginTop: '0.5rem',
+        paddingLeft: '0.5rem',
         border: '1px solid black',
-
+        borderRadius: '2px',
+        fontSize: '1rem'
     }),
     option: (provided) => ({
         ...provided,
         cursor: 'pointer'
     }),
     placeholder: (provided) => ({
-        ...provided,
-        fontSize: '1rem',
+        ...provided
     }),
 }
 

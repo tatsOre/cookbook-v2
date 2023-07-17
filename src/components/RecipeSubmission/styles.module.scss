@@ -5,8 +5,8 @@
 /* Form & Accordion Layout
 ============================ */
 .recipe__form--wrapper {
-    background-color: g.$color-warm-grey-100;
     @include g.main--wrapper;
+    background-color: g.$color-warm-grey-100;
 
     /** Accordion Trigger / Form Fieldset Headings: */
     [data-accordion-trigger] {
@@ -19,12 +19,6 @@
         font-stretch: 125%;
         font-weight: 900;
 
-        &:focus {
-            background-color: g.$color-rich-black;
-            color: g.$color-white;
-            background-color: g.$color-rich-black;
-        }
-
         &[data-active="true"] {
             background-color: g.$color-white;
         }
@@ -36,6 +30,12 @@
                 background-color: g.$color-rich-black;
                 letter-spacing: 1px;
             }
+
+            &:focus {
+                background-color: g.$color-rich-black;
+                color: g.$color-white;
+                background-color: g.$color-rich-black;
+            }
         }
     }
 
@@ -43,6 +43,10 @@
     [data-accordion-content],
     [data-accordion-trigger] {
         padding-inline: calc(0.75rem + 1.5625vw);
+    }
+
+    [data-accordion-content] {
+        background-color: g.$color-warm-grey-100;
     }
 }
 
@@ -94,6 +98,7 @@
 
             .button__drag--handler {
                 @include button.icon--button;
+                margin-inline-start: -0.65rem;
             }
 
             .ingredient__item--wrapper {
@@ -136,17 +141,8 @@
         margin-block-start: 1rem;
     }
 
-    /** 1024px and above: */
     @media only screen and (min-width: 540px) {
         .ingredient__item--wrapper {
-
-            &>div:nth-child(1) {
-                flex-basis: 20%;
-            }
-
-            &>div:nth-child(2) {
-                flex: 1;
-            }
 
             /** Ingredient measure input: */
             &>div:nth-child(3) {
@@ -184,7 +180,7 @@
             }
 
             .ingredient__item--wrapper {
-                gap: 0.65rem;
+                gap: 0.5rem;
                 flex-wrap: nowrap;
 
                 [data-input-wrapper] {
@@ -198,11 +194,11 @@
                 }
 
                 &>div:nth-child(2) {
-                    flex: 1 0 110px;
+                    flex: 1 0 125px;
                 }
 
                 &>div:nth-child(3) {
-                    flex: 1 0 140px;
+                    flex: 1 0 125px;
                 }
             }
         }

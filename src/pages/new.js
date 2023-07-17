@@ -98,7 +98,7 @@ function Page() {
                     mainIngredient: 'test',
                     'ingredients': RECIPE_SCHEMA.ingredients,
                     'instructions': RECIPE_SCHEMA.instructions,
-                    'photo': 'https://res.cloudinary.com/dshl3pgv4/image/upload/v1634436530/cookbook/36f888d8a2ce3b4a1448563f1eb9b53d_hq3nu7.jpg'
+                    'photo': 'https://res.cloudinary.com/dshl3pgv4/image/upload/v1634437184/cookbook/biscuits_jpefsv.jpg'
                 }}
                 assets={ASSETS} />
         </RecipeSubmission.Layout>

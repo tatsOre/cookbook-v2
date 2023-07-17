@@ -33,7 +33,7 @@ function InstructionItem(props) {
                 className={styles['button__icon--delete']}
                 onClick={() => onRemove(index)}
             >
-                <IconTrash size={20} />
+                <IconTrash size={20} strokeWidth={1.5} />
             </UnstyledButton>
         </li>
     )
