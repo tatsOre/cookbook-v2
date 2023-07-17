@@ -16,7 +16,7 @@ $color-primary-base: #5872f7;
 $color-primary-hover: #FBAF85;
 $color-primary-shade: color.scale($color-primary-base, $lightness: 95%);
 
-$color-danger-base: #FA5252;
+$color-danger-base: tomato;
 $color-danger-shade: color.scale($color-danger-base, $lightness: 95%);
 $color-danger-hover: color.scale($color-danger-base, $lightness: -30%);
 
@@ -60,7 +60,7 @@ $breakpoint-xlarge: 1280px;
 $breakpoint-2xlarge: 1536px;
 
 /** TYPOGRAPHY */
-$font-accent: 'Mona Sans';
+$font-accent: 'Mona Sans', sans-serif;
 $font-base: 'Chivo', sans-serif;
 
 $line-height-base: 1.5;
@@ -89,7 +89,7 @@ $font-size-24: 1.5rem;
 
 @mixin caption {
     font-size: $font-size-14;
-    line-height: $line-height-headline;
+    line-height: $line-height-base;
     font-weight: normal;
 }
 
@@ -104,9 +104,10 @@ $font-size-24: 1.5rem;
 @mixin font--button {
     font-size: $font-size-14;
     line-height: $line-height-base;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 0.125rem;
-    font-family: $font-base;
+    font-family: 'Mona Sans';
+    font-stretch: 105%;
 }
 
 @mixin headline--1 {

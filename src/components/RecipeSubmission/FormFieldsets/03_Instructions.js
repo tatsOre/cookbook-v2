@@ -1,9 +1,8 @@
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
 import Button from '../../Button'
-import UnstyledButton from '../../Button/UnstyledButton'
+import DeleteButton from '@/components/Button/DeleteButton'
 import TextareaInput from '../../Form/TextareaInput'
-import { IconTrash } from '@/components/Icon'
 
 import styles from '../styles.module.scss'
 
@@ -29,12 +28,10 @@ function InstructionItem(props) {
                     required: TEXT_ATTRS.RULES.REQUIRED
                 })}
             />
-            <UnstyledButton
+            <DeleteButton
                 className={styles['button__icon--delete']}
                 onClick={() => onRemove(index)}
-            >
-                <IconTrash size={20} strokeWidth={1.5} />
-            </UnstyledButton>
+            />
         </li>
     )
 }
@@ -81,8 +78,8 @@ function InstructionsFieldset({ fields }) {
                 />
             ) : null}
             <ul className={styles.instructions__list}>{listItems}</ul>
-            <Button onClick={onAppendHandler} uppercase fullWidth variant='outline' appearance='secondary'>
-                + Add New Step
+            <Button onClick={onAppendHandler}>
+                + Add new step
             </Button>
         </>
     )

@@ -12,13 +12,6 @@ export const BUTTON_APPEARANCES = {
     SUCCESS: 'success'
 }
 
-export const BUTTON_VARIANTS = {
-    FILLED: 'filled',
-    LIGHT: 'light',
-    OUTLINE: 'outline',
-    TEXT: 'text'
-}
-
 /**
  * This component accepts all the HTML Button attributes
  * @returns   React Component
@@ -36,7 +29,6 @@ function Button(props) {
         leftIcon,
         rightIcon,
         uppercase,
-        variant,
         ...rest
     } = props
 
@@ -44,16 +36,18 @@ function Button(props) {
         className,
         styles.button,
         styles[`button--${appearance}`],
-        styles[`button--${variant}`],
         compact && styles['button--compact'],
-        fullWidth && styles['button--full']
+        fullWidth && styles['button--full'],
+        typeof children !== 'string' && styles['action--button']
     ])
 
     return (
         <UnstyledButton
             className={classes}
             disabled={disabled || isProcessing}
-            {...rest}>
+            style={{ textTransform: uppercase ? 'uppercase' : undefined }}
+            {...rest}
+        >
             {leftIcon && (
                 <span
                     aria-hidden="true"
@@ -65,12 +59,7 @@ function Button(props) {
                     {leftIcon}
                 </span>
             )}
-            {<span
-                className={cx([styles['button--label']])}
-                style={{ textTransform: uppercase ? 'uppercase' : undefined }}
-            >
-                {children}
-            </span>}
+            {<span>{children}</span>}
             {rightIcon && (
                 <span
                     aria-hidden="true"
@@ -87,8 +76,7 @@ function Button(props) {
 }
 
 Button.defaultProps = {
-    appearance: BUTTON_APPEARANCES.PRIMARY,
-    variant: BUTTON_VARIANTS.FILLED,
+    appearance: BUTTON_APPEARANCES.PRIMARY
 }
 
 Button.propTypes = {

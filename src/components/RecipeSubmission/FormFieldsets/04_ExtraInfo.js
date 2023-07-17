@@ -7,11 +7,11 @@ import Alert from '@/components/Alert'
 import { FileInput } from '@/components/Form'
 import TextareaInput from '../../Form/TextareaInput'
 import { IconCloudUpload, IconTrash } from '@/components/Icon'
-import UnstyledButton from '@/components/Button/UnstyledButton'
 import { getImageSrc } from '@/components/utils/file'
 import cx from '@/components/utils/cx'
 
 import styles from '../styles.module.scss'
+import DeleteButton from '@/components/Button/DeleteButton'
 
 function ExtraInfoFieldset({ fields }) {
     const { PHOTO, COMMENTS } = fields
@@ -105,13 +105,10 @@ function ExtraInfoFieldset({ fields }) {
                             alt="Picture of the dish"
                         />
 
-                        <UnstyledButton
+                        <DeleteButton
                             className={styles['button__icon--delete']}
                             onClick={onDeleteFileHandler}
-                        >
-                            <IconTrash size={20} strokeWidth={1.5} />
-                        </UnstyledButton>
-
+                        />
                     </div>
                 ) : null}
             </div>

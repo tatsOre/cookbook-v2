@@ -76,7 +76,7 @@ header {
     top: 0;
     z-index: 1;
     background-color: #FFFFFF;
-    border-bottom: 2px solid black;
+    border: 2px solid black;
     height: 55px;
 }
 
@@ -88,24 +88,24 @@ header {
     text-transform: uppercase;
     font-weight: 500;
     letter-spacing: 0.75px;
-    padding-inline: 1.5rem;
+    padding-inline: 1.75rem;
     height: 100%;
     font-size: 0.9rem;
-
 }
 
 .nav__bar a {
     display: inline-block;
-
 }
 
 .nav__bar button:hover,
 .nav__bar a:hover {
-    background-color: rgb(34, 35, 27);
-    color: white;
     border-radius: 0px;
+    text-decoration: wavy underline;
 }
 
+.nav__bar button:last-child {
+    background-color: rgb(255, 221, 0);
+}
 
 .nav__bar button:not(:last-child) {
     border-right: 2px solid black;

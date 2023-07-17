@@ -1,4 +1,3 @@
-@use "sass:color";
 @use '../../styles/globals.module.scss' as g;
 
 $button-border-radius: 2px;
@@ -8,10 +7,19 @@ $button-border-radius: 2px;
     min-width: 40px;
     display: grid;
     place-content: center;
+    padding: 0rem;
+
 
     @media only screen and (min-width: g.$breakpoint-medium) {
         min-height: 48px;
         min-width: 48px;
+    }
+
+    @media (hover: hover) {
+        &__hover:hover:not([disabled]):not([aria-disabled="true"]) {
+            transform: translate(-0.25rem, -0.25rem);
+            box-shadow: 0.25rem 0.25rem 0 g.$color-rich-black;
+        }
     }
 }
 
@@ -27,7 +35,6 @@ $button-border-radius: 2px;
     border: none;
     color: inherit;
     outline: none;
-    border-radius: $button-border-radius;
 
     &:disabled {
         cursor: not-allowed;
@@ -35,17 +42,22 @@ $button-border-radius: 2px;
     }
 }
 
+/** Buttons without label: **/
+.action--button {
+    @include icon--button;
+}
+
 /** Styled Buttons with label: **/
 .button {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid transparent;
     padding: 0.75rem 1rem;
-
-    &--label {
-        @include g.font--button;
-    }
+    border-radius: $button-border-radius;
+    background-color: g.$color-white;
+    border: solid 1px g.$color-rich-black;
+    transition: all 0.15s ease-out 0s;
+    @include g.font--button;
 
     &--compact {
         padding: 0.3rem 0.5rem;
@@ -69,121 +81,15 @@ $button-border-radius: 2px;
             margin-inline-start: 0.5rem;
         }
     }
-}
 
-/** Button Variants: */
-// Todo: implement 'text' variant, 'success' appearance & mixin
-
-.button {
-    &--filled#{&}--primary {
-        color: g.$color-white;
-        background-color: g.$color-primary-base;
-        border-color: g.$color-primary-base;
-
-        @media (hover: hover) {
-            &:hover:not([disabled]) {
-                background-color: g.$color-primary-hover;
-                border-color: g.$color-primary-hover;
-            }
-        }
-    }
-
-    &--outline#{&}--primary {
-        color: g.$color-primary-hover;
-        background-color: g.$color-white;
-        border-color: g.$color-primary-hover;
-
-        @media (hover: hover) {
-            &:hover:not([disabled]) {
-                background-color: g.$color-primary-shade;
-            }
-        }
-    }
-
-    &--light#{&}--primary {
-        color: g.$color-primary-base;
-        background-color: g.$color-primary-shade;
-        border-color: g.$color-primary-shade;
-
-        @media (hover: hover) {
-            &:hover:not([disabled]) {
-                background-color: color.scale(g.$color-primary-base, $lightness: 90%);
-                border-color: color.scale(g.$color-primary-base, $lightness: 90%);
-            }
-        }
-    }
-
-    &--filled#{&}--secondary {
-        color: g.$color-white;
-        background-color: g.$color-rich-black;
-        border-color: g.$color-rich-black;
-
-        &:hover:not([disabled]) {
-            background-color: g.$color-smoke-gray;
-            border-color: g.$color-smoke-gray;
-        }
-    }
-
-    &--outline#{&}--secondary {
-        color: g.$color-rich-black;
-        background-color: g.$color-white;
-        border-color: g.$color-rich-black;
-
-        @media (hover: hover) {
-            &:hover:not([disabled]) {
-                background-color: g.$color-cool-grey-100;
-            }
-        }
-    }
-
-    &--light#{&}--secondary {
-        color: g.$color-rich-black;
-        background-color: g.$color-cool-grey-100;
-        border-color: g.$color-cool-grey-100;
-
-        @media (hover: hover) {
-            &:hover:not([disabled]) {
-                background-color: color.scale(g.$color-rich-black, $lightness: 90%);
-                border-color: color.scale(g.$color-rich-black, $lightness: 90%);
-            }
-        }
-    }
-
-    &--filled#{&}--danger {
-        color: g.$color-white;
+    &--danger {
         background-color: g.$color-danger-base;
-        border-color: g.$color-danger-base;
-
-        @media (hover: hover) {
-            &:hover:not([disabled]) {
-                background-color: g.$color-danger-hover;
-                border-color: g.$color-danger-hover;
-            }
-        }
     }
 
-    &--outline#{&}--danger {
-        color: g.$color-danger-base;
-        background-color: g.$color-white;
-        border-color: g.$color-danger-base;
-
-        @media (hover: hover) {
-            &:hover:not([disabled]) {
-                background-color: g.$color-danger-shade;
-            }
-        }
-    }
-
-    &--light#{&}--danger {
-        color: g.$color-danger-base;
-        background-color: g.$color-danger-shade;
-        border-color: g.$color-danger-shade;
-
-        @media (hover: hover) {
-            &:hover:not([disabled]) {
-                background-color: color.scale(g.$color-danger-base, $lightness: 90%);
-                border-color: color.scale(g.$color-danger-base, $lightness: 90%);
-            }
+    @media (hover: hover) {
+        &:hover:not([disabled]):not([aria-disabled="true"]) {
+            transform: translate(-0.25rem, -0.25rem);
+            box-shadow: 0.25rem 0.25rem 0 g.$color-rich-black;
         }
     }
 }

@@ -17,14 +17,14 @@ function Layout({ children }) {
                     <UnstyledButton variant='outline' appearance='secondary'>iii</UnstyledButton>
 
                     <Link href='/' passHref legacyBehavior>
-                        <UnstyledButton>Cookbook</UnstyledButton>
+                        <UnstyledButton>My Cookbook</UnstyledButton>
                     </Link>
 
                     <UnstyledButton
                         onClick={() => router.back()}
                         style={{ marginLeft: 'auto' }}
                     >
-                        Cancel
+                        go back
                     </UnstyledButton>
 
                     <UnstyledButton

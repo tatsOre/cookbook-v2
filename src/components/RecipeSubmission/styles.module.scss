@@ -84,7 +84,7 @@
 /* 02. Ingredients Fieldset
 ============================ */
 .ingredients__fieldset {
-    padding-block: 1rem;
+    padding-block: 1.5rem;
 
     .ingredients__list {
 
@@ -106,9 +106,7 @@
                 order: 3;
             }
 
-            .button__icon--delete {
-                @include button.icon--button;
-            }
+            .button__icon--delete {}
         }
 
         .ingredient__item--wrapper {
@@ -174,8 +172,6 @@
                     order: 3;
                     margin-block-start: 8px;
                     margin-inline-start: 8px;
-                    background-color: g.$color-white;
-                    border: 1px solid g.$color-rich-black;
                 }
             }
 
@@ -208,7 +204,7 @@
 /* 03. Instructions Fieldset
 ============================ */
 .instructions__fieldset {
-    padding-block: 1.5rem;
+    padding: 1.75rem 1.5rem 1.5rem;
 
     .instructions__list {
         &--item {
@@ -221,9 +217,9 @@
 
             .button__icon--delete {
                 position: absolute;
-                top: -1rem;
-                right: -0.5rem;
-                @include button.icon--button;
+                top: -1.25rem;
+                right: 0;
+                padding: 0;
             }
 
             &:not(:first-of-type) {
@@ -271,7 +267,7 @@
             // File input with drag and drop feature:
             .box.advanced--upload {
                 background-color: g.$color-white;
-                outline: 2px dashed g.$color-rich-black;
+                outline: 1px dashed g.$color-rich-black;
                 outline-offset: -10px;
                 padding-block: 2rem;
                 -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
@@ -348,7 +344,6 @@
 
             button {
                 position: absolute;
-                @include button.icon--button;
                 background-color: g.$color-white;
                 border: 1px solid g.$color-rich-black;
             }

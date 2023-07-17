@@ -1,6 +1,6 @@
 import React from "react"
 import cx from "../utils/cx"
-import { BUTTON_APPEARANCES, BUTTON_VARIANTS } from "."
+import { BUTTON_APPEARANCES } from "."
 
 import styles from './styles.module.scss'
 
@@ -20,8 +20,7 @@ const NavLink = React.forwardRef((props, ref) => {
     const classes = cx([
         className,
         styles.button,
-        styles[`button--${appearance}`],
-        styles[`button--${variant}`]
+        styles[`button--${appearance}`]
     ])
 
     return (
@@ -39,7 +38,6 @@ const NavLink = React.forwardRef((props, ref) => {
 
 NavLink.defaultProps = {
     appearance: BUTTON_APPEARANCES.PRIMARY,
-    variant: BUTTON_VARIANTS.FILLED,
 }
 
 export default NavLink

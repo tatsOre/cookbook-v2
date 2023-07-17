@@ -8,10 +8,10 @@ import NumberInput from '../../Form/NumberInput'
 import TextInput from '../../Form/TextInput'
 import SelectInput from '../../Select'
 import UnstyledButton from '../../Button/UnstyledButton'
-import { IconGridDots, IconMenuOrder, IconTrash } from '@/components/Icon'
+import DeleteButton from '@/components/Button/DeleteButton'
+import { IconMenuOrder } from '@/components/Icon'
 
 import styles from '../styles.module.scss'
-
 
 function IngredientsFieldset({ assets, fields }) {
     const {
@@ -103,12 +103,11 @@ function IngredientsFieldset({ assets, fields }) {
                             />
                         </div>
 
-                        <UnstyledButton
+                        <DeleteButton
+                            ariaLabel="remove ingredient item"
                             className={styles['button__icon--delete']}
                             onClick={() => remove(index)}
-                        >
-                            <IconTrash size={20} strokeWidth={1.5} />
-                        </UnstyledButton>
+                        />
                     </DroppableList.Item>
                 )}
             </Draggable>
@@ -139,8 +138,8 @@ function IngredientsFieldset({ assets, fields }) {
                     )}
                 </Droppable>
             </DragDropContext>
-            <Button onClick={() => append(INGR_SCHEMA)} fullWidth uppercase variant='outline' appearance='secondary'>
-                + Add New Ingredient
+            <Button onClick={() => append(INGR_SCHEMA)}>
+                + Add new ingredient
             </Button>
         </>
     )
