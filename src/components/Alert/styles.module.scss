@@ -48,7 +48,7 @@
 
     &--light#{&}--danger {
         background-color: g.$color-danger-shade;
-        border-color: g.$color-danger-shade;
+        border-color: g.$color-danger-base;
 
         .alert__heading {
             color: g.$color-danger-base;

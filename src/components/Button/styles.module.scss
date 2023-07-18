@@ -2,17 +2,20 @@
 
 $button-border-radius: 2px;
 
+@mixin size($size) {
+    height: $size;
+    width: $size;
+    min-height: $size;
+    min-width: $size;
+}
+
 @mixin icon--button {
-    min-height: 40px;
-    min-width: 40px;
+    @include size($size: 40px);
     display: grid;
     place-content: center;
-    padding: 0rem;
-
 
     @media only screen and (min-width: g.$breakpoint-medium) {
-        min-height: 48px;
-        min-width: 48px;
+        @include size($size: 50px);
     }
 
     @media (hover: hover) {
@@ -42,31 +45,28 @@ $button-border-radius: 2px;
     }
 }
 
-/** Buttons without label: **/
-.action--button {
-    @include icon--button;
-}
-
 /** Styled Buttons with label: **/
 .button {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 0.75rem 1rem;
     border-radius: $button-border-radius;
     background-color: g.$color-white;
     border: solid 1px g.$color-rich-black;
     transition: all 0.15s ease-out 0s;
     @include g.font--button;
 
-    &--compact {
-        padding: 0.3rem 0.5rem;
-
-        span.button--label {}
-    }
 
     &--full {
         width: 100%;
+    }
+
+    &--compact {
+        padding: 0.3rem 0.5rem;
+    }
+
+    &--wide {
+        padding: 0.75rem 1rem;
     }
 
     span.icon__container {
@@ -92,4 +92,9 @@ $button-border-radius: 2px;
             box-shadow: 0.25rem 0.25rem 0 g.$color-rich-black;
         }
     }
+}
+
+/** Buttons without label: **/
+.action--button {
+    @include icon--button;
 }

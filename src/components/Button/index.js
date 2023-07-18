@@ -38,7 +38,7 @@ function Button(props) {
         styles[`button--${appearance}`],
         compact && styles['button--compact'],
         fullWidth && styles['button--full'],
-        typeof children !== 'string' && styles['action--button']
+        typeof children !== 'string' ? styles['action--button'] : styles['button--wide']
     ])
 
     return (

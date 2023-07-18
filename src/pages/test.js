@@ -77,6 +77,20 @@ export default function Home() {
 
                 <hr />
                 <hr />
+                <Alert appearance="danger" title="Error">
+                    This is danger, I am danger. <a href='/'>Follow the rabbit.</a>
+                </Alert>
+                <Alert appearance="danger" title="Error" variant="outline">Hakuna Matata</Alert>
+                <Alert appearance="danger" title="Error" variant="light" removable>Hey!</Alert>
+
+                <Alert appearance="success" title="Success" removable>This is success, I am success.</Alert>
+                <Alert appearance="success" title="Success" variant="outline">Hakuna Matata</Alert>
+                <Alert appearance="success" title="Success" variant="light">Hey!</Alert>
+
+                <Alert appearance="info" title="Info">This is info, I am Info.</Alert>
+                <Alert appearance="info" title="Info" variant="outline" removable>Hakuna Matata</Alert>
+                <Alert appearance="info" title="Info" variant="light">Hey!</Alert>
+
                 <div>
                     <IconAlertCircle />
                     <IconArrowDownRight />
@@ -109,20 +123,3 @@ export default function Home() {
         </>
     )
 }
-
-/**
-                <Alert appearance="danger" title="Error">
-                    This is danger, I am danger. <a href='/'>Follow the rabbit.</a>
-                </Alert>
-                <Alert appearance="danger" title="Error" variant="outline">Hakuna Matata</Alert>
-                <Alert appearance="danger" title="Error" variant="light" removable>Hey!</Alert>
-
-                <Alert appearance="success" title="Success" removable>This is success, I am success.</Alert>
-                <Alert appearance="success" title="Success" variant="outline">Hakuna Matata</Alert>
-                <Alert appearance="success" title="Success" variant="light">Hey!</Alert>
-
-                <Alert appearance="info" title="Info">This is info, I am Info.</Alert>
-                <Alert appearance="info" title="Info" variant="outline" removable>Hakuna Matata</Alert>
-                <Alert appearance="info" title="Info" variant="light">Hey!</Alert>
-
- */

@@ -45,9 +45,11 @@
 }
 
 .input__error {
-    display: inline-block;
     margin-block-start: 0.25rem;
     color: g.$color-danger-base;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.75rem;
 }
 
 .visually-hidden {

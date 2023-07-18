@@ -93,20 +93,18 @@
             flex-flow: row wrap;
             justify-content: space-between;
             background-color: g.$color-white;
-            padding-block: 0.5rem;
-            padding-inline: 0.75rem;
+            padding: 0.75rem;
 
             .button__drag--handler {
                 @include button.icon--button;
-                margin-inline-start: -0.65rem;
+                margin-inline-start: -0.5rem;
+                margin-block-start: -0.5rem;
             }
 
             .ingredient__item--wrapper {
                 flex-basis: 100%;
                 order: 3;
             }
-
-            .button__icon--delete {}
         }
 
         .ingredient__item--wrapper {
@@ -137,6 +135,10 @@
     /** Add new ingredient button: */
     &>button {
         margin-block-start: 1rem;
+
+        @media only screen and (max-width: g.$breakpoint-small) {
+            width: 100%;
+        }
     }
 
     @media only screen and (min-width: 540px) {
@@ -217,9 +219,9 @@
 
             .button__icon--delete {
                 position: absolute;
-                top: -1.25rem;
+                top: -1.2rem;
                 right: 0;
-                padding: 0;
+                @include button.size($size: 42px)
             }
 
             &:not(:first-of-type) {
@@ -231,6 +233,10 @@
     /** Add new step button: */
     &>button {
         margin-block-start: 1rem;
+
+        @media only screen and (max-width: g.$breakpoint-small) {
+            width: 100%;
+        }
     }
 }
 
@@ -344,8 +350,8 @@
 
             button {
                 position: absolute;
-                background-color: g.$color-white;
-                border: 1px solid g.$color-rich-black;
+                top: 0.5rem;
+                left: 0.5rem;
             }
         }
 
