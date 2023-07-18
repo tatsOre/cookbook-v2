@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import cx from '../utils/cx'
 
@@ -8,7 +9,7 @@ import styles from './styles.module.scss'
  * @returns   React Component
  */
 
-function UnstyledButton(props) {
+const UnstyledButton = React.forwardRef((props, ref) => {
     const {
         ariaLabel,
         children,
@@ -23,12 +24,13 @@ function UnstyledButton(props) {
             className={cx([styles.button__base, className])}
             disabled={disabled}
             type={type}
+            ref={ref}
             {...rest}
         >
             {children}
         </button>
     )
-}
+})
 
 UnstyledButton.propTypes = {
     /** If the button triggers new content to appear (e.g.: modals and dropdowns) */

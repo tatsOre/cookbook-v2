@@ -2,39 +2,88 @@
 @use '../../styles/globals.module.scss' as g;
 @use '../Button/styles.module.scss' as button;
 
+/* Non-standard Nav Bar
+============================ */
+.navigation__bar {
+    &> :first-child {
+        border-right: g.$border-default;
+        border-width: 2px;
+    }
+
+    &> :nth-child(3) {
+        margin-left: auto;
+
+        svg {
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+
+        span {
+            display: none;
+        }
+
+        @media only screen and (max-width: g.$breakpoint-small) {
+            span:first-of-type {
+                display: inline;
+            }
+        }
+
+        @media only screen and (min-width: g.$breakpoint-small) {
+            span:last-of-type {
+                display: inline;
+            }
+        }
+    }
+
+    &> :nth-child(3),
+    &> :last-child {
+        border-left: g.$border-default;
+        border-width: 2px;
+    }
+
+    &> :last-child {
+        padding-inline: 2.5rem;
+    }
+
+    &>*:not(:nth-child(2)) {
+        @media (hover: hover) {
+
+            &:hover:not([disabled]),
+            &:focus {
+                background-color: g.$color-accent-yellow;
+            }
+        }
+    }
+}
+
 /* Form & Accordion Layout
 ============================ */
 .recipe__form--wrapper {
     @include g.main--wrapper;
-    background-color: g.$color-warm-grey-100;
 
     /** Accordion Trigger / Form Fieldset Headings: */
     [data-accordion-trigger] {
-        color: g.$color-rich-black;
-        border-top: 2px solid g.$color-rich-black;
-        font-size: calc(1.35rem + 0.390625vw);
-        letter-spacing: 0.1px;
         padding-block: 1.125rem;
-        font-family: 'Mona Sans';
+        border-top: 2px solid g.$color-rich-black;
+        color: g.$color-rich-black;
+        font-size: calc(1.35rem + 0.390625vw);
+        font-family: g.$font-accent;
         font-stretch: 125%;
         font-weight: 900;
+        letter-spacing: 0.1px;
 
         &[data-active="true"] {
             background-color: g.$color-white;
         }
 
         @media (hover: hover) {
-            &:hover:not([disabled]) {
-                background-color: g.$color-rich-black;
-                color: g.$color-white;
-                background-color: g.$color-rich-black;
-                letter-spacing: 1px;
-            }
 
+            &:hover:not([disabled]),
             &:focus {
                 background-color: g.$color-rich-black;
                 color: g.$color-white;
                 background-color: g.$color-rich-black;
+                letter-spacing: 1px;
             }
         }
     }
@@ -296,7 +345,6 @@
                     }
 
                     &:focus+label b {
-                        color: g.$color-primary-base;
                         text-decoration: underline;
                     }
                 }
@@ -310,7 +358,6 @@
                 .box__file+label {
                     display: inline-block;
                     padding: 0.65rem 1.25rem 0.65rem 2.5rem;
-                    background-color: g.$color-primary-base;
 
                     b {
                         color: g.$color-white;
@@ -322,9 +369,7 @@
                         @include g.visually--hidden;
                     }
 
-                    &:hover {
-                        background-color: g.$color-primary-hover;
-                    }
+                    &:hover {}
                 }
 
                 svg {

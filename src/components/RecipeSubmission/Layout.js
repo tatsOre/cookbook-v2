@@ -1,39 +1,35 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
-import Button from "../Button"
-import Nav from "../Box/Nav"
-import NavLink from "../Button/NavLink"
+import useDeviceDetect from "../hooks/useDeviceDetect"
+import UnstyledButton from "../Button/UnstyledButton"
+import NavBar from "../Navigation"
 
 import styles from './styles.module.scss'
-import UnstyledButton from "../Button/UnstyledButton"
+import { IconArrowDownRight, IconArrowForward, IconArrowNarrowRight } from "../Icon"
+import MenuButton from "../Button/MenuButton"
 
 function Layout({ children }) {
     const router = useRouter()
+    const { isMobile } = useDeviceDetect()
 
     return (
         <>
             <header>
-                <Nav>
-                    <UnstyledButton variant='outline' appearance='secondary'>iii</UnstyledButton>
+                <NavBar className={styles.navigation__bar}>
+                    <MenuButton />
 
                     <Link href='/' passHref legacyBehavior>
                         <UnstyledButton>My Cookbook</UnstyledButton>
                     </Link>
 
-                    <UnstyledButton
-                        onClick={() => router.back()}
-                        style={{ marginLeft: 'auto' }}
-                    >
-                        go back
+                    <UnstyledButton onClick={() => router.back()}>
+                        <span><IconArrowForward /></span><span>go back</span>
                     </UnstyledButton>
 
-                    <UnstyledButton
-                        form="submit-recipe-form"
-                        type='submit'
-                    >
+                    <UnstyledButton form="submit-recipe-form" type='submit'>
                         Save
                     </UnstyledButton>
-                </Nav>
+                </NavBar>
             </header>
 
             <main className={styles['recipe__form--wrapper']}>

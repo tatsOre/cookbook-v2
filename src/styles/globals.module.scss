@@ -10,29 +10,28 @@ $color-warm-grey-400: #DEDDD5;
 $color-warm-grey-300: #e9e8e1;
 $color-warm-grey-200: #F2F3EF;
 $color-warm-grey-100: #F8F9F7;
-//#D87D4A
-// $color-primary-base: #5872f7;
-$color-primary-base: #5872f7;
-$color-primary-hover: #FBAF85;
-$color-primary-shade: color.scale($color-primary-base, $lightness: 95%);
-
+$color-accent-yellow: #ffdd00;
 $color-danger-base: tomato;
 $color-danger-shade: color.scale($color-danger-base, $lightness: 95%);
 $color-danger-hover: color.scale($color-danger-base, $lightness: -30%);
-
 $color-success-base: #60bf76;
 $color-success-shade: color.scale($color-success-base, $lightness: 80%);
 $color-success-hover: color.scale($color-success-base, $lightness: -30%);
-
 $color-info-base: $color-smoke-gray;
 $color-info-shade: color.scale($color-info-base, $lightness: 85%);
-
 $color-input-outline: #5872f7;
 
-/** BREAKPOINTS */
+/** BREAKPOINTS & GENERAL */
 
 $max-width: 1100px;
 $page-width: 90%;
+$border-default: 1px solid $color-rich-black;
+$border-radius-default: 2px;
+
+/* Extra small screen devices (450px and below) */
+@media only screen and (max-width: 470px) {}
+
+$breakpoint-extra-small: 470px;
 
 /* Small screen devices (640px and below) */
 @media only screen and (max-width: 640px) {}
@@ -163,4 +162,8 @@ $font-size-24: 1.5rem;
     max-width: $max-width;
     margin: 6rem auto 0;
     padding-block-end: 2rem;
+
+    @media only screen and (max-width: $breakpoint-medium) {
+        margin-block-start: 5rem;
+    }
 }

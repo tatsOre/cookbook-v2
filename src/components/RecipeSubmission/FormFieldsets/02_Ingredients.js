@@ -64,7 +64,8 @@ function IngredientsFieldset({ assets, fields }) {
                     >
                         <UnstyledButton
                             className={styles['button__drag--handler']}
-                            {...provided.dragHandleProps}>
+                            {...provided.dragHandleProps}
+                        >
                             <IconMenuOrder size={32} strokeWidth={1.5} />
                         </UnstyledButton>
 

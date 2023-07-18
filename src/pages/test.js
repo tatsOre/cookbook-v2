@@ -30,6 +30,7 @@ import {
 } from '@/components/Icon'
 
 import IconGridDots from '@/components/Icon/icons/icon-grid-dots'
+import NavBar from '@/components/Navigation'
 
 import Head from 'next/head'
 import Link from 'next/link'
@@ -46,7 +47,61 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
+
             <main>
+            <h2>
+                    Action Buttons:
+                </h2>
+                <Button appearance='danger'>
+                    <IconChefHat />
+                </Button>
+                <h2>
+                    Label Buttons:
+                </h2>
+                <div style={{ display: 'flex', alignItems: 'flex-start', flexFlow: 'row wrap', gap: '1rem', marginBlockEnd: '2rem' }}>
+                    <Button uppercase leftIcon={<IconBookmark size={20} />}>Cancel</Button>
+                    <Button appearance='danger' rightIcon={<IconGridDots size={16} />}>Super Button</Button>
+                    <Button appearance='danger' leftIcon={<IconGridDots size={16} />} rightIcon={<IconGridDots size={16} />}>Button</Button>
+
+                    <Button appearance='secondary' compact leftIcon={<IconCheck size={16} />}>Button</Button>
+                    <Button appearance='secondary' rightIcon={<IconCheck size={16} />} >Button</Button>
+                    <Button appearance='secondary' leftIcon={<IconCheck size={16} />} rightIcon={<IconCheck size={16} />}>Button</Button>
+                </div>
+                <div>
+                    <IconAlertCircle />
+                    <IconArrowDownRight />
+                    <IconArrowRight />
+                    <IconArrowNarrowRight />
+                    <IconArrowForward />
+                    <IconBookmark />
+                    <IconCalendarEvent />
+                    <IconCheck />
+                    <IconCross />
+                    <IconChecklist />
+                    <IconChefHat />
+                    <IconChevronUp />
+                    <IconChevronsUp />
+                    <IconCloudUpload />
+                    <IconDotsVertical />
+                    <IconEqual />
+                    <IconGripVertical />
+                    <IconLoader />
+                    <IconMenuOrder />
+                    <IconMinus />
+                    <IconNotebook />
+                    <IconGridDots />
+                    <IconPlus />
+                    <IconShoppingCartPlus />
+                    <IconTrash />
+                    <IconVerticalEllipsis />
+                </div>
+            </main>
+        </>
+    )
+}
+/**
+ 
                 <Link href="/new">Create recipe</Link>
                 <p style={{ fontSize: '16px', lineHeight: '1.5' }}>The Lorem ipsum text is derived from sections 1.10.32 and 1.10.33 of Cicero's De finibus bonorum et malorum. The physical source may have been the 1914 Loeb Classical Library edition of De finibus, where the Latin text, presented on the left-hand (even) pages, breaks off on page 34 with "Neque porro quisquam est qui do-" and continues on page 36 with "lorem ipsum ...", suggesting that the galley type of that page was mixed up to make the dummy text seen today.
                     <br />
@@ -91,35 +146,5 @@ export default function Home() {
                 <Alert appearance="info" title="Info" variant="outline" removable>Hakuna Matata</Alert>
                 <Alert appearance="info" title="Info" variant="light">Hey!</Alert>
 
-                <div>
-                    <IconAlertCircle />
-                    <IconArrowDownRight />
-                    <IconArrowRight />
-                    <IconArrowNarrowRight />
-                    <IconArrowForward />
-                    <IconBookmark />
-                    <IconCalendarEvent />
-                    <IconCheck />
-                    <IconCross />
-                    <IconChecklist />
-                    <IconChefHat />
-                    <IconChevronUp />
-                    <IconChevronsUp />
-                    <IconCloudUpload />
-                    <IconDotsVertical />
-                    <IconEqual />
-                    <IconGripVertical />
-                    <IconLoader />
-                    <IconMenuOrder />
-                    <IconMinus />
-                    <IconNotebook />
-                    <IconGridDots />
-                    <IconPlus />
-                    <IconShoppingCartPlus />
-                    <IconTrash />
-                    <IconVerticalEllipsis />
-                </div>
-            </main>
-        </>
-    )
-}
+
+ */

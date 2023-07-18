@@ -8,7 +8,7 @@
 .input__label {
     @include g.caption;
     font-weight: 500;
-    font-family: 'Mona Sans';
+    font-family: g.$font-accent;
 }
 
 .input__description {
@@ -21,12 +21,12 @@
     min-height: 48px;
     padding: 0.75rem 1rem;
     margin-block-start: 0.5rem;
-    border: 1px solid g.$color-rich-black;
-    border-radius: 2px;
     color: g.$color-rich-black;
     background-color: g.$color-white;
     font-family: inherit;
     cursor: pointer;
+    border: g.$border-default;
+    border-radius: g.$border-radius-default;
     @include g.body--1;
 
     &::placeholder {
@@ -41,7 +41,6 @@
 .input__box:focus {
     outline: none;
     box-shadow: 0 0 0 1px g.$color-rich-black;
-    border-color: g.$color-rich-black;
 }
 
 .input__error {

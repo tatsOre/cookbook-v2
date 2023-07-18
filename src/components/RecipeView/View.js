@@ -3,9 +3,9 @@ import Link from "next/link"
 import Image from "next/image"
 import Button from "../Button"
 import CheckboxInput from "../Checkbox"
-import Nav from "../Box/Nav"
+
+
 import NavLink from "../Button/NavLink"
-import Alert from "../Alert"
 
 import styles from './styles.module.scss'
 
@@ -40,7 +40,7 @@ function IngredientsSubmission({ items }) {
 
     const selected = checked && checked.filter(ingredient => ingredient.checked)
     const count = selected.length ?? 0
-    const label = `Add ${count ? count : "ALL"} ingredient(s) selected --- soon`
+    const label = `Add ${count ? count : "ALL"} ingredient(s) selected to shopping listt -- soon`
 
     const handleInputChange = (ev) => {
         const updatedState = checked.map((ingredient, index) =>
@@ -89,13 +89,7 @@ function RecipeView({ data }) {
     return (
         <>
             <header>
-                <Nav>
-                    <Button variant='outline' appearance='secondary'>iii</Button>
-                    <Link href='/' passHref legacyBehavior>
-                        <NavLink label="Cookbook" uppercase variant='outline' appearance='secondary' />
-                    </Link>
-                    <Button variant='outline' appearance='secondary'>?</Button>
-                </Nav>
+
             </header>
 
             <main className={styles['recipe__view--wrapper']}>

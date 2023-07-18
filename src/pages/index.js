@@ -30,7 +30,6 @@ export default function Home() {
 
 
                 <section className={styles.cards__section}>
-
                     <article>
                         <header>
                             <Image fill={true} src={photo} />

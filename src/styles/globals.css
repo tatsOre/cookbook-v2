@@ -29,12 +29,12 @@
 html,
 body {
     max-width: 100vw;
-    font-size: 16px;
-    background-color: #F8F9F7;
 }
 
 body {
-    min-height: 100vh
+    min-height: 100vh;
+    font-size: 16px;
+    background-color: #F8F9F7;
 }
 
 h1,
@@ -62,51 +62,9 @@ li {
 a {
     color: inherit;
     text-decoration: none;
+    display: inline-block;
 }
 
 header {
     position: relative;
-}
-
-.nav__bar {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 1;
-    background-color: #FFFFFF;
-    border: 2px solid black;
-    height: 55px;
-}
-
-.nav__bar button,
-.nav__bar a,
-.nav__bar span {
-    font-family: "Mona Sans";
-    font-stretch: extra-expanded;
-    text-transform: uppercase;
-    font-weight: 500;
-    letter-spacing: 0.75px;
-    padding-inline: 1.75rem;
-    height: 100%;
-    font-size: 0.9rem;
-}
-
-.nav__bar a {
-    display: inline-block;
-}
-
-.nav__bar button:hover,
-.nav__bar a:hover {
-    border-radius: 0px;
-    text-decoration: wavy underline;
-}
-
-.nav__bar button:last-child {
-    background-color: rgb(255, 221, 0);
-}
-
-.nav__bar button:not(:last-child) {
-    border-right: 2px solid black;
 }

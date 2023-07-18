@@ -1,0 +1,33 @@
+@use '../../styles/globals.module.scss' as g;
+
+@mixin nav--label {
+    font-family: g.$font-accent;
+    font-stretch: extra-expanded;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.75px;
+    padding-inline: 1.75rem;
+    height: 100%;
+
+    @media only screen and (max-width: g.$breakpoint-extra-small) {
+        padding-inline: 1rem;
+    }
+}
+
+.nav__bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 55px;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: g.$color-white;
+    border: 2px solid g.$color-rich-black;
+
+    button,
+    a {
+        @include nav--label;
+    }
+}

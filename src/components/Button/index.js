@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import UnstyledButton from './UnstyledButton'
 import cx from '../utils/cx'
@@ -17,7 +18,7 @@ export const BUTTON_APPEARANCES = {
  * @returns   React Component
  */
 
-function Button(props) {
+const Button = React.forwardRef((props, ref) => {
     const {
         appearance,
         children,
@@ -46,6 +47,7 @@ function Button(props) {
             className={classes}
             disabled={disabled || isProcessing}
             style={{ textTransform: uppercase ? 'uppercase' : undefined }}
+            ref={ref}
             {...rest}
         >
             {leftIcon && (
@@ -73,7 +75,7 @@ function Button(props) {
             )}
         </UnstyledButton>
     )
-}
+})
 
 Button.defaultProps = {
     appearance: BUTTON_APPEARANCES.PRIMARY

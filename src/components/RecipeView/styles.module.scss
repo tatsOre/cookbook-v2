@@ -81,14 +81,14 @@
 .recipe__view--wrapper {
     @include g.body--1;
     @include g.main--wrapper;
-    width: g.$page-width;;
+    width: g.$page-width;
 
     h1 {
         margin-block-start: 2rem;
         margin-block-end: 1rem;
         @include g.headline--1;
         font-family: 'Mona Sans';
-        font-stretch: 100%;
+        font-stretch: 110%;
         font-weight: 500;
     }
 
@@ -166,10 +166,6 @@
                 width: $size;
                 height: $size;
             }
-
-            .recipe__description {}
-
-            div:last-of-type {}
         }
     }
 
@@ -199,6 +195,7 @@
             font-size: 1rem;
             font-family: 'Mona Sans';
             font-stretch: 90%;
+            letter-spacing: 0.05rem;
             font-style: italic;
             font-weight: 800;
         }
@@ -230,6 +227,7 @@
         padding: 0.75rem 1.5rem;
         margin-block-start: 2rem;
         width: fit-content;
+        border-radius: 2px;
 
         &::after {
             content: '';
@@ -238,12 +236,14 @@
             height: 100%;
             top: 8px;
             left: 8px;
-            background-color: rgb(255, 221, 0);
             z-index: -1;
+            background-color: rgb(255, 221, 0);
+            border-radius: 2px;
         }
 
         h2 {
             margin-bottom: 0.25rem;
+            font-size: 1.5rem;
         }
 
         p {

@@ -12,8 +12,7 @@ function DeleteButton(props) {
         <Button
             className={cx([
                 className,
-                styles['action--button'],
-                styles['action--button__hover']
+                styles['action--button']
             ])}
             ariaLabel={ariaLabel}
             {...rest}>
