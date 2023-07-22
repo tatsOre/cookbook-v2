@@ -78,8 +78,7 @@
 
         @media (hover: hover) {
 
-            &:hover:not([disabled]),
-            &:focus {
+            &:hover:not([disabled]) {
                 background-color: g.$color-rich-black;
                 color: g.$color-white;
                 background-color: g.$color-rich-black;
@@ -119,7 +118,7 @@
         }
 
         [data-input-wrapper]:nth-child(n+3):not(:last-child) {
-            flex-basis: calc(52.25% - calc(0.75rem + 1.5625vw));
+            flex-basis: calc(52% - calc(0.75rem + 1.5625vw));
         }
     }
 
@@ -190,7 +189,7 @@
         }
     }
 
-    @media only screen and (min-width: 540px) {
+    @media only screen and (min-width: g.$breakpoint-small) {
         .ingredient__item--wrapper {
 
             /** Ingredient measure input: */
@@ -211,7 +210,6 @@
                 padding: 0;
 
                 .button__drag--handler {
-                    margin-block-start: 8px;
                     order: 1;
                 }
 
@@ -221,14 +219,18 @@
 
                 .button__icon--delete {
                     order: 3;
-                    margin-block-start: 8px;
                     margin-inline-start: 8px;
+                }
+
+                &:not(:last-child) {
+                    border-bottom: 1px dotted g.$color-cool-grey-400;
+                    padding-block-end: 1rem;
+                    margin-block-end: 1rem;
                 }
             }
 
             .ingredient__item--wrapper {
-                gap: 0.5rem;
-                flex-wrap: nowrap;
+                gap: 0rem 0.5rem;
 
                 [data-input-wrapper] {
                     label {
@@ -237,15 +239,20 @@
                 }
 
                 &>div:nth-child(1) {
-                    flex: 1 0 70px;
+                    flex-basis: 90px;
                 }
 
                 &>div:nth-child(2) {
-                    flex: 1 0 125px;
+                    flex: 1 0 35%;
                 }
 
                 &>div:nth-child(3) {
-                    flex: 1 0 125px;
+                    flex: 1 0 35%;
+                }
+
+                &>div:nth-child(4),
+                &>div:nth-child(5) {
+                    flex: 1 1 calc(50% - 0.5rem);
                 }
             }
         }

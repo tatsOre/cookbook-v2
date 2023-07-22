@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from "next/image"
 import styles from '../components/RecipeView/styles.module.scss'
 
-import { TESTING_VALUES } from './recipe/[id]'
+import { TESTING_VALUES } from './recipes/[id]'
 import { IconArrowNarrowRight } from '@/components/Icon'
 
 export default function Home() {

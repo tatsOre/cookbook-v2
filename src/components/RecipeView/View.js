@@ -8,6 +8,9 @@ import CheckboxInput from "../Checkbox"
 import NavLink from "../Button/NavLink"
 
 import styles from './styles.module.scss'
+import NavBar from "../Navigation"
+import MenuButton from "../Button/MenuButton"
+import UnstyledButton from "../Button/UnstyledButton"
 
 function IngredientItem({ data, ...rest }) {
     const { quantity, fraction, measure, name, prepNote } = data
@@ -40,7 +43,7 @@ function IngredientsSubmission({ items }) {
 
     const selected = checked && checked.filter(ingredient => ingredient.checked)
     const count = selected.length ?? 0
-    const label = `Add ${count ? count : "ALL"} ingredient(s) selected to shopping listt -- soon`
+    const label = `Add ${count ? count : "ALL"} ingredient(s) selected to shopping list -- soon`
 
     const handleInputChange = (ev) => {
         const updatedState = checked.map((ingredient, index) =>
@@ -89,14 +92,29 @@ function RecipeView({ data }) {
     return (
         <>
             <header>
+                <NavBar>
 
+                    <Link href='/' passHref legacyBehavior>
+                        <UnstyledButton>My Cookbook</UnstyledButton>
+                    </Link>
+                    <div style={{ width: '600px', height: '100%' }}>
+                        <input placeholder="Search..." type="search" style={{ width: '600px', height: '100%' }} />
+                    </div>
+
+                    <UnstyledButton onClick={() => router.back()}>
+                        Login
+                    </UnstyledButton>
+
+                </NavBar>
             </header>
 
             <main className={styles['recipe__view--wrapper']}>
                 <div className={styles.recipe__tags}>
                     <span>Recipe under: </span>
                     <ul>
-                        <li key='cuisine-tag'>{cuisine.label}</li>
+                        {cuisine && cuisine.label !== 'other' && (
+                            <li key='cuisine-tag'>{cuisine.label}</li>
+                        )}
                         {categories.map(cat => <li key={`category-${cat._id}`} >{cat.label}</li>)}
                     </ul>
                 </div>

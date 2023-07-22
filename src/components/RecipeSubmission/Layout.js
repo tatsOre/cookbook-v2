@@ -1,16 +1,14 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
-import useDeviceDetect from "../hooks/useDeviceDetect"
 import UnstyledButton from "../Button/UnstyledButton"
 import NavBar from "../Navigation"
+import MenuButton from "../Button/MenuButton"
+import { IconArrowForward } from "../Icon"
 
 import styles from './styles.module.scss'
-import { IconArrowDownRight, IconArrowForward, IconArrowNarrowRight } from "../Icon"
-import MenuButton from "../Button/MenuButton"
 
-function Layout({ children }) {
+function Layout({ children, title }) {
     const router = useRouter()
-    const { isMobile } = useDeviceDetect()
 
     return (
         <>
@@ -33,7 +31,19 @@ function Layout({ children }) {
             </header>
 
             <main className={styles['recipe__form--wrapper']}>
-                <p style={{ paddingInline: '1.5rem', paddingBlockEnd: '1.25rem', fontSize: '0.825rem' }}>
+                <h1 style={{
+                    paddingInline: '1.5rem',
+                    paddingBlockEnd: '1.25rem',
+                    fontSize: '0.825rem'
+                }}>
+                    {title ? `Edit ${title}` : 'New Recipe'}
+                </h1>
+
+                <p style={{
+                    paddingInline: '1.5rem',
+                    paddingBlockEnd: '1.25rem',
+                    fontSize: '0.825rem'
+                }}>
                     <b>* Note:</b> An asterisk indicates that the field is required.
                 </p>
                 {children}

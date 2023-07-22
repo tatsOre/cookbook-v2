@@ -3,7 +3,11 @@ import React from 'react'
 function formSubmissionReducer(state, action) {
     switch (action.type) {
         case 'START': {
-            return { status: 'pending', responseData: null, errorMessage: null }
+            return {
+                status: 'pending',
+                responseData: null,
+                errorMessage: null
+            }
         }
         case 'RESOLVE': {
             return {
@@ -34,9 +38,6 @@ function useFormSubmission({ endpoint, data, method }) {
     const fetchBody = data ? JSON.stringify(data) : null
 
     React.useEffect(() => {
-        console.log('Submitting payload:', fetchBody, 'Endpoint:', endpoint)
-        return // For testing.
-
         if (fetchBody) {
             dispatch({ type: 'START' })
             window
@@ -44,8 +45,10 @@ function useFormSubmission({ endpoint, data, method }) {
                     method: method || 'POST',
                     body: fetchBody,
                     headers: {
-                        'content-type': 'application/json',
+                        "Access-Control-Allow-Credentials": true,
+                        "Content-Type": "application/json",
                     },
+                    credentials: "include",
                 })
                 .then(async response => {
                     const data = await response.json()
@@ -54,6 +57,16 @@ function useFormSubmission({ endpoint, data, method }) {
                     } else {
                         dispatch({ type: 'REJECT', error: data })
                     }
+                })
+                .catch(error => {
+                    process.env.NEXT_PUBLIC_NODE_ENV_FE === "development"
+                        && console.log(error)
+                    dispatch({
+                        type: 'REJECT',
+                        error: {
+                            message: 'An unexpected error has occurred. Please try again.'
+                        }
+                    })
                 })
         }
     }, [fetchBody, endpoint, method])

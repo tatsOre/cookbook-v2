@@ -10,7 +10,8 @@ function InputLabel(props) {
         htmlFor,
         id,
         required,
-        hideInputLabel
+        hideInputLabel,
+        ...rest
     } = props
 
     const classes = cx([
@@ -20,7 +21,7 @@ function InputLabel(props) {
     ])
 
     return (
-        <label htmlFor={htmlFor} id={id} className={classes}>
+        <label htmlFor={htmlFor} id={id} className={classes} {...rest}>
             {children}
             {required && <span aria-hidden>{'*'}</span>}
         </label>)

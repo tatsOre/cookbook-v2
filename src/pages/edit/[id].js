@@ -1,50 +1,6 @@
 import Head from 'next/head'
-
-import { ASSETS } from '../new'
-
-const TESTING_VALUES = {
-    title: 'Mung Beans With Veggies',
-    description: 'With the aid of a pressure cooker, this nourishing and satisfying soup cooks in just 20 minutes. Be sure to follow manufacturer instructions because different generations of pressure cookers require specific techniques.',
-    mainIngredient: 'mung beans',
-    time: {
-        prep: 0,
-        cook: 0,
-        total: 0
-    },
-    photo: '',
-    servings: 4,
-    ingredients: [
-        {
-            quantity: 0,
-            fraction: null,
-            measure: ASSETS.MEASURE_OPTIONS[3],
-            name: "dry mung beans",
-            prepNote: ""
-        },
-        {
-            quantity: 1,
-            fraction: ASSETS.FRACTIONS_OPTIONS[2],
-            measure: ASSETS.MEASURE_OPTIONS[1],
-            name: "ground coriander",
-            prepNote: ""
-        },
-        {
-            quantity: 2,
-            fraction: null,
-            measure: null,
-            name: "large sweet potato or yam",
-            prepNote: "peeled and finely chopped"
-        }
-    ],
-    instructions: [
-        'Soak mung beans in water overnight. Drain.',
-        'Heat oil or ghee in a heavy-bottomed pressure cooker. Sauté onions and garlic over medium heat for 2 to 3 minutes, stirring frequently until onions soften. Add turmeric, cumin, coriander, black pepper, fenugreek, and fennel seeds. Stir constantly over medium heat until spices are aromatic.'
-    ],
-    categories: [ASSETS.CATEGORIES_OPTIONS[0], ASSETS.CATEGORIES_OPTIONS[1]],
-    cuisine: ASSETS.CUISINE_OPTIONS[0],
-    public: true,
-    comments: "Beans can be replaced with red lentils."
-}
+import RecipeSubmission from '@/components/RecipeSubmission'
+import { default as PATHS } from '../../../config'
 
 /**
  * Initial values and assets will come from API.
@@ -52,12 +8,35 @@ const TESTING_VALUES = {
  * @returns Page for Create New Recipe
  */
 
-function Page() {
+export const getServerSideProps = async ({ params }) => {
+    try {
+        const assetsRequest = fetch(PATHS.RECIPE_ASSETS)
+        const recipeRequest = fetch(`${PATHS.RECIPES_ENDPOINT}/${params.id}`)
+        const responses = await Promise.all([assetsRequest, recipeRequest])
+
+        const assets = await responses[0].json()
+        const data = await responses[1].json()
+
+        return { props: { recipe: params.id, assets, data } }
+    } catch (err) {
+        return { notFound: true }
+    }
+}
+
+function Page({ assets, data, recipe }) {
+    console.log(recipe)
     return <>
         <Head>
             <title>Edit Recipe</title>
         </Head>
-        <h1>Edit Page</h1>
+        <RecipeSubmission.Layout title={data?.title}>
+            <RecipeSubmission
+                endpoint={`${PATHS.RECIPES_ENDPOINT}/${recipe}`}
+                data={data}
+                assets={assets}
+                mode='edit'
+            />
+        </RecipeSubmission.Layout>
     </>
 }
 

@@ -32,7 +32,6 @@ export const styles = {
     control: (provided) => ({
         ...provided,
         cursor: 'pointer',
-        marginTop: '0.5rem',
         paddingLeft: '0.5rem',
         border: '1px solid black',
         borderRadius: '2px',
@@ -69,6 +68,7 @@ function SelectInput(props) {
                             aria-describedby={inputProps.describedBy || undefined}
                             options={options}
                             getOptionValue={(option) => `${option['_id']}`}
+                            isClearable
                             inputId={inputProps.id}
                             instanceId={inputProps.id} // removes `id` warning.
                             // https://github.com/JedWatson/react-select/issues/1537
@@ -94,4 +94,9 @@ function SelectInput(props) {
         </Input.Wrapper>
     )
 }
+
+SelectInput.defaultProps = {
+    options: []
+}
+
 export default SelectInput

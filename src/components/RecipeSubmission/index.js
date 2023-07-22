@@ -1,11 +1,12 @@
 import React from "react"
 import dynamic from "next/dynamic"
+import { useRouter } from "next/router"
 import { FormProvider, useForm } from "react-hook-form"
 import useFormSubmission from "../FormSubmission"
 import Accordion from "../Accordion"
 import Alert from "../Alert"
 import Layout from "./Layout"
-
+import LoadingOverlay from "../LoadingOverlay"
 import { deNormalizeData, normalizeData, getFormAccordionState } from "./utils"
 
 const DynamicRecipeForm = dynamic(() => import('./Form')
@@ -13,16 +14,16 @@ const DynamicRecipeForm = dynamic(() => import('./Form')
     { ssr: false }
 )
 
-function RecipeSubmission({ endpoint, method, data, assets, mode }) {
+function RecipeSubmission({ endpoint, data, assets, mode }) {
     const [formData, setFormData] = React.useState(null)
 
-    const [activeFieldsetPanel, setActiveFieldsetPanel] = React.useState(
+    const [activeFieldset, setActiveFieldset] = React.useState(
         ['item-1']
     )
 
     const { status, responseData, errorMessage } = useFormSubmission({
         endpoint,
-        method,
+        method: mode === 'edit' ? 'PATCH' : 'POST',
         data: formData,
     })
 
@@ -30,21 +31,23 @@ function RecipeSubmission({ endpoint, method, data, assets, mode }) {
         defaultValues: mode === 'edit' ? deNormalizeData(data) : data
     })
 
+    const router = useRouter()
+
     React.useEffect(() => {
         methods.setFocus('title')
     }, [methods.setFocus])
 
     const onSubmit = (values) => {
-        // if string, photo did not change, check that.
-        console.log('raw values from onsubmit', values)
+        // If photo || photo did not change:
         if (values.photo?.length > 0 && typeof values.photo !== 'string') {
-            /** If photo file comes from input+event, set 1st value: */
+            // If photo file comes from input+event, set 1st value:
             values.photo = values.photo[0]
         }
         const payload = normalizeData(values)
-        //console.log('onSubmitRecipe', payload)
         setFormData(payload) // submit info
     }
+
+    status === 'resolved' && router.push(`/recipes/${responseData._id}`)
 
     const onErrors = (errors) => {
         const withErrors = getFormAccordionState(errors)
@@ -52,20 +55,23 @@ function RecipeSubmission({ endpoint, method, data, assets, mode }) {
         setActiveFieldsetPanel(newState)
     }
 
-    const onChange = (ev) => {
-        // TODO: Save draft to session storage
-    }
+    // TODO: Save draft to session storage
+    const onChange = (ev) => { }
 
     return (
         <>
             {status === 'rejected' ? (
-                <Alert>{errorMessage}</Alert>
+                <Alert
+                    appearance="danger"
+                    variant='light'
+                    title={errorMessage}
+                    style={{ marginBottom: '1rem' }} />
             ) : null}
+
             <FormProvider {...methods}>
                 <Accordion
-                    active={activeFieldsetPanel}
-                    setActive={setActiveFieldsetPanel}
-                    
+                    active={activeFieldset}
+                    setActive={setActiveFieldset}
                 >
                     <DynamicRecipeForm
                         id="submit-recipe-form"
@@ -76,7 +82,7 @@ function RecipeSubmission({ endpoint, method, data, assets, mode }) {
                 </Accordion>
             </FormProvider>
 
-            {status === 'pending' ? <Spinner /> : null}
+            {status === 'pending' ? <LoadingOverlay /> : null}
         </>
     )
 }

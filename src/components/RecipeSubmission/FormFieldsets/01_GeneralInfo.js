@@ -26,6 +26,9 @@ function GeneralInfoFieldset({ assets, fields }) {
         defaultValues.categories ?? []
     )
 
+    const categoriesOptions = assets?.categories_options ?? []
+    const cuisineOptions = assets?.cuisine_options ?? []
+
     const categoriesLeft = `(${3 - selectedCategories.length} left)`
 
     return (
@@ -77,12 +80,12 @@ function GeneralInfoFieldset({ assets, fields }) {
             <SelectInput
                 label={CUISINE.LABEL}
                 name={CUISINE.NAME}
-                options={assets.CUISINE_OPTIONS}
+                options={cuisineOptions}
             />
 
             {/** TODO: */}
             <div data-input-wrapper="categories">
-                <Input.Label htmlFor="cat-select" >
+                <Input.Label htmlFor="cat-select" style={{ marginBlockEnd: '0.4rem' }}>
                     {CATEGORIES.LABEL}
                 </Input.Label>
                 <span style={{ fontSize: '12px' }}>. {CATEGORIES.DESC} {categoriesLeft}</span>
@@ -95,7 +98,7 @@ function GeneralInfoFieldset({ assets, fields }) {
                             isClearable
                             className="react-select-container"
                             defaultValue={selectedCategories}
-                            options={assets.CATEGORIES_OPTIONS}
+                            options={categoriesOptions}
                             onChange={(ev) => { setSelectedCategories(ev); onChange(ev) }}
                             getOptionValue={(option) => `${option['_id']}`}
                             isOptionDisabled={() => selectedCategories.length > 2}

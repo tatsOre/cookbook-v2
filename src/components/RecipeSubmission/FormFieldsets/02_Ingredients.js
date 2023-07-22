@@ -9,7 +9,7 @@ import TextInput from '../../Form/TextInput'
 import SelectInput from '../../Select'
 import UnstyledButton from '../../Button/UnstyledButton'
 import DeleteButton from '@/components/Button/DeleteButton'
-import { IconMenuOrder } from '@/components/Icon'
+import { IconGripVertical } from '@/components/Icon'
 
 import styles from '../styles.module.scss'
 
@@ -46,6 +46,9 @@ function IngredientsFieldset({ assets, fields }) {
         move(source.index, destination.index)
     }
 
+    const measureOptions = assets?.measure_options ?? []
+    const fractionOptions = assets?.fraction_options ?? []
+
     const ingrListItems = ingredients.map((ingr, index) => {
         const ingrNameFieldError = errors[INGS_NAME]
             && errors[INGS_NAME][index]
@@ -66,7 +69,7 @@ function IngredientsFieldset({ assets, fields }) {
                             className={styles['button__drag--handler']}
                             {...provided.dragHandleProps}
                         >
-                            <IconMenuOrder size={32} strokeWidth={1.5} />
+                            <IconGripVertical />
                         </UnstyledButton>
 
                         <div className={styles['ingredient__item--wrapper']}>
@@ -78,13 +81,13 @@ function IngredientsFieldset({ assets, fields }) {
                             <SelectInput
                                 label={FRACTION.LABEL}
                                 name={`${INGS_NAME}.${index}.${FRACTION.NAME}`}
-                                options={assets.FRACTIONS_OPTIONS}
+                                options={fractionOptions}
                             />
 
                             <SelectInput
                                 label={MEASURE.LABEL}
                                 name={`${INGS_NAME}.${index}.${MEASURE.NAME}`}
-                                options={assets.MEASURE_OPTIONS}
+                                options={measureOptions}
                             />
 
                             <TextInput

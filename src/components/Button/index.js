@@ -38,7 +38,6 @@ const Button = React.forwardRef((props, ref) => {
         styles.button,
         styles[`button--${appearance}`],
         compact && styles['button--compact'],
-        fullWidth && styles['button--full'],
         typeof children !== 'string' ? styles['action--button'] : styles['button--wide']
     ])
 
@@ -46,7 +45,10 @@ const Button = React.forwardRef((props, ref) => {
         <UnstyledButton
             className={classes}
             disabled={disabled || isProcessing}
-            style={{ textTransform: uppercase ? 'uppercase' : undefined }}
+            style={{
+                textTransform: uppercase ? 'uppercase' : undefined,
+                width: fullWidth ? '100%' : undefined
+            }}
             ref={ref}
             {...rest}
         >

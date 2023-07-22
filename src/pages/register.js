@@ -1,4 +1,7 @@
 
+import Button from '@/components/Button'
+import TextInput from '@/components/Form/TextInput'
+import Login from '@/components/Login/Form'
 import LoginSubmission from '@/components/Login/LoginSubmission'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -10,8 +13,7 @@ function Page() {
         </Head>
         <header>
             <main>
-                <h1 style={{ marginBlockStart: '6rem', marginBlockEnd: '0.75rem' }}>Register Page</h1>
-                <LoginSubmission />
+              <Login />
             </main>
         </header>
 
