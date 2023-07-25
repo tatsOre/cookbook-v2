@@ -69,8 +69,8 @@
 
     @media (hover: hover) {
         &:hover:not([disabled]):not([aria-disabled="true"]) {
-            transform: translate(-0.25rem, -0.25rem);
-            box-shadow: 0.25rem 0.25rem 0 g.$color-rich-black;
+            transform: translate(-0.2rem, -0.2rem);
+            box-shadow: 0.2rem 0.2rem 0 g.$color-rich-black;
         }
     }
 }

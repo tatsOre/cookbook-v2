@@ -31,8 +31,7 @@ const RECIPE_SCHEMA = {
 
 const NEW_RECIPE = {
     'ingredients': RECIPE_SCHEMA.ingredients,
-    'instructions': RECIPE_SCHEMA.instructions,
-    'photo': 'https://res.cloudinary.com/dshl3pgv4/image/upload/v1634437184/cookbook/biscuits_jpefsv.jpg'
+    'instructions': RECIPE_SCHEMA.instructions
 }
 
 /**

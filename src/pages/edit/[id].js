@@ -12,26 +12,29 @@ export const getServerSideProps = async ({ params }) => {
     try {
         const assetsRequest = fetch(PATHS.RECIPE_ASSETS)
         const recipeRequest = fetch(`${PATHS.RECIPES_ENDPOINT}/${params.id}`)
+
         const responses = await Promise.all([assetsRequest, recipeRequest])
 
-        const assets = await responses[0].json()
-        const data = await responses[1].json()
+        if (responses[0].ok && responses[1].ok) {
+            const assets = await responses[0].json()
+            const data = await responses[1].json()
+            return { props: { assets, data } }
+        }
+        return { notFound: true }
 
-        return { props: { recipe: params.id, assets, data } }
     } catch (err) {
         return { notFound: true }
     }
 }
 
-function Page({ assets, data, recipe }) {
-    console.log(recipe)
+function Page({ assets, data }) {
     return <>
         <Head>
-            <title>Edit Recipe</title>
+            <title>Edit {data?.title}</title>
         </Head>
         <RecipeSubmission.Layout title={data?.title}>
             <RecipeSubmission
-                endpoint={`${PATHS.RECIPES_ENDPOINT}/${recipe}`}
+                endpoint={`${PATHS.RECIPES_ENDPOINT}/${data?._id}`}
                 data={data}
                 assets={assets}
                 mode='edit'

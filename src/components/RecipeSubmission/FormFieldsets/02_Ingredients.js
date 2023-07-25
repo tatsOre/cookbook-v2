@@ -66,6 +66,7 @@ function IngredientsFieldset({ assets, fields }) {
                         className={styles['ingredients__list--item']}
                     >
                         <UnstyledButton
+                            ariaLabel="Drag and drop ingredient"
                             className={styles['button__drag--handler']}
                             {...provided.dragHandleProps}
                         >
@@ -108,7 +109,7 @@ function IngredientsFieldset({ assets, fields }) {
                         </div>
 
                         <DeleteButton
-                            ariaLabel="remove ingredient item"
+                            ariaLabel="Delete ingredient item"
                             className={styles['button__icon--delete']}
                             onClick={() => remove(index)}
                         />

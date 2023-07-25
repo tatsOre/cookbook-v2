@@ -15,6 +15,7 @@ function DeleteButton(props) {
                 styles['action--button']
             ])}
             ariaLabel={ariaLabel}
+            title={ariaLabel}
             {...rest}>
             <IconTrash size={20} strokeWidth={1.5} />
         </Button>

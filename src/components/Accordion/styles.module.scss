@@ -17,18 +17,12 @@ button.accordion__trigger {
     }
 }
 
-.accordion__panel--content {
-    height: 100%;
-}
-
 .accordion__panel--collapsible {
-    height: 0px;
+    max-height: 0px;
     overflow: hidden;
+    transition: max-height .25s ease-in-out;
 }
 
 .accordion__panel--collapsible[data-active=true] {
-    height: 100%;
+    max-height: 100%;
 }
-
-// https://stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css
-.accordion__panel.isActive {}

@@ -47,16 +47,16 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
         setFormData(payload) // submit info
     }
 
-    status === 'resolved' && router.push(`/recipes/${responseData._id}`)
-
     const onErrors = (errors) => {
         const withErrors = getFormAccordionState(errors)
-        const newState = [...activeFieldsetPanel, ...withErrors]
-        setActiveFieldsetPanel(newState)
+        const newState = [...activeFieldset, ...withErrors]
+        setActiveFieldset(newState)
     }
 
     // TODO: Save draft to session storage
     const onChange = (ev) => { }
+
+    status === 'resolved' && router.push(`/recipes/${responseData._id}`)
 
     return (
         <>

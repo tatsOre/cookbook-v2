@@ -29,6 +29,7 @@ function InstructionItem(props) {
                 })}
             />
             <DeleteButton
+                ariaLabel="Delete instruction step"
                 className={styles['button__icon--delete']}
                 onClick={() => onRemove(index)}
             />

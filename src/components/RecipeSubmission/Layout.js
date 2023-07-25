@@ -10,6 +10,8 @@ import styles from './styles.module.scss'
 function Layout({ children, title }) {
     const router = useRouter()
 
+    const heading = title ? `editing: ${title}` : 'new recipe'
+
     return (
         <>
             <header>
@@ -28,24 +30,18 @@ function Layout({ children, title }) {
                         Save
                     </UnstyledButton>
                 </NavBar>
+
+                <div className={styles.marquee} aria-hidden="true">
+                    <div className={styles.marquee__content}>
+                        {[... new Array(50)].map((_, index) => <span key={index}>{heading}</span>)}
+                    </div>
+                </div>
+
+                <h1 style={{ visibility: 'hidden' }}>{heading}</h1>
             </header>
 
             <main className={styles['recipe__form--wrapper']}>
-                <h1 style={{
-                    paddingInline: '1.5rem',
-                    paddingBlockEnd: '1.25rem',
-                    fontSize: '0.825rem'
-                }}>
-                    {title ? `Edit ${title}` : 'New Recipe'}
-                </h1>
-
-                <p style={{
-                    paddingInline: '1.5rem',
-                    paddingBlockEnd: '1.25rem',
-                    fontSize: '0.825rem'
-                }}>
-                    <b>* Note:</b> An asterisk indicates that the field is required.
-                </p>
+                <p><b>* Note:</b> An asterisk indicates that the field is required.</p>
                 {children}
             </main>
         </>

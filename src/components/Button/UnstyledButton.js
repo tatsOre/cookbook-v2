@@ -23,6 +23,7 @@ const UnstyledButton = React.forwardRef((props, ref) => {
             aria-label={ariaLabel}
             className={cx([styles.button__base, className])}
             disabled={disabled}
+            title={ariaLabel}
             type={type}
             ref={ref}
             {...rest}

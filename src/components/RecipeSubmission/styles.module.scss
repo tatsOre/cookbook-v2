@@ -61,6 +61,13 @@
 .recipe__form--wrapper {
     @include g.main--wrapper;
 
+    &>p {
+        font-size: 0.825rem;
+        color: g.$color-smoke-gray;
+        padding-inline: 1.5rem;
+        padding-block-end: 1.25rem;
+    }
+
     /** Accordion Trigger / Form Fieldset Headings: */
     [data-accordion-trigger] {
         padding-block: 1.125rem;
@@ -72,17 +79,16 @@
         font-weight: 900;
         letter-spacing: 0.1px;
 
-        &[data-active="true"] {
-            background-color: g.$color-white;
-        }
-
         @media (hover: hover) {
-
             &:hover:not([disabled]) {
                 background-color: g.$color-rich-black;
                 color: g.$color-white;
                 background-color: g.$color-rich-black;
                 letter-spacing: 1px;
+            }
+
+            &:focus {
+                border-top-style: dotted;
             }
         }
     }
@@ -94,7 +100,7 @@
     }
 
     [data-accordion-content] {
-        background-color: g.$color-warm-grey-100;
+        background-color: rgb(249, 249, 249);
     }
 }
 
@@ -142,6 +148,7 @@
             justify-content: space-between;
             background-color: g.$color-white;
             padding: 0.75rem;
+            border-radius: g.$border-radius-default;
 
             .button__drag--handler {
                 @include button.icon--button;
@@ -206,8 +213,6 @@
             .ingredients__list--item {
                 flex-wrap: nowrap;
                 align-items: flex-start;
-                background-color: transparent;
-                padding: 0;
 
                 .button__drag--handler {
                     order: 1;
@@ -223,8 +228,6 @@
                 }
 
                 &:not(:last-child) {
-                    border-bottom: 1px dotted g.$color-cool-grey-400;
-                    padding-block-end: 1rem;
                     margin-block-end: 1rem;
                 }
             }
@@ -457,5 +460,32 @@
 
     to {
         transform: translateY(-50%) scale(1);
+    }
+}
+
+.marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    margin-block-start: 55px;
+
+    .marquee__content {
+        flex-shrink: 0;
+        display: flex;
+        justify-content: space-around;
+        min-width: 100%;
+        padding-block: 0.5rem;
+        background-color: g.$color-accent-yellow;
+
+        span {
+            font-size: 0.75rem;
+            font-weight: 500;
+
+            &::after {
+                content: '•';
+                padding-inline: 0.5rem;
+                ;
+            }
+        }
     }
 }

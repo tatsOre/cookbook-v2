@@ -141,6 +141,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
 }
 
 export const deNormalizeData = (values) => {
+    if (!values) return
     const instructions = values.instructions?.length
         ? values.instructions.map(inst => ({ text: inst }))
         : [{ text: '' }]
@@ -154,6 +155,9 @@ export const normalizeData = (values) => {
     const instructions = values.instructions?.map(inst => inst.text)
     const categories = values.categories?.map(cat => cat._id)
     // TODO: NORMALIZE FRACTION & MEASURE IN INGRE.
+
+    delete values.photo
+    
     return {
         ...values,
         categories,
