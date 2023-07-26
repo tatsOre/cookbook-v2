@@ -8,6 +8,7 @@ import Alert from "../Alert"
 import Layout from "./Layout"
 import LoadingOverlay from "../LoadingOverlay"
 import { deNormalizeData, normalizeData, getFormAccordionState } from "./utils"
+import { CLOUDINARY } from "../../../config"
 
 const DynamicRecipeForm = dynamic(() => import('./Form')
     .catch(() => <span>Something went wrong.</span>),
@@ -16,6 +17,8 @@ const DynamicRecipeForm = dynamic(() => import('./Form')
 
 function RecipeSubmission({ endpoint, data, assets, mode }) {
     const [formData, setFormData] = React.useState(null)
+
+    const [photoError, setPhotoError] = React.useState(null)
 
     const [activeFieldset, setActiveFieldset] = React.useState(
         ['item-1']
@@ -37,13 +40,39 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
         methods.setFocus('title')
     }, [methods.setFocus])
 
-    const onSubmit = (values) => {
-        // If photo || photo did not change:
-        if (values.photo?.length > 0 && typeof values.photo !== 'string') {
+    const onSubmit = async (values) => {
+        // If photo || photo changed:
+        if (
+            typeof values.photo !== 'string'
+            && (values.photo?.length > 0 || values.photo.size)
+        ) {
             // If photo file comes from input+event, set 1st value:
-            values.photo = values.photo[0]
+            if (values.photo?.length > 0) {
+                values.photo = values.photo[0]
+            }
+            console.log(values.photo)
+
+            const imageUploadData = new FormData()
+            imageUploadData.append("file", values.photo)
+            imageUploadData.append("folder", CLOUDINARY.FOLDER)
+            imageUploadData.append("upload_preset", CLOUDINARY.PRESET)
+
+            const cloudinaryResponse = await fetch(CLOUDINARY.URL, {
+                method: 'POST',
+                body: imageUploadData
+            })
+
+            if (cloudinaryResponse.ok) {
+                const imageURL = await cloudinaryResponse.json()
+                values.photo = imageURL.secure_url;
+            } else {
+                setPhotoError('Something went wrong. Try later.')
+                return
+            }
         }
+
         const payload = normalizeData(values)
+        console.log(payload)
         setFormData(payload) // submit info
     }
 
@@ -60,11 +89,11 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
 
     return (
         <>
-            {status === 'rejected' ? (
+            {status === 'rejected' || photoError ? (
                 <Alert
                     appearance="danger"
                     variant='light'
-                    title={errorMessage}
+                    title={errorMessage || photoError}
                     style={{ marginBottom: '1rem' }} />
             ) : null}
 

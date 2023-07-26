@@ -21,6 +21,7 @@ function AccordionPanel(props) {
         >
             <div
                 data-accordion-content
+                data-active={isItemActive}
                 className={cx([
                     className,
                     styles['accordion__panel--content'],

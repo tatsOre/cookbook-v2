@@ -1,3 +1,35 @@
+const RECIPE_SCHEMA = {
+    title: '',
+    description: '',
+    mainIngredient: '',
+    time: {
+        prep: '', /** Number */
+        cook: '', /** Number */
+        total: '' /** Number */
+    },
+    photo: '',
+    servings: '', /** Number */
+    ingredients: [
+        {
+            quantity: '', /** Number */
+            fraction: null, /** Object */
+            measure: null, /** Object */
+            name: '',
+            prepNote: ''
+        }
+    ],
+    instructions: [{ text: '' }],
+    categories: [], /** [Object] */
+    cuisine: null, /** Object */
+    public: false,
+    comments: ''
+}
+
+export const NEW_RECIPE = {
+    'ingredients': RECIPE_SCHEMA.ingredients,
+    'instructions': RECIPE_SCHEMA.instructions
+}
+
 const BASE_RULES = {
     minValueErrorMsg(value) {
         return `Must be an integer greater than or equal to ${value}`
@@ -153,14 +185,21 @@ export const deNormalizeData = (values) => {
 
 export const normalizeData = (values) => {
     const instructions = values.instructions?.map(inst => inst.text)
-    const categories = values.categories?.map(cat => cat._id)
-    // TODO: NORMALIZE FRACTION & MEASURE IN INGRE.
 
-    delete values.photo
+    const categories = values.categories?.map(cat => cat._id)
+
+    const ingredients = values.ingredients.map(ingr => ({
+        ...ingr,
+        quantity: ingr.quantity || 0,
+        fraction: ingr.fraction ? ingr.fraction._id : null,
+        measure: ingr.measure ? ingr.measure._id : null
+    }))
     
     return {
         ...values,
+        servings: values.servings || 0,
         categories,
+        ingredients,
         instructions,
         cuisine: values.cuisine?._id
     }

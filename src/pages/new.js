@@ -1,38 +1,7 @@
 import Head from 'next/head'
 import RecipeSubmission from '@/components/RecipeSubmission'
+import { NEW_RECIPE } from '@/components/RecipeSubmission/utils'
 import { default as PATHS } from '../../config'
-
-const RECIPE_SCHEMA = {
-    title: '',
-    description: '',
-    mainIngredient: '',
-    time: {
-        prep: '', /** Number */
-        cook: '', /** Number */
-        total: '' /** Number */
-    },
-    photo: '',
-    servings: '', /** Number */
-    ingredients: [
-        {
-            quantity: '', /** Number */
-            fraction: null, /** Object */
-            measure: null, /** Object */
-            name: '',
-            prepNote: ''
-        }
-    ],
-    instructions: [{ text: '' }],
-    categories: [], /** [Object] */
-    cuisine: null, /** Object */
-    public: false,
-    comments: ''
-}
-
-const NEW_RECIPE = {
-    'ingredients': RECIPE_SCHEMA.ingredients,
-    'instructions': RECIPE_SCHEMA.instructions
-}
 
 /**
  * Initial values and assets will come from API.

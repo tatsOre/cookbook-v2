@@ -64,7 +64,7 @@ function useFormSubmission({ endpoint, data, method }) {
                     dispatch({
                         type: 'REJECT',
                         error: {
-                            message: 'An unexpected error has occurred. Please try again.'
+                            message: 'An unexpected error has occurred. Please try later.'
                         }
                     })
                 })

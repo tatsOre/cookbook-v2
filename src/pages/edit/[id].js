@@ -31,12 +31,11 @@ export const getServerSideProps = async ({ params }) => {
  */
 
 function Page({ assets, data }) {
-    const title = data?.title || 'Recipe'
     return <>
         <Head>
-            <title>Edit | {title}</title>
+            <title>Edit Recipe</title>
         </Head>
-        <RecipeSubmission.Layout title={title}>
+        <RecipeSubmission.Layout title={data?.title}>
             <RecipeSubmission
                 endpoint={`${PATHS.RECIPES_ENDPOINT}/${data?._id}`}
                 data={data}

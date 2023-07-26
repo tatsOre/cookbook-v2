@@ -308,7 +308,7 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        margin-block-end: 1rem;
+        margin-block-end: 1.5rem;
 
         h3 {
             color: g.$color-rich-black;
@@ -334,7 +334,7 @@
                 background-color: g.$color-white;
                 outline: 1px dashed g.$color-rich-black;
                 outline-offset: -10px;
-                padding-block: 2rem;
+                padding-block: 2.5rem;
                 -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
                 transition: outline-offset .15s ease-in-out, background-color .15s linear;
                 display: grid;

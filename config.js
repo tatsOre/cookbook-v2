@@ -11,5 +11,8 @@ export default {
     RECIPES_ENDPOINT: `${BASE_URL}/recipes`
 }
 
-export const CLOUDINARY_URL =
-    "https://api.cloudinary.com/v1_1/dshl3pgv4/upload"
+export const CLOUDINARY = {
+    FOLDER: process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER,
+    PRESET: process.env.NEXT_PUBLIC_CLOUDINARY_PRESET,
+    URL: process.env.NEXT_PUBLIC_CLOUDINARY_URL
+}

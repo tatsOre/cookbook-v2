@@ -11,6 +11,9 @@ function Layout({ children, title }) {
     const router = useRouter()
 
     const heading = title ? `edit ${title.toLowerCase()}` : 'new recipe'
+    const marquee = [... new Array(50)].map((_, index) =>
+        <span key={index}>{heading}</span>
+    )
 
     return (
         <>
@@ -32,9 +35,7 @@ function Layout({ children, title }) {
                 </NavBar>
 
                 <div className={styles.marquee} aria-hidden="true">
-                    <div className={styles.marquee__content}>
-                        {[... new Array(50)].map((_, index) => <span key={index}>{heading}</span>)}
-                    </div>
+                    <div className={styles.marquee__content}>{marquee}</div>
                 </div>
 
                 <h1 style={{ visibility: 'hidden' }}>{heading}</h1>
