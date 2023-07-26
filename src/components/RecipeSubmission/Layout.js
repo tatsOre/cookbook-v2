@@ -10,7 +10,7 @@ import styles from './styles.module.scss'
 function Layout({ children, title }) {
     const router = useRouter()
 
-    const heading = title ? `editing: ${title}` : 'new recipe'
+    const heading = title ? `edit ${title.toLowerCase()}` : 'new recipe'
 
     return (
         <>

@@ -3,9 +3,8 @@ import RecipeSubmission from '@/components/RecipeSubmission'
 import { default as PATHS } from '../../../config'
 
 /**
- * Initial values and assets will come from API.
- * will be responsible for: send recipe schema, get assets
- * @returns Page for Create New Recipe
+ * Fetch initial values and assets for page form
+ * @returns Initial props
  */
 
 export const getServerSideProps = async ({ params }) => {
@@ -22,17 +21,22 @@ export const getServerSideProps = async ({ params }) => {
         }
         return { notFound: true }
 
-    } catch (err) {
+    } catch {
         return { notFound: true }
     }
 }
 
+/**
+ * @returns Edit Recipe Page
+ */
+
 function Page({ assets, data }) {
+    const title = data?.title || 'Recipe'
     return <>
         <Head>
-            <title>Edit {data?.title}</title>
+            <title>Edit | {title}</title>
         </Head>
-        <RecipeSubmission.Layout title={data?.title}>
+        <RecipeSubmission.Layout title={title}>
             <RecipeSubmission
                 endpoint={`${PATHS.RECIPES_ENDPOINT}/${data?._id}`}
                 data={data}

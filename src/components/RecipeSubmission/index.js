@@ -56,7 +56,7 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
     // TODO: Save draft to session storage
     const onChange = (ev) => { }
 
-    status === 'resolved' && router.push(`/recipes/${responseData._id}`)
+    status === 'resolved' && router.push(`/recipes/${responseData.id}`)
 
     return (
         <>
