@@ -1,7 +1,7 @@
 const dev = process.env.NEXT_PUBLIC_NODE_ENV_FE === "development"
 export const BASE_URL = dev
     ? "http://localhost:3002/api/v2"
-    : process.env.NEXT_PUBLIC_PROD_ADDR
+    : process.env.NEXT_PUBLIC_PROD_ADDR + '/api/v2'
 
 export default {
     LOGIN: `${BASE_URL}/auth/login`,
