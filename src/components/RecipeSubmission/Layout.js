@@ -6,6 +6,7 @@ import MenuButton from "../Button/MenuButton"
 import { IconArrowForward } from "../Icon"
 
 import styles from './styles.module.scss'
+import Footer from "../Box/Footer"
 
 function Layout({ children, title }) {
     const router = useRouter()
@@ -38,13 +39,14 @@ function Layout({ children, title }) {
                     <div className={styles.marquee__content}>{marquee}</div>
                 </div>
 
-                <h1 style={{ visibility: 'hidden' }}>{heading}</h1>
+                <h1 style={{ visibility: 'hidden', height: '0px' }}>{heading}</h1>
             </header>
 
             <main className={styles['recipe__form--wrapper']}>
                 <p><b>* Note:</b> An asterisk indicates that the field is required.</p>
                 {children}
             </main>
+            <Footer />
         </>
     )
 }

@@ -54,8 +54,8 @@ function useInputProps(inputType, props) {
             required,
             disabled,
             describedBy,
+            ...defaultProps(inputType),
             ...rest,
-            ...defaultProps(inputType)
         },
         wrapperProps: {
             className,

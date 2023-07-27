@@ -5,12 +5,12 @@ import { default as PATHS } from '../../config'
 function Page() {
     return <>
         <Head>
-            <title>Welcome to Cookbook</title>
+            <title>Welcome Again.</title>
         </Head>
-        <AuthSubmission.Layout heading='Join Cookbook'>
+        <AuthSubmission.Layout heading='Welcome Back'>
             <AuthSubmission
-                endpoint={PATHS.REGISTER}
-                mode='register'
+                endpoint={PATHS.LOGIN}
+                mode='login'
             />
         </AuthSubmission.Layout>
     </>

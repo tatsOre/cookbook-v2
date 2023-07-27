@@ -60,6 +60,8 @@
 ============================ */
 .recipe__form--wrapper {
     @include g.main--wrapper;
+    margin-block-start: 1.5rem;
+    margin-block-end: 2.5rem;
 
     &>p {
         font-size: 0.825rem;

@@ -158,9 +158,4 @@ $font-size-24: 1.5rem;
 @mixin main--wrapper {
     max-width: $max-width;
     margin: 0 auto;
-    padding-block-end: 2rem;
-
-    @media only screen and (max-width: $breakpoint-medium) {
-        margin-block-start: 0rem;
-    }
 }

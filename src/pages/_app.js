@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div id="page">
       <style jsx global>{`
         html {
           font-family: ${inter.style.fontFamily};
@@ -18,6 +18,6 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Component {...pageProps} />
-    </>
+    </div>
   )
 }

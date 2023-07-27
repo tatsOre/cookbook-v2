@@ -8,7 +8,9 @@ export default {
     LOGOUT: `${BASE_URL}/auth/logout`,
     SIGNUP: `${BASE_URL}/auth/register`,
     RECIPE_ASSETS: `${BASE_URL}/assets`,
-    RECIPES_ENDPOINT: `${BASE_URL}/recipes`
+    RECIPES_ENDPOINT: `${BASE_URL}/recipes`,
+    REGISTER: `${BASE_URL}/auth/register`,
+    LOGIN: `${BASE_URL}/auth/login`
 }
 
 export const CLOUDINARY = {

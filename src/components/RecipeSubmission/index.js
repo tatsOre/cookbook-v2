@@ -72,7 +72,7 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
         }
 
         const payload = normalizeData(values)
-        console.log(payload)
+        //console.log(payload)
         setFormData(payload) // submit info
     }
 
@@ -94,7 +94,8 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
                     appearance="danger"
                     variant='light'
                     title={errorMessage || photoError}
-                    style={{ marginBottom: '1rem' }} />
+                    style={{ marginBottom: '1rem' }}
+                />
             ) : null}
 
             <FormProvider {...methods}>
