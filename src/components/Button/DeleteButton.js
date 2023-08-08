@@ -10,10 +10,7 @@ function DeleteButton(props) {
 
     return (
         <Button
-            className={cx([
-                className,
-                styles['action--button']
-            ])}
+            className={cx([className, styles['action--button']])}
             ariaLabel={ariaLabel}
             title={ariaLabel}
             {...rest}>

@@ -1,24 +1,31 @@
 import React from 'react'
 
+export const STATUS = {
+    IDLE: 'idle',
+    PENDING: 'pending',
+    RESOLVED: 'resolved',
+    REJECTED: 'rejected'
+}
+
 function formSubmissionReducer(state, action) {
     switch (action.type) {
         case 'START': {
             return {
-                status: 'pending',
+                status: STATUS.PENDING,
                 responseData: null,
                 errorMessage: null
             }
         }
         case 'RESOLVE': {
             return {
-                status: 'resolved',
+                status: STATUS.RESOLVED,
                 responseData: action.responseData,
                 errorMessage: null,
             }
         }
         case 'REJECT': {
             return {
-                status: 'rejected',
+                status: STATUS.REJECTED,
                 responseData: null,
                 errorMessage: action.error.message,
             }
@@ -30,7 +37,7 @@ function formSubmissionReducer(state, action) {
 
 function useFormSubmission({ endpoint, data, method }) {
     const [state, dispatch] = React.useReducer(formSubmissionReducer, {
-        status: 'idle',
+        status: STATUS.IDLE,
         responseData: null,
         errorMessage: null,
     })
@@ -45,7 +52,6 @@ function useFormSubmission({ endpoint, data, method }) {
                     method: method || 'POST',
                     body: fetchBody,
                     headers: {
-                        "Access-Control-Allow-Credentials": true,
                         "Content-Type": "application/json",
                     },
                     credentials: "include",

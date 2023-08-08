@@ -5,7 +5,7 @@ import Layout from '@/components/Auth/Layout'
 function Page() {
     return <>
         <Head>
-            <title>Login</title>
+            <title>Welcome to Cookbook</title>
         </Head>
 
         <Layout>

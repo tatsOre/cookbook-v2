@@ -3,14 +3,10 @@ import Link from "next/link"
 import Image from "next/image"
 import Button from "../Button"
 import CheckboxInput from "../Checkbox"
-
-
-import NavLink from "../Button/NavLink"
+import NavBar from "../Navigation"
+import UnstyledButton from "../Button/UnstyledButton"
 
 import styles from './styles.module.scss'
-import NavBar from "../Navigation"
-import MenuButton from "../Button/MenuButton"
-import UnstyledButton from "../Button/UnstyledButton"
 
 function IngredientItem({ data, ...rest }) {
     const { quantity, fraction, measure, name, prepNote } = data
@@ -93,7 +89,6 @@ function RecipeView({ data }) {
         <>
             <header>
                 <NavBar>
-
                     <Link href='/' passHref legacyBehavior>
                         <UnstyledButton>My Cookbook</UnstyledButton>
                     </Link>
@@ -104,7 +99,6 @@ function RecipeView({ data }) {
                     <UnstyledButton onClick={() => router.back()}>
                         Login
                     </UnstyledButton>
-
                 </NavBar>
             </header>
 
@@ -115,7 +109,9 @@ function RecipeView({ data }) {
                         {cuisine && cuisine.label !== 'other' && (
                             <li key='cuisine-tag'>{cuisine.label}</li>
                         )}
-                        {categories.map(cat => <li key={`category-${cat._id}`} >{cat.label}</li>)}
+                        {categories && categories.length ?
+                            categories.map(cat => <li key={`category-${cat._id}`} >{cat.label}</li>)
+                            : null}
                     </ul>
                 </div>
 
@@ -140,13 +136,13 @@ function RecipeView({ data }) {
 
                 <section>
                     <h2>Ingredients</h2>
-                    <IngredientsSubmission items={ingredients} />
+                    {ingredients && ingredients.length && <IngredientsSubmission items={ingredients} />}
                 </section>
 
                 <section>
                     <h2>How To Make</h2>
                     <ul>
-                        {instructions.map((step, index) => (
+                        {instructions && instructions.length && instructions.map((step, index) => (
                             <li key={`step ${index}`}>
                                 <h3>{`${index < 10 ? '0' : ''}${index + 1}`}</h3>
                                 <p>{step}</p>

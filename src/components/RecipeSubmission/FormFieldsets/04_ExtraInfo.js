@@ -6,7 +6,7 @@ import useDraggableFile from '@/components/hooks/useDraggableFile'
 import Alert from '@/components/Alert'
 import { FileInput } from '@/components/Form'
 import TextareaInput from '../../Form/TextareaInput'
-import { IconCloudUpload, IconTrash } from '@/components/Icon'
+import { IconCloudUpload } from '@/components/Icon'
 import { getImageSrc } from '@/components/utils/file'
 import cx from '@/components/utils/cx'
 
@@ -24,7 +24,7 @@ function ExtraInfoFieldset({ fields }) {
         state, onDeleteFile, onDropFile, onDragFile
     } = useDraggableFile({ name: PHOTO.NAME, onChange: setValue })
 
-    const { isMobile } = useDeviceDetect()
+    const isMobile = useDeviceDetect()
 
     React.useEffect(() => {
         // Set error from DND hook in Hook Form:
@@ -48,8 +48,8 @@ function ExtraInfoFieldset({ fields }) {
     return (
         <>
             <div className={styles['image__section']}>
-                <h3>Liven up your recipe post with a picture</h3>
-                <p>Take photos using a phone or camera. You can always edit this field later.</p>
+                <h3>{PHOTO.LABEL}</h3>
+                <p>{PHOTO.DESC}</p>
 
                 {errors && errors.photo ? (
                     <Alert

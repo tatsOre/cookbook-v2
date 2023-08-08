@@ -17,7 +17,7 @@ function useDeviceDetect() {
         setMobile(mobile)
     }, [])
 
-    return { isMobile }
+    return isMobile
 }
 
 export default useDeviceDetect

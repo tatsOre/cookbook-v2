@@ -16,7 +16,7 @@ export const getServerSideProps = async ({ params }) => {
 
         if (responses[0].ok && responses[1].ok) {
             const assets = await responses[0].json()
-            const data = await responses[1].json()
+            const { data } = await responses[1].json()
             return { props: { assets, data } }
         }
         return { notFound: true }

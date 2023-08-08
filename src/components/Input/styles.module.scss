@@ -5,7 +5,7 @@
     @include g.caption;
 
     &>* {
-        margin-block-end: 0.5rem;
+        margin-block-end: 0.25rem;
     }
 }
 
@@ -13,18 +13,17 @@
     @include g.caption;
     display: inline-block;
     font-weight: 500;
-    font-family: g.$font-accent;
 }
 
 .input__description {
     color: g.$color-smoke-gray;
-    font-style: italic;
 }
 
 .input__box {
     width: 100%;
     min-height: 48px;
-    padding: 0.75rem 1rem;
+    padding-inline: 1rem;
+    margin-block: 0.25rem;
     color: g.$color-rich-black;
     background-color: g.$color-white;
     font-family: inherit;

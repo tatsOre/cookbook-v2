@@ -9,8 +9,15 @@ export default {
     SIGNUP: `${BASE_URL}/auth/register`,
     RECIPE_ASSETS: `${BASE_URL}/assets`,
     RECIPES_ENDPOINT: `${BASE_URL}/recipes`,
-    REGISTER: `${BASE_URL}/auth/register`,
-    LOGIN: `${BASE_URL}/auth/login`
+    LOGIN: `${BASE_URL}/auth/login`,
+    RECIPES: {
+        ENDPOINT: `${BASE_URL}/recipes`,
+        WITH_PARAM: (id) => `${BASE_URL}/recipes/${id}`
+
+    },
+    USER: {
+        LOOKUP_EMAIL: `${BASE_URL}/user/lookup-email`
+    }
 }
 
 export const CLOUDINARY = {

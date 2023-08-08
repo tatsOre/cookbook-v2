@@ -12,7 +12,7 @@ export const getServerSideProps = async ({ params, res }) => {
         const response = await fetch(`${PATHS.RECIPES_ENDPOINT}/${params.id}`)
 
         if (response.ok) {
-            const data = await response.json()
+            const { data } = await response.json()
             return { props: { data } }
         }
         return { notFound: true }

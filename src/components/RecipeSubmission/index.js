@@ -2,7 +2,7 @@ import React from "react"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
 import { FormProvider, useForm } from "react-hook-form"
-import useFormSubmission from "../FormSubmission"
+import useFormSubmission, { STATUS } from "../hooks/useFormSubmission"
 import Accordion from "../Accordion"
 import Alert from "../Alert"
 import Layout from "./Layout"
@@ -40,6 +40,10 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
         methods.setFocus('title')
     }, [methods.setFocus])
 
+    React.useEffect(() => {
+        status === STATUS.RESOLVED && router.push(`/recipes/${responseData.id}`)
+    }, [status])
+
     const onSubmit = async (values) => {
         // If photo || photo changed:
         if (
@@ -50,8 +54,6 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
             if (values.photo?.length > 0) {
                 values.photo = values.photo[0]
             }
-            console.log(values.photo)
-
             const imageUploadData = new FormData()
             imageUploadData.append("file", values.photo)
             imageUploadData.append("folder", CLOUDINARY.FOLDER)
@@ -72,7 +74,6 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
         }
 
         const payload = normalizeData(values)
-        //console.log(payload)
         setFormData(payload) // submit info
     }
 
@@ -82,14 +83,9 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
         setActiveFieldset(newState)
     }
 
-    // TODO: Save draft to session storage
-    const onChange = (ev) => { }
-
-    status === 'resolved' && router.push(`/recipes/${responseData.id}`)
-
     return (
         <>
-            {status === 'rejected' || photoError ? (
+            {status === STATUS.REJECTED || photoError ? (
                 <Alert
                     appearance="danger"
                     variant='light'
@@ -105,14 +101,13 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
                 >
                     <DynamicRecipeForm
                         id="submit-recipe-form"
-                        onChange={onChange}
                         onSubmit={methods.handleSubmit(onSubmit, onErrors)}
                         assets={assets}
                     />
                 </Accordion>
             </FormProvider>
 
-            {status === 'pending' ? <LoadingOverlay /> : null}
+            {status === STATUS.PENDING ? <LoadingOverlay /> : null}
         </>
     )
 }

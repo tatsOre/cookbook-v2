@@ -26,14 +26,10 @@ const {
 
 
 function RecipeForm(props) {
-    const { id, onChange, onSubmit, assets } = props
+    const { id, onSubmit, assets } = props
 
     return (
-        <Form
-            id={id}
-            onChange={onChange}
-            onSubmit={onSubmit}
-        >
+        <Form id={id} onSubmit={onSubmit} >
             <Accordion.Item value="item-1">
                 <Accordion.Trigger>About</Accordion.Trigger>
                 <Accordion.Panel className={styles.about__fieldset}>

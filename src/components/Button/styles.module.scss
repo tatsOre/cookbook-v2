@@ -37,6 +37,8 @@
 
 /** Styled Buttons with label: **/
 .button {
+    display: grid;
+    place-content: center;
     border-radius: g.$border-radius-default;
     background-color: g.$color-white;
     border: g.$border-default;

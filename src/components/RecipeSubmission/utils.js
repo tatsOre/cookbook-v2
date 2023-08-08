@@ -19,8 +19,8 @@ const RECIPE_SCHEMA = {
         }
     ],
     instructions: [{ text: '' }],
-    categories: [], /** [Object] */
-    cuisine: null, /** Object */
+    categories: [], /** [ID] */
+    cuisine: null, /** ID */
     public: false,
     comments: ''
 }
@@ -160,8 +160,8 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
         }
     },
     PHOTO: {
-        DESC: 'The description for the field Photo',
-        LABEL: 'La pic pal Face!',
+        DESC: 'Take photos using a phone or camera. You can always edit this field later.',
+        LABEL: 'Liven up your recipe post with a picture',
         NAME: 'photo'
     },
     COMMENTS: {
@@ -174,14 +174,22 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
 
 export const deNormalizeData = (values) => {
     if (!values) return
+
     const instructions = values.instructions?.length
         ? values.instructions.map(inst => ({ text: inst }))
         : [{ text: '' }]
+
     return {
         ...values,
         instructions
     }
 }
+
+/**
+ * 
+ * @param {*} values 
+ * @returns 
+ */
 
 export const normalizeData = (values) => {
     const instructions = values.instructions?.map(inst => inst.text)
@@ -194,14 +202,16 @@ export const normalizeData = (values) => {
         fraction: ingr.fraction ? ingr.fraction._id : null,
         measure: ingr.measure ? ingr.measure._id : null
     }))
-    
+
     return {
         ...values,
-        servings: values.servings || 0,
         categories,
         ingredients,
         instructions,
-        cuisine: values.cuisine?._id
+        cuisine: values.cuisine?._id,
+        servings: values.servings || 0,
+        // If photo is empty, it comes as an object. Schema field type == string.
+        photo: typeof values.photo === 'string' ? values.photo : ''
     }
 }
 

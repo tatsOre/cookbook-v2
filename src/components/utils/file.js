@@ -4,7 +4,6 @@ export const isValidImageFile = (imageFile) => {
 }
 
 export const getImageSrc = (imageFile) => {
-    //console.log('getting filepath', imageFile)
     if (!imageFile) return null
 
     if (typeof imageFile === 'string') {
