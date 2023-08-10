@@ -35,7 +35,7 @@ function Page({ assets, data }) {
         <Head>
             <title>Edit Recipe</title>
         </Head>
-        <RecipeSubmission.Layout title={data?.title}>
+        <RecipeSubmission.Layout title={data?.title} mode='edit'>
             <RecipeSubmission
                 endpoint={`${PATHS.RECIPES_ENDPOINT}/${data?._id}`}
                 data={data}

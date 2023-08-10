@@ -159,6 +159,8 @@ function AuthorizationSubmission() {
 
     const [formData, setFormData] = React.useState(null)
 
+    const router = useRouter()
+
     const { status, responseData, errorMessage } = useFormSubmission({
         endpoint: state.mode === 'SIGNUP' ? PATHS.SIGNUP : PATHS.LOGIN,
         data: formData,

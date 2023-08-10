@@ -4,14 +4,15 @@ import UnstyledButton from "../Button/UnstyledButton"
 import NavBar from "../Navigation"
 import MenuButton from "../Button/MenuButton"
 import { IconArrowForward } from "../Icon"
-
-import styles from './styles.module.scss'
 import Footer from "../Box/Footer"
 
-function Layout({ children, title }) {
+import styles from './styles.module.scss'
+
+function Layout({ children, title, mode }) {
     const router = useRouter()
 
-    const heading = title ? `edit ${title.toLowerCase()}` : 'new recipe'
+    const heading = mode == 'edit'
+        ? `edit ${title || 'recipe'}` : 'new recipe'
     const marquee = [... new Array(50)].map((_, index) =>
         <span key={index}>{heading}</span>
     )
@@ -36,7 +37,9 @@ function Layout({ children, title }) {
                 </NavBar>
 
                 <div className={styles.marquee} aria-hidden="true">
-                    <div className={styles.marquee__content}>{marquee}</div>
+                    <div className={styles.marquee__content}>
+                        <span style={{ textTransform: 'lowercase' }}>{marquee}</span>
+                    </div>
                 </div>
 
                 <h1 style={{ visibility: 'hidden', height: '0px' }}>{heading}</h1>

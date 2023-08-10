@@ -196,7 +196,7 @@ export const normalizeData = (values) => {
 
     const categories = values.categories?.map(cat => cat._id)
 
-    const ingredients = values.ingredients.map(ingr => ({
+    const ingredients = values.ingredients?.map(ingr => ({
         ...ingr,
         quantity: ingr.quantity || 0,
         fraction: ingr.fraction ? ingr.fraction._id : null,
@@ -208,7 +208,7 @@ export const normalizeData = (values) => {
         categories,
         ingredients,
         instructions,
-        cuisine: values.cuisine?._id,
+        cuisine: values.cuisine?._id ?? null,
         servings: values.servings || 0,
         // If photo is empty, it comes as an object. Schema field type == string.
         photo: typeof values.photo === 'string' ? values.photo : ''
