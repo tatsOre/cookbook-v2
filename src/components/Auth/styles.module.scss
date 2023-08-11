@@ -1,0 +1,12 @@
+.email__fieldset {
+    background-color: aqua;
+
+    &[data-active=true] {
+        height: auto;
+    }
+
+    &[data-active=false] {
+        height: 0px;
+        overflow: hidden;
+    }
+}

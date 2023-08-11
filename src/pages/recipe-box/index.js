@@ -45,6 +45,7 @@ const Article = ({ rec }) => {
 
 function Layout({ recipes }) {
     const [count, setCount] = React.useState(0)
+    
     React.useEffect(() => {
         async function fetchData() {
             const response = await fetch(PATHS.RECIPES_ENDPOINT, {

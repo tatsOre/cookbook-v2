@@ -4,7 +4,6 @@ import Footer from "../Box/Footer"
 
 import styles from './styles.module.scss'
 
-
 function Layout({ children }) {
     return (
         <>

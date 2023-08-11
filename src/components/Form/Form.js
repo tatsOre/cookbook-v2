@@ -1,8 +1,4 @@
-/**
- * Intended for containers like form, section, div, ul? 
- */
-
-export function Form(props) {
+function Form(props) {
     const { children, ...rest } = props
 
     const onKeyDown = (ev) => {
@@ -15,3 +11,5 @@ export function Form(props) {
         </form>
     )
 }
+
+export default Form

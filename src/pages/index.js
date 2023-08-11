@@ -12,7 +12,7 @@ export default function Home() {
             <main>
                 <Link href="/new">Create recipe</Link>
                 <Link href="/login">Login</Link>
-
+                <Link href="/recipe-box">Your box</Link>
             </main>
         </>
     )

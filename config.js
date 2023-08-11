@@ -16,7 +16,8 @@ export default {
 
     },
     USER: {
-        LOOKUP_EMAIL: `${BASE_URL}/users/lookup-email`
+        LOOKUP_EMAIL: `${BASE_URL}/users/lookup-email`,
+        GET_CURRENT: `${BASE_URL}/users/me`
     }
 }
 
