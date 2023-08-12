@@ -8,7 +8,7 @@ import useFormSubmission, { STATUS } from "../hooks/useFormSubmission"
 import Button from "../Button"
 import UnstyledButton from "../Button/UnstyledButton"
 import EmailSubmission from "./EmailValidation"
-import PassportValidation from "./PasswordValidation"
+import PasswordValidation from "./PasswordValidation"
 import { default as PATHS } from '../../../config'
 import { default as AUTH_FIELDS_ATTRS } from "./utils"
 
@@ -86,7 +86,7 @@ function AuthorizationSubmission() {
     }
 
     return (
-        <>
+        <section className={styles.auth__section}>
             <h2>{state.heading}</h2>
 
             {status === STATUS.REJECTED ? (
@@ -96,6 +96,13 @@ function AuthorizationSubmission() {
                     title={errorMessage}
                     style={{ marginBottom: '1rem' }}
                 />
+            ) : null}
+
+            {state.displayName ? (
+                <p>
+                    <b>{state.displayName}</b>&nbsp;&nbsp;
+                    <UnstyledButton onClick={resetState}>Change</UnstyledButton>
+                </p>
             ) : null}
 
             <FormProvider {...methods}>
@@ -108,12 +115,7 @@ function AuthorizationSubmission() {
 
                     {state.displayName ? (
                         <>
-                            <div style={{ textAlign: 'center', marginBlock: '1.5rem' }}>
-                                <b>{state.displayName}</b>&nbsp;&nbsp;
-                                <UnstyledButton onClick={resetState}>Change</UnstyledButton>
-                            </div>
-
-                            <PassportValidation mode={state.mode} attrs={PASSWORD} />
+                            <PasswordValidation mode={state.mode} attrs={PASSWORD} />
 
                             <Button type="submit" fullWidth>
                                 {state.mode == 'LOGIN' ? 'Log in' : 'Create Account'}
@@ -121,16 +123,15 @@ function AuthorizationSubmission() {
                         </>
                     ) : null}
 
-                    <div>
-                        <p>or</p>
-                        <small>To connect using one of these methods, the email must match the one on your Cookbook account.</small>
-                        <a>Continue with Google</a>
+                    <div className={styles.auth__providers}>
+                        <div><span>or</span></div>
+                        <a>Continue with Google - soon</a>
                     </div>
                 </Form>
             </FormProvider>
 
             {status === STATUS.PENDING ? <LoadingOverlay /> : null}
-        </>
+        </section>
     )
 }
 

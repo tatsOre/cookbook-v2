@@ -79,7 +79,7 @@ function EmailSubmission({ setStatus, displayNameIsSet, attrs }) {
                 placeholder={EMAIL.PLACEHOLDER}
                 autoComplete={EMAIL.NAME}
                 type="email"
-                error={errors[EMAIL.NAME]?.message}
+                error={errors[EMAIL.NAME]}
                 {...email}
                 onChange={(ev => {
                     email.onChange(ev)

@@ -13,6 +13,7 @@ function Layout({ children, title, mode }) {
 
     const heading = mode == 'edit'
         ? `edit ${title || 'recipe'}` : 'new recipe'
+
     const marquee = [... new Array(50)].map((_, index) =>
         <span key={index}>{heading}</span>
     )

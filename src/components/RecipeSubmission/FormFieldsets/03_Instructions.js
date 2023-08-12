@@ -16,8 +16,7 @@ function InstructionItem(props) {
 
     const { register, formState: { errors } } = useFormContext()
 
-    const nameError = errors[PARENT_FIELD]?.[index]
-        && errors[PARENT_FIELD][index][TEXT_ATTRS.NAME]?.message
+    const nameError = errors[PARENT_FIELD]?.[index]?.[TEXT_ATTRS.NAME]
 
     return (
         <li className={styles['instructions__list--item']}>

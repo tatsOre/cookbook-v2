@@ -5,20 +5,69 @@ import { TextInput } from "../Form"
 import UnstyledButton from "../Button/UnstyledButton"
 
 import styles from './styles.module.scss'
+import zxcvbn from "zxcvbn"
+import cx from "../utils/cx"
 
-function PassportValidation({ mode, attrs }) {
+function PasswordStrengthMeter({ password = '', description }) {
+    const result = zxcvbn(password)
+
+    console.log(result.score)
+
+    const createPasswordLabel = (result) => {
+        switch (result.score) {
+            case 0:
+                return 'Weak';
+            case 1:
+                return 'Weak';
+            case 2:
+                return 'Fair';
+            case 3:
+                return 'Good';
+            case 4:
+                return 'Strong';
+            default:
+                return null;
+        }
+    }
+
+    const progress = [... new Array(4)].map((_, index) => {
+        const style = index + 1 <= result.score ? '--filled' : ''
+        return <div className={styles[`progress__bar${style}`]} key={index}></div>
+    })
+
+    return (
+        <div className={styles.password__strength__meter}>
+            <div
+                className={cx([styles['progress__wrapper']])}
+                data-score={result.score}
+            >
+                {progress}
+            </div>
+            <p>
+                {password ? 'Password strength: ' : 'Set a password '}
+                <b>{password ? createPasswordLabel(result) : ''}</b>
+            </p>
+            <div className={cx([styles.pill])} data-valid={password.length > 7}>
+                <IconCheck size={14} strokeWidth={4} />{' '}
+                <span> {description}</span>
+            </div>
+        </div>
+    )
+}
+
+function PasswordValidation({ mode, attrs }) {
     const [show, setShow] = React.useState(false)
 
-    const { register, formState: { errors } } = useFormContext()
+    const { register, formState: { errors }, getValues } = useFormContext()
 
     const PASSWORD = attrs
 
     return (
-        <div>
+        <div className={styles.password__fieldset}>
             <TextInput
                 label={mode === 'SIGNUP'
                     ? PASSWORD.LABEL.SIGNUP : PASSWORD.LABEL.LOGIN}
-                error={errors[PASSWORD.NAME]?.message}
+                error={errors[PASSWORD.NAME]}
                 type={show ? 'text' : 'password'}
                 {...register(PASSWORD.NAME, {
                     required: PASSWORD.RULES.REQUIRED,
@@ -30,14 +79,14 @@ function PassportValidation({ mode, attrs }) {
             </UnstyledButton>
 
             {mode === 'SIGNUP' ? (
-                <p>
-                    <span><IconCheck size={12} strokeWidth={3} /></span>
-                    {PASSWORD.RULES.MIN_LENGTH.MESSAGE}
-                </p>
+                <PasswordStrengthMeter
+                    password={getValues(PASSWORD.NAME)}
+                    description={PASSWORD.RULES.MIN_LENGTH.MESSAGE}
+                />
             ) : null}
         </div>
     )
 }
 
 
-export default PassportValidation
+export default PasswordValidation

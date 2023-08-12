@@ -15,9 +15,7 @@ function Layout({ children }) {
                 </nav>
             </header>
 
-            <main style={{ width: '340px', margin: '0 auto' }}>
-                {children}
-            </main>
+            <main>{children}</main>
             <Footer />
         </>
     )

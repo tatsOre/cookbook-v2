@@ -36,7 +36,7 @@ function GeneralInfoFieldset({ assets, fields }) {
             <TextInput
                 label={TITLE.LABEL}
                 description={TITLE.DESC}
-                error={errors[TITLE.NAME]?.message}
+                error={errors[TITLE.NAME]}
                 placeholder={TITLE.PLACEHOLDER}
                 required
                 {...register(TITLE.NAME, {
@@ -47,7 +47,7 @@ function GeneralInfoFieldset({ assets, fields }) {
             <TextareaInput
                 label={DESCRIPTION.LABEL}
                 description={DESCRIPTION.DESC}
-                error={errors[DESCRIPTION.NAME]?.message}
+                error={errors[DESCRIPTION.NAME]}
                 placeholder={DESCRIPTION.PLACEHOLDER}
                 required
                 rows={4}
@@ -58,7 +58,7 @@ function GeneralInfoFieldset({ assets, fields }) {
 
             <TextInput
                 label={MAIN_INGR.LABEL}
-                error={errors[MAIN_INGR.NAME]?.message}
+                error={errors[MAIN_INGR.NAME]}
                 placeholder={MAIN_INGR.PLACEHOLDER}
                 required
                 {...register(MAIN_INGR.NAME, {
@@ -68,7 +68,7 @@ function GeneralInfoFieldset({ assets, fields }) {
 
             <NumberInput
                 label={SERVINGS.LABEL}
-                error={errors[SERVINGS.NAME]?.message}
+                error={errors[SERVINGS.NAME]}
                 {...register(SERVINGS.NAME, {
                     min: {
                         value: 0,
@@ -127,7 +127,7 @@ function GeneralInfoFieldset({ assets, fields }) {
 
             <NumberInput
                 label={TIME.PREP.LABEL}
-                error={errors.time?.prep?.message}
+                error={errors.time?.prep}
                 {...register(TIME.PREP.NAME, {
                     min: {
                         value: 0,
@@ -138,7 +138,7 @@ function GeneralInfoFieldset({ assets, fields }) {
 
             <NumberInput
                 label={TIME.COOK.LABEL}
-                error={errors.time?.cook?.message}
+                error={errors.time?.cook}
                 {...register(TIME.COOK.NAME, {
                     min: {
                         value: 0,

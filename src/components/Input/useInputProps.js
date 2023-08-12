@@ -42,7 +42,7 @@ function useInputProps(inputType, props) {
     const errorId = `${_id}-error`
     const descriptionId = `${_id}-description`
     
-    const hasError = !!error && typeof error === 'string'
+    const hasError = error && error.type ? true : false
     const aria_describedBy = `${hasError ? errorId : ''} ${description ? descriptionId : ''}`
     const describedBy = aria_describedBy.trim()
 
@@ -68,7 +68,7 @@ function useInputProps(inputType, props) {
             error: {
                 className,
                 id: errorId,
-                children: error,
+                children: error && error.message,
             },
             label: {
                 className,

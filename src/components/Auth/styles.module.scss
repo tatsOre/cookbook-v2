@@ -1,12 +1,137 @@
-.email__fieldset {
-    background-color: aqua;
+@use '../../styles/globals.module.scss' as g;
 
-    &[data-active=true] {
-        height: auto;
+.auth__section {
+    max-width: 340px;
+    margin: 0 auto;
+
+    &>* {
+        margin-block: 1.75rem;
     }
 
-    &[data-active=false] {
-        height: 0px;
-        overflow: hidden;
+    h2,
+    &>p {
+        text-align: center;
+
+    }
+
+    form {
+        .email__fieldset {
+            &[data-active=true] {
+                height: auto;
+            }
+
+            &[data-active=false] {
+                height: 0px;
+                overflow: hidden;
+            }
+
+            button {
+                margin-block: 0.5rem;
+            }
+        }
+
+        .password__fieldset {}
+    }
+
+    .auth__providers {
+        text-align: center;
+
+        &>* {
+            margin-block: 1rem;
+        }
+
+        &>div {
+            position: relative;
+
+            span {
+                background-color: g.$color-white;
+                padding-inline: 1rem;
+            }
+
+            &::after {
+                position: absolute;
+                content: "";
+                height: 1px;
+                width: 100%;
+                top: 50%;
+                left: 0;
+                background-color: g.$color-warm-grey-400;
+                z-index: -1;
+            }
+        }
+
+        a {
+            display: block;
+            width: 100%;
+            border: 1px solid g.$color-warm-grey-400;
+            border-radius: 25px;
+            padding-block: 0.75rem;
+            font-size: 0.9rem;
+        }
+    }
+}
+
+.password__strength__meter {
+    font-size: 0.825rem;
+    text-align: center;
+
+    &>* {
+        margin-block: 0.5rem;
+    }
+
+    .progress__wrapper {
+        display: flex;
+        gap: 0.35rem;
+
+        div {
+            height: 0.15rem;
+            flex: 1;
+            background-color: g.$color-cool-grey-100;
+        }
+
+        &[data-score="1"] {
+            div.progress__bar--filled {
+                background-color: tomato;
+            }
+        }
+
+        &[data-score="2"] {
+            div.progress__bar--filled {
+                background-color: orange;
+            }
+        }
+
+        &[data-score="3"] {
+            div.progress__bar--filled {
+                background-color: rgb(255, 217, 0);
+            }
+        }
+
+        &[data-score="4"] {
+            div.progress__bar--filled {
+                background-color: rgb(0, 167, 0);
+            }
+        }
+    }
+
+    .pill {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            stroke: g.$color-danger-base;
+
+        }
+
+        &[data-valid="true"] {
+            svg {
+                stroke: g.$color-success-base;
+            }
+        }
+
+        span {
+            margin-inline-start: 0.25rem;
+        }
     }
 }

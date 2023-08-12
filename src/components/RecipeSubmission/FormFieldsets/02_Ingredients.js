@@ -50,9 +50,7 @@ function IngredientsFieldset({ assets, fields }) {
     const fractionOptions = assets?.fraction_options ?? []
 
     const ingrListItems = ingredients.map((ingr, index) => {
-        const ingrNameFieldError = errors[INGS_NAME]
-            && errors[INGS_NAME][index]
-            && errors[INGS_NAME][index][ITEM_NAME.NAME]?.message
+        const ingrNameFieldError = errors[INGS_NAME]?.[index]?.[ITEM_NAME.NAME]
 
         const di_id = `drag-ingr-${ingr.id}`
 
@@ -125,7 +123,7 @@ function IngredientsFieldset({ assets, fields }) {
                 <Alert
                     appearance="danger"
                     variant='light'
-                    title={errors?.[INGS_NAME]?.root.message || RULES.REQUIRED}
+                    title={errors?.[INGS_NAME]?.root || RULES.REQUIRED}
                 />
             ) : null}
 
