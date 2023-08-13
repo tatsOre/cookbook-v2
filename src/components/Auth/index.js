@@ -7,8 +7,8 @@ import LoadingOverlay from "../LoadingOverlay"
 import useFormSubmission, { STATUS } from "../hooks/useFormSubmission"
 import Button from "../Button"
 import UnstyledButton from "../Button/UnstyledButton"
-import EmailSubmission from "./EmailValidation"
-import PasswordValidation from "./PasswordValidation"
+import EmailField from "./EmailField"
+import PasswordField from "./PasswordField"
 import { default as PATHS } from '../../../config'
 import { default as AUTH_FIELDS_ATTRS } from "./utils"
 
@@ -70,7 +70,9 @@ function AuthorizationSubmission() {
         status === STATUS.RESOLVED && console.log('All good', responseData)
     }, [status])
 
-    const onSubmit = (values) => setFormData(values)
+    const onSubmit = ({ email, password }) => {
+        email && password && setFormData({ email, password })
+    }
 
     const setStatus = (response) => {
         response.emailExist
@@ -107,15 +109,16 @@ function AuthorizationSubmission() {
 
             <FormProvider {...methods}>
                 <Form onSubmit={methods.handleSubmit(onSubmit)}>
-                    <EmailSubmission
+                    {/** Render the email field component **/}
+                    <EmailField
                         setStatus={setStatus}
                         displayNameIsSet={Boolean(state.displayName)}
                         attrs={EMAIL}
                     />
-
                     {state.displayName ? (
                         <>
-                            <PasswordValidation mode={state.mode} attrs={PASSWORD} />
+                            {/** Render the password field component and strength meter **/}
+                            <PasswordField mode={state.mode} attrs={PASSWORD} />
 
                             <Button type="submit" fullWidth>
                                 {state.mode == 'LOGIN' ? 'Log in' : 'Create Account'}

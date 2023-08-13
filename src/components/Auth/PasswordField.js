@@ -9,12 +9,10 @@ import zxcvbn from "zxcvbn"
 import cx from "../utils/cx"
 
 function PasswordStrengthMeter({ password = '', description }) {
-    const result = zxcvbn(password)
+    const strength = zxcvbn(password).score
 
-    console.log(result.score)
-
-    const createPasswordLabel = (result) => {
-        switch (result.score) {
+    const createPasswordLabel = (value) => {
+        switch (value) {
             case 0:
                 return 'Weak';
             case 1:
@@ -30,22 +28,14 @@ function PasswordStrengthMeter({ password = '', description }) {
         }
     }
 
-    const progress = [... new Array(4)].map((_, index) => {
-        const style = index + 1 <= result.score ? '--filled' : ''
-        return <div className={styles[`progress__bar${style}`]} key={index}></div>
-    })
-
     return (
         <div className={styles.password__strength__meter}>
-            <div
-                className={cx([styles['progress__wrapper']])}
-                data-score={result.score}
-            >
-                {progress}
+            <div className={styles['strength-meter']}>
+                <div className={styles['strength-meter-fill']} data-strength={strength}></div>
             </div>
             <p>
-                {password ? 'Password strength: ' : 'Set a password '}
-                <b>{password ? createPasswordLabel(result) : ''}</b>
+                {password ? 'Password strength: ' : 'Set a password'}
+                <b>{password ? createPasswordLabel(strength) : ''}</b>
             </p>
             <div className={cx([styles.pill])} data-valid={password.length > 7}>
                 <IconCheck size={14} strokeWidth={4} />{' '}
@@ -55,12 +45,16 @@ function PasswordStrengthMeter({ password = '', description }) {
     )
 }
 
-function PasswordValidation({ mode, attrs }) {
+function PasswordField({ mode, attrs: PASSWORD }) {
     const [show, setShow] = React.useState(false)
+    const [password, setPassword] = React.useState()
 
-    const { register, formState: { errors }, getValues } = useFormContext()
+    const { register, formState: { errors } } = useFormContext()
 
-    const PASSWORD = attrs
+    const passwordRegister = register(PASSWORD.NAME, {
+        required: PASSWORD.RULES.REQUIRED,
+        minLength: PASSWORD.RULES.MIN_LENGTH.VALUE
+    })
 
     return (
         <div className={styles.password__fieldset}>
@@ -69,18 +63,19 @@ function PasswordValidation({ mode, attrs }) {
                     ? PASSWORD.LABEL.SIGNUP : PASSWORD.LABEL.LOGIN}
                 error={errors[PASSWORD.NAME]}
                 type={show ? 'text' : 'password'}
-                {...register(PASSWORD.NAME, {
-                    required: PASSWORD.RULES.REQUIRED,
-                    minLength: PASSWORD.RULES.MIN_LENGTH.VALUE
+                {...passwordRegister}
+                onChange={(ev => {
+                    passwordRegister.onChange(ev)
+                    setPassword(ev.target.value)
                 })}
             />
-            <UnstyledButton onClick={() => setShow(prevState => !prevState)}>
-                show
+            <UnstyledButton onClick={() => setShow(prev => !prev)}>
+                {show ? 'hide' : 'show'}
             </UnstyledButton>
 
             {mode === 'SIGNUP' ? (
                 <PasswordStrengthMeter
-                    password={getValues(PASSWORD.NAME)}
+                    password={password}
                     description={PASSWORD.RULES.MIN_LENGTH.MESSAGE}
                 />
             ) : null}
@@ -88,5 +83,4 @@ function PasswordValidation({ mode, attrs }) {
     )
 }
 
-
-export default PasswordValidation
+export default PasswordField

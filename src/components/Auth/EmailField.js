@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from 'prop-types'
 import { useFormContext } from "react-hook-form"
 import useFormSubmission, { STATUS } from "../hooks/useFormSubmission"
 import Alert from "../Alert"
@@ -10,13 +11,8 @@ import { default as PATHS } from '../../../config'
 
 import styles from './styles.module.scss'
 
-/**
- * Renders email input UI, verifies account and sets response.
- * @param {*} setStatus 
- * @returns 
- */
 
-function EmailSubmission({ setStatus, displayNameIsSet, attrs }) {
+function EmailField({ setStatus, displayNameIsSet, attrs: EMAIL }) {
     const [formData, setFormData] = React.useState('')
 
     const {
@@ -36,8 +32,6 @@ function EmailSubmission({ setStatus, displayNameIsSet, attrs }) {
         status === STATUS.RESOLVED && setStatus(responseData)
     }, [status])
 
-    const EMAIL = attrs
-
     const email = register(EMAIL.NAME, {
         required: EMAIL.RULES.REQUIRED,
         validate: {
@@ -50,7 +44,7 @@ function EmailSubmission({ setStatus, displayNameIsSet, attrs }) {
         }
     })
 
-    const validateEmail = () => {
+    const checkIfEmailExists = () => {
         trigger(EMAIL.NAME, { shouldFocus: true })
 
         isValid && setFormData({
@@ -87,11 +81,16 @@ function EmailSubmission({ setStatus, displayNameIsSet, attrs }) {
                 })}
             />
 
-            <Button onClick={validateEmail} fullWidth>Continue</Button>
+            <Button onClick={checkIfEmailExists} fullWidth>Continue</Button>
 
             {status === STATUS.PENDING ? <LoadingOverlay /> : null}
         </div>
     )
 }
+EmailField.propTypes = {
+    setStatus: PropTypes.func,
+    displayNameIsSet: PropTypes.bool,
+    attrs: PropTypes.object
+}
 
-export default EmailSubmission
+export default EmailField

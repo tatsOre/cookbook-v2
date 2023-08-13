@@ -1,11 +1,9 @@
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
-
 import Alert from '@/components/Alert'
-import Button from '../../Button'
+import Button from '@/components/Button'
 import DroppableList from '../../List'
-import NumberInput from '../../Form/NumberInput'
-import TextInput from '../../Form/TextInput'
+import { NumberInput, TextInput } from '@/components/Form'
 import SelectInput from '../../Select'
 import UnstyledButton from '../../Button/UnstyledButton'
 import DeleteButton from '@/components/Button/DeleteButton'

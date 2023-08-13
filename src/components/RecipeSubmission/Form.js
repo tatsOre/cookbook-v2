@@ -1,5 +1,5 @@
 import Accordion from "../Accordion"
-import { Form } from "../Box"
+import { Form } from "../Form"
 import GeneralInfoFieldset from "./FormFieldsets/01_GeneralInfo"
 import IngredientsFieldset from "./FormFieldsets/02_Ingredients"
 import InstructionsFieldset from "./FormFieldsets/03_Instructions"

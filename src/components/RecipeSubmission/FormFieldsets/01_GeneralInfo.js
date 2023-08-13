@@ -3,10 +3,8 @@ import Select from 'react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import CheckboxInput from '../../Checkbox'
 import Input from '../../Input'
-import NumberInput from '../../Form/NumberInput'
 import SelectInput, { styles } from '../../Select'
-import TextInput from '../../Form/TextInput'
-import TextareaInput from '../../Form/TextareaInput'
+import { NumberInput, TextInput, TextareaInput } from '@/components/Form'
 
 function GeneralInfoFieldset({ assets, fields }) {
     const {

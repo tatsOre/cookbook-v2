@@ -1,8 +1,8 @@
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
-import Button from '../../Button'
+import Button from '@/components/Button'
 import DeleteButton from '@/components/Button/DeleteButton'
-import TextareaInput from '../../Form/TextareaInput'
+import { TextareaInput } from '@/components/Form'
 
 import styles from '../styles.module.scss'
 
