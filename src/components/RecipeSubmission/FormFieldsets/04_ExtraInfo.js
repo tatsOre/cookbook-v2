@@ -4,8 +4,7 @@ import { useFormContext } from 'react-hook-form'
 import useDeviceDetect from '@/components/hooks/useDeviceDetect'
 import useDraggableFile from '@/components/hooks/useDraggableFile'
 import Alert from '@/components/Alert'
-import { FileInput } from '@/components/Form'
-import { TextareaInput } from '@/components/Form'
+import { FileInput, TextInput } from '@/components/Form'
 import { IconCloudUpload } from '@/components/Icon'
 import { getImageSrc } from '@/components/utils/file'
 import cx from '@/components/utils/cx'
@@ -114,7 +113,8 @@ function ExtraInfoFieldset({ fields }) {
             </div>
 
 
-            <TextareaInput
+            <TextInput
+                multiline
                 description={COMMENTS.DESC}
                 label={COMMENTS.LABEL}
                 placeholder={COMMENTS.PLACEHOLDER}

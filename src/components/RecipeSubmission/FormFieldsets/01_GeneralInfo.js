@@ -1,10 +1,8 @@
 import React from 'react'
-import Select from 'react-select'
-import { Controller, useFormContext } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import CheckboxInput from '../../Checkbox'
-import Input from '../../Input'
-import SelectInput, { styles } from '../../Select'
-import { NumberInput, TextInput, TextareaInput } from '@/components/Form'
+import SelectInput from '../../Select'
+import { NumberInput, TextInput } from '@/components/Form'
 
 function GeneralInfoFieldset({ assets, fields }) {
     const {
@@ -18,16 +16,13 @@ function GeneralInfoFieldset({ assets, fields }) {
         PUBLIC
     } = fields
 
-    const { register, control, formState: { errors, defaultValues } } = useFormContext()
-
-    const [selectedCategories, setSelectedCategories] = React.useState(
-        defaultValues.categories ?? []
-    )
+    const { register, formState: { errors }, watch } = useFormContext()
 
     const categoriesOptions = assets?.categories_options ?? []
     const cuisineOptions = assets?.cuisine_options ?? []
-
-    const categoriesLeft = `(${3 - selectedCategories.length} left)`
+    /** https://react-hook-form.com/docs/useform/watch */
+    const watchCategories = watch("categories", [])
+    const categoriesLeft = `(${3 - watchCategories.length} left)`
 
     return (
         <>
@@ -37,17 +32,19 @@ function GeneralInfoFieldset({ assets, fields }) {
                 error={errors[TITLE.NAME]}
                 placeholder={TITLE.PLACEHOLDER}
                 required
+                autoFocus
                 {...register(TITLE.NAME, {
                     required: TITLE.RULES.REQUIRED
                 })}
             />
 
-            <TextareaInput
+            <TextInput
                 label={DESCRIPTION.LABEL}
                 description={DESCRIPTION.DESC}
                 error={errors[DESCRIPTION.NAME]}
                 placeholder={DESCRIPTION.PLACEHOLDER}
                 required
+                multiline
                 rows={4}
                 {...register(DESCRIPTION.NAME, {
                     required: DESCRIPTION.RULES.REQUIRED
@@ -64,6 +61,26 @@ function GeneralInfoFieldset({ assets, fields }) {
                 })}
             />
 
+            <SelectInput
+                isMulti
+                label={
+                    <>
+                        {CATEGORIES.LABEL}
+                        <span style={{ fontSize: '12px' }}>. {CATEGORIES.DESC} {categoriesLeft}</span>
+                    </>
+                }
+                id='cat-select'
+                name={CATEGORIES.NAME}
+                options={categoriesOptions}
+                isOptionDisabled={() => watchCategories.length > 2}
+            />
+
+            <SelectInput
+                label={CUISINE.LABEL}
+                name={CUISINE.NAME}
+                options={cuisineOptions}
+            />
+
             <NumberInput
                 label={SERVINGS.LABEL}
                 error={errors[SERVINGS.NAME]}
@@ -74,54 +91,6 @@ function GeneralInfoFieldset({ assets, fields }) {
                     }
                 })}
             />
-
-            <SelectInput
-                label={CUISINE.LABEL}
-                name={CUISINE.NAME}
-                options={cuisineOptions}
-            />
-
-            {/** TODO: */}
-            <div data-input-wrapper="categories">
-                <Input.Label htmlFor="cat-select" style={{ marginBlockEnd: '0.4rem' }}>
-                    {CATEGORIES.LABEL}
-                </Input.Label>
-                <span style={{ fontSize: '12px' }}>. {CATEGORIES.DESC} {categoriesLeft}</span>
-                <Controller
-                    name={CATEGORIES.NAME}
-                    control={control}
-                    render={({ field: { onChange, value, ...rest } }) => (
-                        <Select
-                            isMulti
-                            isClearable
-                            className="react-select-container"
-                            defaultValue={selectedCategories}
-                            options={categoriesOptions}
-                            onChange={(ev) => { setSelectedCategories(ev); onChange(ev) }}
-                            getOptionValue={(option) => `${option['_id']}`}
-                            isOptionDisabled={() => selectedCategories.length > 2}
-                            inputId='cat-select'
-                            instanceId='cat-instance-select'
-                            // https://github.com/JedWatson/react-select/issues/1537
-                            menuPortalTarget={
-                                typeof window !== "undefined" && document.querySelector('body')
-                            }
-                            styles={styles}
-                            theme={(theme) => ({
-                                ...theme,
-                                borderRadius: 0,
-                                colors: {
-                                    ...theme.colors,
-                                    primary50: '#e9e8e1',
-                                    primary25: '#e9e8e1',
-                                    primary: 'black',
-                                },
-                            })}
-                            {...rest}
-                        />
-                    )}
-                />
-            </div>
 
             <NumberInput
                 label={TIME.PREP.LABEL}

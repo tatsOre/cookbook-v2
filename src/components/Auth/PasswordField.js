@@ -1,53 +1,14 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
-import { IconCheck } from "../Icon"
 import { TextInput } from "../Form"
+import PasswordStrengthMeter from "./PasswordStrengthMeter"
 import UnstyledButton from "../Button/UnstyledButton"
 
 import styles from './styles.module.scss'
-import zxcvbn from "zxcvbn"
-import cx from "../utils/cx"
-
-function PasswordStrengthMeter({ password = '', description }) {
-    const strength = zxcvbn(password).score
-
-    const createPasswordLabel = (value) => {
-        switch (value) {
-            case 0:
-                return 'Weak';
-            case 1:
-                return 'Weak';
-            case 2:
-                return 'Fair';
-            case 3:
-                return 'Good';
-            case 4:
-                return 'Strong';
-            default:
-                return null;
-        }
-    }
-
-    return (
-        <div className={styles.password__strength__meter}>
-            <div className={styles['strength-meter']}>
-                <div className={styles['strength-meter-fill']} data-strength={strength}></div>
-            </div>
-            <p>
-                {password ? 'Password strength: ' : 'Set a password'}
-                <b>{password ? createPasswordLabel(strength) : ''}</b>
-            </p>
-            <div className={cx([styles.pill])} data-valid={password.length > 7}>
-                <IconCheck size={14} strokeWidth={4} />{' '}
-                <span> {description}</span>
-            </div>
-        </div>
-    )
-}
 
 function PasswordField({ mode, attrs: PASSWORD }) {
     const [show, setShow] = React.useState(false)
-    const [password, setPassword] = React.useState()
+    const [password, setPassword] = React.useState('')
 
     const { register, formState: { errors } } = useFormContext()
 
@@ -66,6 +27,7 @@ function PasswordField({ mode, attrs: PASSWORD }) {
                 {...passwordRegister}
                 onChange={(ev => {
                     passwordRegister.onChange(ev)
+                    /** Set value to pass it to PasswordStrengthMeter as prop **/
                     setPassword(ev.target.value)
                 })}
             />

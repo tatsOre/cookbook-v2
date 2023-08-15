@@ -1,8 +1,9 @@
 import React from "react"
 import { Controller, useFormContext } from "react-hook-form"
-import useInputProps from "../Input/useInputProps"
+import useInputProps from "../hooks/useInputProps"
 import Select from 'react-select'
-import Input from "../Input"
+
+import FormGroup from "../FormGroup"
 
 export const styles = {
     menuPortal: (base) => ({
@@ -47,34 +48,34 @@ export const styles = {
 }
 
 function SelectInput(props) {
-    const { name, options, ...rest } = props
+    const { name, options, isMulti, isOptionDisabled, ...rest } = props
 
     const { control, formState: { errors } } = useFormContext()
 
-    const { inputProps, wrapperProps } = useInputProps(null, {
+    const { inputProps, wrapperProps } = useInputProps({
         ...rest,
         error: errors[name]
     })
 
     return (
-        <Input.Wrapper {...wrapperProps}>
+        <FormGroup {...wrapperProps}>
             <Controller
                 name={name}
                 control={control}
                 render={({ field }) => {
                     return (
                         <Select
-                            aria-label={inputProps.labelId}
-                            aria-describedby={inputProps.describedBy || undefined}
+                            isMulti={isMulti}
+                            isOptionDisabled={isOptionDisabled}
+                            aria-label={wrapperProps.label.children || inputProps["aria-label"]}
+                            aria-describedby={inputProps["aria-describedby"]}
                             options={options}
                             getOptionValue={(option) => `${option['_id']}`}
                             isClearable
                             inputId={inputProps.id}
                             instanceId={inputProps.id} // removes `id` warning.
                             // https://github.com/JedWatson/react-select/issues/1537
-                            menuPortalTarget={
-                                typeof window !== "undefined" && document.querySelector('body')
-                            }
+                            menuPortalTarget={document.querySelector('body')}
                             styles={styles}
                             theme={(theme) => ({
                                 ...theme,
@@ -91,7 +92,7 @@ function SelectInput(props) {
                     )
                 }}
             />
-        </Input.Wrapper>
+        </FormGroup>
     )
 }
 

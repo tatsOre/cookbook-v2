@@ -37,10 +37,6 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
     const router = useRouter()
 
     React.useEffect(() => {
-        methods.setFocus('title')
-    }, [methods.setFocus])
-
-    React.useEffect(() => {
         status === STATUS.RESOLVED && router.push(`/recipes/${responseData.id}`)
     }, [status])
 

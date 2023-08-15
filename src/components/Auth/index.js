@@ -1,7 +1,6 @@
 import React from "react"
 import { useRouter } from "next/router"
 import { FormProvider, useForm } from "react-hook-form"
-import { Form } from "../Form"
 import Alert from "../Alert"
 import LoadingOverlay from "../LoadingOverlay"
 import useFormSubmission, { STATUS } from "../hooks/useFormSubmission"
@@ -10,7 +9,7 @@ import UnstyledButton from "../Button/UnstyledButton"
 import EmailField from "./EmailField"
 import PasswordField from "./PasswordField"
 import { default as PATHS } from '../../../config'
-import { default as AUTH_FIELDS_ATTRS } from "./utils"
+import { default as AUTH_FIELDS_ATTRS } from "./Auth.constants"
 
 import styles from './styles.module.scss'
 
@@ -74,10 +73,10 @@ function AuthorizationSubmission() {
         email && password && setFormData({ email, password })
     }
 
-    const setStatus = (response) => {
-        response.emailExist
-            ? dispatch({ type: 'LOGIN', displayName: response.displayName })
-            : dispatch({ type: 'SIGNUP', displayName: response.displayName })
+    const setStatus = ({ emailExist, displayName }) => {
+        emailExist
+            ? dispatch({ type: 'LOGIN', displayName })
+            : dispatch({ type: 'SIGNUP', displayName })
     }
 
     const resetState = () => {
@@ -108,7 +107,7 @@ function AuthorizationSubmission() {
             ) : null}
 
             <FormProvider {...methods}>
-                <Form onSubmit={methods.handleSubmit(onSubmit)}>
+                <form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
                     {/** Render the email field component **/}
                     <EmailField
                         setStatus={setStatus}
@@ -130,7 +129,7 @@ function AuthorizationSubmission() {
                         <div><span>or</span></div>
                         <a>Continue with Google - soon</a>
                     </div>
-                </Form>
+                </form>
             </FormProvider>
 
             {status === STATUS.PENDING ? <LoadingOverlay /> : null}

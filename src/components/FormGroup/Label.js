@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 import cx from '@/components/utils/cx'
 
-import styles from './styles.module.scss'
+import styles from './FormGroup.module.scss'
 
-function InputLabel(props) {
+function Label(props) {
     const {
         children,
         className,
@@ -21,17 +21,23 @@ function InputLabel(props) {
     ])
 
     return (
-        <label htmlFor={htmlFor} id={id} className={classes} {...rest}>
+        <label
+            id={id}
+            htmlFor={htmlFor}
+            className={classes}
+            aria-hidden={hideInputLabel}
+            {...rest}
+        >
             {children}
             {required && <span aria-hidden>{'*'}</span>}
         </label>)
 }
 
-InputLabel.defaultProps = {
+Label.defaultProps = {
     hideInputLabel: false
 }
 
-InputLabel.propTypes = {
+Label.propTypes = {
     /** Content */
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 
@@ -42,4 +48,4 @@ InputLabel.propTypes = {
     hideInputLabel: PropTypes.bool,
 }
 
-export default InputLabel
+export default Label

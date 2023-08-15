@@ -2,7 +2,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
 import Button from '@/components/Button'
 import DeleteButton from '@/components/Button/DeleteButton'
-import { TextareaInput } from '@/components/Form'
+import { TextInput } from '@/components/Form'
 
 import styles from '../styles.module.scss'
 
@@ -20,7 +20,8 @@ function InstructionItem(props) {
 
     return (
         <li className={styles['instructions__list--item']}>
-            <TextareaInput
+            <TextInput
+                multiline
                 label={`${TEXT_ATTRS.LABEL} ${index + 1}`} // Step {index}
                 error={nameError}
                 {...register(`${PARENT_FIELD}.${index}.${TEXT_ATTRS.NAME}`, {

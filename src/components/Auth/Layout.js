@@ -1,6 +1,6 @@
 import Link from "next/link"
 import UnstyledButton from "../Button/UnstyledButton"
-import Footer from "../Box/Footer"
+import Footer from "../Footer"
 
 import styles from './styles.module.scss'
 

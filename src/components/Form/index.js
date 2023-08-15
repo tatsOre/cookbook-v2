@@ -1,5 +1,3 @@
-export { default as Form } from './Form'
 export { default as FileInput } from './FileInput'
 export { default as NumberInput } from './NumberInput'
-export { default as TextareaInput } from './TextareaInput'
 export { default as TextInput } from './TextInput'

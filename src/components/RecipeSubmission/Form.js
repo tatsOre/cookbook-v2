@@ -1,5 +1,4 @@
 import Accordion from "../Accordion"
-import { Form } from "../Form"
 import GeneralInfoFieldset from "./FormFieldsets/01_GeneralInfo"
 import IngredientsFieldset from "./FormFieldsets/02_Ingredients"
 import InstructionsFieldset from "./FormFieldsets/03_Instructions"
@@ -29,7 +28,7 @@ function RecipeForm(props) {
     const { id, onSubmit, assets } = props
 
     return (
-        <Form id={id} onSubmit={onSubmit} >
+        <form id={id} onSubmit={onSubmit} noValidate>
             <Accordion.Item value="item-1">
                 <Accordion.Trigger>About</Accordion.Trigger>
                 <Accordion.Panel className={styles.about__fieldset}>
@@ -73,7 +72,7 @@ function RecipeForm(props) {
                     />
                 </Accordion.Panel>
             </Accordion.Item>
-        </Form>
+        </form>
     )
 }
 

@@ -2,7 +2,7 @@ import cx from "@/components/utils/cx"
 import { useAccordionContext } from "."
 import { useAccordionItemContext } from "./AccordionItem"
 
-import styles from './styles.module.scss'
+import styles from './Alert.module.scss'
 
 function AccordionPanel(props) {
     const { className, children, ...rest } = props

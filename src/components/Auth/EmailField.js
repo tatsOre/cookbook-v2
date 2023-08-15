@@ -6,11 +6,9 @@ import Alert from "../Alert"
 import Button from "../Button"
 import LoadingOverlay from "../LoadingOverlay"
 import { TextInput } from "../Form"
-import cx from "../utils/cx"
 import { default as PATHS } from '../../../config'
 
 import styles from './styles.module.scss'
-
 
 function EmailField({ setStatus, displayNameIsSet, attrs: EMAIL }) {
     const [formData, setFormData] = React.useState('')
@@ -32,7 +30,7 @@ function EmailField({ setStatus, displayNameIsSet, attrs: EMAIL }) {
         status === STATUS.RESOLVED && setStatus(responseData)
     }, [status])
 
-    const email = register(EMAIL.NAME, {
+    const emailRegister = register(EMAIL.NAME, {
         required: EMAIL.RULES.REQUIRED,
         validate: {
             maxLength: (v) =>
@@ -56,7 +54,7 @@ function EmailField({ setStatus, displayNameIsSet, attrs: EMAIL }) {
 
     return (
         <div
-            className={cx([styles.email__fieldset])}
+            className={styles.email__fieldset}
             data-active={!displayNameIsSet}
         >
             {status === STATUS.REJECTED ? (
@@ -74,9 +72,10 @@ function EmailField({ setStatus, displayNameIsSet, attrs: EMAIL }) {
                 autoComplete={EMAIL.NAME}
                 type="email"
                 error={errors[EMAIL.NAME]}
-                {...email}
+                autoFocus
+                {...emailRegister}
                 onChange={(ev => {
-                    email.onChange(ev)
+                    emailRegister.onChange(ev)
                     errors.email && clearErrors(EMAIL.NAME)
                 })}
             />
@@ -87,6 +86,7 @@ function EmailField({ setStatus, displayNameIsSet, attrs: EMAIL }) {
         </div>
     )
 }
+
 EmailField.propTypes = {
     setStatus: PropTypes.func,
     displayNameIsSet: PropTypes.bool,

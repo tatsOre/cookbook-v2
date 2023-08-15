@@ -1,23 +1,25 @@
 import React from "react"
-import Input from "../Input"
-import useInputProps from "../Input/useInputProps"
+import FormGroup from "../FormGroup/FormGroup"
+import useInputProps from "../hooks/useInputProps"
 
 const NumberInput = React.forwardRef((props, ref) => {
-    const { inputProps, wrapperProps } = useInputProps('NumberInput', props)
+    const { inputProps, wrapperProps } = useInputProps(props)
 
     return (
-        <Input.Wrapper {...wrapperProps}>
-            <Input
-                {...inputProps}
+        <FormGroup {...wrapperProps}>
+            <input
                 ref={ref}
-                placeholder={0}
-                onKeyPress={(e) => {
+                type="number"
+                min={inputProps.min ?? 0}
+                placeholder={inputProps.placeholder ?? 0}
+                onKeyDown={(e) => {
                     if (e.key === "e" || e.key === "-") {
                         e.preventDefault();
                     }
                 }}
+                {...inputProps}
             />
-        </Input.Wrapper>
+        </FormGroup>
     )
 })
 

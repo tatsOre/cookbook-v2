@@ -4,7 +4,7 @@ import UnstyledButton from "../Button/UnstyledButton"
 import NavBar from "../Navigation"
 import MenuButton from "../Button/MenuButton"
 import { IconArrowForward } from "../Icon"
-import Footer from "../Box/Footer"
+import Footer from "../Footer"
 
 import styles from './styles.module.scss'
 

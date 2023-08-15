@@ -4,7 +4,7 @@ import UnstyledButton from "@/components/Button/UnstyledButton"
 import { IconPlus } from "../Icon"
 import cx from "@/components/utils/cx"
 
-import styles from './styles.module.scss'
+import styles from './Alert.module.scss'
 
 function AccordionTrigger(props) {
     const { children, ...rest } = props

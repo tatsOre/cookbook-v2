@@ -73,24 +73,23 @@
     /** Accordion Trigger / Form Fieldset Headings: */
     [data-accordion-trigger] {
         padding-block: 1.125rem;
-        border-top: 2px solid g.$color-rich-black;
+        border-top: 3px solid g.$color-rich-black;
         color: g.$color-rich-black;
         font-size: calc(1.35rem + 0.390625vw);
         font-family: g.$font-accent;
         font-stretch: 125%;
-        font-weight: 900;
+        font-weight: 800;
         letter-spacing: 0.1px;
+
+        &[aria-expanded="true"]{
+            background-color: g.$color-warm-grey-100;
+        }
 
         @media (hover: hover) {
             &:hover:not([disabled]) {
                 background-color: g.$color-rich-black;
                 color: g.$color-white;
                 background-color: g.$color-rich-black;
-                letter-spacing: 1px;
-            }
-
-            &:focus {
-                border-top-style: dotted;
             }
         }
     }
@@ -99,10 +98,6 @@
     [data-accordion-content],
     [data-accordion-trigger] {
         padding-inline: calc(0.75rem + 1.5625vw);
-    }
-
-    [data-accordion-content] {
-        background-color: rgb(249, 249, 249);
     }
 }
 
@@ -120,19 +115,12 @@
     @media only screen and (min-width: g.$breakpoint-small) {
         flex-flow: row wrap;
 
-        [data-input-wrapper="description"],
-        [data-input-wrapper="title"] {
+        [data-input-wrapper="categories"] {
             flex-basis: 100%;
         }
 
-        [data-input-wrapper]:nth-child(n+3):not(:last-child) {
+        [data-input-wrapper]:nth-child(n+5):not(:last-child) {
             flex-basis: calc(52% - calc(0.75rem + 1.5625vw));
-        }
-    }
-
-    @media only screen and (min-width: g.$breakpoint-large) {
-        [data-input-wrapper]:nth-child(n+3):not(:last-child) {
-            flex-basis: calc(35.25% - calc(0.75rem + 1.5625vw));
         }
     }
 }
@@ -149,7 +137,6 @@
             flex-flow: row wrap;
             justify-content: space-between;
             background-color: g.$color-white;
-            padding: 0.75rem;
             border-radius: g.$border-radius-default;
 
             .button__drag--handler {

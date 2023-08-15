@@ -3,11 +3,6 @@ import RecipeView from '@/components/RecipeView/View'
 import { default as PATHS } from '../../../config'
 
 export const getServerSideProps = async ({ params, res }) => {
-    res.setHeader(
-        'Cache-Control',
-        'public, s-maxage=10, stale-while-revalidate=59'
-    )
-
     try {
         const response = await fetch(`${PATHS.RECIPES_ENDPOINT}/${params.id}`)
 
