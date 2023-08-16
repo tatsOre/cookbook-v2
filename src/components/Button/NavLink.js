@@ -2,7 +2,7 @@ import React from "react"
 import cx from "../utils/cx"
 import { BUTTON_APPEARANCES } from "."
 
-import styles from './styles.module.scss'
+import styles from './Button.module.scss'
 
 const NavLink = React.forwardRef((props, ref) => {
     const {

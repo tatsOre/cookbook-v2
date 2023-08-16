@@ -2,7 +2,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
 import Button from '@/components/Button'
 import DeleteButton from '@/components/Button/DeleteButton'
-import { TextInput } from '@/components/Form'
+import { TextInput } from '@/components/FormInput'
 
 import styles from '../styles.module.scss'
 
@@ -29,7 +29,7 @@ function InstructionItem(props) {
                 })}
             />
             <DeleteButton
-                ariaLabel="Delete instruction step"
+                ariaLabel={`Delete Step No. ${index + 1}`}
                 className={styles['button__icon--delete']}
                 onClick={() => onRemove(index)}
             />

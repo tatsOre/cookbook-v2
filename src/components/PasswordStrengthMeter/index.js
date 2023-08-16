@@ -1,7 +1,7 @@
 import React from "react"
-import { IconCheck } from "../Icon"
-import styles from './styles.module.scss'
 import zxcvbn from "zxcvbn"
+import { IconCheck } from "../Icon"
+import styles from './PasswordStrengthMeter.module.scss'
 
 function PasswordStrengthMeter({ password, description }) {
     const strength = zxcvbn(password).score

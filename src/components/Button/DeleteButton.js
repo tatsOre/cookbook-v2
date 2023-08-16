@@ -3,7 +3,7 @@ import Button from "."
 import { IconTrash } from "../Icon"
 import cx from "../utils/cx"
 
-import styles from './styles.module.scss'
+import styles from './Button.module.scss'
 
 function DeleteButton(props) {
     const { ariaLabel, className, ...rest } = props

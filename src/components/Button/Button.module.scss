@@ -1,0 +1,84 @@
+@use '../../styles/globals.module.scss' as g;
+
+@mixin size($size) {
+    height: $size;
+    width: $size;
+    min-height: $size;
+    min-width: $size;
+}
+
+@mixin icon--button {
+    @include size($size: 40px);
+    text-align: center;
+
+    @media only screen and (min-width: g.$breakpoint-medium) {
+        @include size($size: 50px);
+    }
+}
+
+/** Unstyled Buttons: **/
+.button__base {
+    --webkit-appearance: none;
+    border-radius: 0;
+    text-align: inherit;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    color: inherit;
+    //outline: none;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.8;
+    }
+}
+
+/** Styled Buttons with label: **/
+.button {
+    display: grid;
+    place-content: center;
+    border-radius: g.$border-radius-default;
+    background-color: g.$color-white;
+    border: g.$border-default;
+    transition: all 0.15s ease-out 0s;
+    @include g.font--button;
+
+    &--compact {
+        padding: 0.3rem 0.5rem;
+    }
+
+    &--wide {
+        padding: 0.75rem 1rem;
+    }
+
+    span.icon__container {
+        vertical-align: sub;
+
+        &--left {
+            margin-inline-end: 0.5rem;
+        }
+
+        &--right {
+            margin-inline-start: 0.5rem;
+        }
+    }
+
+    &--danger {
+        background-color: g.$color-danger-base;
+    }
+
+    @media (hover: hover) {
+        &:hover:not([disabled]):not([aria-disabled="true"]) {
+            transform: translate(-0.2rem, -0.2rem);
+            box-shadow: 0.2rem 0.2rem 0 g.$color-rich-black;
+        }
+    }
+}
+
+/** Buttons without label: **/
+.action--button {
+    @include icon--button;
+}
+

@@ -1,7 +1,7 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
-import { TextInput } from "../Form"
-import PasswordStrengthMeter from "./PasswordStrengthMeter"
+import { TextInput } from "../FormInput"
+import PasswordStrengthMeter from "../PasswordStrengthMeter"
 import UnstyledButton from "../Button/UnstyledButton"
 
 import styles from './styles.module.scss'

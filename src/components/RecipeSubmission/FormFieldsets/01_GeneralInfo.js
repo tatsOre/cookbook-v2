@@ -1,8 +1,8 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
-import CheckboxInput from '../../Checkbox'
-import SelectInput from '../../Select'
-import { NumberInput, TextInput } from '@/components/Form'
+import CheckboxInput from '@/components/Checkbox'
+import SelectInput from '@/components/Select'
+import { NumberInput, TextInput } from '@/components/FormInput'
 
 function GeneralInfoFieldset({ assets, fields }) {
     const {
@@ -84,34 +84,19 @@ function GeneralInfoFieldset({ assets, fields }) {
             <NumberInput
                 label={SERVINGS.LABEL}
                 error={errors[SERVINGS.NAME]}
-                {...register(SERVINGS.NAME, {
-                    min: {
-                        value: 0,
-                        message: SERVINGS.RULES.MIN
-                    }
-                })}
+                {...register(SERVINGS.NAME)}
             />
 
             <NumberInput
                 label={TIME.PREP.LABEL}
                 error={errors.time?.prep}
-                {...register(TIME.PREP.NAME, {
-                    min: {
-                        value: 0,
-                        message: TIME.PREP.RULES.MIN
-                    }
-                })}
+                {...register(TIME.PREP.NAME)}
             />
 
             <NumberInput
                 label={TIME.COOK.LABEL}
                 error={errors.time?.cook}
-                {...register(TIME.COOK.NAME, {
-                    min: {
-                        value: 0,
-                        message: TIME.COOK.RULES.MIN
-                    }
-                })}
+                {...register(TIME.COOK.NAME)}
             />
 
             <CheckboxInput

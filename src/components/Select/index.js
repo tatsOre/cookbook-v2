@@ -1,11 +1,10 @@
 import React from "react"
 import { Controller, useFormContext } from "react-hook-form"
-import useInputProps from "../hooks/useInputProps"
 import Select from 'react-select'
-
 import FormGroup from "../FormGroup"
+import useInputProps from "../hooks/useInputProps"
 
-export const styles = {
+const styles = {
     menuPortal: (base) => ({
         ...base,
         zIndex: 9999,

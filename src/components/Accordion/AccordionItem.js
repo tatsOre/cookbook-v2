@@ -6,7 +6,6 @@ const AccordionItemProvider = AccordionItemContext.Provider
 
 export const useAccordionItemContext = () => React.useContext(AccordionItemContext)
 
-
 function AccordionItem(props) {
     const { children, value } = props
     const context = useAccordionContext()

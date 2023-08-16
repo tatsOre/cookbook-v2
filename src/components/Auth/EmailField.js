@@ -5,7 +5,7 @@ import useFormSubmission, { STATUS } from "../hooks/useFormSubmission"
 import Alert from "../Alert"
 import Button from "../Button"
 import LoadingOverlay from "../LoadingOverlay"
-import { TextInput } from "../Form"
+import { TextInput } from "../FormInput"
 import { default as PATHS } from '../../../config'
 
 import styles from './styles.module.scss'

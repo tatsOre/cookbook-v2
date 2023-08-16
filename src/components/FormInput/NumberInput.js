@@ -1,5 +1,5 @@
 import React from "react"
-import FormGroup from "../FormGroup/FormGroup"
+import FormGroup from "../FormGroup"
 import useInputProps from "../hooks/useInputProps"
 
 const NumberInput = React.forwardRef((props, ref) => {

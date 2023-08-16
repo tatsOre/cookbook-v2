@@ -13,7 +13,12 @@ const TextInput = React.forwardRef((props, ref) => {
     return (
         <FormGroup {...wrapperProps}>
             {multiline
-                ? <textarea ref={ref} rows={rows ?? MIN_ROWS_VALUE} {...rest} />
+                ? <textarea
+                    style={{ paddingBlock: '0.65rem' }}
+                    ref={ref}
+                    rows={rows ?? MIN_ROWS_VALUE}
+                    {...rest}
+                />
                 : <input {...rest} ref={ref} type={type} />}
         </FormGroup>
     )

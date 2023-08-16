@@ -3,15 +3,8 @@ import PropTypes from 'prop-types'
 import UnstyledButton from './UnstyledButton'
 import cx from '../utils/cx'
 
-import styles from './styles.module.scss'
-
-export const BUTTON_APPEARANCES = {
-    PRIMARY: 'primary',
-    SECONDARY: 'secondary',
-    TERTIARY: 'tertiary',
-    DANGER: 'danger',
-    SUCCESS: 'success'
-}
+import styles from './Button.module.scss'
+import { APPEARANCES } from './Button.constants'
 
 /**
  * This component accepts all the HTML Button attributes
@@ -80,7 +73,7 @@ const Button = React.forwardRef((props, ref) => {
 })
 
 Button.defaultProps = {
-    appearance: BUTTON_APPEARANCES.PRIMARY
+    appearance: APPEARANCES.PRIMARY
 }
 
 Button.propTypes = {

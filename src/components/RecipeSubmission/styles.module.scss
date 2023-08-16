@@ -1,6 +1,6 @@
 @use "sass:color";
 @use '../../styles/globals.module.scss' as g;
-@use '../Button/styles.module.scss' as button;
+@use '../Button/Button.module.scss' as button;
 
 /* Non-standard Nav Bar
 ============================ */
@@ -120,7 +120,7 @@
         }
 
         [data-input-wrapper]:nth-child(n+5):not(:last-child) {
-            flex-basis: calc(52% - calc(0.75rem + 1.5625vw));
+            flex-basis: calc(50% - 0.5rem);
         }
     }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cx from '../utils/cx'
 
-import styles from './styles.module.scss'
+import styles from './Button.module.scss'
 
 /**
  * This component accepts all the HTML button attributes

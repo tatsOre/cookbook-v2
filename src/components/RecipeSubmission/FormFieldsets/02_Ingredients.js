@@ -2,8 +2,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import Alert from '@/components/Alert'
 import Button from '@/components/Button'
-import DroppableList from '../../List'
-import { NumberInput, TextInput } from '@/components/Form'
+import { NumberInput, TextInput } from '@/components/FormInput'
 import SelectInput from '../../Select'
 import UnstyledButton from '../../Button/UnstyledButton'
 import DeleteButton from '@/components/Button/DeleteButton'
@@ -55,9 +54,9 @@ function IngredientsFieldset({ assets, fields }) {
         return (
             <Draggable key={di_id} draggableId={di_id} index={index}>
                 {(provided) => (
-                    <DroppableList.Item
+                    <li
                         key={ingr.id}
-                        innerRef={provided.innerRef}
+                        ref={provided.innerRef}
                         {...provided.draggableProps}
                         className={styles['ingredients__list--item']}
                     >
@@ -105,11 +104,11 @@ function IngredientsFieldset({ assets, fields }) {
                         </div>
 
                         <DeleteButton
-                            ariaLabel="Delete ingredient item"
+                            ariaLabel="Delete Ingredient"
                             className={styles['button__icon--delete']}
                             onClick={() => remove(index)}
                         />
-                    </DroppableList.Item>
+                    </li>
                 )}
             </Draggable>
         )
@@ -128,14 +127,14 @@ function IngredientsFieldset({ assets, fields }) {
             <DragDropContext onDragEnd={onDragEndHandler}>
                 <Droppable droppableId='dnd-ingredients-list' direction='vertical'>
                     {(provided) => (
-                        <DroppableList
+                        <ul
                             {...provided.droppableProps}
-                            innerRef={provided.innerRef}
+                            ref={provided.innerRef}
                             className={styles.ingredients__list}
                         >
                             {ingrListItems}
                             {provided.placeholder}
-                        </DroppableList>
+                        </ul>
                     )}
                 </Droppable>
             </DragDropContext>
