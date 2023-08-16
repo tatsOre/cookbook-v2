@@ -10,9 +10,11 @@ export default function Home() {
                 <title>Cookbook V2</title>
             </Head>
             <main>
-                <Link href="/new">Create recipe</Link>
-                <Link href="/login">Login</Link>
-                <Link href="/recipe-box">Your box</Link>
+                <nav>
+                    <Link href="/new">Create recipe</Link>
+                    <Link href="/login">Login</Link>
+                    <Link href="/recipe-box">Your box</Link>
+                </nav>
             </main>
         </>
     )

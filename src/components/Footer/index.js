@@ -1,5 +1,6 @@
 function Footer() {
     const styles = {
+        width: '100%',
         backgroundColor: 'hotpink',
         fontSize: '0.75rem',
         placeContent: 'center',

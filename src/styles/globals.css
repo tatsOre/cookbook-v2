@@ -36,28 +36,13 @@ body,
 #page {
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100%;
     width: 100%;
 }
 
 main {
     flex: 1;
-}
-
-@media only screen and (min-width: 768px) {
-    main {
-        width: 90%;
-        margin: 0 auto;
-    }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 500;
 }
 
 ul,
@@ -68,7 +53,6 @@ li {
 a {
     color: inherit;
     text-decoration: none;
-    display: inline-block;
 }
 
 fieldset,

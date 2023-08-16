@@ -23,6 +23,12 @@ function GeneralInfoFieldset({ assets, fields }) {
     /** https://react-hook-form.com/docs/useform/watch */
     const watchCategories = watch("categories", [])
     const categoriesLeft = `(${3 - watchCategories.length} left)`
+    const categoriesLabel = <>
+        {CATEGORIES.LABEL}.&nbsp;
+        <span style={{ fontSize: '12px' }}>
+            {CATEGORIES.DESC} {categoriesLeft}
+        </span>
+    </>
 
     return (
         <>
@@ -63,13 +69,7 @@ function GeneralInfoFieldset({ assets, fields }) {
 
             <SelectInput
                 isMulti
-                label={
-                    <>
-                        {CATEGORIES.LABEL}
-                        <span style={{ fontSize: '12px' }}>. {CATEGORIES.DESC} {categoriesLeft}</span>
-                    </>
-                }
-                id='cat-select'
+                label={categoriesLabel}
                 name={CATEGORIES.NAME}
                 options={categoriesOptions}
                 isOptionDisabled={() => watchCategories.length > 2}

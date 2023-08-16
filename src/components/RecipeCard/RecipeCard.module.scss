@@ -1,0 +1,51 @@
+.recipe__card {
+    flex: 1;
+
+    position: relative;
+    padding: 4px;
+    background-color: white;
+
+    .recipe__tag {
+        position: absolute;
+        padding: 0.5rem 0.75rem;
+        right: 0;
+        z-index: 1;
+        background-color: white;
+        font-weight: 500;
+        font-size: 0.825rem;
+        text-transform: capitalize;
+    }
+
+    .card__image--wrapper {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100px;
+        background-color: azure;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .card__info--wrapper {
+        padding: 0.5rem;
+        height: 90px;
+
+        h3 {
+            font-size: 1.25rem;
+            margin-block-end: 0.2rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+        }
+
+        span {
+            font-size: 0.825rem;
+        }
+    }
+}

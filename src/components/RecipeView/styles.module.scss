@@ -4,65 +4,6 @@
     display: flex;
     flex-flow: row wrap;
     gap: 1rem;
-
-    article {
-        flex: 1;
-        padding: 1rem;
-
-        header {
-            position: relative;
-            overflow: hidden;
-            height: 200px;
-
-            img {
-                object-fit: cover;
-                width: 100%;
-                height: auto;
-            }
-        }
-
-
-    }
-
-    article:nth-child(1) {
-
-        .categories__tags {
-            display: flex;
-            gap: 0.5rem;
-            margin-block-start: 1rem;
-
-            span {
-                text-transform: uppercase;
-                font-size: 0.75rem;
-                font-weight: 500;
-                letter-spacing: 0.05rem;
-            }
-        }
-
-        h3 {
-            margin-block: 0.35rem
-        }
-
-        div.arrow__wrapper {
-            margin-inline-start: auto;
-            position: relative;
-
-            svg {
-                background-color: aqua;
-                margin-inline-end: auto;
-            }
-
-            &::after {
-                content: '';
-                width: 100px;
-                height: 2px;
-                background-color: black;
-                position: absolute;
-                top: 50%;
-            }
-        }
-    }
-
 }
 
 .recipe__view--wrapper {

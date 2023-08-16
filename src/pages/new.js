@@ -11,7 +11,6 @@ import { default as PATHS } from '../../config'
 
 export const getServerSideProps = async (context) => {
     const token = context.req.cookies.foodie
-    console.log(context.params, context.query, context.locale)
 
     if (!token) {
         return {
