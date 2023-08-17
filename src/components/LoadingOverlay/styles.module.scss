@@ -1,3 +1,5 @@
+@use '../../styles/globals.module.scss' as g;
+
 /* loading spinner from https://loading.io/css/ */
 .loader__ripple {
     display: inline-block;
@@ -34,15 +36,4 @@
         height: 58px;
         opacity: 0;
     }
-}
-
-.overlay__backdrop {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(255, 255, 255, 0.6);
-    display: grid;
-    place-content: center;
-    transition: all 0.3s ease-in-out;
-    overflow: hidden;
-    z-index: 10;
 }

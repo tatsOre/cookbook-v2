@@ -7,8 +7,9 @@ const FileInput = React.forwardRef((props, ref) => {
     return (
         <>
             <label htmlFor={_id}>
-                <b>Upload your file</b>
-                <span> or drag and drop here</span>
+                <span>Drag and drop an image or </span>
+                <span>browse</span>
+                <p>File must be JPEG, JPG or PNG and up to 17MB</p>
             </label>
 
             <input

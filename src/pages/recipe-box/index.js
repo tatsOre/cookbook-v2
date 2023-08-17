@@ -4,6 +4,7 @@ import RecipeCard from '@/components/RecipeCard'
 import { default as PATHS } from '../../../config'
 
 import styles from '../../components/RecipeView/styles.module.scss'
+import LoadingSpinnerOverlay from '@/components/LoadingOverlay'
 
 function Layout({ recipes }) {
     const [count, setCount] = React.useState(0)

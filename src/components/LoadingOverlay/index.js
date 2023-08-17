@@ -1,23 +1,18 @@
-import InPortal from './InPortal'
+import Backdrop from '../Backdrop'
+import InPortal from '../InPortal'
 import styles from './styles.module.scss'
 
-function LoadingOverlay() {
+function LoadingSpinnerOverlay() {
     return (
         <InPortal id="portal-container">
-            <div className={styles.overlay__backdrop}>
-                <Spinner />
-            </div>
+            <Backdrop>
+                <div className={styles.loader__ripple} aria-label="loading...">
+                    <div />
+                    <div />
+                </div>
+            </Backdrop>
         </InPortal>
     )
 }
 
-export function Spinner() {
-    return (
-        <div className={styles.loader__ripple} aria-label="loading...">
-            <div />
-            <div />
-        </div>
-    )
-}
-
-export default LoadingOverlay
+export default LoadingSpinnerOverlay

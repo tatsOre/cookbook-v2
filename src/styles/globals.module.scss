@@ -158,3 +158,25 @@ $font-size-24: 1.5rem;
 @mixin main--wrapper {
     max-width: $max-width;
 }
+
+/** Modals and Loading Spinner Backdrop */
+@mixin overlay--backdrop($background: $color-rich-black) {
+    position: fixed;
+    inset: 0;
+    background-color: rgba($background, 0.5);
+    display: grid;
+    place-content: center;
+    // check if justify affect loader
+    justify-items: center;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.overlay__backdrop {
+    @include overlay__backdrop;
+
+    .dark {
+        /* ... */
+    }
+}
