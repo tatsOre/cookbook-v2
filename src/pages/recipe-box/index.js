@@ -1,10 +1,11 @@
 import React from 'react'
-import RecipeCard from '@/components/RecipeCard'
+import RecipeCardBase from '@/components/RecipeCard/RecipeCardBase'
 
 import { default as PATHS } from '../../../config'
 
 import styles from '../../components/RecipeView/styles.module.scss'
 import LoadingSpinnerOverlay from '@/components/LoadingOverlay'
+import RecipeCardBox from '@/components/RecipeCard/RecipeCardBox'
 
 function Layout({ recipes }) {
     const [count, setCount] = React.useState(0)
@@ -27,10 +28,19 @@ function Layout({ recipes }) {
     }, [])
 
     return (
-        <div style={{ width: '100%', backgroundColor: '#F2F3EF' }}>
-            <h2>This is your recipe box: {count}</h2>
-            <div className={styles.cards__section}>
-                {recipes.map((recipe) => <RecipeCard key={recipe._id} recipe={recipe} />)}
+        <div>
+
+            <div style={{ width: '100%', backgroundColor: '#F2F3EF' }}>
+                <h2>This is your recipe box: {count}</h2>
+                <div className={styles.cards__section}>
+                    {recipes.map((recipe) => <RecipeCardBase key={recipe._id} recipe={recipe} />)}
+                </div>
+            </div>
+            <div style={{ width: '100%', backgroundColor: '#F2F3EF' }}>
+                <h2>This is your recipe box: {count}</h2>
+                <div className={styles.cards__section}>
+                    {recipes.map((recipe) => <RecipeCardBox key={recipe._id} recipe={recipe} />)}
+                </div>
             </div>
         </div>
     )
