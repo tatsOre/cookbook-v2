@@ -8,16 +8,14 @@ import UnstyledButton from '../Button/UnstyledButton'
 import { default as PATHS } from '../../../config'
 
 import styles from './RecipeCard.module.scss'
-
-const DynamicPicture = dynamic(import('./RecipeCardPhoto'), {
-    ssr: false
-})
+import cx from '../utils/cx'
+import RecipeCardPhoto from './RecipeCardPhoto'
 
 export const RecipeCardInfo = ({ recipe }) => {
     return (
         <>
             <div className={styles['card__image--wrapper']}>
-                <DynamicPicture recipe={recipe} />
+                <RecipeCardPhoto recipe={recipe} />
             </div>
             <div className={styles['card__info--wrapper']}>
                 <h3>{recipe.title}</h3>
@@ -33,7 +31,9 @@ export const RecipeCardTag = ({ recipe }) => {
         ? recipe.categories[0].label
         : recipe.cuisine.label ? recipe.cuisine.label : null
 
-    return badge ? <div className={styles.card__tag}>{badge}</div> : null
+    const classes = cx([styles.card__tag, styles.card__badge])
+
+    return badge ? <div className={classes}>{badge}</div> : null
 }
 
 function BookmarkRecipe({ id }) {

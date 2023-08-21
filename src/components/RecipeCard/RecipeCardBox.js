@@ -7,6 +7,8 @@ import Modal from '../Modal'
 import { default as PATHS } from '../../../config'
 
 import styles from './RecipeCard.module.scss'
+import UnstyledButton from '../Button/UnstyledButton'
+import cx from '../utils/cx'
 
 const DeleteRecipe = ({ id, title }) => {
     const [showModal, setShowModal] = React.useState(false)
@@ -43,20 +45,28 @@ const DeleteRecipe = ({ id, title }) => {
     return (
         <>
             {showModal && <Modal {...modalProps} />}
-            <Button onClick={() => setShowModal(true)}>Delete</Button>
+            <UnstyledButton
+                onClick={() => setShowModal(true)}
+                className={cx([styles.card__badge])}
+            >
+                Delete
+            </UnstyledButton>
         </>
     )
 }
 
 const PublishRecipe = () => {
     return (
-        <Button style={{ fontSize: '0.75rem' }}> Make Public</Button>
+        <UnstyledButton className={cx([styles.card__badge])}>Make Public</UnstyledButton>
     )
 }
 
 function RecipeCardBox({ recipe }) {
     return (
         <article className={styles.recipe__card}>
+            <UnstyledButton className={cx([styles.card__edit, styles.card__badge])}>
+                Edit &#9998;
+            </UnstyledButton>
             <Link href={`/recipes/${recipe._id}`}>
                 <RecipeCardInfo recipe={recipe} />
             </Link>

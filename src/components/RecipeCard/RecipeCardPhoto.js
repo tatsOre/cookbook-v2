@@ -8,7 +8,7 @@ function RecipeCardPhoto({ recipe }) {
         )
     }
     const defaultPicture = getRandomCardPattern()
-    return <Image src={defaultPicture} alt='pattern' />
+    return <Image width={400} height={400} src={defaultPicture} alt='pattern' />
 }
 
 export default RecipeCardPhoto
