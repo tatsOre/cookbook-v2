@@ -12,7 +12,8 @@ export default {
     LOGIN: `${BASE_URL}/auth/login`,
     RECIPES: {
         ENDPOINT: `${BASE_URL}/recipes`,
-        WITH_PARAM: (id) => `${BASE_URL}/recipes/${id}`
+        WITH_PARAM: (id) => `${BASE_URL}/recipes/${id}`,
+        PUBLISH: `${BASE_URL}/recipes/publish`
 
     },
     USER: {

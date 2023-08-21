@@ -10,8 +10,8 @@ import {
 import styles from './RecipeCard.module.scss'
 
 function RecipeCard({ recipe, primary, withTag }) {
-    const { _id: id, title, public: isPublic } = recipe
-
+    const { _id: id, author, title, public: isPublic } = recipe
+console.log(recipe)
     return (
         <article className={styles.recipe__card}>
             {withTag ? <RecipeCardTag recipe={recipe} /> : null}
@@ -24,7 +24,7 @@ function RecipeCard({ recipe, primary, withTag }) {
                 </div>
                 <div className={styles['card__info--wrapper']}>
                     <h3>{title}</h3>
-                    <span>By: Lipa Echeverry</span>
+                    <span>By: {author?.name ?? 'Unknown'}</span>
                 </div>
             </Link>
 

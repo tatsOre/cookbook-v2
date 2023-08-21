@@ -1,11 +1,13 @@
 import React from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Modal from '../Modal'
 import Bookmark from '../Icon/icons/icon-bookmark-filled'
 import UnstyledButton from '../Button/UnstyledButton'
+import cx from '../utils/cx'
+import { default as PATHS } from '../../../config'
 
 import styles from './RecipeCard.module.scss'
-import cx from '../utils/cx'
 
 export const BookmarkRecipe = ({ id }) => {
     const handleBookmarkClick = () => {
@@ -77,19 +79,35 @@ export const DeleteRecipe = ({ id, title }) => {
 }
 
 export const EditRecipe = ({ id }) => {
+    const classes = cx([styles['card__controls--edit'], styles.card__badge])
     return (
-        <UnstyledButton
-            className={
-                cx([styles['card__controls--edit'], styles.card__badge])
-            }
-        >
-            Edit
-        </UnstyledButton>
+        <Link href={`/edit/${id}`} className={classes}>Edit</Link>
     )
 }
 
 export const PublishRecipe = ({ id, isPublic }) => {
+    const [published, setPublished] = React.useState(isPublic)
+    const [loading, setLoading] = React.useState(false)
+
+    const handlePrivacyClick = async () => {
+        setLoading(true)
+        const url = `${PATHS.RECIPES.PUBLISH}/${id}`
+        const response = await fetch(url)
+        
+        if (response.ok) {
+            const result = await response.json()
+            setPublished(result.data.public)
+            setLoading(false)
+        } else {
+            // setAlert('Ups')
+            setLoading(false)
+            console.log('something happened')
+        }
+    }
+
     return (
-        <UnstyledButton><span>Make {isPublic ? 'Private' : 'Public'}</span></UnstyledButton>
+        <UnstyledButton onClick={handlePrivacyClick} disabled={loading}>
+            <span>Make {published ? 'Private' : 'Public'}</span>
+        </UnstyledButton>
     )
 }
