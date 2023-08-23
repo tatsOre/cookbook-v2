@@ -33,7 +33,7 @@ export default {
     },
     HEADING: {
         DEFAULT: 'Enter your email address to log in or create an account.',
-        LOGIN: 'Log in to Cookbook',
-        SIGNUP: 'Join Cookbook'
+        LOGIN: 'Welcome back!',
+        SIGNUP: "Hello, it's nice to meet you."
     }
 }

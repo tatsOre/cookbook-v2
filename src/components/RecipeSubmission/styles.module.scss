@@ -2,9 +2,9 @@
 @use '../../styles/globals.module.scss' as g;
 @use '../Button/Button.module.scss' as button;
 
-/* Non-standard Nav Bar
+/* New Recipe / Edit Recipe Page Nav Bar
 ============================ */
-.navigation__bar {
+.recipe__sub--navigation {
     &> :first-child {
         border-right: g.$border-default;
         border-width: 2px;
@@ -22,12 +22,14 @@
             display: none;
         }
 
+        /* 'Go Back' Icon Button: */
         @media only screen and (max-width: g.$breakpoint-small) {
             span:first-of-type {
                 display: inline;
             }
         }
 
+        /* 'Go Back' Text Button: */
         @media only screen and (min-width: g.$breakpoint-small) {
             span:last-of-type {
                 display: inline;
@@ -42,17 +44,7 @@
     }
 
     &> :last-child {
-        padding-inline: 2.5rem;
-    }
-
-    &>*:not(:nth-child(2)) {
-        @media (hover: hover) {
-
-            &:hover:not([disabled]),
-            &:focus {
-                background-color: g.$color-accent-yellow;
-            }
-        }
+        padding-inline: 2.25rem;
     }
 }
 
@@ -226,7 +218,8 @@
 
                 [data-input-wrapper] {
                     label {
-                        @include g.visually--hidden;
+                        font-size: 0.65rem;
+                        //@include g.visually--hidden;
                     }
                 }
 
@@ -449,32 +442,5 @@
 
     to {
         transform: translateY(-50%) scale(1);
-    }
-}
-
-.marquee {
-    display: flex;
-    overflow: hidden;
-    user-select: none;
-    margin-block-start: 55px;
-
-    .marquee__content {
-        flex-shrink: 0;
-        display: flex;
-        justify-content: space-around;
-        min-width: 100%;
-        padding-block: 0.5rem;
-        background-color: g.$color-accent-yellow;
-
-        span {
-            font-size: 0.75rem;
-            font-weight: 500;
-
-            &::after {
-                content: '•';
-                padding-inline: 0.5rem;
-                ;
-            }
-        }
     }
 }

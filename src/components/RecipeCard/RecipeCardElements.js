@@ -5,10 +5,11 @@ import cx from '../utils/cx'
 import styles from './RecipeCard.module.scss'
 
 function RecipeCardTag({ recipe }) {
-    {/** badge will be a link to recipes to tag/{:badge} */ }
+    if (!recipe.categories && !recipe.cuisine) return
+
     const badge = recipe.categories.length
         ? recipe.categories[0].label
-        : recipe.cuisine.label ? recipe.cuisine.label : null
+        : recipe.cuisine?.label ? recipe.cuisine.label : null
 
     const classes = cx([styles.card__tag, styles.card__badge])
 

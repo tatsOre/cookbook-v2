@@ -43,7 +43,6 @@ export const getServerSideProps = async (context) => {
 }
 
 function Page({ assets, user }) {
-    console.log(user)
     return <>
         <Head>
             <title>New Recipe</title>

@@ -23,6 +23,7 @@ export { default as IconMinus } from './icons/icon-minus'
 export { default as IconNotebook } from './icons/icon-notebook'
 export { default as IconPlus } from './icons/icon-plus'
 export { default as IconShoppingCartPlus } from './icons/icon-shopping-cart-plus'
+export { default as IconShoppingList } from './icons/icon-shopping-list'
 export { default as IconTrash } from './icons/icon-trash'
 export { default as IconVerticalEllipsis } from './icons/icon-vertical-ellipsis'
 

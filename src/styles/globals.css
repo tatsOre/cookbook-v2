@@ -31,6 +31,7 @@ body,
 #__next {
     height: 100%;
     width: 100%;
+    font-size: 16px;
 }
 
 #page {
@@ -38,6 +39,11 @@ body,
     flex-direction: column;
     align-items: center;
     height: 100%;
+    width: 100%;
+}
+
+header,
+main {
     width: 100%;
 }
 

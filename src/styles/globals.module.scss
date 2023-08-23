@@ -76,7 +76,7 @@ $font-size-24: 1.5rem;
 
 @mixin body--1($fs: $font-size-16) {
     font-size: $fs;
-    line-height: $line-height-base;
+    line-height: $line-height-extra;
     font-weight: normal;
 }
 
@@ -85,7 +85,7 @@ $font-size-24: 1.5rem;
 }
 
 @mixin caption {
-    font-size: $font-size-14;
+    font-size: $font-size-12;
     font-weight: normal;
 }
 

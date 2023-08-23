@@ -51,7 +51,7 @@ function GeneralInfoFieldset({ assets, fields }) {
                 placeholder={DESCRIPTION.PLACEHOLDER}
                 required
                 multiline
-                rows={4}
+                rows={3}
                 {...register(DESCRIPTION.NAME, {
                     required: DESCRIPTION.RULES.REQUIRED
                 })}

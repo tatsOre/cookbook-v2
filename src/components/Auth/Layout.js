@@ -1,18 +1,14 @@
-import Link from "next/link"
-import UnstyledButton from "../Button/UnstyledButton"
+import NavBar from "../Navigation"
 import Footer from "../Footer"
-
-import styles from './styles.module.scss'
+import Logo from "../Logo"
 
 function Layout({ children }) {
     return (
         <>
-            <header style={{ textAlign: 'center' }}>
-                <nav style={{ borderBottom: '1px solid black' }}>
-                    <Link href='/' passHref legacyBehavior>
-                        <UnstyledButton>My Cookbook</UnstyledButton>
-                    </Link>
-                </nav>
+            <header>
+                <NavBar>
+                    <div style={{ margin: '1rem auto' }}><Logo /></div>
+                </NavBar>
             </header>
 
             <main>{children}</main>

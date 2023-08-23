@@ -88,7 +88,7 @@ function AuthorizationSubmission() {
 
     return (
         <section className={styles.auth__section}>
-            <h2>{state.heading}</h2>
+            <h2 style={{ fontWeight: '300', fontSize: '1.4rem', textWrap: 'balance' }}>{state.heading}</h2>
 
             {status === STATUS.REJECTED ? (
                 <Alert

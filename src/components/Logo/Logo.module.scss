@@ -1,0 +1,20 @@
+@use '../../styles/globals.module.scss' as g;
+
+.logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-inline: 1rem;
+
+    span {
+        font-family: g.$font-accent;
+        font-stretch: 125%;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    span:last-child {
+        margin-left: 0.25rem;
+    }
+}

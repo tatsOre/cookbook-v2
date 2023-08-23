@@ -1,9 +1,13 @@
 import cx from '../utils/cx'
-import styles from './styles.module.scss'
+import styles from './Navigation.module.scss'
 
-function NavBar({ className, children }) {
-    return <nav className={cx([styles.nav__bar, className])}>{children}</nav>
+function NavBar({ className, children, fixed }) {
+    const classes = cx([
+        className,
+        styles.nav__bar,
+        fixed && styles['nav__bar--fixed']
+    ])
+    return <nav className={classes}>{children}</nav>
 }
 
 export default NavBar
-// const NavTabs

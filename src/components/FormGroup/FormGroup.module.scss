@@ -4,9 +4,13 @@
     width: 100%;
     @include g.caption;
 
+    &>* {
+        display: block;
+        margin-block-end: 0.5rem;
+    }
+
     .input__label {
         @include g.caption;
-        display: inline-block;
         font-weight: 500;
     }
 
@@ -25,7 +29,6 @@
         font-family: inherit;
         cursor: pointer;
         border: g.$border-default;
-        border-radius: g.$border-radius-default;
         @include g.body--1;
 
         &::placeholder {
@@ -40,6 +43,10 @@
         &[aria-invalid="true"] {
             border-color: g.$color-danger-base;
         }
+    }
+
+    &>input[type="number"] {
+        padding-inline-end: 0.5rem;
     }
 
     /* Input Error Message */

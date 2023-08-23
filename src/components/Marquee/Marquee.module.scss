@@ -1,0 +1,32 @@
+@use '../../styles/globals.module.scss' as g;
+
+.marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    margin-block-start: 55px; // change to variable that corresponds to nav height
+
+    .marquee__content {
+        flex-shrink: 0;
+        display: flex;
+        justify-content: space-around;
+        min-width: 100%;
+        padding-block: 0.5rem;
+        background-color: g.$color-accent-yellow;
+        border-bottom: g.$border-default;
+
+        span {
+            font-family: g.$font-accent;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+
+            &::after {
+                content: '•';
+                padding-inline: 0.5rem;
+                ;
+            }
+        }
+    }
+}

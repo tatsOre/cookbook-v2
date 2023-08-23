@@ -7,6 +7,22 @@ import NavBar from "../Navigation"
 import UnstyledButton from "../Button/UnstyledButton"
 
 import styles from './styles.module.scss'
+import MenuButton from "../Button/MenuButton"
+import Logo from "../Logo"
+
+import isAfter from "date-fns/isAfter"
+import format from "date-fns/format"
+import { IconShoppingList } from "../Icon"
+
+function RecipeShowPhoto({ photo }) {
+    return (
+        photo ? (
+            <figure>
+                <Image fill={true} src={photo} alt={`${title} picture`} />
+            </figure>
+        ) : null
+    )
+}
 
 function IngredientItem({ data, ...rest }) {
     const { quantity, fraction, measure, name, prepNote } = data
@@ -17,7 +33,7 @@ function IngredientItem({ data, ...rest }) {
         ? measure?.label + (quantity > 1 || (quantity && fractionElement) ? 's' : '') + ' '
         : ''
     const prepNoteElement = prepNote ? ' ' + prepNote : ''
-
+    // todo fix label to add a coma if prep note exists
     const label = <>
         {quantityElement}{fractionElement}{measureElement}<b>{name}</b>{prepNoteElement}
     </>
@@ -74,6 +90,7 @@ function IngredientsSubmission({ items }) {
 
 function RecipeView({ data }) {
     const {
+        author,
         title,
         description,
         servings,
@@ -82,79 +99,80 @@ function RecipeView({ data }) {
         categories,
         cuisine,
         comments,
-        photo
+        photo,
+        createdAt,
+        updatedAt
     } = data
+
+    const created = new Date(createdAt)
+    const updated = new Date(updatedAt)
+
+    const isUpdateAfter = isAfter(updated, created)
+    const date = isUpdateAfter
+        ? `Last updated ${format(updated, "PPP")}`
+        : `Published ${format(created, "PPP")}`
+
+    const instructionsContent = instructions?.length
+        && instructions.map((step, index) => (
+            <li key={`step ${index + 1}`}>
+                <p><b>{index + 1}. </b>{step}</p>
+            </li>
+        ))
 
     return (
         <>
             <header>
-                <NavBar>
-                    <Link href='/' passHref legacyBehavior>
-                        <UnstyledButton>My Cookbook</UnstyledButton>
-                    </Link>
-                    <div style={{ width: '600px', height: '100%' }}>
-                        <input placeholder="Search..." type="search" style={{ width: '600px', height: '100%' }} />
-                    </div>
-
-                    <UnstyledButton onClick={() => router.back()}>
-                        Login
-                    </UnstyledButton>
+                <NavBar fixed>
+                    <MenuButton />
+                    <Logo />
+                    <Link href="/login">Login</Link>
                 </NavBar>
+
             </header>
 
-            <main className={styles['recipe__view--wrapper']}>
-                <div className={styles.recipe__tags}>
-                    <span>Recipe under: </span>
-                    <ul>
-                        {cuisine && cuisine.label !== 'other' && (
-                            <li key='cuisine-tag'>{cuisine.label}</li>
-                        )}
-                        {categories && categories.length ?
-                            categories.map(cat => <li key={`category-${cat._id}`} >{cat.label}</li>)
-                            : null}
-                    </ul>
-                </div>
+            <main style={{ backgroundColor: '#F8F9F7' }}>
+                <article
+                    className={styles['recipe__view--wrapper']}
+                    style={{ marginBlockStart: '90px', marginInline: 'auto' }}
+                >
+                    <section data-info="header">
+                        <div className={styles.recipe__tags}>
+                            <span>Recipe under:</span>
+                            <ul>
+                                {cuisine && cuisine.label !== 'other' && (
+                                    <li key='cuisine-tag'>{cuisine.label}</li>
+                                )}
+                                {categories && categories.length ?
+                                    categories.map(cat => <li key={`category-${cat._id}`} >{cat.label}</li>)
+                                    : null}
+                            </ul>
+                        </div>
+                        <h1>{title}</h1>
+                        <p className={styles.recipe__description}>{description}</p>
+                        <div>
+                            <p>By <span>{author?.name || 'Unknown'}</span></p>
+                            <p>{date}</p>
+                            <p>Serves 12</p>
+                            <p>Time 23 min</p>
+                        </div>
+                    </section>
 
-                <h1>{title}</h1>
+                    <section data-info="ingredients">
+                        <h2>Ingredients</h2>
 
-                <section>
-                    {photo ? (
-                        <figure>
-                            <Image fill={true} src={photo} alt={`${title} picture`} />
-                        </figure>
-                    ) : null}
+                        {ingredients?.length && <IngredientsSubmission items={ingredients} />}
+                    </section>
 
-                    <p className={styles.recipe__description}>{description}</p>
+                    <section data-info="instructions">
+                        <h2>Directions</h2>
+                        <ul>{instructionsContent}</ul>
+                    </section>
 
-                    <div>
-                        <span>by </span>
-                        <a>Lipa Echeverry</a>
-                        <span aria-hidden="true">&nbsp; &nbsp;•&nbsp; &nbsp;</span>
-                        <span style={{ fontWeight: 300 }}>Published Mar. 07, 2023</span>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>Ingredients</h2>
-                    {ingredients && ingredients.length && <IngredientsSubmission items={ingredients} />}
-                </section>
-
-                <section>
-                    <h2>How To Make</h2>
-                    <ul>
-                        {instructions && instructions.length && instructions.map((step, index) => (
-                            <li key={`step ${index}`}>
-                                <h3>{`${index < 10 ? '0' : ''}${index + 1}`}</h3>
-                                <p>{step}</p>
-                            </li>
-                        ))}
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>Cooking Notes</h2>
-                    <p>{comments}</p>
-                </section>
+                    <section data-info="extra-info">
+                        <h2>Cooking Notes:</h2>
+                        <p>{comments}</p>
+                    </section>
+                </article>
 
             </main>
         </>

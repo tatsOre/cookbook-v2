@@ -1,33 +1,25 @@
-import Link from "next/link"
 import { useRouter } from "next/router"
-import UnstyledButton from "../Button/UnstyledButton"
-import NavBar from "../Navigation"
+import Logo from "../Logo"
+import Marquee from "../Marquee"
 import MenuButton from "../Button/MenuButton"
+import NavBar from "../Navigation"
 import { IconArrowForward } from "../Icon"
 import Footer from "../Footer"
+import UnstyledButton from "../Button/UnstyledButton"
 
 import styles from './styles.module.scss'
 
 function Layout({ children, title, mode }) {
     const router = useRouter()
 
-    const heading = mode == 'edit'
-        ? `edit ${title || 'recipe'}` : 'new recipe'
-
-    const marquee = [... new Array(50)].map((_, index) =>
-        <span key={index}>{heading}</span>
-    )
+    const heading = mode == 'edit' ? title : "what's cooking"
 
     return (
         <>
             <header>
-                <NavBar className={styles.navigation__bar}>
+                <NavBar className={styles['recipe__sub--navigation']} fixed>
                     <MenuButton />
-
-                    <Link href='/' passHref legacyBehavior>
-                        <UnstyledButton>My Cookbook</UnstyledButton>
-                    </Link>
-
+                    <Logo />
                     <UnstyledButton onClick={() => router.back()}>
                         <span><IconArrowForward /></span><span>go back</span>
                     </UnstyledButton>
@@ -37,11 +29,7 @@ function Layout({ children, title, mode }) {
                     </UnstyledButton>
                 </NavBar>
 
-                <div className={styles.marquee} aria-hidden="true">
-                    <div className={styles.marquee__content}>
-                        <span style={{ textTransform: 'lowercase' }}>{marquee}</span>
-                    </div>
-                </div>
+                <Marquee text={heading} />
 
                 <h1 style={{ visibility: 'hidden', height: '0px' }}>{heading}</h1>
             </header>
