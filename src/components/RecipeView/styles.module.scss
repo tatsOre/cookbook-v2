@@ -10,7 +10,7 @@
     @include g.body--1;
     @include g.main--wrapper;
     width: g.$page-width;
-
+    padding-block-end: 2rem;
     color: rgb(40, 40, 40);
     $paragraph-width: 65ch;
 
@@ -56,8 +56,9 @@
         }
 
         ul {
-            display: inline-flex;
-            gap: 0.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
 
             li {
                 min-width: fit-content;
@@ -76,7 +77,7 @@
         flex-direction: column;
         gap: 1rem;
 
-        .recipe__description:first-of-type::first-letter {
+        .recipe__description::first-letter {
             font-family: g.$font-accent;
             -webkit-initial-letter: 2;
             initial-letter: 2;
