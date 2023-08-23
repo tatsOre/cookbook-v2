@@ -60,9 +60,10 @@
             gap: 0.75rem;
 
             li {
-                padding: 0.15rem 0.5rem;
+                min-width: fit-content;
+                padding: 0.25rem 0.5rem;
                 border: 1px solid g.$color-rich-black;
-                font-size: 0.65rem;
+                font-size: 0.75rem;
                 font-weight: 500;
                 letter-spacing: 1.25px;
                 text-transform: uppercase;
@@ -76,6 +77,7 @@
         gap: 1rem;
 
         .recipe__description:first-of-type::first-letter {
+            font-family: g.$font-accent;
             -webkit-initial-letter: 2;
             initial-letter: 2;
             margin-inline-end: 0.35rem;
@@ -106,7 +108,7 @@
     }
 
     section[data-info="ingredients"] {
-        width: $paragraph-width;
+        max-width: $paragraph-width;
 
         ul>li {
             margin-bottom: 0.75rem;
@@ -122,7 +124,7 @@
     }
 
     section[data-info="instructions"] {
-        width: $paragraph-width;
+        max-width: $paragraph-width;
 
         ul>li {
             margin-block-end: 1rem;
@@ -134,7 +136,7 @@
     }
 
     section[data-info="extra-info"] {
-        width: $paragraph-width;
+        max-width: $paragraph-width;
         font-size: 0.9rem;
 
         h2 {
