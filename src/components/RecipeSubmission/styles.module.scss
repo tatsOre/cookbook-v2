@@ -7,7 +7,6 @@
 .recipe__sub--navigation {
     &> :first-child {
         border-right: g.$border-default;
-        border-width: 2px;
     }
 
     &> :nth-child(3) {
@@ -40,7 +39,6 @@
     &> :nth-child(3),
     &> :last-child {
         border-left: g.$border-default;
-        border-width: 2px;
     }
 
     &> :last-child {

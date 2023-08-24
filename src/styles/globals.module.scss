@@ -1,6 +1,8 @@
 /** COLOR **/
 @use "sass:color";
 
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap');
+
 $color-rich-black: #1b1b1b;
 $color-smoke-gray: #767676;
 $color-white: white;
@@ -60,6 +62,7 @@ $breakpoint-2xlarge: 1536px;
 
 /** TYPOGRAPHY */
 $font-accent: 'Mona Sans', sans-serif;
+$font-heading: 'Kalam', cursive;
 $font-base: 'Chivo', sans-serif;
 
 $line-height-base: 1.5;

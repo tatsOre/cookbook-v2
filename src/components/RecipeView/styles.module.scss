@@ -9,14 +9,12 @@
 .recipe__view--navigation {
     &> :first-child {
         border-right: g.$border-default;
-        border-width: 2px;
     }
 
     &> :last-child {
         margin-left: auto;
         padding-inline: 2rem !important;
         border-left: g.$border-default;
-        border-width: 2px;
         /* Make an anchor component */
         display: flex;
         align-items: center;
@@ -49,14 +47,14 @@
         gap: 1.5rem;
 
         h1 {
-            font-family: g.$font-accent;
-            //font-size: clamp(1.65rem, 4vw, 2.25rem);
+            font-family: g.$font-heading;
             font-size: clamp(2rem, 4vw, 2.25rem);
             font-weight: 600;
             line-height: 1.35;
             text-transform: capitalize;
             text-wrap: balance;
             position: relative;
+            margin-block-start: 1.5rem;
 
             &::after {
                 content: '';
@@ -64,7 +62,7 @@
                 width: 100%;
                 background-color: g.$color-rich-black;
                 position: absolute;
-                bottom: -5px;
+                bottom: -4px;
                 left: 0;
             }
         }
@@ -103,9 +101,10 @@
             //initial-letter: 2;
             //margin-inline-end: 0.35rem;
             font-weight: 500;
+            font-family: g.$font-accent;
             text-transform: uppercase;
             float: left;
-            padding: 0.85rem 0.35rem 0rem 0rem;
+            padding: 1rem 0.35rem 0rem 0rem;
             font-size: 3.25rem;
             line-height: 0.5;
         }
@@ -192,5 +191,53 @@
                 order: -1;
             }
         }
+    }
+}
+
+.test_button {
+    position: relative;
+    padding: 0.7rem 2.25rem;
+    border: g.$border-default;
+    background-color: g.$color-white;
+    box-shadow: 3px 3px 0 0 g.$color-rich-black;
+    transition: box-shadow .25s cubic-bezier(.4, 0, .2, 1) 0ms;
+    margin-block-start: 1rem;
+
+    border: 1px solid g.$color-rich-black;
+    font-size: 0.825rem;
+    font-weight: 500;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+    
+
+    &:hover {
+        //border-width: 2px; //outline
+        cursor: pointer;
+        box-shadow: 6px 6px 0 0 g.$color-rich-black;
+        background-color: g.$color-accent-yellow;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 15px;
+        height: 15px;
+        background-color: transparent;
+        border-top: g.$border-default;
+        border-left: g.$border-default;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        width: 15px;
+        height: 15px;
+        background-color: transparent;
+        border-bottom: g.$border-default;
+        border-right: g.$border-default;
     }
 }

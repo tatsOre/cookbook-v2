@@ -56,7 +56,7 @@ function RecipeForm(props) {
                 </Accordion.Panel>
             </Accordion.Item>
             <Accordion.Item value="item-3">
-                <Accordion.Trigger>How To Make</Accordion.Trigger>
+                <Accordion.Trigger>Directions</Accordion.Trigger>
                 <Accordion.Panel className={styles.instructions__fieldset}>
                     <InstructionsFieldset
                         fields={{ INSTRUCTIONS }} />

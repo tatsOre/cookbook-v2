@@ -24,6 +24,24 @@ function RecipeShowPhoto({ photo }) {
     )
 }
 
+function RecipeShowTags({ cuisine, categories }) {
+    return (
+        cuisine || categories.length ? (
+            <div className={styles.recipe__tags}>
+                <span>Recipe under:</span>
+                <ul>
+                    {cuisine && cuisine.label !== 'other' && (
+                        <li key='cuisine-tag'>{cuisine.label}</li>
+                    )}
+                    {categories && categories.length &&
+                        categories.map(cat => <li key={`category-${cat._id}`} >{cat.label}</li>)
+                    }
+                </ul>
+            </div>
+        ) : null
+    )
+}
+
 function IngredientItem({ data, ...rest }) {
     const { quantity, fraction, measure, name, prepNote } = data
 
@@ -55,7 +73,7 @@ function IngredientsSubmission({ items }) {
 
     const selected = checked && checked.filter(ingredient => ingredient.checked)
     const count = selected.length ?? 0
-    const label = `Add ${count ? count : "ALL"} ingredient(s) selected to shopping list -- soon`
+    const label = `Add ${count ? count : "ALL"} ingredient${count > 1 ? "s" : ""} to shopping list`
 
     const handleInputChange = (ev) => {
         const updatedState = checked.map((ingredient, index) =>
@@ -81,9 +99,9 @@ function IngredientsSubmission({ items }) {
                     />
                 ))}
             </ul>
-            <Button type="submit" variant='outline' appearance='secondary'>
+            <button className={styles.test_button} type="submit">
                 {label}
-            </Button>
+            </button>
         </form>
     )
 }
@@ -144,22 +162,11 @@ function RecipeView({ data }) {
                             <p>Serves 12</p>
                             <p>Time 23 min</p>
                         </div>
-                        <div className={styles.recipe__tags}>
-                            <span>Recipe under:</span>
-                            <ul>
-                                {cuisine && cuisine.label !== 'other' && (
-                                    <li key='cuisine-tag'>{cuisine.label}</li>
-                                )}
-                                {categories && categories.length ?
-                                    categories.map(cat => <li key={`category-${cat._id}`} >{cat.label}</li>)
-                                    : null}
-                            </ul>
-                        </div>
+                        <RecipeShowTags categories={categories} cuisine={cuisine} />
                     </section>
 
                     <section data-info="ingredients">
                         <h2>Ingredients</h2>
-
                         {ingredients?.length && <IngredientsSubmission items={ingredients} />}
                     </section>
 
