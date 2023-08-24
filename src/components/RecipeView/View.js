@@ -73,7 +73,7 @@ function IngredientsSubmission({ items }) {
 
     const selected = checked && checked.filter(ingredient => ingredient.checked)
     const count = selected.length ?? 0
-    const label = `Add ${count ? count : "ALL"} ingredient${count > 1 ? "s" : ""} to shopping list`
+    const label = `Add ${count ? count : "ALL"} ingredient${count === 1 ? "" : "s"} to list`
 
     const handleInputChange = (ev) => {
         const updatedState = checked.map((ingredient, index) =>

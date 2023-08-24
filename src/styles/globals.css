@@ -7,6 +7,16 @@
     font-stretch: 75% 125%;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap');
+
+@font-face {
+    font-family: 'Kalam';
+    src:
+        url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap');
+
+    font-weight: 300 400;
+}
+
 :root {
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 247, 247, 247;
