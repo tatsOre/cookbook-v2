@@ -37,6 +37,9 @@
 
 /** Styled Buttons with label: **/
 .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: g.$border-radius-default;
     background-color: g.$color-white;
     border: g.$border-default;
@@ -79,4 +82,3 @@
 .action--button {
     @include icon--button;
 }
-

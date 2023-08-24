@@ -122,7 +122,7 @@ function RecipeView({ data }) {
     return (
         <>
             <header>
-                <NavBar fixed>
+                <NavBar className={styles['recipe__view--navigation']} fixed>
                     <MenuButton />
                     <Logo />
                     <Link href="/login">Login</Link>
@@ -136,6 +136,14 @@ function RecipeView({ data }) {
                     style={{ marginBlockStart: '90px', marginInline: 'auto' }}
                 >
                     <section data-info="header">
+                        <h1>{title}</h1>
+                        <p className={styles.recipe__description}>{description}</p>
+                        <div>
+                            <p>By <span>{author?.name || 'Unknown'}</span></p>
+                            <p>{date}</p>
+                            <p>Serves 12</p>
+                            <p>Time 23 min</p>
+                        </div>
                         <div className={styles.recipe__tags}>
                             <span>Recipe under:</span>
                             <ul>
@@ -146,14 +154,6 @@ function RecipeView({ data }) {
                                     categories.map(cat => <li key={`category-${cat._id}`} >{cat.label}</li>)
                                     : null}
                             </ul>
-                        </div>
-                        <h1>{title}</h1>
-                        <p className={styles.recipe__description}>{description}</p>
-                        <div>
-                            <p>By <span>{author?.name || 'Unknown'}</span></p>
-                            <p>{date}</p>
-                            <p>Serves 12</p>
-                            <p>Time 23 min</p>
                         </div>
                     </section>
 
