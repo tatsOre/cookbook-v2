@@ -17,6 +17,7 @@
 
 .nav__bar {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     width: 100%;
     height: 55px;
@@ -30,8 +31,8 @@
         z-index: 1;
     }
 
-    button,
-    a:not([data-info="logo"]) {
+    &>button,
+    &>a:not([data-info="logo"]) {
         @include nav--label;
 
         @media (hover: hover) {

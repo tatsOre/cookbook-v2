@@ -13,6 +13,7 @@ import Logo from "../Logo"
 import isAfter from "date-fns/isAfter"
 import format from "date-fns/format"
 import { IconShoppingList } from "../Icon"
+import cx from "../utils/cx"
 
 function RecipeShowPhoto({ photo }) {
     return (
@@ -50,10 +51,10 @@ function IngredientItem({ data, ...rest }) {
     const measureElement = measure?.label
         ? measure?.label + (quantity > 1 || (quantity && fractionElement) ? 's' : '') + ' '
         : ''
-    const prepNoteElement = prepNote ? ' ' + prepNote : ''
+    const nameElement = name + (prepNote ? ', ' : '')
     // todo fix label to add a coma if prep note exists
     const label = <>
-        {quantityElement}{fractionElement}{measureElement}<b>{name}</b>{prepNoteElement}
+        {quantityElement}{fractionElement}{measureElement}<b>{nameElement}</b>{prepNote}
     </>
     return (
         <li>
@@ -155,11 +156,14 @@ function RecipeView({ data }) {
                 >
                     <section data-info="header">
                         <h1>{title}</h1>
-                        <p className={styles.recipe__description}>{description}</p>
+                        <p
+                            className={cx([styles.recipe__description, description.length > 240 && styles.with__dropcap])}>
+                            {description}
+                        </p>
                         <div>
                             <p>By <span>{author?.name || 'Unknown'}</span></p>
                             <p>{date}</p>
-                            <p>Serves 12</p>
+                            <p>Serves {servings}</p>
                             <p>Time 23 min</p>
                         </div>
                         <RecipeShowTags categories={categories} cuisine={cuisine} />
@@ -175,10 +179,12 @@ function RecipeView({ data }) {
                         <ul>{instructionsContent}</ul>
                     </section>
 
-                    <section data-info="extra-info">
-                        <h2>Cooking Notes:</h2>
-                        <p>{comments}</p>
-                    </section>
+                    {comments ? (
+                        <section data-info="extra-info">
+                            <h2>Cooking Notes:</h2>
+                            <p>{comments}</p>
+                        </section>
+                    ) : null}
                 </article>
 
             </main>

@@ -1,11 +1,5 @@
 @use '../../styles/globals.module.scss' as g;
 
-.cards__section {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 1rem;
-}
-
 .recipe__view--navigation {
     &> :first-child {
         border-right: g.$border-default;
@@ -95,7 +89,7 @@
             }
         }
 
-        .recipe__description::first-letter {
+        .recipe__description.with__dropcap::first-letter {
             //font-family: g.$font-accent;
             //-webkit-initial-letter: 2;
             //initial-letter: 2;
@@ -200,43 +194,43 @@
     border: g.$border-default;
     color: g.$color-rich-black;
     background-color: g.$color-white;
-    box-shadow: 3px 3px 0 0 g.$color-rich-black;
+    box-shadow: 2px 2px 0 0 g.$color-rich-black;
     transition: box-shadow .25s cubic-bezier(.4, 0, .2, 1) 0ms;
     margin-block-start: 1rem;
 
     border: 1px solid g.$color-rich-black;
-    font-size: 0.825rem;
+
+    font-family: g.$font-accent;
     font-weight: 500;
-    letter-spacing: 1.25px;
-    text-transform: uppercase;
-    
+    font-stretch: 115%;
+    letter-spacing: 1.15px;
 
     &:hover {
         //border-width: 2px; //outline
         cursor: pointer;
-        box-shadow: 6px 6px 0 0 g.$color-rich-black;
+        box-shadow: 4px 4px 0 0 g.$color-rich-black;
         background-color: g.$color-accent-yellow;
     }
 
-    &::before {
+    &::before,
+    &::after {
         content: '';
         position: absolute;
-        top: 5px;
-        left: 5px;
         width: 15px;
         height: 15px;
         background-color: transparent;
+    }
+
+    &::before {
+        top: 5px;
+        left: 5px;
         border-top: g.$border-default;
         border-left: g.$border-default;
     }
 
     &::after {
-        content: '';
-        position: absolute;
         bottom: 5px;
         right: 5px;
-        width: 15px;
-        height: 15px;
         background-color: transparent;
         border-bottom: g.$border-default;
         border-right: g.$border-default;
