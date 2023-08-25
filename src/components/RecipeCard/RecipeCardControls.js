@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Modal from '../Modal'
-import Bookmark from '../Icon/icons/icon-bookmark-filled'
+import { IconBookmark, IconBookmarkFilled } from '../Icon'
 import UnstyledButton from '../Button/UnstyledButton'
 import cx from '../utils/cx'
 import { default as PATHS } from '../../../config'
@@ -21,7 +21,8 @@ export const BookmarkRecipe = ({ id }) => {
             className={styles['card__control--bookmark']}
             onClick={handleBookmarkClick}
         >
-            <Bookmark size={24} />
+            <IconBookmark />
+            <IconBookmarkFilled />
         </UnstyledButton>
     )
 }
@@ -93,7 +94,7 @@ export const PublishRecipe = ({ id, isPublic }) => {
         setLoading(true)
         const url = `${PATHS.RECIPES.PUBLISH}/${id}`
         const response = await fetch(url)
-        
+
         if (response.ok) {
             const result = await response.json()
             setPublished(result.data.public)

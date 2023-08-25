@@ -3,8 +3,7 @@ import Logo from '../Logo'
 import MenuButton from '../Button/MenuButton'
 import NavBar from '../Navigation'
 import RecipeCard from '@/components/RecipeCard/RecipeCardBase'
-
-import { IconChefHat, IconNotebook, IconShoppingList } from '../Icon'
+import { IconBookmark, IconChefHat, IconShoppingList } from '../Icon'
 
 import { default as PATHS } from '../../../config'
 
@@ -39,19 +38,25 @@ function Layout({ recipes }) {
                     <div className={styles.sub__menu}>
                         <a>
                             <div data-count={count < 100 ? count : ':)'}>
-                                <IconChefHat size={27} strokeWidth={1.35} />
+                                <span data-icon="recipes">
+                                    <IconChefHat size={28} strokeWidth={1.35} />
+                                </span>
                                 <span>Recipes</span>
                             </div>
                         </a>
                         <a>
                             <div data-count={count < 100 ? count : ':)'}>
-                                <IconNotebook size={27} strokeWidth={1.35} />
+                                <span data-icon="bookmarks">
+                                    <IconBookmark size={30} />
+                                </span>
                                 <span>Favorites</span>
                             </div>
                         </a>
                         <a>
                             <div data-count={count < 100 ? count : ':)'}>
-                                <IconShoppingList />
+                                <span data-icon="shopping-lists">
+                                    <IconShoppingList />
+                                </span>
                                 <span>Shopping Lists</span>
                             </div>
                         </a>

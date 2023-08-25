@@ -1,18 +1,21 @@
-export default function Bookmark({
-    size = 24,
+export default function BookmarkFilled({
+    size = 32,
     color = 'currentColor',
     ...restProps
 }) {
     return (
         <svg
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            className='icon icon-bookmark-filled'
             width={size}
             height={size}
-            viewBox="0 0 13 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            viewBox='0 0 28 28'
+            fill={color}
             {...restProps}
         >
-            <path d="M0 0V16L6.5 12.0545L13 16V0H0Z" fill={color} />
+            <path d="M25,27l-9-6.75L7,27V4h18V27z"></path>
         </svg>
-    );
+    )
 }

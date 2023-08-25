@@ -1,5 +1,5 @@
 export default function ShoppingList({
-    size = 23,
+    size = 24,
     color = 'currentColor',
     ...restProps
 }) {
