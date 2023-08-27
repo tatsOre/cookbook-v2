@@ -13,14 +13,14 @@ export const getServerSideProps = async (context) => {
     const token = context.req.cookies.foodie
     console.log({ token })
 
-    if (!token) {
+ /*    if (!token) {
         return {
             redirect: {
                 destination: '/login?next-route=new',
                 permanent: false
             }
         }
-    }
+    } */
 
     try {
         const assetsRequest = fetch(PATHS.RECIPE_ASSETS)
