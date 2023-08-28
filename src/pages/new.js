@@ -11,51 +11,43 @@ import { default as PATHS } from '../../config'
 
 export const getServerSideProps = async (context) => {
     const token = context.req.cookies.foodie
-    console.log({ token })
+    console.log(token)
 
-    /*    if (!token) {
-           return {
-               redirect: {
-                   destination: '/login?next-route=new',
-                   permanent: false
-               }
-           }
-       } */
-
-    try {
-        const assetsRequest = fetch(PATHS.RECIPE_ASSETS)
-        // make a getUserFromToken
-        const userRequest = fetch(PATHS.USER.GET_CURRENT, {
-            headers: {
-                Authorization: `Bearer ${token}`
+    /*     try {
+            const assetsRequest = fetch(PATHS.RECIPE_ASSETS)
+            const userRequest = fetch(PATHS.USER.GET_CURRENT, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            const responses = await Promise.all([assetsRequest, userRequest])
+    
+            if (responses[0].ok && responses[1].ok) {
+                const assets = await responses[0].json()
+                const { data } = await responses[1].json()
+    
+                return { props: { assets, user: data, token } }
             }
-        })
-        const responses = await Promise.all([assetsRequest, userRequest])
+        } catch {
+            return { notFound: true }
+        } */
 
-        if (responses[0].ok && responses[1].ok) {
-            const assets = await responses[0].json()
-            const { data } = await responses[1].json()
-
-            return { props: { assets, user: data } }
-        } // If not, what? login? Todo: build a fetcher
-    } catch {
-        return { notFound: true }
-    }
-
-    return { props: {} }
+    return { props: { token } }
 }
 
-function Page({ assets, user }) {
+function Page({ assets, user, token }) {
+    console.log({ tokenNewPage: token })
     return <>
         <Head>
             <title>New Recipe</title>
         </Head>
-        <RecipeSubmission.Layout>
+        <h1>{token ? token : 'undefined'}</h1>
+        {/*         <RecipeSubmission.Layout>
             <RecipeSubmission
                 endpoint={PATHS.RECIPES_ENDPOINT}
                 data={NEW_RECIPE}
                 assets={assets} />
-        </RecipeSubmission.Layout>
+        </RecipeSubmission.Layout> */}
     </>
 }
 
