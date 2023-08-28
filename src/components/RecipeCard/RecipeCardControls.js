@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Modal from '../Modal'
-import { IconBookmark, IconBookmarkFilled } from '../Icon'
+import { IconBookmark } from '../Icon'
 import UnstyledButton from '../Button/UnstyledButton'
 import cx from '../utils/cx'
 import { default as PATHS } from '../../../config'
@@ -21,8 +21,7 @@ export const BookmarkRecipe = ({ id }) => {
             className={styles['card__control--bookmark']}
             onClick={handleBookmarkClick}
         >
-            <IconBookmark />
-            <IconBookmarkFilled />
+            <IconBookmark color='lightgrey'/>
         </UnstyledButton>
     )
 }

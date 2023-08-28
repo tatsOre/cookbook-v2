@@ -12,13 +12,11 @@ $size: 1.15rem;
         appearance: none;
         outline: none;
         font: inherit;
-        color: currentColor;
         width: $size;
         min-width: $size;
         height: $size;
-        border: 1px solid currentColor;
+        border: g.$border-default;
         border-radius: 0%;
-        transform: translateY(-0.075em);
         display: grid;
         place-content: center;
 
@@ -51,7 +49,7 @@ $size: 1.15rem;
         user-select: none;
         cursor: pointer;
         margin-inline-start: 0.5rem;
-        margin-block-start: -0.05rem;
+        margin-block-start: -0.1rem;
         @include g.caption;
 
         &--checked {

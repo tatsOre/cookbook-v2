@@ -17,12 +17,14 @@
 }
 
 .recipe__view--wrapper {
-    @include g.body--1;
     @include g.main--wrapper;
     width: g.$page-width;
     padding-block-end: 2rem;
-    color: rgb(40, 40, 40);
     $paragraph-width: 65ch;
+
+    p {
+        @include g.body--1;
+    }
 
     h2 {
         font-family: g.$font-accent;
@@ -62,14 +64,11 @@
         }
 
         .recipe__tags {
+            @include g.overline($fs: 0.65rem, $fw: 600);
+
             span {
                 display: inline-block;
                 margin-inline-end: 0.5rem;
-                text-transform: uppercase;
-                font-size: 0.75rem;
-                font-weight: 600;
-                letter-spacing: 1.25px;
-                text-transform: uppercase;
             }
 
             ul {
@@ -80,20 +79,12 @@
                 li {
                     min-width: fit-content;
                     padding: 0.25rem 0.5rem;
-                    border: 1px solid g.$color-rich-black;
-                    font-size: 0.75rem;
-                    font-weight: 500;
-                    letter-spacing: 1.25px;
-                    text-transform: uppercase;
+                    border: g.$border-default;
                 }
             }
         }
 
         .recipe__description.with__dropcap::first-letter {
-            //font-family: g.$font-accent;
-            //-webkit-initial-letter: 2;
-            //initial-letter: 2;
-            //margin-inline-end: 0.35rem;
             font-weight: 500;
             font-family: g.$font-accent;
             text-transform: uppercase;
@@ -129,37 +120,36 @@
     section[data-info="ingredients"] {
         max-width: $paragraph-width;
 
-        ul>li:not(:last-child) {
-            margin-bottom: 0.75rem;
+        h2,
+        ul>li:not(:last-child),
+        ul {
+            margin-block-end: 1.25rem;
         }
 
         label {
             font-size: 1rem;
-        }
-
-        h2 {
-            margin-block-end: 1rem;
         }
     }
 
     section[data-info="instructions"] {
         max-width: $paragraph-width;
 
+        h2,
         ul>li:not(:last-child) {
-            margin-block-end: 1rem;
-        }
-
-        h2 {
-            margin-block-end: 1rem;
+            margin-block-end: 1.25rem;
         }
     }
 
     section[data-info="extra-info"] {
         max-width: $paragraph-width;
-        font-size: 0.9rem;
 
         h2 {
             font-size: 1.25rem;
+            margin-block-end: 0.5rem;
+        }
+
+        p {
+            font-size: 0.825rem;
         }
     }
 }
@@ -185,55 +175,5 @@
                 order: -1;
             }
         }
-    }
-}
-
-.test_button {
-    position: relative;
-    padding: 0.7rem 2.25rem;
-    border: g.$border-default;
-    color: g.$color-rich-black;
-    background-color: g.$color-white;
-    box-shadow: 2px 2px 0 0 g.$color-rich-black;
-    transition: box-shadow .25s cubic-bezier(.4, 0, .2, 1) 0ms;
-    margin-block-start: 1rem;
-
-    border: 1px solid g.$color-rich-black;
-
-    font-family: g.$font-accent;
-    font-weight: 500;
-    font-stretch: 115%;
-    font-size: 1rem;
-    letter-spacing: 1.15px;
-
-    &:hover {
-        //border-width: 2px; //outline
-        cursor: pointer;
-        box-shadow: 4px 4px 0 0 g.$color-rich-black;
-        background-color: g.$color-accent-yellow;
-    }
-
-    &::before,
-    &::after {
-        content: '';
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        background-color: transparent;
-    }
-
-    &::before {
-        top: 5px;
-        left: 5px;
-        border-top: g.$border-default;
-        border-left: g.$border-default;
-    }
-
-    &::after {
-        bottom: 5px;
-        right: 5px;
-        background-color: transparent;
-        border-bottom: g.$border-default;
-        border-right: g.$border-default;
     }
 }

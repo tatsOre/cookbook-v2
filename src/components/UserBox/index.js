@@ -47,7 +47,7 @@ function Layout({ recipes }) {
                         <a>
                             <div data-count={count < 100 ? count : ':)'}>
                                 <span data-icon="bookmarks">
-                                    <IconBookmark size={30} />
+                                    <IconBookmark size={25} strokeWidth={1.75} />
                                 </span>
                                 <span>Favorites</span>
                             </div>

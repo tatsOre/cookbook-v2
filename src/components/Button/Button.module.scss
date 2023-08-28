@@ -9,7 +9,6 @@
 
 @mixin icon--button {
     @include size($size: 40px);
-    text-align: center;
 
     @media only screen and (min-width: g.$breakpoint-medium) {
         @include size($size: 50px);
@@ -27,7 +26,7 @@
     cursor: pointer;
     border: none;
     color: inherit;
-    //outline: none;
+    position: relative;
 
     &:disabled {
         cursor: not-allowed;
@@ -37,25 +36,21 @@
 
 /** Styled Buttons with label: **/
 .button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: g.$border-radius-default;
-    background-color: g.$color-white;
-    border: g.$border-default;
-    transition: all 0.15s ease-out 0s;
-    @include g.font--button;
+    @include g.overline;
 
     &--compact {
         padding: 0.3rem 0.5rem;
     }
 
     &--wide {
-        padding: 0.75rem 1rem;
+        padding: 0.75rem 2.5rem;
     }
 
+    &,
     span.icon__container {
-        vertical-align: sub;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &--left {
             margin-inline-end: 0.5rem;
@@ -66,14 +61,24 @@
         }
     }
 
+    &--primary {
+        color: g.$color-rich-black;
+        background-color: g.$color-white;
+        box-shadow: 2px 2px 0 0 g.$color-rich-black;
+        transition: all .25s cubic-bezier(.4, 0, .2, 1) 0ms;
+        border: g.$border-default;
+        //outline: g.$border-default;
+        //outline-offset: -4px;
+    }
+
     &--danger {
         background-color: g.$color-danger-base;
     }
 
     @media (hover: hover) {
-        &:hover:not([disabled]):not([aria-disabled="true"]) {
-            transform: translate(-0.2rem, -0.2rem);
-            box-shadow: 0.2rem 0.2rem 0 g.$color-rich-black;
+        &--primary:hover:not([disabled]):not([aria-disabled="true"]) {
+            box-shadow: 4px 4px 0 0 g.$color-rich-black;
+            background-color: g.$color-accent-yellow;
         }
     }
 }

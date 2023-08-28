@@ -10,8 +10,7 @@
     }
 
     .input__label {
-        @include g.caption;
-        font-weight: 500;
+        @include g.caption($fw: 500);
     }
 
     /* Input Hint Message */
@@ -27,7 +26,6 @@
         color: g.$color-rich-black;
         background-color: g.$color-white;
         font-family: inherit;
-        cursor: pointer;
         border: g.$border-default;
         @include g.body--1;
 

@@ -48,7 +48,7 @@ export default function Home() {
 
 
             <main>
-            <h2>
+                <h2>
                     Action Buttons:
                 </h2>
                 <Button appearance='danger'>
@@ -58,6 +58,9 @@ export default function Home() {
                     Label Buttons:
                 </h2>
                 <div style={{ display: 'flex', alignItems: 'flex-start', flexFlow: 'row wrap', gap: '1rem', marginBlockEnd: '2rem' }}>
+                    <div style={{ width: '200px' }}>
+                        <Button uppercase>Cancel any time, entrance, front entrance</Button>
+                    </div>
                     <Button uppercase leftIcon={<IconBookmark size={20} />}>Cancel</Button>
                     <Button appearance='danger' rightIcon={<IconGridDots size={16} />}>Super Button</Button>
                     <Button appearance='danger' leftIcon={<IconGridDots size={16} />} rightIcon={<IconGridDots size={16} />}>Button</Button>

@@ -22,6 +22,7 @@ const Button = React.forwardRef((props, ref) => {
         isProcessing,
         leftIcon,
         rightIcon,
+        style,
         uppercase,
         ...rest
     } = props
@@ -40,7 +41,8 @@ const Button = React.forwardRef((props, ref) => {
             disabled={disabled || isProcessing}
             style={{
                 textTransform: uppercase ? 'uppercase' : undefined,
-                width: fullWidth ? '100%' : undefined
+                width: fullWidth ? '100%' : undefined,
+                ...style,
             }}
             ref={ref}
             {...rest}
@@ -56,7 +58,7 @@ const Button = React.forwardRef((props, ref) => {
                     {leftIcon}
                 </span>
             )}
-            {<span>{children}</span>}
+            {children}
             {rightIcon && (
                 <span
                     aria-hidden="true"

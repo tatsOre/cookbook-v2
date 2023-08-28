@@ -5,7 +5,7 @@
     margin: 0 auto;
 
     &>* {
-        margin-block: 1.75rem;
+        margin-block: 2rem;
     }
 
     h2,
@@ -17,24 +17,23 @@
     form {
         .email__fieldset {
             &[data-active=true] {
-                //height: auto;
                 display: block;
             }
 
             &[data-active=false] {
-                //height: 0px;
-                //overflow: hidden;
                 display: none;
             }
 
+            /** Continue Button */
             button {
-                margin-block: 0.5rem;
+                margin-block: 1.4rem;
             }
         }
 
         .password__fieldset {
             position: relative;
 
+            /**  Hide/Show Password Button: */
             button {
                 position: absolute;
                 top: 2rem;

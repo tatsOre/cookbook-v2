@@ -75,3 +75,11 @@ fieldset,
 button {
     border: none;
 }
+
+a,
+input,
+button,
+label,
+textarea {
+    cursor: pointer;
+}
