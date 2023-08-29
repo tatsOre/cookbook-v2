@@ -5,8 +5,7 @@ import Button from '@/components/Button'
 import { NumberInput, TextInput } from '@/components/FormInput'
 import SelectInput from '../../Select'
 import UnstyledButton from '../../Button/UnstyledButton'
-import DeleteButton from '@/components/Button/DeleteButton'
-import { IconGripVertical } from '@/components/Icon'
+import { IconGripVertical, IconTrash } from '@/components/Icon'
 
 import styles from '../styles.module.scss'
 
@@ -17,9 +16,9 @@ function IngredientsFieldset({ assets, fields }) {
             NAME: INGS_NAME,
             RULES,
             // Attributes for ingredient item:
-            INGR_ATTRS: { QTY, FRACTION, MEASURE, NAME: ITEM_NAME, PREP_NOTE }
+            INGR_ATTRS: { QTY, FRACTION, MEASURE, NAME: ITEM_NAME, PREP_NOTE },
+            INGR_SCHEMA
         },
-        INGR_SCHEMA
     } = fields
 
     const { register, control, formState: { errors } } = useFormContext()
@@ -60,14 +59,6 @@ function IngredientsFieldset({ assets, fields }) {
                         {...provided.draggableProps}
                         className={styles['ingredients__list--item']}
                     >
-                        <UnstyledButton
-                            ariaLabel="Drag and drop ingredient"
-                            className={styles['button__drag--handler']}
-                            {...provided.dragHandleProps}
-                        >
-                            <IconGripVertical />
-                        </UnstyledButton>
-
                         <div className={styles['ingredient__item--wrapper']}>
                             <NumberInput
                                 label={QTY.LABEL}
@@ -103,11 +94,21 @@ function IngredientsFieldset({ assets, fields }) {
                             />
                         </div>
 
-                        <DeleteButton
+                        <UnstyledButton
+                            ariaLabel="Drag and drop ingredient"
+                            className={styles['button__drag--handler']}
+                            {...provided.dragHandleProps}
+                        >
+                            <IconGripVertical />
+                        </UnstyledButton>
+
+                        <UnstyledButton
                             ariaLabel="Delete Ingredient"
                             className={styles['button__icon--delete']}
                             onClick={() => remove(index)}
-                        />
+                        >
+                            <IconTrash size={20} strokeWidth={1.5} />
+                        </UnstyledButton>
                     </li>
                 )}
             </Draggable>

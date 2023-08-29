@@ -2,7 +2,7 @@ import Head from 'next/head'
 import RecipeView from '@/components/RecipeView/View'
 import { default as PATHS } from '../../../config'
 
-export const getServerSideProps = async ({ params, res }) => {
+export const getServerSideProps = async ({ params }) => {
     try {
         const response = await fetch(`${PATHS.RECIPES_ENDPOINT}/${params.id}`)
 

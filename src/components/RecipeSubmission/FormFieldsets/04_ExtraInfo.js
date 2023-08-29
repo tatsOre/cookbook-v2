@@ -5,12 +5,12 @@ import useDeviceDetect from '@/components/hooks/useDeviceDetect'
 import useDraggableFile from '@/components/hooks/useDraggableFile'
 import Alert from '@/components/Alert'
 import { FileInput, TextInput } from '@/components/FormInput'
-import { IconCloudUpload } from '@/components/Icon'
+import { IconCloudUpload, IconTrash } from '@/components/Icon'
 import { getImageSrc } from '@/components/utils/file'
+import UnstyledButton from '@/components/Button/UnstyledButton'
 import cx from '@/components/utils/cx'
 
 import styles from '../styles.module.scss'
-import DeleteButton from '@/components/Button/DeleteButton'
 
 function ExtraInfoFieldset({ fields }) {
     const { PHOTO, COMMENTS } = fields
@@ -104,10 +104,12 @@ function ExtraInfoFieldset({ fields }) {
                             alt="Picture of the dish"
                         />
 
-                        <DeleteButton
+                        <UnstyledButton
                             className={styles['button__icon--delete']}
                             onClick={onDeleteFileHandler}
-                        />
+                        >
+                            <IconTrash size={20} strokeWidth={1.5} />
+                        </UnstyledButton>
                     </div>
                 ) : null}
             </div>

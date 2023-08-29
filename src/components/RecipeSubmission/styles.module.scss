@@ -123,32 +123,13 @@
     .ingredients__list {
 
         .ingredients__list--item {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
-            background-color: g.$color-white;
-            border-radius: g.$border-radius-default;
 
-            .button__drag--handler {
-                @include button.icon--button;
-                margin-inline-start: -0.5rem;
-                margin-block-start: -0.5rem;
-            }
-
-            .ingredient__item--wrapper {
-                flex-basis: 100%;
-                order: 3;
-            }
         }
 
         .ingredient__item--wrapper {
             display: flex;
             flex-flow: row wrap;
             gap: 1rem;
-
-            input {
-                background-color: g.$color-white;
-            }
 
             /** Ingredient unit input: */
             &>div:nth-child(1) {
@@ -189,28 +170,8 @@
     @media only screen and (min-width: g.$breakpoint-large) {
         .ingredients__list {
 
-            .ingredients__list--item {
-                flex-wrap: nowrap;
-                align-items: flex-start;
-
-                .button__drag--handler {
-                    order: 1;
-                }
-
-                .ingredient__item--wrapper {
-                    order: 2;
-                }
-
-                .button__icon--delete {
-                    order: 3;
-                    margin-inline-start: 8px;
-                }
-
-                &:not(:last-child) {
-                    margin-block-end: 1rem;
-                }
-            }
-
+          
+            
             .ingredient__item--wrapper {
                 gap: 0rem 0.5rem;
 

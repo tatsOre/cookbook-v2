@@ -7,7 +7,6 @@ function Page() {
         <Head>
             <title>Welcome to Cookbook</title>
         </Head>
-
         <Layout>
             <AuthorizationSubmission />
         </Layout>

@@ -1,14 +1,11 @@
 import Head from 'next/head'
 import AuthorizationSubmission from '@/components/Auth'
 import Layout from '@/components/Auth/Layout'
-import { default as PATHS } from '../../config'
 
 export const getServerSideProps = async (context) => {
-    const token = context.req.cookies.foodie
+    const token = context.req.cookies
     console.log({ loginToken: token })
     /*
-   
-
     if (token) {
         try {
             const response = await fetch(PATHS.USER.GET_CURRENT, {
@@ -31,16 +28,16 @@ export const getServerSideProps = async (context) => {
         }
     }
     */
-    return { props: {} }
+    return { props: { token } }
 }
 
-function Page() {
+function Page({ token }) {
     return <>
         <Head>
             <title>Login</title>
         </Head>
-
         <Layout>
+            <small>{token?.foodie}</small>
             <AuthorizationSubmission />
         </Layout>
     </>

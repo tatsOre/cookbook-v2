@@ -141,6 +141,7 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
                 PLACEHOLDER: 'e.g. sifted'
             }
         },
+        INGR_SCHEMA: RECIPE_SCHEMA.ingredients[0],
         get ingrLabels() {
             return Object.keys(this.INGR_ATTRS).map(key => this.INGR_ATTRS[key].LABEL)
         }

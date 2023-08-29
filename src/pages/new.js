@@ -9,45 +9,30 @@ import { default as PATHS } from '../../config'
  * @returns Page for Create New Recipe
  */
 
-export const getServerSideProps = async (context) => {
-    const token = context.req.cookies.foodie
-    console.log(token)
-
-    /*     try {
-            const assetsRequest = fetch(PATHS.RECIPE_ASSETS)
-            const userRequest = fetch(PATHS.USER.GET_CURRENT, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            const responses = await Promise.all([assetsRequest, userRequest])
-    
-            if (responses[0].ok && responses[1].ok) {
-                const assets = await responses[0].json()
-                const { data } = await responses[1].json()
-    
-                return { props: { assets, user: data, token } }
-            }
-        } catch {
-            return { notFound: true }
-        } */
-
-    return { props: { token } }
+export const getStaticProps = async () => {
+    try {
+        const response = await fetch(PATHS.RECIPE_ASSETS)
+        if (response.ok) {
+            const assets = await response.json()
+            return { props: { assets } }
+        }
+        return { notFound: true }
+    } catch {
+        return { notFound: true }
+    }
 }
 
-function Page({ assets, user, token }) {
-    console.log({ tokenNewPage: token })
+function Page({ assets }) {
     return <>
         <Head>
-            <title>New Recipe</title>
+            <title>Create Recipe</title>
         </Head>
-        <h1>{token ? token : 'undefined'}</h1>
-        {/*         <RecipeSubmission.Layout>
+        <RecipeSubmission.Layout>
             <RecipeSubmission
                 endpoint={PATHS.RECIPES_ENDPOINT}
                 data={NEW_RECIPE}
                 assets={assets} />
-        </RecipeSubmission.Layout> */}
+        </RecipeSubmission.Layout>
     </>
 }
 

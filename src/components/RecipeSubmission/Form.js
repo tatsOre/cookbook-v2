@@ -50,7 +50,7 @@ function RecipeForm(props) {
                 <Accordion.Trigger>Ingredients</Accordion.Trigger>
                 <Accordion.Panel className={styles.ingredients__fieldset}>
                     <IngredientsFieldset
-                        fields={{ INGREDIENTS, INGR_SCHEMA: assets.INGR_SCHEMA }}
+                        fields={{ INGREDIENTS }}
                         assets={assets}
                     />
                 </Accordion.Panel>

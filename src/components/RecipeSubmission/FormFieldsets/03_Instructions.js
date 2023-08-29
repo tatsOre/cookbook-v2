@@ -1,10 +1,11 @@
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
 import Button from '@/components/Button'
-import DeleteButton from '@/components/Button/DeleteButton'
 import { TextInput } from '@/components/FormInput'
 
 import styles from '../styles.module.scss'
+import UnstyledButton from '@/components/Button/UnstyledButton'
+import { IconTrash } from '@/components/Icon'
 
 function InstructionItem(props) {
     const {
@@ -28,11 +29,13 @@ function InstructionItem(props) {
                     required: TEXT_ATTRS.RULES.REQUIRED
                 })}
             />
-            <DeleteButton
+            <UnstyledButton
                 ariaLabel={`Delete Step No. ${index + 1}`}
                 className={styles['button__icon--delete']}
                 onClick={() => onRemove(index)}
-            />
+            >
+                <IconTrash size={20} strokeWidth={1.5} />
+            </UnstyledButton>
         </li>
     )
 }
