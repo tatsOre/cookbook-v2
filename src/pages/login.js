@@ -37,7 +37,7 @@ function Page({ token }) {
             <title>Login</title>
         </Head>
         <Layout>
-            <small>{token?.foodie}</small>
+            <small>TOKEN: {token?.foodie}</small>
             <AuthorizationSubmission />
         </Layout>
     </>
