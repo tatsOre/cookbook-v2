@@ -35,7 +35,6 @@ function Layout({ children, title, mode }) {
             </header>
 
             <main className={styles['recipe__form--wrapper']}>
-                <p><b>* Note:</b> An asterisk indicates that the field is required.</p>
                 {children}
             </main>
             <Footer />

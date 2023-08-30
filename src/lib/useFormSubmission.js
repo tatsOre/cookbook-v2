@@ -75,7 +75,7 @@ function useFormSubmission({ endpoint, data, method }) {
                     })
                 })
         }
-    }, [fetchBody, endpoint, method])
+    }, [fetchBody])
 
     return state
 }

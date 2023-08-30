@@ -1,5 +1,5 @@
 import React from "react";
-import { isValidImageFile } from "../utils/file";
+import { isValidImageFile } from "@/components/utils/file";
 
 function useDraggableFile({ name, onChange }) {
     const [isDragActive, setDragActive] = React.useState(false)

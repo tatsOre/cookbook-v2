@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { FormProvider, useForm } from "react-hook-form"
 import Alert from "../Alert"
 import LoadingOverlay from "../LoadingOverlay"
-import useFormSubmission, { STATUS } from "../hooks/useFormSubmission"
+import useFormSubmission, { STATUS } from "@/lib/useFormSubmission"
 import Button from "../Button"
 import UnstyledButton from "../Button/UnstyledButton"
 import EmailField from "./EmailField"
@@ -65,8 +65,7 @@ function AuthorizationSubmission() {
     })
 
     React.useEffect(() => {
-        // router.push(...) => previous path
-        status === STATUS.RESOLVED && console.log('All good', responseData)
+        status === STATUS.RESOLVED && router.back()
     }, [status])
 
     const onSubmit = ({ email, password }) => {

@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from 'prop-types'
 import { useFormContext } from "react-hook-form"
-import useFormSubmission, { STATUS } from "../hooks/useFormSubmission"
+import useFormSubmission, { STATUS } from "@/lib/useFormSubmission"
 import Alert from "../Alert"
 import Button from "../Button"
 import LoadingOverlay from "../LoadingOverlay"

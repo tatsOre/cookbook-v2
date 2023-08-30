@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from 'prop-types'
 import FormGroup from "../FormGroup"
-import useInputProps from "../hooks/useInputProps"
+import useInputProps from "@/lib/useInputProps"
 
 const MIN_ROWS_VALUE = 3
 

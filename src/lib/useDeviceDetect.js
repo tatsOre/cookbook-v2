@@ -1,7 +1,7 @@
 import React from "react";
 
 function useDeviceDetect() {
-    const [isMobile, setMobile] = React.useState(false)
+    const [isMobile, setIsMobile] = React.useState(false)
 
     React.useEffect(() => {
         const userAgent =
@@ -14,7 +14,7 @@ function useDeviceDetect() {
                 /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
             )
         )
-        setMobile(mobile)
+        setIsMobile(mobile)
     }, [])
 
     return isMobile

@@ -1,29 +1,42 @@
-import Layout from '@/components/UserBox'
+import React from 'react'
+import useSWR from 'swr'
+import Layout from '@/components/UserBox/Layout'
+import RecipeCard from '@/components/RecipeCard/RecipeCardBase'
+
 import { default as PATHS } from '../../../config'
+import useUser from '@/lib/useUser'
 
-export const getServerSideProps = async (context) => {
-    try {
-        const response = await fetch(PATHS.RECIPES_ENDPOINT, {
-            credentials: "include"
-        })
+function UserRecipes({ user }) {
+    const { data: items, error, isLoading } = useSWR(PATHS.USER.RECIPES)
+    //console.log({ isLoading, error, items })
 
-        if (response.ok) {
-            const { data } = await response.json()
-            return { props: { data } }
-        }
-        return { notFound: true }
+    // fetching at component level
+//console.log(error)
+    if (error) return <p>'Failed to load your recipes'</p>
 
-    } catch (err) {
-        console.log(err.message)
-        return { notFound: true }
-    }
-}
+    if (isLoading) return <p>Loading...</p>
 
-function Page({ data }) {
     return (
         <>
-            <Layout recipes={data} />
+            {items?.data?.docs ? (
+                items.data.docs.map((item) =>
+                    <RecipeCard key={item._id} recipe={item} />
+                )
+            ) : <p>Nothing here</p>}
         </>
+    )
+}
+function Page() {
+    const { user } = useUser({
+        redirectTo: '/login',
+    })
+
+    if (!user) return 'redirecting...'
+
+    return (
+        <Layout user={user}>
+            <UserRecipes user={user} />
+        </Layout>
     )
 }
 

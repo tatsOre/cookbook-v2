@@ -1,4 +1,4 @@
-const { useId } = require("react")
+import React from 'react'
 
 function useInputProps(props) {
     const {
@@ -14,7 +14,7 @@ function useInputProps(props) {
         ...rest
     } = props
 
-    const _id = id ?? useId()
+    const _id = id ?? React.useId()
     const labelId = `${_id}-label`
     const errorId = `${_id}-error`
     const descriptionId = `${_id}-description`
