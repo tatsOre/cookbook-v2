@@ -65,10 +65,9 @@
         color: g.$color-rich-black;
         background-color: g.$color-white;
         box-shadow: 2px 2px 0 0 g.$color-rich-black;
-        transition: all .25s cubic-bezier(.4, 0, .2, 1) 0ms;
         border: g.$border-default;
-        //outline: g.$border-default;
-        //outline-offset: -4px;
+        border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        transition: all .25s cubic-bezier(.4, 0, .2, 1) 0ms;
     }
 
     &--danger {

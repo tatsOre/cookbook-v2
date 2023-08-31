@@ -21,6 +21,7 @@
     width: g.$page-width;
     padding-block-end: 2rem;
     $paragraph-width: 65ch;
+    color: g.$color-rich-black;
 
     p {
         @include g.body--1;
@@ -52,7 +53,13 @@
             position: relative;
             margin-block-start: 1.5rem;
 
-            &::after {
+            /** testing styles: */
+            border-bottom: g.$border-default;
+            border-width: 2.5px;
+            border-bottom-right-radius: 225px 15px;
+            border-bottom-left-radius: 0px 255px;
+
+/*             &::after {
                 content: '';
                 height: 2.5px;
                 width: 100%;
@@ -60,7 +67,7 @@
                 position: absolute;
                 bottom: -4px;
                 left: 0;
-            }
+            } */
         }
 
         .recipe__tags {

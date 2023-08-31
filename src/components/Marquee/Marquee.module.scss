@@ -16,7 +16,8 @@
         border-bottom: g.$border-default;
 
         span {
-            @include g.overline($fs: 0.65rem, $fw: 600);
+            @include g.overline($fw: 600);
+            font-size: clamp(0.55rem, 2vw, 0.65rem);
 
             &::after {
                 content: '•';

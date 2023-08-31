@@ -5,7 +5,7 @@ function Logo() {
     return (
         <Link data-info="logo" href='/'>
             <div className={styles.logo}>
-                <span>my</span><span>cookbook</span>
+                <span>cookbook</span>
             </div>
         </Link>
     )
