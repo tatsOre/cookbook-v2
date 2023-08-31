@@ -80,9 +80,8 @@ export const DeleteRecipe = ({ id, title }) => {
 
 export const EditRecipe = ({ id }) => {
     const classes = cx([styles['card__controls--edit'], styles.card__badge])
-    return (
-        <Link href={`/edit/${id}`} className={classes}>Edit</Link>
-    )
+    return <Link href={`/edit/${id}`} className={classes}>Edit</Link>
+
 }
 
 export const PublishRecipe = ({ id, isPublic }) => {
@@ -92,11 +91,13 @@ export const PublishRecipe = ({ id, isPublic }) => {
     const handlePrivacyClick = async () => {
         setLoading(true)
         const url = `${PATHS.RECIPES.PUBLISH}/${id}`
-        const response = await fetch(url)
+        const response = await fetch(url, {
+            credentials: "include"
+        })
 
         if (response.ok) {
             const result = await response.json()
-            setPublished(result.data.public)
+            setPublished(result.public)
             setLoading(false)
         } else {
             // setAlert('Ups')

@@ -2,13 +2,14 @@ import Head from 'next/head'
 import RecipeView from '@/components/RecipeView/View'
 import { default as PATHS } from '../../../config'
 
+// todo: getstaticprops with staticPaths and blocking flag
 export const getServerSideProps = async ({ params }) => {
     try {
         const response = await fetch(`${PATHS.RECIPES_ENDPOINT}/${params.id}`)
 
         if (response.ok) {
-            const { data } = await response.json()
-            return { props: { data } }
+            const { doc } = await response.json()
+            return { props: { data: doc } }
         }
         return { notFound: true }
 

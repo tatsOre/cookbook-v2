@@ -6,7 +6,8 @@ import useFormSubmission, { STATUS } from "@/lib/useFormSubmission"
 import Accordion from "../Accordion"
 import Alert from "../Alert"
 import Layout from "./Layout"
-import LoadingOverlay from "../LoadingOverlay"
+import LoaderOverlay from "../Loader/LoaderOverlay"
+
 import { deNormalizeData, normalizeData, getFormAccordionState } from "./utils"
 import { CLOUDINARY } from "../../../config"
 
@@ -37,7 +38,7 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
     const router = useRouter()
 
     React.useEffect(() => {
-        status === STATUS.RESOLVED && router.push(`/recipes/${responseData.id}`)
+        status === STATUS.RESOLVED && router.push(`/recipes/${responseData.doc}`)
     }, [status])
 
     const onSubmit = async (values) => {
@@ -103,7 +104,7 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
                 </Accordion>
             </FormProvider>
 
-            {status === STATUS.PENDING ? <LoadingOverlay /> : null}
+            {status === STATUS.PENDING ? <LoaderOverlay /> : null}
         </>
     )
 }

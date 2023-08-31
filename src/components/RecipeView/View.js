@@ -1,19 +1,18 @@
 import React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import Button from "../Button"
-import CheckboxInput from "../Checkbox"
-import NavBar from "../Navigation"
-import UnstyledButton from "../Button/UnstyledButton"
-
-import styles from './styles.module.scss'
-import MenuButton from "../Button/MenuButton"
-import Logo from "../Logo"
-
 import isAfter from "date-fns/isAfter"
 import format from "date-fns/format"
-import { IconShoppingList } from "../Icon"
+import Button from "../Button"
+import CheckboxInput from "../Checkbox"
+import Logo from "../Logo"
+import NavBar from "../Navigation"
+import UnstyledButton from "../Button/UnstyledButton"
+import MenuButton from "../Button/MenuButton"
+
 import cx from "../utils/cx"
+
+import styles from './styles.module.scss'
 
 function RecipeShowPhoto({ photo }) {
     return (

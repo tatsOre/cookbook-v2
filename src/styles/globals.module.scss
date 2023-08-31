@@ -131,8 +131,6 @@ $font-size-24: 1.5rem;
     background-color: rgba($background, 0.5);
     display: grid;
     place-content: center;
-    // check if justify affect loader
-    justify-items: center;
     transition: all 0.3s ease-in-out;
     overflow: hidden;
     z-index: 10;
@@ -141,7 +139,12 @@ $font-size-24: 1.5rem;
 .overlay__backdrop {
     @include overlay__backdrop;
 
-    .dark {
-        /* ... */
+    &.light {
+        background-color: rgba($color-white, 0.8);
+
+        /* Loader: */
+        span {
+            color: $color-cool-grey-400;
+        }
     }
 }

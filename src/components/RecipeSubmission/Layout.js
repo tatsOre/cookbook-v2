@@ -12,7 +12,7 @@ import styles from './styles.module.scss'
 function Layout({ children, title, mode }) {
     const router = useRouter()
 
-    const heading = mode == 'edit' ? title : "what's cooking"
+    const heading = mode == 'edit' ? title || 'edit recipe' : "what's cooking"
 
     return (
         <>

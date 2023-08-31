@@ -4,7 +4,7 @@ import { useFormContext } from "react-hook-form"
 import useFormSubmission, { STATUS } from "@/lib/useFormSubmission"
 import Alert from "../Alert"
 import Button from "../Button"
-import LoadingOverlay from "../LoadingOverlay"
+import LoaderOverlay from "../Loader/LoaderOverlay"
 import { TextInput } from "../FormInput"
 import { default as PATHS } from '../../../config'
 
@@ -82,7 +82,7 @@ function EmailField({ setStatus, displayNameIsSet, attrs: EMAIL }) {
 
             <Button onClick={checkIfEmailExists} fullWidth>Continue</Button>
 
-            {status === STATUS.PENDING ? <LoadingOverlay /> : null}
+            {status === STATUS.PENDING ? <LoaderOverlay /> : null}
         </div>
     )
 }

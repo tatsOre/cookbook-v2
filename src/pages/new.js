@@ -3,12 +3,6 @@ import RecipeSubmission from '@/components/RecipeSubmission'
 import { NEW_RECIPE } from '@/components/RecipeSubmission/utils'
 import { default as PATHS } from '../../config'
 
-/**
- * Initial values and assets will come from API.
- * will be responsible for: get recipe schema, get assets
- * @returns Page for Create New Recipe
- */
-
 export const getStaticProps = async () => {
     try {
         const response = await fetch(PATHS.RECIPE_ASSETS)
@@ -21,6 +15,10 @@ export const getStaticProps = async () => {
         return { notFound: true }
     }
 }
+
+/**
+ * @returns Page for Create New Recipe
+ */
 
 function Page({ assets }) {
     return <>

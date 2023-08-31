@@ -1,10 +1,11 @@
 import Head from 'next/head'
+import Alert from '@/components/Alert'
 import RecipeSubmission from '@/components/RecipeSubmission'
 import { default as PATHS } from '../../../config'
 
 /**
- * Fetch initial values and assets for page form
- * @returns Initial props
+ * Fetches initial values and form assets.
+ * @returns Initial Props || Error Page
  */
 
 export const getServerSideProps = async ({ params }) => {
@@ -16,8 +17,8 @@ export const getServerSideProps = async ({ params }) => {
 
         if (responses[0].ok && responses[1].ok) {
             const assets = await responses[0].json()
-            const { data } = await responses[1].json()
-            return { props: { assets, data } }
+            const { doc } = await responses[1].json()
+            return { props: { assets, data: doc } }
         }
         return { notFound: true }
 
@@ -36,6 +37,16 @@ function Page({ assets, data }) {
             <title>Edit Recipe</title>
         </Head>
         <RecipeSubmission.Layout title={data?.title} mode='edit'>
+            {/** If we do not have data || title, something happened with the API */}
+            {!data || !data.title ? (
+                <Alert
+                    appearance="danger"
+                    variant='light'
+                    title={'Sorry, we could not load your data.'}
+                    style={{ marginBottom: '1rem' }}
+                />
+            ) : null}
+
             <RecipeSubmission
                 endpoint={`${PATHS.RECIPES_ENDPOINT}/${data?._id}`}
                 data={data}

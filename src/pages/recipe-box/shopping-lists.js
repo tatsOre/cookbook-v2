@@ -1,20 +1,26 @@
 import React from 'react'
 import useSWR from 'swr'
 import Layout from '@/components/UserBox/Layout'
-import RecipeCard from '@/components/RecipeCard/RecipeCardBase'
 
 import { default as PATHS } from '../../../config'
+import { useRouter } from 'next/router'
+import useUser from '@/lib/useUser'
 
 function Page() {
-    const { data: items, error, isLoading } = useSWR(PATHS.USER.FAVORITES)
+    const { user } = useUser({ redirectTo: '/login' })
+    const router = useRouter()
+    const routes = router.asPath.split('/')
 
+    if (!user) return 'Redirecting...'
+
+    // send endpoint?
     return (
-        <Layout>
-            {items?.data?.docs ? (
-                items.data.docs.map((item) =>
-                    <RecipeCard key={item._id} recipe={item} withTag primary />
-                )
-            ) : <p>Nothing here</p>}
+        <Layout user={user}>
+            <p style={{
+                fontSize: '2rem',
+                fontWeight: 'bold',
+                margin: '0 auto'
+            }}>Soon :)</p>
         </Layout>
     )
 }
