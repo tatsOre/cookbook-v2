@@ -5,27 +5,22 @@ import Marquee from '@/components/Marquee'
 import NavBar from '@/components/Navigation'
 import Head from 'next/head'
 import useUser from '@/lib/useUser'
-import  Router  from 'next/router'
+import Router from 'next/router'
 import useSWR from 'swr'
-import { getRandomCardPattern } from '@/components/RecipeCard/utils'
 import { default as PATHS } from '../../config'
-import RecipeCard from '@/components/RecipeCard/RecipeCard'
 
 export default function Home() {
     const { user, mutate } = useUser()
 
-    const { data: items } = useSWR(PATHS.RECIPES.ENDPOINT)
+    const { data } = useSWR(PATHS.RECIPES.ENDPOINT)
 
-    const recipes = items && items.docs.map((item) => {
-        if (!item.photo) {
-            item.photo = getRandomCardPattern()
-        }
-        return <RecipeCard key={item._id} recipe={item} primary withTag />
+    const recipes = data && data.docs.map((item) => {
+        return <li><small>{item._id}:</small> <b>{item.title}</b></li>
     })
 
     const logout = async () => {
-        const response = await fetch(PATHS.LOGOUT, 
-        { credentials: "include" })
+        const response = await fetch(PATHS.LOGOUT,
+            { credentials: "include" })
 
         if (response.ok) {
             console.log('ok')
@@ -33,9 +28,6 @@ export default function Home() {
     }
 
     const containerStyles = {
-        display: 'flex',
-        flexFlow: 'row wrap',
-        gap: "1rem",
         marginBlockStart: "2rem",
     }
 
@@ -78,15 +70,12 @@ export default function Home() {
                 }}>
                     <h1>Welcome, {user?.email}</h1>
 
-                    <div style={containerStyles}>
+                    <ul style={containerStyles}>
                         {recipes && recipes.length && recipes}
-                    </div>
+                    </ul>
                 </div>
 
             </main>
         </>
     )
 }
-
-
-

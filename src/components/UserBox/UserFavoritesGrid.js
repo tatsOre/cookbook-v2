@@ -2,18 +2,18 @@ import React from 'react'
 import useSWR from 'swr'
 import LoaderOverlay from '../Loader/LoaderOverlay'
 import FavoriteCard from '../RecipeCard/FavoriteCard'
-
-import { default as PATHS } from '../../../config'
 import { getRandomCardPattern } from '../RecipeCard/utils'
 
+import { default as PATHS } from '../../../config'
+
 function UserFavoritesGrid() {
-    const { data: items, error, isLoading } = useSWR(PATHS.USER.FAVORITES)
+    const { data, error, isLoading } = useSWR(PATHS.USER.FAVORITES)
 
     if (error) return <p>Failed to load your data</p>
 
     if (isLoading) return <LoaderOverlay />
 
-    const recipes = items?.data?.docs && items.data.docs.map((item) => {
+    const recipes = data.docs && data.docs.map((item) => {
         if (!item.photo) {
             item.photo = getRandomCardPattern()
         }
@@ -29,7 +29,7 @@ function UserFavoritesGrid() {
         </div>
     )
 
-    return recipes.length ? recipes : fallback
+    return recipes.length && !isLoading ? recipes : fallback
 }
 
 export default UserFavoritesGrid
