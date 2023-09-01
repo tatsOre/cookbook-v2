@@ -25,7 +25,7 @@ function Layout({ children, user }) {
                         }, {
                             href: '/recipe-box/favorites',
                             label: 'Favorites',
-                            count: user?.favorites ?? ':)',
+                            count: user?.favorites?.length ?? ':)',
                             data: 'bookmarks',
                             icon: <IconBookmark size={25} strokeWidth={1.75} />
                         }, {

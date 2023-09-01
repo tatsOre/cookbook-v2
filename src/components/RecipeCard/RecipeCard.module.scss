@@ -117,22 +117,41 @@
 
     /* Publish & Delete Recipe Control */
     .card__controls--box {
-        width: 100%;
         margin-block-start: 0.5rem;
+        height: 35px;
         border-top: g.$border-default;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
 
         button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
             width: 50%;
-            height: 100%;
-            padding: 0.55rem 0rem 0.45rem;
-            text-align: center;
 
-            span {
+            svg {
+                animation: rotate-animation 1.5s infinite linear;
+
+                @keyframes rotate-animation {
+                    0% {
+                        transform: rotate(0deg);
+                  }
+                  50% {
+                        transform: rotate(180deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+
+            &>span {
                 position: relative;
                 @include g.overline($fs: 0.65rem, $fw: 600);
             }
 
-            span::before {
+            &>span::before {
                 content: '';
                 position: absolute;
                 width: 100%;
@@ -146,7 +165,7 @@
             }
 
             &:hover {
-                span::before {
+                &>span::before {
                     transform-origin: left;
                     transform: scaleX(1);
                 }
@@ -156,7 +175,7 @@
         button:first-of-type {
             border-right: g.$border-default;
 
-            span::before {
+            &>span::before {
                 background-color: g.$color-rich-black;
             }
         }
@@ -164,7 +183,7 @@
         button:last-of-type {
             color: g.$color-danger-base;
 
-            span::before {
+            &>span::before {
                 background-color: g.$color-danger-base;
             }
         }

@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { getRandomCardPattern } from "./utils"
 import cx from '../utils/cx'
 
 import styles from './RecipeCard.module.scss'
@@ -16,13 +15,19 @@ function RecipeCardTag({ recipe }) {
     return badge ? <div className={classes}>{badge}</div> : null
 }
 
-
-function RecipeCardPhoto({ recipe }) {
-    const src = recipe.photo || getRandomCardPattern()
-    const alt = recipe.photo ? `${recipe.title} dish picture` : 'pattern'
+function RecipeCardInfo({ recipe }) {
+    const { photo, title, author } = recipe
     return (
-        <Image fill src={src} alt={alt} sizes='400px' />
+        <>
+            <div className={styles['card__image--wrapper']}>
+                <Image fill src={photo} alt={title + ' picture'} sizes='400px' />
+            </div>
+            <div className={styles['card__info--wrapper']}>
+                <h3>{title}</h3>
+                <span>By: {author?.name || author?._id || 'No author'}</span>
+            </div>
+        </>
     )
 }
 
-export { RecipeCardPhoto, RecipeCardTag }
+export { RecipeCardInfo, RecipeCardTag }

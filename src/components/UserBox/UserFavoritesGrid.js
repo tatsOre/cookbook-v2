@@ -1,13 +1,12 @@
 import React from 'react'
-import Link from 'next/link'
 import useSWR from 'swr'
 import LoaderOverlay from '../Loader/LoaderOverlay'
-import RecipeCard from '@/components/RecipeCard/RecipeCardBase'
+import FavoriteCard from '../RecipeCard/FavoriteCard'
 
 import { default as PATHS } from '../../../config'
 import { getRandomCardPattern } from '../RecipeCard/utils'
 
-function UserRecipes() {
+function UserFavoritesGrid() {
     const { data: items, error, isLoading } = useSWR(PATHS.USER.FAVORITES)
 
     if (error) return <p>Failed to load your data</p>
@@ -18,11 +17,19 @@ function UserRecipes() {
         if (!item.photo) {
             item.photo = getRandomCardPattern()
         }
-        return <RecipeCard key={item._id} recipe={item} withTag primary />
+        return <FavoriteCard key={item._id} recipe={item} />
     })
 
-    return recipes.length ? recipes : <div><p>Ups! Nothing here</p></div>
+    const fallback = (
+        <div>
+            <p style={{ fontSize: '1rem', fontWeight: 'bold'}}>
+                Looks like you haven't saved anything yet! If you like a recipe,
+                simply tap on the bookmark icon to save it for later.
+            </p>
+        </div>
+    )
+
+    return recipes.length ? recipes : fallback
 }
 
-export default UserRecipes
-
+export default UserFavoritesGrid

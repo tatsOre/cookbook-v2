@@ -16,11 +16,9 @@ function Page() {
     // send endpoint?
     return (
         <Layout user={user}>
-            <p style={{
-                fontSize: '2rem',
-                fontWeight: 'bold',
-                margin: '0 auto'
-            }}>Soon :)</p>
+            <p style={{ fontSize: '2rem', fontWeight: 'bold', margin: '0 auto' }}>
+                Soon :)
+            </p>
         </Layout>
     )
 }

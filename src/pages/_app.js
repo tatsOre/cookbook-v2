@@ -6,15 +6,15 @@ import { SWRConfig } from 'swr'
 const inter = Inter({ subsets: ['latin'] })
 
 const fetcher = async (url) => {
-    // wait for 1s to test loading state
-    await new Promise((res) => setTimeout(res, 1000));
+    // wait for .5s to test loading state
+    process.env.NEXT_PUBLIC_NODE_ENV_FE === "development"
+        && await new Promise((res) => setTimeout(res, 500));
 
     const response = await fetch(url, {
         credentials: "include"
     })
 
     if (!response.ok) {
-
         const error = new Error('An error occurred. Please try again later.')
         error.info = await response.json()
         error.status = response.status
@@ -40,8 +40,7 @@ export default function MyApp({ Component, pageProps }) {
             <SWRConfig
                 value={{
                     fetcher: fetcher,
-                    revalidateOnFocus: false,
-                    revalidateOnMount: true
+                    revalidateOnFocus: false
                 }}>
                 <Component {...pageProps} />
             </SWRConfig>

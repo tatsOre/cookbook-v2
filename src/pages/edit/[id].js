@@ -1,4 +1,7 @@
+import React from 'react'
+import Router from "next/router";
 import Head from 'next/head'
+import useUser from '@/lib/useUser'
 import Alert from '@/components/Alert'
 import RecipeSubmission from '@/components/RecipeSubmission'
 import { default as PATHS } from '../../../config'
@@ -32,6 +35,15 @@ export const getServerSideProps = async ({ params }) => {
  */
 
 function Page({ assets, data }) {
+    const { user, loggedOut } = useUser();
+
+    // if logged out, redirect to the login
+    React.useEffect(() => {
+        if (loggedOut) Router.replace("/login")
+    }, [loggedOut])
+
+    if (loggedOut) return "redirecting..."
+
     return <>
         <Head>
             <title>Edit Recipe</title>

@@ -159,7 +159,7 @@ function RecipeView({ data }) {
                             {description}
                         </p>
                         <div>
-                            <p>By <span>{author?.name || 'Unknown'}</span></p>
+                            <p>By <span>{author?.name || author?._id || 'No author'}</span></p>
                             <p>{date}</p>
                             <p>Serves {servings}</p>
                             <p>Time 23 min</p>
