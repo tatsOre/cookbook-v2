@@ -10,27 +10,23 @@ import cx from '../utils/cx'
 import { default as PATHS } from '../../../config'
 
 import styles from './RecipeCard.module.scss'
+import { fetcher } from '@/pages/_app'
 
-export const DeleteRecipe = ({ id, title }) => {
+export const DeleteRecipe = ({ id, title, onDelete }) => {
     const [showModal, setShowModal] = React.useState(false)
-    const { mutate } = useUser()
 
-    const handleDeleteClick = async () => {
-        console.log('Delete...')
-        //mutate()
-        /**
-                const response = await fetch(`${PATHS.RECIPES_ENDPOINT}/${id}`,
-                    { method: 'DELETE' }
-                )
-        
-                if (response.ok) {
-                    //console.log(await response.json())
-                    
-                } else {
-                    console.log('something happened')
-                }
-         */
-    }
+    const DELETE_URL = PATHS.RECIPES_ENDPOINT + '/' + id
+
+    const {
+        data, error, isMutating, trigger
+    } = useSWRMutation(DELETE_URL, () => fetcher(DELETE_URL, { method: 'DELETE' }))
+
+    React.useEffect(() => {
+        if (data && !error) console.log('Hola', data)
+        if (data && !error) onDelete(id)
+    }, [data, error])
+
+    const onDeleteClick = () => trigger()
 
     const modalProps = {
         heading: 'Are you sure?',
@@ -43,26 +39,29 @@ export const DeleteRecipe = ({ id, title }) => {
         onCancel: () => setShowModal(false),
         onConfirm: () => {
             setShowModal(false)
-            handleDeleteClick()
+            onDeleteClick()
         }
     }
-
+    // TODO: should the modal go at the grid level?
     return (
-        <>
+        <React.Fragment>
             {showModal && <Modal {...modalProps} />}
-            <UnstyledButton onClick={() => setShowModal(true)}>
-                <span>Delete</span>
+
+            <UnstyledButton onClick={() => setShowModal(true)} disabled={isMutating}>
+                {isMutating ? <IconLoader size={20} /> : <span>Delete</span>}
             </UnstyledButton>
-        </>
+        </React.Fragment>
     )
 }
 
-function RecipeCard({ recipe, onPublish }) {
+function RecipeCard({ recipe, onPublish, onDelete }) {
     const { _id: id, title, public: isPublic } = recipe
+
+    const PUBLISH_URL = PATHS.RECIPES.PUBLISH + id
 
     const {
         data, error, isMutating, trigger
-    } = useSWRMutation(`${PATHS.RECIPES.PUBLISH}/${id}`)
+    } = useSWRMutation(PUBLISH_URL, () => fetcher(PUBLISH_URL, { method: 'PATCH' }))
 
     React.useEffect(() => {
         data && onPublish(data.doc, data.public)
@@ -83,6 +82,8 @@ function RecipeCard({ recipe, onPublish }) {
                 <RecipeCardInfo recipe={recipe} />
             </Link>
 
+            {error ? <p style={{ color: "red" }}>{error.message}</p> : null}
+
             <div className={styles['card__controls--box']}>
                 <UnstyledButton onClick={onPublishClick} disabled={isMutating}>
                     {isMutating
@@ -90,7 +91,7 @@ function RecipeCard({ recipe, onPublish }) {
                         : <span>Make {isPublic ? 'Private' : 'Public'}</span>}
                 </UnstyledButton>
 
-                <DeleteRecipe id={id} title={title} />
+                <DeleteRecipe id={id} title={title} onDelete={onDelete} />
             </div>
         </article>
     )

@@ -126,3 +126,4 @@ notes.txt
 .DS_Store
 .env.local
 .gitignore
+/src/lib/test.js

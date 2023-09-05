@@ -1,24 +1,22 @@
 import React from 'react'
-import useSWR from 'swr'
-import Layout from '@/components/UserBox/Layout'
-
-import { default as PATHS } from '../../../config'
 import { useRouter } from 'next/router'
 import useUser from '@/lib/useUser'
+import Layout from '@/components/UserBox/Layout'
 
 function Page() {
-    const { user } = useUser({ redirectTo: '/login' })
+    const { user, loggedOut } = useUser()
     const router = useRouter()
-    const routes = router.asPath.split('/')
 
-    if (!user) return 'Redirecting...'
+    // if logged out, redirect to the homepage
+    React.useEffect(() => {
+        if (loggedOut) router.replace("/")
+    }, [loggedOut])
 
-    // send endpoint?
+    if (loggedOut) return "Redirecting..."
+
     return (
         <Layout user={user}>
-            <p style={{ fontSize: '2rem', fontWeight: 'bold', margin: '0 auto' }}>
-                Soon :)
-            </p>
+            <p><b> Soon :)</b></p>
         </Layout>
     )
 }

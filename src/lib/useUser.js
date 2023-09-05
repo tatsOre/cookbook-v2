@@ -7,7 +7,7 @@ export default function useUser() {
 
     const loading = !data && !error
 
-    const loggedOut = error && error.status === 403
+    const loggedOut = error && (error.status === 401 || error.status === 403)
 
     //console.log({ loading, loggedOut, user: data })
 

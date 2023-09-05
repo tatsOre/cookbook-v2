@@ -5,14 +5,24 @@ import { SWRConfig } from 'swr'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const fetcher = async (url) => {
+export const fetcher = async (url, arg) => {
     // wait for .5s to test loading state
     process.env.NEXT_PUBLIC_NODE_ENV_FE === "development"
-        && await new Promise((res) => setTimeout(res, 500));
+        && await new Promise((res) => setTimeout(res, 500))
 
-    const response = await fetch(url, {
-        credentials: "include"
-    })
+    let options = {
+        method: arg?.method || 'GET',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: "include",
+    }
+
+    if (arg?.body) {
+        options = { ...options, body: arg.body }
+    }
+
+    const response = await fetch(url, options)
 
     if (!response.ok) {
         const error = new Error('An error occurred. Please try again later.')

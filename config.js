@@ -13,14 +13,15 @@ export default {
     RECIPES: {
         ENDPOINT: `${BASE_URL}/recipes`,
         WITH_PARAM: (id) => `${BASE_URL}/recipes/${id}`,
-        PUBLISH: `${BASE_URL}/recipes/publish`
+        PUBLISH: `${BASE_URL}/recipes/publish/`
 
     },
     USER: {
         LOOKUP_EMAIL: `${BASE_URL}/users/lookup-email`,
         GET_CURRENT: `${BASE_URL}/users/me`,
         RECIPES: `${BASE_URL}/users/me/recipes`,
-        FAVORITES: `${BASE_URL}/users/me/favorites`,
+        GET_FAVORITES: `${BASE_URL}/users/me/favorites`,
+        UPDATE_FAVORITES: `${BASE_URL}/users/me/favorites/`
     }
 }
 

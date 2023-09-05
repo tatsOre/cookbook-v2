@@ -15,7 +15,7 @@ export default function Home() {
     const { data } = useSWR(PATHS.RECIPES.ENDPOINT)
 
     const recipes = data && data.docs.map((item) => {
-        return <li><small>{item._id}:</small> <b>{item.title}</b></li>
+        return <li key={item._id}><small>{item._id}:</small> <b>{item.title}</b></li>
     })
 
     const logout = async () => {
@@ -71,7 +71,7 @@ export default function Home() {
                     <h1>Welcome, {user?.email}</h1>
 
                     <ul style={containerStyles}>
-                        {recipes && recipes.length && recipes}
+                        {recipes?.length && recipes}
                     </ul>
                 </div>
 
