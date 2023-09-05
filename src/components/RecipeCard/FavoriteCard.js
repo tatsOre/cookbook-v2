@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import useSWRMutation from 'swr/mutation'
+import { fetcher } from '@/pages/_app'
 import { RecipeCardInfo, RecipeCardTag } from './RecipeCardElements'
 import { IconBookmark } from '../Icon'
 import UnstyledButton from '../Button/UnstyledButton'
@@ -9,25 +10,13 @@ import { default as PATHS } from '../../../config'
 
 import styles from './RecipeCard.module.scss'
 
-async function updateUser(url) {
-    const response = await window.fetch(url, {
-        method: 'PATCH',
-        credentials: 'include'
-    })
-    if (!response.ok) {
-        const error = new Error('An error occurred. Please try again later.')
-        error.info = await response.json()
-        error.status = response.status
-        throw error
-    }
-
-    return response.json()
-}
-
-
 function FavoriteCard({ recipe, onUpdateFavorites }) {
-    const { data, error, trigger } = useSWRMutation(
-        PATHS.USER.UPDATE_FAVORITES + recipe._id, updateUser
+    const UPDATE_FAV_URL = PATHS.USER.UPDATE_FAVORITES + recipe._id
+
+    const {
+        data, error, isMutating, trigger
+    } = useSWRMutation(
+        UPDATE_FAV_URL, () => fetcher(UPDATE_FAV_URL, { method: 'PATCH' })
     )
 
     React.useEffect(() => {
@@ -51,6 +40,7 @@ function FavoriteCard({ recipe, onUpdateFavorites }) {
                     role="switch"
                     className={styles['card__control--bookmark']}
                     onClick={onUpdateFavoritesClick}
+                    disabled={isMutating}
                 >
                     <IconBookmark />
                 </UnstyledButton>

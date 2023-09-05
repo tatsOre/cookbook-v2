@@ -3,14 +3,11 @@ import Link from 'next/link'
 import useSWR, { mutate } from 'swr'
 import LoaderOverlay from '../Loader/LoaderOverlay'
 import RecipeCard from '@/components/RecipeCard/RecipeCard'
-import { getRandomCardPattern } from '../RecipeCard/utils'
 
 import { default as PATHS } from '../../../config'
 
 function UserRecipesGrid({ mutateUser }) {
     const [recipes, setRecipes] = React.useState([])
-
-    const [showModal, setShowModal] = React.useState(false)
 
     const { data, error, isLoading } = useSWR(PATHS.USER.RECIPES)
 
@@ -46,19 +43,14 @@ function UserRecipesGrid({ mutateUser }) {
         mutateUser()
     }
 
-    const content = recipes.map((item) => {
-        /** added the image from this level to avoid abrupt changes in the UI */
-        !item.photo && (item.photo = getRandomCardPattern())
-
-        return (
-            <RecipeCard
-                key={item._id}
-                recipe={item}
-                onPublish={onTogglePrivacy}
-                onDelete={onDeleteRecipe}
-            />
-        )
-    })
+    const content = recipes.map((item) => (
+        <RecipeCard
+            key={item._id}
+            recipe={item}
+            onPublish={onTogglePrivacy}
+            onDelete={onDeleteRecipe}
+        />
+    ))
 
     const fallback = (
         <div>

@@ -1,4 +1,6 @@
+import React from 'react'
 import Image from 'next/image'
+import { getRandomCardPattern } from './utils'
 import cx from '../utils/cx'
 
 import styles from './RecipeCard.module.scss'
@@ -15,12 +17,15 @@ function RecipeCardTag({ recipe }) {
     return badge ? <div className={classes}>{badge}</div> : null
 }
 
-function RecipeCardInfo({ recipe }) {
+function RecipeInfo({ recipe }) {
     const { photo, title, author } = recipe
+
+    const src = photo || getRandomCardPattern()
+
     return (
         <>
             <div className={styles['card__image--wrapper']}>
-                <Image fill src={photo} alt={title + ' picture'} sizes='400px' />
+                <Image fill src={src} alt={title + ' picture'} sizes='400px' />
             </div>
             <div className={styles['card__info--wrapper']}>
                 <h3>{title}</h3>
@@ -29,5 +34,7 @@ function RecipeCardInfo({ recipe }) {
         </>
     )
 }
+
+const RecipeCardInfo = React.memo(RecipeInfo)
 
 export { RecipeCardInfo, RecipeCardTag }

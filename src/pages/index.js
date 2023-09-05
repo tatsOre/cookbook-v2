@@ -68,7 +68,7 @@ export default function Home() {
                     backgroundColor: '#F2F3EF',
                     padding: '2rem'
                 }}>
-                    <h1>Welcome, {user?.email}</h1>
+                    <h1>Hello{user && ', '}{user?.email}!</h1>
 
                     <ul style={containerStyles}>
                         {recipes?.length && recipes}

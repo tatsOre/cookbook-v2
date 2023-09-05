@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import useSWRMutation from 'swr/mutation'
-import useUser from '@/lib/useUser'
+import { fetcher } from '@/pages/_app'
 import { IconLoader } from '../Icon'
 import Modal from '../Modal'
 import { RecipeCardInfo } from './RecipeCardElements'
@@ -10,7 +10,6 @@ import cx from '../utils/cx'
 import { default as PATHS } from '../../../config'
 
 import styles from './RecipeCard.module.scss'
-import { fetcher } from '@/pages/_app'
 
 export const DeleteRecipe = ({ id, title, onDelete }) => {
     const [showModal, setShowModal] = React.useState(false)

@@ -2,7 +2,6 @@ import React from 'react'
 import useSWR, { mutate } from 'swr'
 import LoaderOverlay from '../Loader/LoaderOverlay'
 import FavoriteCard from '../RecipeCard/FavoriteCard'
-import { getRandomCardPattern } from '../RecipeCard/utils'
 
 import { default as PATHS } from '../../../config'
 
@@ -32,18 +31,13 @@ function UserFavoritesGrid({ mutateUser }) {
         mutateUser()
     }
 
-    const content = favorites.map((item) => {
-        /** added the image from this level to avoid abrupt changes in the UI */
-        !item.photo && (item.photo = getRandomCardPattern())
-
-        return (
-            <FavoriteCard
-                key={item._id}
-                recipe={item}
-                onUpdateFavorites={onUpdateFavorites}
-            />
-        )
-    })
+    const content = favorites.map((item) => (
+        <FavoriteCard
+            key={item._id}
+            recipe={item}
+            onUpdateFavorites={onUpdateFavorites}
+        />
+    ))
 
     const fallback = (
         <div>
