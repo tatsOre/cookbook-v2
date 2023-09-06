@@ -140,7 +140,7 @@ function IngredientsFieldset({ assets, fields }) {
                 </Droppable>
             </DragDropContext>
             <Button onClick={() => append(INGR_SCHEMA)}>
-                + Add new ingredient
+                + Add an ingredient
             </Button>
         </>
     )

@@ -124,11 +124,11 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
                 NAME: 'fraction'
             },
             MEASURE: {
-                LABEL: 'Measure',
+                LABEL: 'Unit',
                 NAME: 'measure'
             },
             NAME: {
-                LABEL: 'Item Name', // Item Name? Ingr Name?,
+                LABEL: 'Name', // Item Name? Ingr Name?,
                 NAME: 'name',
                 PLACEHOLDER: 'e.g. flour', // Nice to have: random ingr name when user adds new ingr.
                 RULES: {

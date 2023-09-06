@@ -22,7 +22,7 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
     const [photoError, setPhotoError] = React.useState(null)
 
     const [activeFieldset, setActiveFieldset] = React.useState(
-        ['item-1']
+        ['item-3']
     )
 
     const { status, responseData, errorMessage } = useFormSubmission({
@@ -42,6 +42,7 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
     }, [status])
 
     const onSubmit = async (values) => {
+        console.log('Submitting...')
         // If photo || photo changed:
         if (
             typeof values.photo !== 'string'
@@ -71,7 +72,8 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
         }
 
         const payload = normalizeData(values)
-        setFormData(payload) // submit info
+        console.log(payload)
+        //setFormData(payload) // submit info
     }
 
     const onErrors = (errors) => {
@@ -95,6 +97,7 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
                 <Accordion
                     active={activeFieldset}
                     setActive={setActiveFieldset}
+                    multiple
                 >
                     <DynamicRecipeForm
                         id="submit-recipe-form"

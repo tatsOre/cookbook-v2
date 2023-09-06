@@ -122,9 +122,7 @@
 
     .ingredients__list {
 
-        .ingredients__list--item {
-
-        }
+        .ingredients__list--item {}
 
         .ingredient__item--wrapper {
             display: flex;
@@ -170,8 +168,8 @@
     @media only screen and (min-width: g.$breakpoint-large) {
         .ingredients__list {
 
-          
-            
+
+
             .ingredient__item--wrapper {
                 gap: 0rem 0.5rem;
 
@@ -210,22 +208,64 @@
 
     .instructions__list {
         &--item {
-            position: relative;
+            display: flex;
+            padding-block-end: 0.5rem;
+            border-bottom: 1px solid lightgrey;
+            //background-color: thistle;
+            margin-block: 1rem;
+
+            div {
+                // step input wrapper
+                flex: 1;
+            }
+
+            button[data-type="drag-handler"][data-active="false"] {
+                width: 0px;
+                height: 0px;
+                overflow: hidden;
+            }
+
+            button[data-type="drag-handler"][data-active="true"] {
+                margin-inline-end: 0.5rem;
+            }
 
             // Input Label:
             label {
-                font-size: 1rem;
+                //font-size: 1rem;
             }
 
-            .button__icon--delete {
+            button[data-name="step-idle"] {
+                span {
+
+                    display: block;
+                    font-size: 0.9rem;
+                    line-height: 1.3rem;
+                    overflow: hidden;
+                    /* Partial support: */
+                    text-overflow: ellipsis;
+                    -webkit-box-orient: vertical;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                }
+            }
+
+            button[data-name="save"] {
                 position: absolute;
-                top: -1.2rem;
+                font-size: 0.75rem;
+                font-weight: bold;
+                top: -1rem;
                 right: 0;
                 @include button.size($size: 42px)
             }
 
-            &:not(:first-of-type) {
-                margin-block-start: 1.25rem;
+            button[data-name="delete"] {
+                color: tomato;
+                position: absolute;
+                font-size: 0.75rem;
+                font-weight: bold;
+                top: -0.45rem;
+                right: 0;
+                @include button.size($size: 42px)
             }
         }
     }
@@ -402,4 +442,28 @@
     to {
         transform: translateY(-50%) scale(1);
     }
+}
+
+.instructions__list {
+    li.draggable__item {
+        background-color: thistle;
+        display: flex;
+        align-items: center;
+        padding-block: 0.5rem;
+        margin-bottom: 0.5rem;
+
+        span {
+            flex: 1;
+            font-size: 0.9rem;
+            line-height: 1.3rem;
+            overflow: hidden;
+            /* Partial support: */
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            padding-inline: 1rem;
+        }
+    }
+
 }
