@@ -5,7 +5,8 @@ import styles from './Modal.module.scss'
 
 function Modal(props) {
     // todo: focus trap, focus on cancel, backdrop, prevent body scroll
-    const { heading, children, onCancel, onConfirm, show } = props
+    // and make it more reusable
+    const { heading, children, onCancel, onConfirm } = props
     return (
         <InPortal id="portal-container">
             <Backdrop>
@@ -15,8 +16,10 @@ function Modal(props) {
                         {children}
                     </header>
 
-                    <button onClick={onCancel}>Cancel</button>
-                    <button onClick={onConfirm}>Confirm</button>
+                    <div>
+                        <button onClick={onCancel}>Cancel</button>
+                        <button onClick={onConfirm}>Confirm</button>
+                    </div>
                 </div>
             </Backdrop>
         </InPortal>

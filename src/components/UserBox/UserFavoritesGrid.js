@@ -1,18 +1,42 @@
 import React from 'react'
-import useSWR, { mutate } from 'swr'
 import LoaderOverlay from '../Loader/LoaderOverlay'
-import FavoriteCard from '../RecipeCard/FavoriteCard'
+import FavoriteCard from '../Card/FavoriteCard'
+import { getRandomCardPattern } from '../Card/Card.helpers'
 
 import { default as PATHS } from '../../../config'
 
+/**
+ * This structure applies for User Favs.
+ * I decided to remove swr because it was only being used once. 
+ * TODO: client service to reduce boilerplate
+ */
 function UserFavoritesGrid({ mutateUser }) {
     const [favorites, setFavorites] = React.useState([])
-
-    const { data, error, isLoading } = useSWR(PATHS.USER.GET_FAVORITES)
+    const [isLoading, setIsLoading] = React.useState(false)
+    const [error, setError] = React.useState(null)
 
     React.useEffect(() => {
-        data && setFavorites(data.docs)
-    }), [data]
+        const getUserFavorites = async () => {
+            setIsLoading(true)
+            setError(null)
+
+            const response = await window.fetch(PATHS.USER.GET_FAVORITES, {
+                credentials: "include"
+            })
+
+            if (response.ok) {
+                const data = await response.json()
+                setFavorites(data.docs)
+
+                setIsLoading(false)
+            } else {
+                setError("Failed to load your data")
+                setIsLoading(false)
+            }
+
+        }
+        getUserFavorites()
+    }, [])
 
     if (error) return <p>Failed to load your data</p>
 
@@ -22,22 +46,19 @@ function UserFavoritesGrid({ mutateUser }) {
     const onUpdateFavorites = (id) => {
         const updated = favorites.filter(rec => rec._id !== id)
         setFavorites(updated)
-        //  Used global mutate because the bound one is not working as desired
-        mutate(PATHS.USER.GET_FAVORITES, null, {
-            optimisticData: { docs: updated },
-            revalidate: false
-        })
         /* Update NavBar: */
         mutateUser()
     }
 
-    const content = favorites.map((item) => (
-        <FavoriteCard
+    const content = favorites.map((item) => {
+        !item.photo && (item.photo = getRandomCardPattern())
+
+        return <FavoriteCard
             key={item._id}
             recipe={item}
             onUpdateFavorites={onUpdateFavorites}
         />
-    ))
+    })
 
     const fallback = (
         <div>
@@ -48,7 +69,7 @@ function UserFavoritesGrid({ mutateUser }) {
         </div>
     )
 
-    return content.length && !isLoading ? content : fallback
+    return content?.length ? content : fallback
 }
 
 export default UserFavoritesGrid

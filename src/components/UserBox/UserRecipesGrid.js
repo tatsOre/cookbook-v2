@@ -1,21 +1,40 @@
 import React from 'react'
 import Link from 'next/link'
-import useSWR, { mutate } from 'swr'
 import LoaderOverlay from '../Loader/LoaderOverlay'
-import RecipeCard from '@/components/RecipeCard/RecipeCard'
+import RecipeCard from '@/components/Card/RecipeCard'
+import { getRandomCardPattern } from '../Card/Card.helpers'
 
 import { default as PATHS } from '../../../config'
 
 function UserRecipesGrid({ mutateUser }) {
     const [recipes, setRecipes] = React.useState([])
-
-    const { data, error, isLoading } = useSWR(PATHS.USER.RECIPES)
+    const [isLoading, setIsLoading] = React.useState(false)
+    const [error, setError] = React.useState(null)
 
     React.useEffect(() => {
-        data && setRecipes(data.docs)
-    }), [data]
+        const getUserRecipes = async () => {
+            setIsLoading(true)
+            setError(null)
 
-    if (error) return <p>Failed to load your data</p>
+            const response = await window.fetch(PATHS.USER.RECIPES, {
+                credentials: "include"
+            })
+
+            if (response.ok) {
+                const data = await response.json()
+                setRecipes(data.docs)
+
+                setIsLoading(false)
+            } else {
+                setError("Failed to load your data")
+                setIsLoading(false)
+            }
+
+        }
+        getUserRecipes()
+    }, [])
+
+    if (error) return <p>{error}</p>
 
     if (isLoading) return <LoaderOverlay />
 
@@ -24,33 +43,25 @@ function UserRecipesGrid({ mutateUser }) {
             rec._id === id ? ({ ...rec, public: value }) : rec
         )
         setRecipes(updated)
-        //  Used global mutate because the bound one is not working as desired
-        mutate(PATHS.USER.RECIPES, null, {
-            optimisticData: { docs: updated },
-            revalidate: false
-        })
     }
 
     const onDeleteRecipe = (id) => {
         const updated = recipes.filter(rec => rec._id !== id)
         setRecipes(updated)
-        /* Used global mutate because the bound one is not working as desired */
-        mutate(PATHS.USER.RECIPES, null, {
-            optimisticData: { docs: updated },
-            revalidate: true
-        })
         /* Update NavBar: */
         mutateUser()
     }
 
-    const content = recipes.map((item) => (
-        <RecipeCard
+    const content = recipes.map((item) => {
+        !item.photo && (item.photo = getRandomCardPattern())
+
+        return <RecipeCard
             key={item._id}
             recipe={item}
             onPublish={onTogglePrivacy}
             onDelete={onDeleteRecipe}
         />
-    ))
+    })
 
     const fallback = (
         <div>
@@ -59,8 +70,7 @@ function UserRecipesGrid({ mutateUser }) {
         </div>
     )
 
-    return content.length && !isLoading ? content : fallback
-
+    return content?.length ? content : fallback
 }
 
 export default UserRecipesGrid
