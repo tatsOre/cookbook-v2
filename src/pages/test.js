@@ -1,6 +1,4 @@
-import Alert from '@/components/Alert'
-import Button from '@/components/Button'
-import UnstyledButton from '@/components/Button/UnstyledButton'
+import { Button } from '@/components/Button'
 import {
     IconAlertCircle,
     IconArrowDownRight,
@@ -14,10 +12,12 @@ import {
     IconChefHat,
     IconChevronUp,
     IconChevronsUp,
+    IconCircleMinus,
     IconCloudUpload,
     IconCross,
     IconDotsVertical,
     IconEqual,
+    IconGridDots,
     IconGripVertical,
     IconLoader,
     IconMenuOrder,
@@ -25,11 +25,12 @@ import {
     IconNotebook,
     IconPlus,
     IconShoppingCartPlus,
+    IconShoppingList,
     IconTrash,
     IconVerticalEllipsis
 } from '@/components/Icon'
 
-import IconGridDots from '@/components/Icon/icons/icon-grid-dots'
+
 import NavBar from '@/components/Navigation'
 
 import Head from 'next/head'
@@ -70,6 +71,8 @@ export default function Home() {
                     <Button appearance='secondary' leftIcon={<IconCheck size={16} />} rightIcon={<IconCheck size={16} />}>Button</Button>
                 </div>
                 <div>
+                    <IconCircleMinus />
+                    <IconShoppingList />
                     <IconAlertCircle />
                     <IconArrowDownRight />
                     <IconArrowRight />

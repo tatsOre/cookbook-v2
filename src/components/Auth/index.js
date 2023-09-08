@@ -1,18 +1,17 @@
 import React from "react"
 import { useRouter } from "next/router"
 import { FormProvider, useForm } from "react-hook-form"
-import Alert from "../Alert"
-import LoadingOverlay from "../Loader"
 import useFormSubmission, { STATUS } from "@/lib/useFormSubmission"
-import Button from "../Button"
-import UnstyledButton from "../Button/UnstyledButton"
+import useUser from "@/lib/useUser"
+import Alert from "../Alert"
+import { Button, UnstyledButton } from "../Button"
+import LoadingOverlay from "../Loader"
 import EmailField from "./EmailField"
 import PasswordField from "./PasswordField"
 import { default as PATHS } from '../../../config'
 import { default as AUTH_FIELDS_ATTRS } from "./Auth.constants"
 
 import styles from './styles.module.scss'
-import useUser from "@/lib/useUser"
 
 const authReducerInitialState = {
     displayName: null,

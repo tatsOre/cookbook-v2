@@ -1,8 +1,7 @@
 import React from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
-import Button from '@/components/Button'
-import UnstyledButton from '@/components/Button/UnstyledButton'
+import { Button, UnstyledButton } from '@/components/Button'
 import { ListItemInput, NewStepInput } from './StepInput'
 import DraggableStepsList from './DraggableList'
 
@@ -69,12 +68,13 @@ function InstructionsFieldset({ fields }) {
                 ? <NewStepInput
                     append={append}
                     onCancel={resetActiveField}
+                    className={styles['new__step--input']}
                 />
                 : <Button onClick={showNewInput}>+ Add a step</Button>
             }
 
             {(steps.length > 1 || modeEditAll) && (
-                <div>
+                <div className={styles['edit__all--alert']}>
                     <p>Tap "Edit All" to organize or delete steps. Tap a step to edit.</p>
                     <UnstyledButton onClick={onToggleEditMode}>
                         {modeEditAll ? 'Done' : 'Edit All'}
@@ -87,8 +87,9 @@ function InstructionsFieldset({ fields }) {
                     steps={steps}
                     onDelete={onRemoveHandler}
                     onMove={move}
+                    className={styles['steps__list--draggable']}
                 />
-                : <ul className={styles.instructions__list}>
+                : <ul className={styles['steps__list--inputs']}>
                     {content}
                 </ul>}
         </React.Fragment>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useFormContext } from "react-hook-form"
 import useFormSubmission, { STATUS } from "@/lib/useFormSubmission"
 import Alert from "../Alert"
-import Button from "../Button"
+import { Button } from "../Button"
 import LoaderOverlay from "../Loader/LoaderOverlay"
 import { TextInput } from "../FormInput"
 import { default as PATHS } from '../../../config'

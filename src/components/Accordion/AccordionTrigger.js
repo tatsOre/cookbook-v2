@@ -1,6 +1,6 @@
 import { useAccordionContext } from "."
 import { useAccordionItemContext } from "./AccordionItem"
-import UnstyledButton from "@/components/Button/UnstyledButton"
+import { UnstyledButton } from "../Button"
 import { IconPlus } from "../Icon"
 import cx from "@/components/utils/cx"
 

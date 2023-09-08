@@ -1,9 +1,8 @@
 import React from "react"
 import { useFormContext } from 'react-hook-form'
 import { TextInput } from "@/components/FormInput"
-import UnstyledButton from '@/components/Button/UnstyledButton'
-
-import styles from './Instructions.module.scss'
+import { IconButton, UnstyledButton } from "@/components/Button"
+import { IconCross } from "@/components/Icon"
 
 function ListItemInput({
     index,
@@ -36,20 +35,17 @@ function ListItemInput({
     })
 
     return value ?
-        <li
-            className={styles['instructions__list--item']}
-            style={{ position: "relative" }}>
-
+        <li>
             {activeField.index === index ? (
-                <>
-                    <UnstyledButton data-name="save" onClick={onSave}>
+                <div>
+                    <UnstyledButton data-action="save" onClick={onSave}>
                         Done
                     </UnstyledButton>
 
                     <TextInput
                         multiline
                         autoFocus={activeField.index === index}
-                        label={`${TEXT_ATTRS.LABEL} ${index + 1}`} // Step {index}
+                        label={`Edit ${TEXT_ATTRS.LABEL} ${index + 1}:`} // Step {index}
                         error={nameError}
                         {...inputRegister}
                         onChange={(ev) => {
@@ -57,9 +53,9 @@ function ListItemInput({
                             setLabel(ev.target.value)
                         }}
                     />
-                </>
+                </div>
             ) : (
-                <UnstyledButton data-name="step-idle" onClick={onClickHandler}>
+                <UnstyledButton data-action="step-idle" onClick={onClickHandler}>
                     <span>
                         <b>{`${TEXT_ATTRS.LABEL} ${index + 1}`}.</b> {label}
                     </span>
@@ -69,8 +65,13 @@ function ListItemInput({
         : null
 }
 
-
-function NewStepInput({ append, placeholder, description, onCancel }) {
+function NewStepInput({
+    append,
+    placeholder,
+    description,
+    onCancel,
+    className
+}) {
     const [value, setValue] = React.useState('')
 
     const appendStep = () => {
@@ -84,25 +85,27 @@ function NewStepInput({ append, placeholder, description, onCancel }) {
     }
 
     return (
-        <div>
+        <div className={className}>
+            <IconButton
+                data-action="close"
+                ariaLabel="Close"
+                icon={<IconCross />}
+                onClick={onCancelHandler}
+            />
+
             <TextInput
                 multiline
                 rows={2}
-                label={'New Step'}
+                label="Add new step:"
                 onChange={(ev) => setValue(ev.target.value)}
                 value={value}
                 description={description}
                 placeholder={placeholder}
             />
 
-            <button type='button' onClick={onCancelHandler}>
-                Close
-            </button>
-
-            <button type='button' disabled={!value} onClick={appendStep}>
+            <UnstyledButton data-action="save" disabled={!value} onClick={appendStep}>
                 Save
-            </button>
-
+            </UnstyledButton>
         </div>
     )
 }

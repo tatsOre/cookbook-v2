@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import Logo from '../Logo'
-import MenuButton from '../Button/MenuButton'
-import NavBar from '../Navigation'
 import { IconBookmark, IconChefHat, IconShoppingList } from '../Icon'
+import { MenuButton } from '../Button'
+import NavBar from '../Navigation'
 
 import styles from './UserBox.module.scss'
 

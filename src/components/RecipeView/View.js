@@ -1,17 +1,14 @@
 import React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import Button from "../Button"
+import { Button, MenuButton } from "../Button"
 import CheckboxInput from "../Checkbox"
 import Logo from "../Logo"
 import NavBar from "../Navigation"
-import UnstyledButton from "../Button/UnstyledButton"
-import MenuButton from "../Button/MenuButton"
-
+import { getRecipeDate } from "./RecipeView.helpers"
 import cx from "../utils/cx"
 
 import styles from './styles.module.scss'
-import { getRecipeDate } from "./RecipeView.helpers"
 
 function RecipeShowPhoto({ photo }) {
     return (
@@ -99,7 +96,7 @@ function IngredientsSubmission({ items }) {
                     />
                 ))}
             </ul>
-            < Button type="submit">{label}</Button>
+            <Button type="submit">{label}</Button>
         </form>
     )
 }

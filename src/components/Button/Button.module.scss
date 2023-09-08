@@ -7,11 +7,15 @@
     min-width: $size;
 }
 
+/* Read about Optimal Size and Spacing for Buttons */
 @mixin icon--button {
-    @include size($size: 40px);
+    display: grid;
+    place-content: center;
+    
+    @include size($size: 42px);
 
     @media only screen and (min-width: g.$breakpoint-medium) {
-        @include size($size: 50px);
+        @include size($size: 42px);
     }
 }
 
@@ -82,7 +86,7 @@
     }
 }
 
-/** Buttons without label: **/
-.action--button {
+/** Action/Icon Buttons: **/
+.icon--button {
     @include icon--button;
 }

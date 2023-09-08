@@ -89,6 +89,10 @@
     [data-accordion-trigger] {
         padding-inline: calc(0.75rem + 1.5625vw);
     }
+
+    .instructions__fieldset {
+        padding-block: 1.5rem;
+    }
 }
 
 /* 01. About Fieldset
@@ -364,4 +368,3 @@
         transform: translateY(-50%) scale(1);
     }
 }
-

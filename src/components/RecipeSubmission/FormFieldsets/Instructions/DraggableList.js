@@ -1,10 +1,8 @@
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
-import UnstyledButton from '@/components/Button/UnstyledButton'
-import { IconGripVertical, IconTrash } from '@/components/Icon'
+import { IconButton } from '@/components/Button'
+import { IconCircleMinus, IconGripVertical, IconTrash } from '@/components/Icon'
 
-import styles from './Instructions.module.scss'
-
-function DraggableStepsList({ steps, onDelete, onMove }) {
+function DraggableStepsList({ steps, onDelete, onMove, className }) {
     const onDragEndHandler = ({ destination, source }) => {
         // dropped outside the list:
         if (!destination) return
@@ -18,6 +16,11 @@ function DraggableStepsList({ steps, onDelete, onMove }) {
         onMove(source.index, destination.index)
     }
 
+    const onDeleteClickHandler = () => {
+        console.log('Delete')
+        //onDelete(index)
+    }
+
     const content = steps.map((step, index) => {
         const di_id = `drag-ingr-${step.id}`
 
@@ -28,25 +31,22 @@ function DraggableStepsList({ steps, onDelete, onMove }) {
                         key={step.id}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        className={styles.draggable__item}
                     >
-                        <UnstyledButton
+                        <IconButton
                             ariaLabel={`Delete Step No. ${index + 1}`}
-                            className={styles['button__icon--delete']}
-                            onClick={() => onDelete(index)}
-                        >
-                            <IconTrash size={20} strokeWidth={1.5} />
-                        </UnstyledButton>
+                            onClick={onDeleteClickHandler}
+                            data-action="show-delete"
+                            icon={<IconCircleMinus />}
+                        />
 
                         <span><b>Step {index + 1}. </b>{step.text}</span>
 
-                        <UnstyledButton
+                        <IconButton
                             ariaLabel="Drag and drop step"
                             {...provided.dragHandleProps}
-                            data-type="drag-handler"
-                        >
-                            <IconGripVertical />
-                        </UnstyledButton>
+                            data-action="drag-handler"
+                            icon={<IconGripVertical />}
+                        />
                     </li>
                 )}
             </Draggable>
@@ -59,7 +59,7 @@ function DraggableStepsList({ steps, onDelete, onMove }) {
                     <ul
                         {...provided.droppableProps}
                         ref={provided.innerRef}
-                        className={styles.instructions__list}
+                        className={className}
                     >
                         {content}
                         {provided.placeholder}

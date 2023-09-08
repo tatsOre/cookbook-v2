@@ -1,11 +1,10 @@
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import Alert from '@/components/Alert'
-import Button from '@/components/Button'
+import { Button, IconButton } from '@/components/Button'
+import { IconCircleMinus, IconGripVertical } from '@/components/Icon'
 import { NumberInput, TextInput } from '@/components/FormInput'
 import SelectInput from '../../Select'
-import UnstyledButton from '../../Button/UnstyledButton'
-import { IconGripVertical, IconTrash } from '@/components/Icon'
 
 import styles from '../styles.module.scss'
 
@@ -43,7 +42,7 @@ function IngredientsFieldset({ assets, fields }) {
     }
 
     const measureOptions = assets?.measure_options ?? []
-    
+
     const fractionOptions = assets?.fraction_options ?? []
 
     const ingrListItems = ingredients.map((ingr, index) => {
@@ -95,21 +94,19 @@ function IngredientsFieldset({ assets, fields }) {
                             />
                         </div>
 
-                        <UnstyledButton
+                        <IconButton
                             ariaLabel="Drag and drop ingredient"
-                            className={styles['button__drag--handler']}
+                            data-action="drag-handler"
                             {...provided.dragHandleProps}
-                        >
-                            <IconGripVertical />
-                        </UnstyledButton>
+                            icon={<IconGripVertical />}
+                        />
 
-                        <UnstyledButton
+                        <IconButton
                             ariaLabel="Delete Ingredient"
-                            className={styles['button__icon--delete']}
+                            data-action="delete"
                             onClick={() => remove(index)}
-                        >
-                            <IconTrash size={20} strokeWidth={1.5} />
-                        </UnstyledButton>
+                            icon={<IconCircleMinus />}
+                        />
                     </li>
                 )}
             </Draggable>

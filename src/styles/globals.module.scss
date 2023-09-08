@@ -79,6 +79,7 @@ $font-size-24: 1.5rem;
     font-size: $fs;
     line-height: $line-height-extra;
     font-weight: normal;
+    color: $color-rich-black;
 }
 
 @mixin body--2 {

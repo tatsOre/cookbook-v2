@@ -1,6 +1,6 @@
 import React from "react"
 import cx from "../utils/cx"
-import { BUTTON_APPEARANCES } from "."
+import { BUTTON_APPEARANCES } from "./Button"
 
 import styles from './Button.module.scss'
 

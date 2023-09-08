@@ -5,9 +5,9 @@ import useDeviceDetect from '@/lib/useDeviceDetect'
 import useDraggableFile from '@/lib/useDraggableFile'
 import Alert from '@/components/Alert'
 import { FileInput, TextInput } from '@/components/FormInput'
-import { IconCloudUpload, IconTrash } from '@/components/Icon'
+import { IconButton } from '@/components/Button'
+import { IconCircleMinus, IconCloudUpload } from '@/components/Icon'
 import { getImageSrc } from '@/components/utils/file'
-import UnstyledButton from '@/components/Button/UnstyledButton'
 import cx from '@/components/utils/cx'
 
 import styles from '../styles.module.scss'
@@ -104,12 +104,12 @@ function ExtraInfoFieldset({ fields }) {
                             alt="Picture of the dish"
                         />
 
-                        <UnstyledButton
-                            className={styles['button__icon--delete']}
+                        <IconButton
+                            ariaLabel="Delete chosen image"
+                            data-action="delete"
                             onClick={onDeleteFileHandler}
-                        >
-                            <IconTrash size={20} strokeWidth={1.5} />
-                        </UnstyledButton>
+                            icon={<IconCircleMinus />}
+                        />
                     </div>
                 ) : null}
             </div>
