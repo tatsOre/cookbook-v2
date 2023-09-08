@@ -33,7 +33,7 @@ export const fetcher = async (url, arg) => {
 
     return response.json()
 }
-
+//RangeError: Invalid time value
 export default function MyApp({ Component, pageProps }) {
     return (
         <div id="page">
