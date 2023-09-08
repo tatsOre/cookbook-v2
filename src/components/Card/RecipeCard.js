@@ -1,23 +1,16 @@
 import React from 'react'
 import Link from 'next/link'
-import { format, isAfter } from 'date-fns'
 import { CardInfo } from './CardElements'
 import { DeleteRecipe, PublishRecipe } from './Actions'
+import { getRecipeDate } from '../RecipeView/RecipeView.helpers'
 import cx from '../utils/cx'
 
 import styles from './Card.module.scss'
 
 function RecipeCard({ recipe, onPublish, onDelete }) {
     const { _id: id, createdAt, updatedAt } = recipe
-/* 
-    const created = new Date(createdAt)
-    const updated = new Date(updatedAt)
 
-    const isUpdateAfter = isAfter(updated, created)
-
-    const date = isUpdateAfter
-        ? `Updated ${format(updated, "PPP")}`
-        : `Published ${format(created, "PPP")}` */
+    const date = getRecipeDate(createdAt, updatedAt)
 
     return (
         <article className={styles.recipe__card}>
@@ -29,7 +22,7 @@ function RecipeCard({ recipe, onPublish, onDelete }) {
 
             <Link href={`/recipes/${id}`}>
                 <CardInfo data={recipe}>
-                    <span>Updated Dec 7 2023</span>
+                    {date && <span>{date}</span>}
                 </CardInfo>
             </Link>
 

@@ -35,7 +35,7 @@ function ListItemInput({
         required: TEXT_ATTRS.RULES.REQUIRED
     })
 
-    return (
+    return value ?
         <li
             className={styles['instructions__list--item']}
             style={{ position: "relative" }}>
@@ -47,8 +47,8 @@ function ListItemInput({
                     </UnstyledButton>
 
                     <TextInput
-                        autoFocus={activeField.index === index}
                         multiline
+                        autoFocus={activeField.index === index}
                         label={`${TEXT_ATTRS.LABEL} ${index + 1}`} // Step {index}
                         error={nameError}
                         {...inputRegister}
@@ -66,7 +66,7 @@ function ListItemInput({
                 </UnstyledButton>
             )}
         </li>
-    )
+        : null
 }
 
 
@@ -79,7 +79,7 @@ function NewStepInput({ append, placeholder, description, onCancel }) {
     }
 
     const onCancelHandler = () => {
-        onCancel(false)
+        onCancel()
         setValue('')
     }
 
@@ -87,6 +87,7 @@ function NewStepInput({ append, placeholder, description, onCancel }) {
         <div>
             <TextInput
                 multiline
+                rows={2}
                 label={'New Step'}
                 onChange={(ev) => setValue(ev.target.value)}
                 value={value}
@@ -95,7 +96,7 @@ function NewStepInput({ append, placeholder, description, onCancel }) {
             />
 
             <button type='button' onClick={onCancelHandler}>
-                Cancel
+                Close
             </button>
 
             <button type='button' disabled={!value} onClick={appendStep}>

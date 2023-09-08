@@ -9,18 +9,11 @@ import DraggableStepsList from './DraggableList'
 import styles from './Instructions.module.scss'
 
 function InstructionsFieldset({ fields }) {
-    const [modeEditAll, setModeEditAll] = React.useState(false)
-
-    const [activeField, setActiveField] = React.useState({
-        index: null,
-        value: null
-    })
-
     const {
         INSTRUCTIONS: { NAME, RULES, TEXT_ATTRS },
     } = fields
 
-    const { control, formState: { errors } } = useFormContext()
+    const { control, formState: { errors, isDirty } } = useFormContext()
 
     const { fields: steps, append, remove, move } = useFieldArray({
         control, name: NAME, rules: {
@@ -28,9 +21,25 @@ function InstructionsFieldset({ fields }) {
         }
     })
 
+    const [modeEditAll, setModeEditAll] = React.useState(false)
+
+    const [activeField, setActiveField] = React.useState({
+        /** If steps array is empty, we're in create recipe mode, we start with an empty input. */
+        index: steps.length ? null : -1,
+        value: null
+    })
+
+    React.useEffect(() => {
+        steps.length === 0 && setModeEditAll(false)
+    }, [steps.length])
+
     const onRemoveHandler = (index) => remove(index)
 
-    const showEditAll = steps.filter(step => step.text).length > 1
+    const onToggleEditMode = () => setModeEditAll(prev => !prev)
+
+    const resetActiveField = () => setActiveField({ index: null, value: null })
+
+    const showNewInput = () => setActiveField({ index: -1, value: null })
 
     const content = steps.map((step, index) => {
         return (
@@ -48,7 +57,7 @@ function InstructionsFieldset({ fields }) {
 
     return (
         <React.Fragment>
-            {errors[NAME]?.root || !steps.length ? (
+            {errors[NAME]?.root || (!steps.length && isDirty) ? (
                 <Alert
                     appearance="danger"
                     variant='light'
@@ -56,13 +65,18 @@ function InstructionsFieldset({ fields }) {
                 />
             ) : null}
 
-            {showEditAll && (
-                <div style={{
-                    backgroundColor: 'lightgrey',
-                    marginBlockEnd: '2rem',
-                }}>
+            {activeField.index === -1 || !steps.length
+                ? <NewStepInput
+                    append={append}
+                    onCancel={resetActiveField}
+                />
+                : <Button onClick={showNewInput}>+ Add a step</Button>
+            }
+
+            {(steps.length > 1 || modeEditAll) && (
+                <div>
                     <p>Tap "Edit All" to organize or delete steps. Tap a step to edit.</p>
-                    <UnstyledButton onClick={() => setModeEditAll(prev => !prev)}>
+                    <UnstyledButton onClick={onToggleEditMode}>
                         {modeEditAll ? 'Done' : 'Edit All'}
                     </UnstyledButton>
                 </div>
@@ -74,25 +88,9 @@ function InstructionsFieldset({ fields }) {
                     onDelete={onRemoveHandler}
                     onMove={move}
                 />
-                : (
-                    <>
-                        {activeField.index === -1
-                            ? <NewStepInput
-                                append={append}
-                                onCancel={() => setActiveField({ index: null, value: null })}
-                            />
-                            : <Button
-                                onClick={() => setActiveField({ index: -1, value: null })}
-                            >+ Add a step
-                            </Button>
-                        }
-
-                        <ul className={styles.instructions__list}>
-                            {content}
-                        </ul>
-                    </>)}
-
-
+                : <ul className={styles.instructions__list}>
+                    {content}
+                </ul>}
         </React.Fragment>
     )
 }

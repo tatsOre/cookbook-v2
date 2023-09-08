@@ -26,8 +26,7 @@ const RECIPE_SCHEMA = {
 }
 
 export const NEW_RECIPE = {
-    'ingredients': RECIPE_SCHEMA.ingredients,
-    'instructions': RECIPE_SCHEMA.instructions
+    'ingredients': RECIPE_SCHEMA.ingredients
 }
 
 const BASE_RULES = {

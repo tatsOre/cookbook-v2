@@ -1,8 +1,6 @@
 import React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import isAfter from "date-fns/isAfter"
-import format from "date-fns/format"
 import Button from "../Button"
 import CheckboxInput from "../Checkbox"
 import Logo from "../Logo"
@@ -13,6 +11,7 @@ import MenuButton from "../Button/MenuButton"
 import cx from "../utils/cx"
 
 import styles from './styles.module.scss'
+import { getRecipeDate } from "./RecipeView.helpers"
 
 function RecipeShowPhoto({ photo }) {
     return (
@@ -121,13 +120,7 @@ function RecipeView({ data }) {
         updatedAt
     } = data
 
-    const created = new Date(createdAt)
-    const updated = new Date(updatedAt)
-
-    const isUpdateAfter = isAfter(updated, created)
-    const date = isUpdateAfter
-        ? `Last updated ${format(updated, "PPP")}`
-        : `Published ${format(created, "PPP")}`
+    const date = getRecipeDate(createdAt, updatedAt)
 
     const instructionsContent = instructions?.length
         && instructions.map((step, index) => (

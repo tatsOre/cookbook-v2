@@ -38,7 +38,7 @@ const TextInput = React.forwardRef((props, ref) => {
             {multiline
                 ? <textarea
                     style={{ paddingBlock: '0.65rem' }}
-                    rows={rows ?? MIN_ROWS_VALUE}
+                    rows={rows || MIN_ROWS_VALUE}
                     {...rest}
                     ref={(e) => {
                         ref && ref(e)
