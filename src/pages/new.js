@@ -24,7 +24,7 @@ export const getStaticProps = async () => {
  */
 
 function Page({ assets }) {
-    const { user, loggedOut } = useUser();
+    const { loggedOut } = useUser();
 
     // if logged out, redirect to the login
     React.useEffect(() => {

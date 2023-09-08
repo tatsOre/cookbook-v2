@@ -147,7 +147,8 @@ export const RECIPE_FIELDS_ATTRIBUTES = {
         }
     },
     INSTRUCTIONS: {
-        DESC: '',
+        DESC: 'Each recipe step should be helpful, easy to understand, and focus on clear actions related to the recipe.',
+        PLACEHOLDER: 'e.g. Season the chicken breasts with salt and pepper on both sides...',
         NAME: 'instructions',
         RULES: {
             REQUIRED: 'At least one step is required.',

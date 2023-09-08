@@ -8,7 +8,6 @@ import { IconBookmark, IconChefHat, IconShoppingList } from '../Icon'
 import styles from './UserBox.module.scss'
 
 function Layout({ children, user }) {
-    console.log('Rendering Layout')
     return (
         <React.Fragment>
             <header>

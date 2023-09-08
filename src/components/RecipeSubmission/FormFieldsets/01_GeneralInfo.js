@@ -19,10 +19,13 @@ function GeneralInfoFieldset({ assets, fields }) {
     const { register, formState: { errors }, watch } = useFormContext()
 
     const categoriesOptions = assets?.categories_options ?? []
+
     const cuisineOptions = assets?.cuisine_options ?? []
     /** https://react-hook-form.com/docs/useform/watch */
     const watchCategories = watch("categories", [])
+
     const categoriesLeft = `(${3 - watchCategories.length} left)`
+
     const categoriesLabel = <>
         {CATEGORIES.LABEL}.&nbsp;
         <span style={{ fontSize: '12px' }}>

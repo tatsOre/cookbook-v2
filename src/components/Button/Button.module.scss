@@ -64,10 +64,10 @@
     &--primary {
         color: g.$color-rich-black;
         background-color: g.$color-white;
-        box-shadow: 2px 2px 0 0 g.$color-rich-black;
+        //box-shadow: 2px 2px 0 0 g.$color-rich-black;
         border: g.$border-default;
-        border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-        transition: all .25s cubic-bezier(.4, 0, .2, 1) 0ms;
+        //border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        //transition: all .25s cubic-bezier(.4, 0, .2, 1) 0ms;
     }
 
     &--danger {
@@ -76,8 +76,8 @@
 
     @media (hover: hover) {
         &--primary:hover:not([disabled]):not([aria-disabled="true"]) {
-            box-shadow: 4px 4px 0 0 g.$color-rich-black;
-            background-color: g.$color-accent-yellow;
+            //box-shadow: 4px 4px 0 0 g.$color-rich-black;
+            //background-color: g.$color-accent-yellow;
         }
     }
 }

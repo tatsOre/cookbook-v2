@@ -1,7 +1,7 @@
 import Accordion from "../Accordion"
 import GeneralInfoFieldset from "./FormFieldsets/01_GeneralInfo"
 import IngredientsFieldset from "./FormFieldsets/02_Ingredients"
-import InstructionsFieldset from "./FormFieldsets/03_Instructions"
+import InstructionsFieldset from "./FormFieldsets/Instructions"
 import ExtraInfoFieldset from "./FormFieldsets/04_ExtraInfo"
 
 import { RECIPE_FIELDS_ATTRIBUTES } from "./utils"
@@ -29,7 +29,7 @@ function RecipeForm(props) {
 
     return (
         <form id={id} onSubmit={onSubmit} noValidate>
-            <Accordion.Item value="item-1">
+{/*             <Accordion.Item value="item-1">
                 <Accordion.Trigger>About</Accordion.Trigger>
                 <Accordion.Panel className={styles.about__fieldset}>
                     <GeneralInfoFieldset
@@ -54,7 +54,7 @@ function RecipeForm(props) {
                         assets={assets}
                     />
                 </Accordion.Panel>
-            </Accordion.Item>
+            </Accordion.Item> */}
             <Accordion.Item value="item-3">
                 <Accordion.Trigger>Directions</Accordion.Trigger>
                 <Accordion.Panel className={styles.instructions__fieldset}>
@@ -62,7 +62,7 @@ function RecipeForm(props) {
                         fields={{ INSTRUCTIONS }} />
                 </Accordion.Panel>
             </Accordion.Item>
-            <Accordion.Item value="item-4">
+{/*             <Accordion.Item value="item-4">
                 <Accordion.Trigger>
                     Comments & Photos
                 </Accordion.Trigger>
@@ -71,7 +71,7 @@ function RecipeForm(props) {
                         fields={{ PHOTO, COMMENTS }}
                     />
                 </Accordion.Panel>
-            </Accordion.Item>
+            </Accordion.Item> */}
         </form>
     )
 }

@@ -2,14 +2,11 @@ import React from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
 import Button from '@/components/Button'
-import { TextInput } from '@/components/FormInput'
 import UnstyledButton from '@/components/Button/UnstyledButton'
+import { ListItemInput, NewStepInput } from './StepInput'
+import DraggableStepsList from './DraggableList'
 
-import DraggableStepsList from './Instructions/DraggableList'
-
-import styles from '../styles.module.scss'
-import { ListItemInput, NewStepInput } from './Instructions/StepInput'
-
+import styles from './Instructions.module.scss'
 
 function InstructionsFieldset({ fields }) {
     const [modeEditAll, setModeEditAll] = React.useState(false)
@@ -99,8 +96,5 @@ function InstructionsFieldset({ fields }) {
         </React.Fragment>
     )
 }
-
-
-
 
 export default InstructionsFieldset

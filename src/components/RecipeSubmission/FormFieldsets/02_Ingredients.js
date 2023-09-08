@@ -43,6 +43,7 @@ function IngredientsFieldset({ assets, fields }) {
     }
 
     const measureOptions = assets?.measure_options ?? []
+    
     const fractionOptions = assets?.fraction_options ?? []
 
     const ingrListItems = ingredients.map((ingr, index) => {

@@ -72,8 +72,8 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
         }
 
         const payload = normalizeData(values)
-        console.log(payload)
-        //setFormData(payload) // submit info
+        //console.log(payload)
+        setFormData(payload) // submit info
     }
 
     const onErrors = (errors) => {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import FormGroup from "../FormGroup"
 import useInputProps from "@/lib/useInputProps"
 
-const MIN_ROWS_VALUE = 2
+const MIN_ROWS_VALUE = 3
 
 const useAutosizeTextArea = (
     textAreaRef,
@@ -41,7 +41,7 @@ const TextInput = React.forwardRef((props, ref) => {
                     rows={rows ?? MIN_ROWS_VALUE}
                     {...rest}
                     ref={(e) => {
-                        ref(e)
+                        ref && ref(e)
                         textareaRef.current = e // you can still assign to ref
                     }}
                 />

@@ -12,6 +12,7 @@ import { default as PATHS } from '../../../config'
 import { default as AUTH_FIELDS_ATTRS } from "./Auth.constants"
 
 import styles from './styles.module.scss'
+import useUser from "@/lib/useUser"
 
 const authReducerInitialState = {
     displayName: null,
@@ -50,6 +51,8 @@ function AuthorizationSubmission() {
 
     const [formData, setFormData] = React.useState(null)
 
+    const { user, mutate } = useUser()
+
     const router = useRouter()
 
     const { status, responseData, errorMessage } = useFormSubmission({
@@ -65,7 +68,12 @@ function AuthorizationSubmission() {
     })
 
     React.useEffect(() => {
-        status === STATUS.RESOLVED && router.back()
+        if (status === STATUS.RESOLVED) {
+            // send back user with the response (?)
+            mutate()
+            router.back()
+            //user && router.back()
+        }
     }, [status])
 
     const onSubmit = ({ email, password }) => {
