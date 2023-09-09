@@ -87,18 +87,14 @@
     /** Accordion Panels / Form Fieldsets: */
     [data-accordion-content],
     [data-accordion-trigger] {
-        padding-inline: calc(0.75rem + 1.5625vw);
-    }
-
-    .instructions__fieldset {
         padding-block: 1.5rem;
+        padding-inline: calc(0.75rem + 1.5625vw);
     }
 }
 
 /* 01. About Fieldset
 ============================ */
 .about__fieldset {
-    padding-block: 1.5rem;
     display: flex;
     gap: 1rem;
 
@@ -119,97 +115,11 @@
     }
 }
 
-/* 02. Ingredients Fieldset
-============================ */
-.ingredients__fieldset {
-    padding-block: 1.5rem;
 
-    .ingredients__list {
-
-        .ingredients__list--item {}
-
-        .ingredient__item--wrapper {
-            display: flex;
-            flex-flow: row wrap;
-            gap: 1rem;
-
-            /** Ingredient unit input: */
-            &>div:nth-child(1) {
-                flex-basis: 20%;
-            }
-
-            /** Ingredient fraction input: */
-            &>div:nth-child(2) {
-                flex: 1;
-
-                label {
-                    color: transparent;
-                }
-            }
-        }
-    }
-
-    /** Add new ingredient button: */
-    &>button {
-        margin-block-start: 1rem;
-
-        @media only screen and (max-width: g.$breakpoint-small) {
-            width: 100%;
-        }
-    }
-
-    @media only screen and (min-width: g.$breakpoint-small) {
-        .ingredient__item--wrapper {
-
-            /** Ingredient measure input: */
-            &>div:nth-child(3) {
-                flex: 1;
-            }
-        }
-    }
-
-    /** 1024px and above: */
-    @media only screen and (min-width: g.$breakpoint-large) {
-        .ingredients__list {
-
-
-
-            .ingredient__item--wrapper {
-                gap: 0rem 0.5rem;
-
-                [data-input-wrapper] {
-                    label {
-                        font-size: 0.65rem;
-                        //@include g.visually--hidden;
-                    }
-                }
-
-                &>div:nth-child(1) {
-                    flex-basis: 90px;
-                }
-
-                &>div:nth-child(2) {
-                    flex: 1 0 35%;
-                }
-
-                &>div:nth-child(3) {
-                    flex: 1 0 35%;
-                }
-
-                &>div:nth-child(4),
-                &>div:nth-child(5) {
-                    flex: 1 1 calc(50% - 0.5rem);
-                }
-            }
-        }
-    }
-}
 
 /* 04. Extra Info Fieldset
 ============================ */
 .extrainfo__fieldset {
-    padding-block: 1.5rem;
-
     .image__section {
         display: flex;
         flex-direction: column;
@@ -366,5 +276,40 @@
 
     to {
         transform: translateY(-50%) scale(1);
+    }
+}
+
+/* Instructions Steps/Ingredients - Draggable List
+============================ */
+.draggable__list {
+    li {
+        display: flex;
+        align-items: center;
+        padding-block: 0.5rem;
+        margin-bottom: 0.5rem;
+        background-color: g.$color-warm-grey-100;
+
+        /* Step No. Label Text */
+        span {
+            @include g.body--2;
+            flex: 1;
+            overflow: hidden;
+            /* Partial support: */
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            padding-inline: 0.5rem;
+        }
+
+        /* Button that triggers real delete button */
+        button[data-action="show-delete"] {
+            //background-color: tomato;
+        }
+
+        /* Button for Beautiful DnD */
+        button[data-action="drag-handler"] {
+            //background-color: aqua;
+        }
     }
 }

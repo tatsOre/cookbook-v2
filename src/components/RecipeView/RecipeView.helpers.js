@@ -20,3 +20,20 @@ export const getRecipeDate = (createdAt, updatedAt) => {
         return null
     }
 }
+
+export const getIngredientLabel = (data) => {
+    const { quantity, fraction, measure, name, prepNote } = data
+
+    const quantityElement = quantity ? quantity + ' ' : ''
+    const fractionElement = fraction?.label ? fraction?.label + ' ' : ''
+    const measureElement = measure?.label
+        ? measure?.label + (quantity > 1 || (quantity && fractionElement) ? 's' : '') + ' '
+        : ''
+    const nameElement = name + (prepNote ? ', ' : '')
+
+    const label = <>
+        {quantityElement}{fractionElement}{measureElement}<b>{nameElement}</b>{prepNote}
+    </>
+
+    return label
+}

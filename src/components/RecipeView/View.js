@@ -5,7 +5,7 @@ import { Button, MenuButton } from "../Button"
 import CheckboxInput from "../Checkbox"
 import Logo from "../Logo"
 import NavBar from "../Navigation"
-import { getRecipeDate } from "./RecipeView.helpers"
+import { getIngredientLabel, getRecipeDate } from "./RecipeView.helpers"
 import cx from "../utils/cx"
 
 import styles from './styles.module.scss'
@@ -39,18 +39,7 @@ function RecipeShowTags({ cuisine, categories }) {
 }
 
 function IngredientItem({ data, ...rest }) {
-    const { quantity, fraction, measure, name, prepNote } = data
-
-    const quantityElement = quantity ? quantity + ' ' : ''
-    const fractionElement = fraction?.label ? fraction?.label + ' ' : ''
-    const measureElement = measure?.label
-        ? measure?.label + (quantity > 1 || (quantity && fractionElement) ? 's' : '') + ' '
-        : ''
-    const nameElement = name + (prepNote ? ', ' : '')
-    // todo fix label to add a coma if prep note exists
-    const label = <>
-        {quantityElement}{fractionElement}{measureElement}<b>{nameElement}</b>{prepNote}
-    </>
+    const label = getIngredientLabel(data)
     return (
         <li>
             <CheckboxInput className="ingredient--item" label={label} {...rest} />

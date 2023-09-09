@@ -1,12 +1,13 @@
 import Accordion from "../Accordion"
 import GeneralInfoFieldset from "./FormFieldsets/01_GeneralInfo"
-import IngredientsFieldset from "./FormFieldsets/02_Ingredients"
+
 import InstructionsFieldset from "./FormFieldsets/Instructions"
 import ExtraInfoFieldset from "./FormFieldsets/04_ExtraInfo"
 
 import { RECIPE_FIELDS_ATTRIBUTES } from "./utils"
 
 import styles from './styles.module.scss'
+import IngredientsFieldset from "./FormFieldsets/Ingredients"
 
 const {
     TITLE,

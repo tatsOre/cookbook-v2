@@ -3,7 +3,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
 import { Button, UnstyledButton } from '@/components/Button'
 import { ListItemInput, NewStepInput } from './StepInput'
-import DraggableStepsList from './DraggableList'
+import DraggableStepsList from '../DraggableList'
 
 import styles from './Instructions.module.scss'
 
@@ -31,8 +31,6 @@ function InstructionsFieldset({ fields }) {
     React.useEffect(() => {
         steps.length === 0 && setModeEditAll(false)
     }, [steps.length])
-
-    const onRemoveHandler = (index) => remove(index)
 
     const onToggleEditMode = () => setModeEditAll(prev => !prev)
 
@@ -64,15 +62,6 @@ function InstructionsFieldset({ fields }) {
                 />
             ) : null}
 
-            {activeField.index === -1 || !steps.length
-                ? <NewStepInput
-                    append={append}
-                    onCancel={resetActiveField}
-                    className={styles['new__step--input']}
-                />
-                : <Button onClick={showNewInput}>+ Add a step</Button>
-            }
-
             {(steps.length > 1 || modeEditAll) && (
                 <div className={styles['edit__all--alert']}>
                     <p>Tap "Edit All" to organize or delete steps. Tap a step to edit.</p>
@@ -84,14 +73,23 @@ function InstructionsFieldset({ fields }) {
 
             {modeEditAll
                 ? <DraggableStepsList
-                    steps={steps}
-                    onDelete={onRemoveHandler}
+                    items={steps}
+                    onDelete={remove}
                     onMove={move}
-                    className={styles['steps__list--draggable']}
+                    steps={true}
                 />
                 : <ul className={styles['steps__list--inputs']}>
                     {content}
                 </ul>}
+
+            {activeField.index === -1 || !steps.length
+                ? <NewStepInput
+                    append={append}
+                    onCancel={resetActiveField}
+                    className={styles['new__step--input']}
+                />
+                : <Button onClick={showNewInput}>+ Add a step</Button>
+            }
         </React.Fragment>
     )
 }

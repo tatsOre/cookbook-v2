@@ -1,8 +1,11 @@
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { IconButton } from '@/components/Button'
-import { IconCircleMinus, IconGripVertical, IconTrash } from '@/components/Icon'
+import { IconCircleMinus, IconGripVertical } from '@/components/Icon'
 
-function DraggableStepsList({ steps, onDelete, onMove, className }) {
+import styles from '../styles.module.scss'
+import { getIngredientLabel } from '@/components/RecipeView/RecipeView.helpers'
+
+function DraggableItemsList({ items, remove, move, className, steps }) {
     const onDragEndHandler = ({ destination, source }) => {
         // dropped outside the list:
         if (!destination) return
@@ -13,22 +16,28 @@ function DraggableStepsList({ steps, onDelete, onMove, className }) {
         ) {
             return
         }
-        onMove(source.index, destination.index)
+        move(source.index, destination.index)
     }
 
     const onDeleteClickHandler = () => {
         console.log('Delete')
-        //onDelete(index)
+        //remove(index)
     }
 
-    const content = steps.map((step, index) => {
-        const di_id = `drag-ingr-${step.id}`
+    const props = {
+        ariaLabelDelete: steps ? 'Delete Step No. ' : 'Delete ',
+        ariaLabelDragHandler: 'Drag and drop',
+        id: steps ? 'dnd-steps-list' : 'dnd-ingr-list'
+    }
+
+    const content = items.map((item, index) => {
+        const di_id = `drag-item-${item.id}`
 
         return (
             <Draggable key={di_id} draggableId={di_id} index={index}>
                 {(provided) => (
                     <li
-                        key={step.id}
+                        key={item.id}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                     >
@@ -39,7 +48,10 @@ function DraggableStepsList({ steps, onDelete, onMove, className }) {
                             icon={<IconCircleMinus />}
                         />
 
-                        <span><b>Step {index + 1}. </b>{step.text}</span>
+                        {steps
+                            ? <span><b>Step {index + 1}. </b>{item.text}</span>
+                            : <span>{getIngredientLabel(item)}</span>
+                        }
 
                         <IconButton
                             ariaLabel="Drag and drop step"
@@ -54,12 +66,12 @@ function DraggableStepsList({ steps, onDelete, onMove, className }) {
     })
     return (
         <DragDropContext onDragEnd={onDragEndHandler}>
-            <Droppable droppableId='dnd-ingredients-list' direction='vertical'>
+            <Droppable droppableId={props.id} direction='vertical'>
                 {(provided) => (
                     <ul
                         {...provided.droppableProps}
                         ref={provided.innerRef}
-                        className={className}
+                        className={styles['draggable__list']}
                     >
                         {content}
                         {provided.placeholder}
@@ -70,4 +82,4 @@ function DraggableStepsList({ steps, onDelete, onMove, className }) {
     )
 }
 
-export default DraggableStepsList
+export default DraggableItemsList
