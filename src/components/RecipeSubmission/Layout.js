@@ -1,17 +1,13 @@
-import { useRouter } from "next/router"
 import Logo from "../Logo"
 import Marquee from "../Marquee"
 import MenuButton from "../Button/MenuButton"
 import NavBar from "../Navigation"
-import { IconArrowForward } from "../Icon"
 import Footer from "../Footer"
 import UnstyledButton from "../Button/UnstyledButton"
 
 import styles from './styles.module.scss'
 
 function Layout({ children, title, mode }) {
-    const router = useRouter()
-
     const heading = mode == 'edit' ? title || 'edit recipe' : "what's cooking"
 
     return (
@@ -20,10 +16,6 @@ function Layout({ children, title, mode }) {
                 <NavBar className={styles['recipe__sub--navigation']} fixed>
                     <MenuButton />
                     <Logo />
-                    <UnstyledButton onClick={() => router.back()}>
-                        <span><IconArrowForward /></span><span>go back</span>
-                    </UnstyledButton>
-
                     <UnstyledButton form="submit-recipe-form" type='submit'>
                         Save
                     </UnstyledButton>

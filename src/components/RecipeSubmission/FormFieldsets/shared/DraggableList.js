@@ -1,9 +1,9 @@
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { IconButton } from '@/components/Button'
 import { IconCircleMinus, IconGripVertical } from '@/components/Icon'
-
-import styles from '../styles.module.scss'
 import { getIngredientLabel } from '@/components/RecipeView/RecipeView.helpers'
+
+import styles from '../../styles.module.scss'
 
 function DraggableItemsList({ items, remove, move, className, steps }) {
     const onDragEndHandler = ({ destination, source }) => {
@@ -19,19 +19,17 @@ function DraggableItemsList({ items, remove, move, className, steps }) {
         move(source.index, destination.index)
     }
 
-    const onDeleteClickHandler = () => {
-        console.log('Delete')
-        //remove(index)
-    }
-
-    const props = {
-        ariaLabelDelete: steps ? 'Delete Step No. ' : 'Delete ',
-        ariaLabelDragHandler: 'Drag and drop',
-        id: steps ? 'dnd-steps-list' : 'dnd-ingr-list'
-    }
+    const id = steps ? 'dnd-steps-list' : 'dnd-ingr-list'
 
     const content = items.map((item, index) => {
-        const di_id = `drag-item-${item.id}`
+        /** check out this stuff: wtf */
+        const id = steps ? item.id : item._id
+        const di_id = `drag-item-${id}`
+
+        const labelDelete = steps
+            ? `Delete step ${index + 1}` : `Delete ${item.name}`
+
+        const labelDragHandler = 'Move ' + (steps ? 'step' : item.name)
 
         return (
             <Draggable key={di_id} draggableId={di_id} index={index}>
@@ -42,8 +40,8 @@ function DraggableItemsList({ items, remove, move, className, steps }) {
                         {...provided.draggableProps}
                     >
                         <IconButton
-                            ariaLabel={`Delete Step No. ${index + 1}`}
-                            onClick={onDeleteClickHandler}
+                            ariaLabel={labelDelete}
+                            onClick={() => remove(index)}
                             data-action="show-delete"
                             icon={<IconCircleMinus />}
                         />
@@ -54,7 +52,7 @@ function DraggableItemsList({ items, remove, move, className, steps }) {
                         }
 
                         <IconButton
-                            ariaLabel="Drag and drop step"
+                            ariaLabel={labelDragHandler}
                             {...provided.dragHandleProps}
                             data-action="drag-handler"
                             icon={<IconGripVertical />}
@@ -66,7 +64,7 @@ function DraggableItemsList({ items, remove, move, className, steps }) {
     })
     return (
         <DragDropContext onDragEnd={onDragEndHandler}>
-            <Droppable droppableId={props.id} direction='vertical'>
+            <Droppable droppableId={id} direction='vertical'>
                 {(provided) => (
                     <ul
                         {...provided.droppableProps}

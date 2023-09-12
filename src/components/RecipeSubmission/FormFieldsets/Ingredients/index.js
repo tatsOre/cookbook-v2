@@ -1,106 +1,103 @@
+import React from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
-import { Button, IconButton } from '@/components/Button'
-import { NumberInput, TextInput } from '@/components/FormInput'
-import SelectInput from '@/components/Select'
-import DraggableItemsList from '../DraggableList'
+import { Button, UnstyledButton } from '@/components/Button'
+import DraggableItemsList from '../shared/DraggableList'
+import { ListIngrInput, NewIngredientInput } from './IngrInput'
+import { default as FIELDS_ATTRIBUTES } from '../../constants'
 
 import styles from './Ingredients.module.scss'
 
-function IngredientsFieldset({ assets, fields }) {
+function IngredientsFieldset() {
     const {
-        INGREDIENTS: {
-            // Name for the 'ingredients' array:
-            NAME: INGS_NAME,
-            RULES,
-            // Attributes for ingredient item:
-            INGR_ATTRS: { QTY, FRACTION, MEASURE, NAME: ITEM_NAME, PREP_NOTE },
-            INGR_SCHEMA
-        },
-    } = fields
+        INGREDIENTS: { NAME, RULES }
+    } = FIELDS_ATTRIBUTES
 
-    const { register, control, formState: { errors } } = useFormContext()
+    const { control, formState: { errors }, watch } = useFormContext()
 
-    const { fields: ingredients, append, remove, move } = useFieldArray({
-        control, name: INGS_NAME, rules: {
+    const { fields: items, append, remove, move } = useFieldArray({
+        control, name: NAME, rules: {
             required: RULES.REQUIRED
         }
     })
 
-    const measureOptions = assets?.measure_options ?? []
+    const [modeEditAll, setModeEditAll] = React.useState(false)
 
-    const fractionOptions = assets?.fraction_options ?? []
-console.log(ingredients.length)
+    const [activeField, setActiveField] = React.useState({
+        /** If steps array is empty, we're in create recipe mode, we start with an empty input. */
+        /** null is closed, -1 is new input active, think in something better */
+        index: items.length ? null : -1,
+        active: items.length ? false : true
+    })
 
-    const content = ingredients.map((ingr, index) => {
-        const ingrNameFieldError = errors[INGS_NAME]?.[index]?.[ITEM_NAME.NAME]
-        return (
-            <li key={ingr.id}>
-                <div className={styles['ingredient__item--wrapper']}>
-                    <NumberInput
-                        label={QTY.LABEL}
-                        {...register(`${INGS_NAME}.${index}.${QTY.NAME}`)}
-                    />
+    const ingredients = watch(NAME, [])
 
-                    <SelectInput
-                        label={FRACTION.LABEL}
-                        name={`${INGS_NAME}.${index}.${FRACTION.NAME}`}
-                        options={fractionOptions}
-                    />
+    React.useEffect(() => {
+        ingredients.length === 0 && setModeEditAll(false)
+    }, [ingredients.length])
 
-                    <SelectInput
-                        label={MEASURE.LABEL}
-                        name={`${INGS_NAME}.${index}.${MEASURE.NAME}`}
-                        options={measureOptions}
-                    />
+    const onToggleEditMode = () => setModeEditAll(prev => !prev)
 
-                    <TextInput
-                        label={ITEM_NAME.LABEL}
-                        error={ingrNameFieldError}
-                        placeholder={ITEM_NAME.PLACEHOLDER}
-                        required
-                        {...register(`${INGS_NAME}.${index}.${ITEM_NAME.NAME}`, {
-                            required: ITEM_NAME.RULES.REQUIRED
-                        })}
-                    />
+    const resetActiveField = () => setActiveField({ index: null, active: false })
 
-                    <TextInput
-                        label={PREP_NOTE.LABEL}
-                        placeholder={PREP_NOTE.PLACEHOLDER}
-                        {...register(`${INGS_NAME}.${index}.${PREP_NOTE.NAME}`)}
-                    />
-                </div>
-            </li>
-        )
+    const showNewInput = () => setActiveField({ index: -1, active: true })
+
+    const content = ingredients.map((item, index) => {
+        return <ListIngrInput
+            key={item._id}
+            item={item}
+            index={index}
+            activeField={activeField}
+            setActiveField={setActiveField}
+        />
     })
 
     return (
-        <>
-            {errors?.[INGS_NAME]?.root || !content.length ? (
-                <Alert
-                    appearance="danger"
-                    variant='light'
-                    title={errors?.[INGS_NAME]?.root || RULES.REQUIRED}
+        <React.Fragment>
+            {(ingredients.length > 1 || modeEditAll) && (
+                <div className={styles['edit__all--alert']}>
+                    <p>Tap "Edit All" to organize or delete steps. Tap a step to edit.</p>
+                    <UnstyledButton onClick={onToggleEditMode}>
+                        {modeEditAll ? 'Done' : 'Edit All'}
+                    </UnstyledButton>
+                </div>
+            )}
+
+            {modeEditAll
+                ? <DraggableItemsList
+                    items={ingredients}
+                    remove={remove}
+                    move={move}
                 />
-            ) : null}
+                : <ul className={styles['ingredients__list--inputs']}>
+                    {content}
+                </ul>
+            }
 
-            {/*             <DraggableItemsList
-                items={ingredients}
-                remove={remove}
-                move={move}
-            /> */}
-
-            <ul className={styles['ingredients__list--inputs']}>
-                {content}
-            </ul>
-
-            <Button onClick={() => append(INGR_SCHEMA)}>
-                + Add an ingredient
-            </Button>
-        </>
+            {activeField.index === -1 || !ingredients.length
+                ? <NewIngredientInput
+                    append={append}
+                    onCancel={null}
+                />
+                : <Button
+                    disabled={activeField.active}
+                    onClick={showNewInput}
+                >
+                    + Add an ingredient
+                </Button>
+            }
+        </React.Fragment>
     )
 }
 
-
-
 export default IngredientsFieldset
+
+/**
+            {errors?.[NAME]?.root || !content?.length ? (
+                <Alert
+                    appearance="danger"
+                    variant='light'
+                    title={errors[NAME]?.root.message || RULES.REQUIRED}
+                />
+            ) : null}
+ */

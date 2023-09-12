@@ -5,6 +5,29 @@
 
 .ingredients__list--inputs {
 
+    li {
+        button[data-action="step-idle"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.65rem;
+            background-color: g.$color-warm-grey-100;
+
+            &:hover {
+                background-color: g.$color-warm-grey-400;
+            }
+
+            span {
+                @include g.body--2;
+                overflow: hidden;
+                /* Partial support: */
+                text-overflow: ellipsis;
+                -webkit-box-orient: vertical;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+            }
+        }
+    }
+
     .ingredient__item--wrapper {
         display: flex;
         flex-flow: row wrap;

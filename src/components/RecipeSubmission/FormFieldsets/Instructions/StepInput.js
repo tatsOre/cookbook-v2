@@ -4,23 +4,30 @@ import { TextInput } from "@/components/FormInput"
 import { IconButton, UnstyledButton } from "@/components/Button"
 import { IconCross } from "@/components/Icon"
 
+import { default as FIELDS_ATTRIBUTES } from '../../constants'
+
 function ListItemInput({
     index,
     value,
-    instItemAtts: TEXT_ATTRS,
     activeField,
     setActiveField
-
 }) {
-    const [label, setLabel] = React.useState(value)
+    const [text, setText] = React.useState(value)
 
-    const { register, formState: { errors } } = useFormContext()
+    const { register, formState: { errors, dirtyFields } } = useFormContext()
 
-    const PARENT_FIELD = 'instructions'
+    const {
+        INSTRUCTIONS: { NAME, TEXT_ATTRS },
+    } = FIELDS_ATTRIBUTES
 
-    const nameError = errors[PARENT_FIELD]?.[index]?.[TEXT_ATTRS.NAME]
+    const isDirty = dirtyFields.instructions?.[index]?.text
 
-    const stepNameKey = `${PARENT_FIELD}.${index}.${TEXT_ATTRS.NAME}`
+    const ingrError = errors[NAME]?.[index]?.[TEXT_ATTRS.NAME]
+        || (!text && isDirty && { type: "required" })
+
+    const stepNameKey = `${NAME}.${index}.${TEXT_ATTRS.NAME}`
+
+    const label = `${TEXT_ATTRS.LABEL} ${index + 1}`
 
     const onSave = () => {
         setActiveField({ index: null, value: null })
@@ -38,27 +45,29 @@ function ListItemInput({
         <li>
             {activeField.index === index ? (
                 <div>
-                    <UnstyledButton data-action="save" onClick={onSave}>
+                    <UnstyledButton
+                        data-action="save"
+                        disabled={!text}
+                        onClick={onSave}
+                    >
                         Done
                     </UnstyledButton>
 
                     <TextInput
                         multiline
                         autoFocus={activeField.index === index}
-                        label={`Edit ${TEXT_ATTRS.LABEL} ${index + 1}:`} // Step {index}
-                        error={nameError}
+                        label={`Edit ${label}:`}
+                        error={ingrError}
                         {...inputRegister}
                         onChange={(ev) => {
                             inputRegister.onChange(ev)
-                            setLabel(ev.target.value)
+                            setText(ev.target.value)
                         }}
                     />
                 </div>
             ) : (
                 <UnstyledButton data-action="step-idle" onClick={onClickHandler}>
-                    <span>
-                        <b>{`${TEXT_ATTRS.LABEL} ${index + 1}`}.</b> {label}
-                    </span>
+                    <span><b>{label}.</b> {text}</span>
                 </UnstyledButton>
             )}
         </li>

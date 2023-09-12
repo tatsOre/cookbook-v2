@@ -1,7 +1,7 @@
 import styles from './Marquee.module.scss'
 
 function Marquee({ text }) {
-    const content = [... new Array(50)].map((_, index) =>
+    const content = [... new Array(30)].map((_, index) =>
         <span key={index}>{text}</span>
     )
 

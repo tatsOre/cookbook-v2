@@ -2,9 +2,10 @@ import React from 'react'
 import Router from "next/router";
 import Head from 'next/head'
 import useUser from '@/lib/useUser'
-import Alert from '@/components/Alert'
 import RecipeSubmission from '@/components/RecipeSubmission'
+import RecipeSubmissionProvider from '@/components/RecipeSubmission/context'
 import { default as PATHS } from '../../../config'
+import { default as RECIPE_FIELDS_ATTRIBUTES } from '@/components/RecipeSubmission/constants'
 
 /**
  * Fetches initial values and form assets.
@@ -35,7 +36,7 @@ export const getServerSideProps = async ({ params }) => {
  */
 
 function Page({ assets, data }) {
-    const { user, loggedOut } = useUser();
+    const { loggedOut } = useUser();
 
     // if logged out, redirect to the login
     React.useEffect(() => {
@@ -49,22 +50,19 @@ function Page({ assets, data }) {
             <title>Edit Recipe</title>
         </Head>
         <RecipeSubmission.Layout title={data?.title} mode='edit'>
-            {/** If we do not have data || title, something happened with the API */}
-            {!data || !data.title ? (
-                <Alert
-                    appearance="danger"
-                    variant='light'
-                    title={'Sorry, we could not load your data.'}
-                    style={{ marginBottom: '1rem' }}
+            <RecipeSubmissionProvider
+                value={{
+                    assets,
+                    fieldsAttributes: RECIPE_FIELDS_ATTRIBUTES
+                }}
+            >
+                <RecipeSubmission
+                    endpoint={`${PATHS.RECIPES_ENDPOINT}/${data?._id}`}
+                    data={data}
+                    mode='edit'
                 />
-            ) : null}
 
-            <RecipeSubmission
-                endpoint={`${PATHS.RECIPES_ENDPOINT}/${data?._id}`}
-                data={data}
-                assets={assets}
-                mode='edit'
-            />
+            </RecipeSubmissionProvider>
         </RecipeSubmission.Layout>
     </>
 }

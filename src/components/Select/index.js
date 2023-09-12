@@ -1,5 +1,4 @@
 import React from "react"
-import { Controller, useFormContext } from "react-hook-form"
 import Select from 'react-select'
 import FormGroup from "../FormGroup"
 import useInputProps from "@/lib/useInputProps"
@@ -16,7 +15,7 @@ const styles = {
         ...provided, zIndex: "9999 !important"
     }),
     menuList: (provided) => ({
-        ...provided,
+        ...provided
 
     }),
     singleValue: (provided) => ({
@@ -46,57 +45,42 @@ const styles = {
     }),
 }
 
-function SelectInput(props) {
-    const { name, options, isMulti, isOptionDisabled, ...rest } = props
 
-    const { control, formState: { errors } } = useFormContext()
+const CustomSelect = React.forwardRef((props, ref) => {
+    const { inputProps, wrapperProps } = useInputProps(props)
 
-    const { inputProps, wrapperProps } = useInputProps({
-        ...rest,
-        error: errors[name]
-    })
+    const { isMulti, id, isOptionDisabled, ...rest } = inputProps
 
     return (
         <FormGroup {...wrapperProps}>
-            <Controller
-                name={name}
-                control={control}
-                render={({ field }) => {
-                    return (
-                        <Select
-                            isMulti={isMulti}
-                            isOptionDisabled={isOptionDisabled}
-                            aria-label={wrapperProps.label.children || inputProps["aria-label"]}
-                            aria-describedby={inputProps["aria-describedby"]}
-                            options={options}
-                            getOptionValue={(option) => `${option['_id']}`}
-                            isClearable
-                            inputId={inputProps.id}
-                            instanceId={inputProps.id} // removes `id` warning.
-                            // https://github.com/JedWatson/react-select/issues/1537
-                            menuPortalTarget={document.querySelector('body')}
-                            styles={styles}
-                            theme={(theme) => ({
-                                ...theme,
-                                borderRadius: 0,
-                                colors: {
-                                    ...theme.colors,
-                                    primary50: '#e9e8e1',
-                                    primary25: '#e9e8e1',
-                                    primary: 'black',
-                                },
-                            })}
-                            {...field}
-                        />
-                    )
-                }}
+            <Select
+                getOptionValue={(option) => `${option['_id']}`}
+                isClearable
+                isMulti={isMulti}
+                isOptionDisabled={isOptionDisabled}
+                inputId={id}
+                instanceId={id} // removes `id` warning.
+                menuPortalTarget={document.querySelector('body')}
+                styles={styles}
+                theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 0,
+                    colors: {
+                        ...theme.colors,
+                        primary50: '#e9e8e1',
+                        primary25: '#e9e8e1',
+                        primary: 'black',
+                    },
+                })}
+                {...rest}
+                ref={ref}
             />
         </FormGroup>
     )
-}
+})
 
-SelectInput.defaultProps = {
+CustomSelect.defaultProps = {
     options: []
 }
 
-export default SelectInput
+export default CustomSelect

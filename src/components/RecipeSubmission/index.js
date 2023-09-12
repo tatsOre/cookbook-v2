@@ -8,7 +8,7 @@ import Alert from "../Alert"
 import Layout from "./Layout"
 import LoaderOverlay from "../Loader/LoaderOverlay"
 
-import { deNormalizeData, normalizeData, getFormAccordionState } from "./utils"
+import { deNormalizeData, normalizeData, getFormAccordionState } from "./helpers"
 import { CLOUDINARY } from "../../../config"
 
 const DynamicRecipeForm = dynamic(() => import('./Form')
@@ -16,7 +16,7 @@ const DynamicRecipeForm = dynamic(() => import('./Form')
     { ssr: false }
 )
 
-function RecipeSubmission({ endpoint, data, assets, mode }) {
+function RecipeSubmission({ endpoint, data, mode }) {
     const [formData, setFormData] = React.useState(null)
 
     const [photoError, setPhotoError] = React.useState(null)
@@ -32,7 +32,7 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
     })
 
     const methods = useForm({
-        defaultValues: mode === 'edit' ? deNormalizeData(data) : data
+        defaultValues: mode === 'edit' ? deNormalizeData(data) : {}
     })
 
     const router = useRouter()
@@ -42,7 +42,7 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
     }, [status])
 
     const onSubmit = async (values) => {
-        console.log('Submitting...')
+        // TODO: Create a cloudinary service to add/delete resources
         // If photo || photo changed:
         if (
             typeof values.photo !== 'string'
@@ -72,8 +72,8 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
         }
 
         const payload = normalizeData(values)
-        //console.log(payload)
-        setFormData(payload) // submit info
+        console.log(payload)
+        //setFormData(payload) // submit info
     }
 
     const onErrors = (errors) => {
@@ -102,7 +102,6 @@ function RecipeSubmission({ endpoint, data, assets, mode }) {
                     <DynamicRecipeForm
                         id="submit-recipe-form"
                         onSubmit={methods.handleSubmit(onSubmit, onErrors)}
-                        assets={assets}
                     />
                 </Accordion>
             </FormProvider>

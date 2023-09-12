@@ -3,14 +3,15 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
 import { Button, UnstyledButton } from '@/components/Button'
 import { ListItemInput, NewStepInput } from './StepInput'
-import DraggableStepsList from '../DraggableList'
+import DraggableStepsList from '../shared/DraggableList'
+import { default as FIELDS_ATTRIBUTES } from '../../constants'
 
 import styles from './Instructions.module.scss'
 
-function InstructionsFieldset({ fields }) {
+function InstructionsFieldset() {
     const {
-        INSTRUCTIONS: { NAME, RULES, TEXT_ATTRS },
-    } = fields
+        INSTRUCTIONS: { NAME, RULES },
+    } = FIELDS_ATTRIBUTES
 
     const { control, formState: { errors, isDirty } } = useFormContext()
 
@@ -44,8 +45,6 @@ function InstructionsFieldset({ fields }) {
                 key={step.id}
                 value={step.text}
                 index={index}
-                instItemAtts={TEXT_ATTRS}
-                parentField={NAME}
                 activeField={activeField}
                 setActiveField={setActiveField}
             />
@@ -74,8 +73,8 @@ function InstructionsFieldset({ fields }) {
             {modeEditAll
                 ? <DraggableStepsList
                     items={steps}
-                    onDelete={remove}
-                    onMove={move}
+                    remove={remove}
+                    move={move}
                     steps={true}
                 />
                 : <ul className={styles['steps__list--inputs']}>
@@ -88,7 +87,10 @@ function InstructionsFieldset({ fields }) {
                     onCancel={resetActiveField}
                     className={styles['new__step--input']}
                 />
-                : <Button onClick={showNewInput}>+ Add a step</Button>
+                : <Button
+                    onClick={showNewInput}
+                >+ Add a step
+                </Button>
             }
         </React.Fragment>
     )

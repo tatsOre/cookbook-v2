@@ -1,10 +1,13 @@
 import React from 'react'
-import { useFormContext } from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
 import CheckboxInput from '@/components/Checkbox'
-import SelectInput from '@/components/Select'
+import CustomSelect from '@/components/Select'
 import { NumberInput, TextInput } from '@/components/FormInput'
+import { useRecipeSubmissionContext } from '../../context'
 
-function GeneralInfoFieldset({ assets, fields }) {
+function GeneralInfo() {
+    const { assets, fieldsAttributes } = useRecipeSubmissionContext()
+    
     const {
         TITLE,
         DESCRIPTION,
@@ -14,14 +17,10 @@ function GeneralInfoFieldset({ assets, fields }) {
         CUISINE,
         CATEGORIES,
         PUBLIC
-    } = fields
+    } = fieldsAttributes
 
-    const { register, formState: { errors }, watch } = useFormContext()
+    const { control, register, formState: { errors }, watch } = useFormContext()
 
-    const categoriesOptions = assets?.categories_options ?? []
-
-    const cuisineOptions = assets?.cuisine_options ?? []
-    /** https://react-hook-form.com/docs/useform/watch */
     const watchCategories = watch("categories", [])
 
     const categoriesLeft = `(${3 - watchCategories.length} left)`
@@ -70,18 +69,28 @@ function GeneralInfoFieldset({ assets, fields }) {
                 })}
             />
 
-            <SelectInput
-                isMulti
-                label={categoriesLabel}
+            <Controller
+                control={control}
                 name={CATEGORIES.NAME}
-                options={categoriesOptions}
-                isOptionDisabled={() => watchCategories.length > 2}
+                render={({ field }) =>
+                    <CustomSelect
+                        isMulti
+                        label={categoriesLabel}
+                        options={assets?.categories_options}
+                        isOptionDisabled={() => watchCategories.length > 2}
+                        {...field}
+                    />}
             />
 
-            <SelectInput
-                label={CUISINE.LABEL}
+            <Controller
+                control={control}
                 name={CUISINE.NAME}
-                options={cuisineOptions}
+                render={({ field }) =>
+                    <CustomSelect
+                        label={CUISINE.LABEL}
+                        options={assets?.cuisine_options}
+                        {...field}
+                    />}
             />
 
             <NumberInput
@@ -110,4 +119,4 @@ function GeneralInfoFieldset({ assets, fields }) {
     )
 }
 
-export default GeneralInfoFieldset
+export default GeneralInfo
