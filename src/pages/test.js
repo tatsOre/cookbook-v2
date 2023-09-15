@@ -30,13 +30,19 @@ import {
     IconVerticalEllipsis
 } from '@/components/Icon'
 
-
 import NavBar from '@/components/Navigation'
 
 import Head from 'next/head'
 import Link from 'next/link'
 
+import styles from '../styles/globals.module.scss'
+import { useThemeContext, THEMES } from '@/context/ThemeContext'
+import React from 'react'
+
 export default function Home() {
+    const { theme, setTheme } = useThemeContext()
+
+    const onThemeChange = (ev) => setTheme(ev.target.value)
 
     return (
         <>
@@ -49,6 +55,24 @@ export default function Home() {
 
 
             <main>
+
+                <div className={styles.theming}>
+                    <p>Testing Theming</p>
+                </div>
+                <form>
+                    {Object.values(THEMES).map((el, index) => {
+                        return (
+                            <label key={index}>
+                                <input type='radio' value={el} checked={el === theme} onChange={onThemeChange}/>
+                                {el}
+                            </label>
+                        )
+                    })}
+                </form>
+                <div>
+
+
+                </div>
                 <h2>
                     Action Buttons:
                 </h2>

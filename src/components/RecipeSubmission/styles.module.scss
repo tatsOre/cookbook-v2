@@ -55,7 +55,6 @@
 
     &>p {
         font-size: 0.825rem;
-        color: g.$color-smoke-gray;
         padding-inline: 1.5rem;
         padding-block-end: 1.25rem;
     }
@@ -64,7 +63,7 @@
     [data-accordion-trigger] {
         padding-block: 1.125rem;
         border-top: 3px solid g.$color-rich-black;
-        color: g.$color-rich-black;
+        //color: g.$color-rich-black;
         font-size: calc(1.35rem + 0.390625vw);
         font-family: g.$font-accent;
         font-stretch: 125%;
@@ -72,14 +71,14 @@
         letter-spacing: 0.1px;
 
         &[aria-expanded="true"] {
-            background-color: g.$color-warm-grey-100;
+            //background-color: g.$color-warm-grey-100;
         }
 
         @media (hover: hover) {
             &:hover:not([disabled]) {
-                background-color: g.$color-rich-black;
-                color: g.$color-white;
-                background-color: g.$color-rich-black;
+                //background-color: g.$color-rich-black;
+                //color: g.$color-white;
+                //background-color: g.$color-rich-black;
             }
         }
     }
@@ -127,13 +126,13 @@
         margin-block-end: 1.5rem;
 
         h3 {
-            color: g.$color-rich-black;
+            //color: g.$color-rich-black;
             font-size: 0.9rem;
         }
 
         p {
             @include g.caption;
-            color: g.$color-smoke-gray;
+            //color: g.$color-smoke-gray;
         }
 
         .image__input--wrapper {
@@ -147,8 +146,8 @@
 
             // File input with drag and drop feature:
             .box.advanced--upload {
-                background-color: g.$color-white;
-                outline: 1px dashed g.$color-rich-black;
+                //background-color: g.$color-white;
+                //outline: 1px dashed g.$color-rich-black;
                 outline-offset: -10px;
                 padding-block: 2.5rem;
                 -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
@@ -162,7 +161,7 @@
 
                 .box__file {
                     &+label {
-                        color: g.$color-rich-black;
+                        //color: g.$color-rich-black;
                         width: 100%;
 
                         &:hover b {
@@ -186,7 +185,7 @@
                     padding: 0.65rem 1.25rem 0.65rem 2.5rem;
 
                     b {
-                        color: g.$color-white;
+                        //color: g.$color-white;
                         font-size: 0.9rem;
                         font-weight: normal
                     }
@@ -200,7 +199,7 @@
 
                 svg {
                     position: absolute;
-                    stroke: g.$color-white;
+                    //stroke: g.$color-white;
                     top: 0.5rem;
                     left: 1rem;
                 }
@@ -287,7 +286,7 @@
         align-items: center;
         padding-block: 0.5rem;
         margin-bottom: 0.5rem;
-        background-color: g.$color-warm-grey-100;
+        //background-color: g.$color-warm-grey-100;
 
         /* Step No. Label Text */
         span {

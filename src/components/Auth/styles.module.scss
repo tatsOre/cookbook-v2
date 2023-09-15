@@ -40,7 +40,7 @@
                 right: 0.5rem;
                 padding: 0.5rem;
                 z-index: 1;
-                background-color: g.$color-white;
+                //background-color: g.$color-white;
 
                 &:hover {
                     text-decoration: underline;
@@ -71,7 +71,7 @@
                 width: 100%;
                 top: 50%;
                 left: 0;
-                background-color: g.$color-warm-grey-400;
+                //background-color: g.$color-warm-grey-400;
                 z-index: -1;
             }
         }
@@ -79,7 +79,7 @@
         a {
             display: block;
             width: 100%;
-            border: 1px solid g.$color-warm-grey-400;
+            //border: 1px solid g.$color-warm-grey-400;
             border-radius: 25px;
             padding-block: 0.75rem;
             font-size: 0.9rem;

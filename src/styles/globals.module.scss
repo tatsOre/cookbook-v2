@@ -1,6 +1,8 @@
 /** COLOR **/
 @use "sass:color";
 
+@import "./theme";
+
 $color-rich-black: #2c2e2e;
 $color-smoke-gray: #767676;
 $color-white: white;
@@ -148,5 +150,11 @@ $font-size-24: 1.5rem;
         span {
             color: $color-cool-grey-400;
         }
+    }
+}
+
+.theming {
+    @include themify {
+        background-color: themed('backgroundColor');
     }
 }
