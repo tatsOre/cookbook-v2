@@ -2,7 +2,7 @@ import React from "react"
 import { Controller, useFormContext } from 'react-hook-form'
 import CustomSelect from "@/components/Select"
 import { NumberInput, TextInput } from "@/components/FormInput"
-import { IconButton, UnstyledButton } from "@/components/Button"
+import { Button, IconButton, UnstyledButton } from "@/components/Button"
 import { IconCross } from "@/components/Icon"
 import { useRecipeSubmissionContext } from "../../context"
 import { getIngredientLabel } from "@/components/RecipeView/RecipeView.helpers"
@@ -16,7 +16,7 @@ function ListIngrInput({
     activeField,
     setActiveField,
 }) {
-    const { control, register, formState: { errors } } = useFormContext()
+    const { control, register, formState: { errors, dirtyFields } } = useFormContext()
 
     const { assets } = useRecipeSubmissionContext()
 
@@ -24,7 +24,10 @@ function ListIngrInput({
 
     const { QTY, FRACTION, MEASURE, NAME: INGR, PREP_NOTE } = INGR_ATTRS
 
-    const ingrNameFieldError = errors[INGREDIENTS]?.[index]?.[INGR.NAME]
+    const fieldError = errors[INGREDIENTS]?.[index]?.[INGR.NAME] || (
+        dirtyFields[INGREDIENTS]?.[index]?.[INGR.NAME]
+        && { type: 'required', message: INGR.RULES.REQUIRED }
+    )
 
     const onSave = () => {
         setActiveField({ index: null, active: false })
@@ -34,71 +37,68 @@ function ListIngrInput({
         setActiveField({ index, active: true })
     }
 
-    return item ?
-        <li>
-            {activeField.index === index ? (
-                <div>
-                    <UnstyledButton
-                        data-action="save"
-                        disabled={!item.name}
-                        onClick={onSave}
-                    >
-                        Done
-                    </UnstyledButton>
+    return <li>
+        {activeField.index === index ? (
+            <>
+                <div className={styles['ingredient__item--wrapper']}>
+                    <NumberInput
+                        label={QTY.LABEL}
+                        {...register(`${INGREDIENTS}.${index}.${QTY.NAME}`)}
+                    />
 
-                    <div className={styles['ingredient__item--wrapper']}>
-                        <NumberInput
-                            label={QTY.LABEL}
-                            {...register(`${INGREDIENTS}.${index}.${QTY.NAME}`)}
-                        />
+                    <Controller
+                        control={control}
+                        name={`${INGREDIENTS}.${index}.${FRACTION.NAME}`}
+                        render={({ field }) =>
+                            <CustomSelect
+                                label={FRACTION.LABEL}
+                                options={assets?.fraction_options}
+                                {...field}
+                            />}
+                    />
 
-                        <Controller
-                            control={control}
-                            name={`${INGREDIENTS}.${index}.${FRACTION.NAME}`}
-                            render={({ field }) =>
-                                <CustomSelect
-                                    label={FRACTION.LABEL}
-                                    options={assets?.fraction_options}
-                                    {...field}
-                                />}
-                        />
+                    <Controller
+                        control={control}
+                        name={`${INGREDIENTS}.${index}.${MEASURE.NAME}`}
+                        render={({ field }) =>
+                            <CustomSelect
+                                label={MEASURE.LABEL}
+                                options={assets?.measure_options}
+                                {...field}
+                            />}
+                    />
 
-                        <Controller
-                            control={control}
-                            name={`${INGREDIENTS}.${index}.${MEASURE.NAME}`}
-                            render={({ field }) =>
-                                <CustomSelect
-                                    label={MEASURE.LABEL}
-                                    options={assets?.measure_options}
-                                    {...field}
-                                />}
-                        />
+                    <TextInput
+                        label={INGR.LABEL}
+                        error={fieldError}
+                        required
+                        {...register(`${INGREDIENTS}.${index}.${INGR.NAME}`, {
+                            required: INGR.RULES.REQUIRED
+                        })}
+                    />
 
-                        <TextInput
-                            label={INGR.LABEL}
-                            error={ingrNameFieldError}
-                            required
-                            {...register(`${INGREDIENTS}.${index}.${INGR.NAME}`, {
-                                required: INGR.RULES.REQUIRED
-                            })}
-                        />
-
-                        <TextInput
-                            label={PREP_NOTE.LABEL}
-                            {...register(`${INGREDIENTS}.${index}.${PREP_NOTE.NAME}`)}
-                        />
-                    </div>
+                    <TextInput
+                        label={PREP_NOTE.LABEL}
+                        {...register(`${INGREDIENTS}.${index}.${PREP_NOTE.NAME}`)}
+                    />
                 </div>
-            ) : (
-                <UnstyledButton
-                    data-action="step-idle"
-                    onClick={onClickHandler}
+                <Button
+                    data-action="save"
+                    disabled={!item.name}
+                    onClick={onSave}
                 >
-                    <span>{getIngredientLabel(item)}</span>
-                </UnstyledButton>
-            )}
-        </li>
-        : null
+                    Done
+                </Button>
+            </>
+        ) : (
+            <UnstyledButton
+                data-action="step-idle"
+                onClick={onClickHandler}
+            >
+                <span>{getIngredientLabel(item)}</span>
+            </UnstyledButton>
+        )}
+    </li>
 }
 
 function NewIngredientInput({
@@ -123,7 +123,7 @@ function NewIngredientInput({
     }
 
     const onCancelHandler = () => {
-        //onCancel()
+        onCancel()
         setValues(SCHEMA)
     }
 
@@ -188,11 +188,11 @@ function NewIngredientInput({
                 />
             </div>
 
-            <UnstyledButton data-action="save"
+            <Button data-action="save"
                 disabled={!values.name}
                 onClick={appendIngredient}>
                 Save
-            </UnstyledButton>
+            </Button>
         </div>
     )
 }

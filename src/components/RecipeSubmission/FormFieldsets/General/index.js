@@ -31,7 +31,7 @@ function GeneralInfo() {
             {CATEGORIES.DESC} {categoriesLeft}
         </span>
     </>
-
+console.log('Rendering general')
     return (
         <>
             <TextInput
@@ -59,7 +59,7 @@ function GeneralInfo() {
                 })}
             />
 
-            <TextInput
+{/*             <TextInput
                 label={MAIN_INGR.LABEL}
                 error={errors[MAIN_INGR.NAME]}
                 placeholder={MAIN_INGR.PLACEHOLDER}
@@ -67,7 +67,7 @@ function GeneralInfo() {
                 {...register(MAIN_INGR.NAME, {
                     required: MAIN_INGR.RULES.REQUIRED
                 })}
-            />
+            /> */}
 
             <Controller
                 control={control}

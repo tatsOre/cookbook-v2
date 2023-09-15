@@ -13,20 +13,23 @@ function InstructionsFieldset() {
         INSTRUCTIONS: { NAME, RULES },
     } = FIELDS_ATTRIBUTES
 
-    const { control, formState: { errors, isDirty } } = useFormContext()
+    const { control, formState: { errors, isDirty }, watch } = useFormContext()
 
-    const { fields: steps, append, remove, move } = useFieldArray({
+    const { fields, append, remove, move } = useFieldArray({
         control, name: NAME, rules: {
             required: RULES.REQUIRED
         }
     })
 
+    /** We will keep track of the steps text and arr length */
+    const steps = watch(NAME, fields)
+
     const [modeEditAll, setModeEditAll] = React.useState(false)
 
     const [activeField, setActiveField] = React.useState({
         /** If steps array is empty, we're in create recipe mode, we start with an empty input. */
-        index: steps.length ? null : -1,
-        value: null
+        index: fields.length ? null : -1,
+        active: fields.length ? false : true
     })
 
     React.useEffect(() => {
@@ -34,10 +37,6 @@ function InstructionsFieldset() {
     }, [steps.length])
 
     const onToggleEditMode = () => setModeEditAll(prev => !prev)
-
-    const resetActiveField = () => setActiveField({ index: null, value: null })
-
-    const showNewInput = () => setActiveField({ index: -1, value: null })
 
     const content = steps.map((step, index) => {
         return (
@@ -64,9 +63,12 @@ function InstructionsFieldset() {
             {(steps.length > 1 || modeEditAll) && (
                 <div className={styles['edit__all--alert']}>
                     <p>Tap "Edit All" to organize or delete steps. Tap a step to edit.</p>
-                    <UnstyledButton onClick={onToggleEditMode}>
+                    <Button
+                        disabled={activeField.active}
+                        onClick={onToggleEditMode}
+                    >
                         {modeEditAll ? 'Done' : 'Edit All'}
-                    </UnstyledButton>
+                    </Button>
                 </div>
             )}
 
@@ -77,21 +79,23 @@ function InstructionsFieldset() {
                     move={move}
                     steps={true}
                 />
-                : <ul className={styles['steps__list--inputs']}>
-                    {content}
-                </ul>}
-
-            {activeField.index === -1 || !steps.length
-                ? <NewStepInput
-                    append={append}
-                    onCancel={resetActiveField}
-                    className={styles['new__step--input']}
-                />
-                : <Button
-                    onClick={showNewInput}
-                >+ Add a step
-                </Button>
-            }
+                : <>
+                    <ul className={styles['steps__list--inputs']}>
+                        {content}
+                    </ul>
+                    {activeField.index === -1 || !steps.length
+                        ? <NewStepInput
+                            append={append}
+                            onCancel={() => setActiveField({ index: null, active: false })}
+                            className={styles['new__step--input']}
+                        />
+                        : <Button
+                            disabled={activeField.active}
+                            onClick={() => setActiveField({ index: -1, active: true })}
+                        >+ Add a step
+                        </Button>
+                    }
+                </>}
         </React.Fragment>
     )
 }

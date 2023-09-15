@@ -15,32 +15,28 @@ function IngredientsFieldset() {
 
     const { control, formState: { errors }, watch } = useFormContext()
 
-    const { fields: items, append, remove, move } = useFieldArray({
+    const { fields, append, remove, move } = useFieldArray({
         control, name: NAME, rules: {
             required: RULES.REQUIRED
         }
     })
+    /** We will keep track of the ingredient names and arr length */
+    const ingredients = watch(NAME, fields)
 
     const [modeEditAll, setModeEditAll] = React.useState(false)
 
     const [activeField, setActiveField] = React.useState({
-        /** If steps array is empty, we're in create recipe mode, we start with an empty input. */
-        /** null is closed, -1 is new input active, think in something better */
-        index: items.length ? null : -1,
-        active: items.length ? false : true
+        /** If array is empty, we're in create recipe mode, we start with an empty input. */
+        /** null is closed, -1 is new input active */
+        index: fields.length ? null : -1,
+        active: fields.length ? false : true
     })
-
-    const ingredients = watch(NAME, [])
 
     React.useEffect(() => {
         ingredients.length === 0 && setModeEditAll(false)
     }, [ingredients.length])
 
     const onToggleEditMode = () => setModeEditAll(prev => !prev)
-
-    const resetActiveField = () => setActiveField({ index: null, active: false })
-
-    const showNewInput = () => setActiveField({ index: -1, active: true })
 
     const content = ingredients.map((item, index) => {
         return <ListIngrInput
@@ -57,9 +53,12 @@ function IngredientsFieldset() {
             {(ingredients.length > 1 || modeEditAll) && (
                 <div className={styles['edit__all--alert']}>
                     <p>Tap "Edit All" to organize or delete steps. Tap a step to edit.</p>
-                    <UnstyledButton onClick={onToggleEditMode}>
+                    <Button
+                        disabled={activeField.active}
+                        onClick={onToggleEditMode}
+                    >
                         {modeEditAll ? 'Done' : 'Edit All'}
-                    </UnstyledButton>
+                    </Button>
                 </div>
             )}
 
@@ -69,24 +68,24 @@ function IngredientsFieldset() {
                     remove={remove}
                     move={move}
                 />
-                : <ul className={styles['ingredients__list--inputs']}>
-                    {content}
-                </ul>
-            }
-
-            {activeField.index === -1 || !ingredients.length
-                ? <NewIngredientInput
-                    append={append}
-                    onCancel={null}
-                />
-                : <Button
-                    disabled={activeField.active}
-                    onClick={showNewInput}
-                >
-                    + Add an ingredient
-                </Button>
-            }
-        </React.Fragment>
+                : <>
+                    <ul className={styles['ingredients__list--inputs']}>
+                        {content}
+                    </ul>
+                    {activeField.index === -1 || !ingredients.length
+                        ? <NewIngredientInput
+                            append={append}
+                            onCancel={() => setActiveField({ index: null, active: false })}
+                        />
+                        : <Button
+                            disabled={activeField.active}
+                            onClick={() => setActiveField({ index: -1, active: true })}
+                        >
+                            + Add an ingredient
+                        </Button>
+                    }
+                </>}
+        </React.Fragment >
     )
 }
 

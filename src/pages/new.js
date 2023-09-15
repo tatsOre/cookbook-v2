@@ -3,8 +3,11 @@ import Router from "next/router";
 import Head from 'next/head'
 import useUser from '@/lib/useUser'
 import RecipeSubmission from '@/components/RecipeSubmission'
-import { NEW_RECIPE } from '@/components/RecipeSubmission/helpers'
+import RecipeSubmissionProvider from '@/components/RecipeSubmission/context'
 import { default as PATHS } from '../../config'
+import {
+    default as RECIPE_FIELDS_ATTRIBUTES
+} from '@/components/RecipeSubmission/constants'
 
 export const getStaticProps = async () => {
     try {
@@ -38,9 +41,14 @@ function Page({ assets }) {
             <title>Create Recipe</title>
         </Head>
         <RecipeSubmission.Layout>
-            <RecipeSubmission
-                endpoint={PATHS.RECIPES_ENDPOINT}
-                assets={assets} />
+            <RecipeSubmissionProvider
+                value={{
+                    assets,
+                    fieldsAttributes: RECIPE_FIELDS_ATTRIBUTES
+                }}
+            >
+                <RecipeSubmission endpoint={PATHS.RECIPES_ENDPOINT} />
+            </RecipeSubmissionProvider>
         </RecipeSubmission.Layout>
     </>
 }

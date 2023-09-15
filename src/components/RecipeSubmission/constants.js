@@ -111,7 +111,7 @@ export default {
         },
         INGR_ATTRS: {
             QTY: {
-                LABEL: 'Quantity',
+                LABEL: 'Amount',
                 NAME: 'quantity'
             },
             FRACTION: {

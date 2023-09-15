@@ -5,7 +5,9 @@ import useUser from '@/lib/useUser'
 import RecipeSubmission from '@/components/RecipeSubmission'
 import RecipeSubmissionProvider from '@/components/RecipeSubmission/context'
 import { default as PATHS } from '../../../config'
-import { default as RECIPE_FIELDS_ATTRIBUTES } from '@/components/RecipeSubmission/constants'
+import { 
+    default as RECIPE_FIELDS_ATTRIBUTES 
+} from '@/components/RecipeSubmission/constants'
 
 /**
  * Fetches initial values and form assets.
