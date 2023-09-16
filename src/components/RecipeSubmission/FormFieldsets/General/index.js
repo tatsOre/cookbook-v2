@@ -5,9 +5,11 @@ import CustomSelect from '@/components/Select'
 import { NumberInput, TextInput } from '@/components/FormInput'
 import { useRecipeSubmissionContext } from '../../context'
 
+import styles from '../../styles.module.scss'
+
 function GeneralInfo() {
     const { assets, fieldsAttributes } = useRecipeSubmissionContext()
-    
+
     const {
         TITLE,
         DESCRIPTION,
@@ -31,9 +33,9 @@ function GeneralInfo() {
             {CATEGORIES.DESC} {categoriesLeft}
         </span>
     </>
-console.log('Rendering general')
+
     return (
-        <>
+        <div className={styles.about__fieldset}>
             <TextInput
                 label={TITLE.LABEL}
                 description={TITLE.DESC}
@@ -59,15 +61,23 @@ console.log('Rendering general')
                 })}
             />
 
-{/*             <TextInput
+            <TextInput
                 label={MAIN_INGR.LABEL}
                 error={errors[MAIN_INGR.NAME]}
                 placeholder={MAIN_INGR.PLACEHOLDER}
-                required
-                {...register(MAIN_INGR.NAME, {
-                    required: MAIN_INGR.RULES.REQUIRED
-                })}
-            /> */}
+                {...register(MAIN_INGR.NAME)}
+            />
+
+            <Controller
+                control={control}
+                name={CUISINE.NAME}
+                render={({ field }) =>
+                    <CustomSelect
+                        label={CUISINE.LABEL}
+                        options={assets?.cuisine_options}
+                        {...field}
+                    />}
+            />
 
             <Controller
                 control={control}
@@ -78,17 +88,6 @@ console.log('Rendering general')
                         label={categoriesLabel}
                         options={assets?.categories_options}
                         isOptionDisabled={() => watchCategories.length > 2}
-                        {...field}
-                    />}
-            />
-
-            <Controller
-                control={control}
-                name={CUISINE.NAME}
-                render={({ field }) =>
-                    <CustomSelect
-                        label={CUISINE.LABEL}
-                        options={assets?.cuisine_options}
                         {...field}
                     />}
             />
@@ -115,7 +114,7 @@ console.log('Rendering general')
                 label={PUBLIC.LABEL}
                 {...register(PUBLIC.NAME)}
             />
-        </>
+        </div>
     )
 }
 

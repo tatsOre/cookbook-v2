@@ -53,40 +53,35 @@
     margin-block-start: 1.5rem;
     margin-block-end: 2.5rem;
 
-    &>p {
-        font-size: 0.825rem;
-        padding-inline: 1.5rem;
-        padding-block-end: 1.25rem;
-    }
-
     /** Accordion Trigger / Form Fieldset Headings: */
     [data-accordion-trigger] {
-        padding-block: 1.125rem;
+        padding-block: calc(0.35rem + 1.5625vw);
         border-top: 3px solid g.$color-rich-black;
-        //color: g.$color-rich-black;
-        font-size: calc(1.35rem + 0.390625vw);
+        font-size: clamp(1.35rem, 4vw, 2rem);
         font-family: g.$font-accent;
         font-stretch: 125%;
         font-weight: 800;
         letter-spacing: 0.1px;
 
         &[aria-expanded="true"] {
-            //background-color: g.$color-warm-grey-100;
+            background-color: g.$color-warm-grey-100;
         }
 
         @media (hover: hover) {
             &:hover:not([disabled]) {
-                //background-color: g.$color-rich-black;
-                //color: g.$color-white;
-                //background-color: g.$color-rich-black;
+                background-color: g.$color-rich-black;
+                color: g.$color-white;
+                background-color: g.$color-rich-black;
             }
         }
     }
 
-    /** Accordion Panels / Form Fieldsets: */
+    [data-accordion-content] {
+        padding-block: clamp(1.25rem, 4vw, 2rem);
+    }
+
     [data-accordion-content],
     [data-accordion-trigger] {
-        padding-block: 1.5rem;
         padding-inline: calc(0.75rem + 1.5625vw);
     }
 }
@@ -95,7 +90,8 @@
 ============================ */
 .about__fieldset {
     display: flex;
-    gap: 1rem;
+    gap: 1.15rem 0.75rem;
+    position: relative;
 
     @media only screen and (max-width: g.$breakpoint-small) {
         flex-direction: column;
@@ -104,17 +100,32 @@
     @media only screen and (min-width: g.$breakpoint-small) {
         flex-flow: row wrap;
 
+        [data-input-wrapper="mainIngredient"] {
+            flex-basis: 50%;
+        }
+
+        [data-input-wrapper="cuisine"] {
+            flex: 1;
+        }
+
         [data-input-wrapper="categories"] {
             flex-basis: 100%;
         }
 
-        [data-input-wrapper]:nth-child(n+5):not(:last-child) {
-            flex-basis: calc(50% - 0.5rem);
+        [data-input-wrapper="time.prep"],
+        [data-input-wrapper="servings"] {
+            flex-basis: calc(33.5% - 0.5rem);
         }
+
+        [data-input-wrapper="time.cook"] {
+            flex: 1;
+        }
+
+        /*         [data-input-wrapper]:nth-child(n+6):not(:last-child) {
+            flex-basis: calc(33.5% - 0.5rem);
+        } */
     }
 }
-
-
 
 /* 04. Extra Info Fieldset
 ============================ */

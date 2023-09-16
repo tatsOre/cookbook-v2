@@ -22,7 +22,7 @@ function RecipeSubmission({ endpoint, data, mode }) {
     const [photoError, setPhotoError] = React.useState(null)
 
     const [activeFieldset, setActiveFieldset] = React.useState(
-        ['item-3']
+        ['item-1', 'item-2', 'item-3']
     )
 
     const { status, responseData, errorMessage } = useFormSubmission({

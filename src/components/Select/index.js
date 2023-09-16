@@ -33,7 +33,7 @@ const styles = {
         cursor: 'pointer',
         paddingLeft: '0.5rem',
         border: '1px solid black',
-        borderRadius: '2px',
+        //borderRadius: '2px',
         fontSize: '1rem'
     }),
     option: (provided) => ({

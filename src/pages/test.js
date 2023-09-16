@@ -40,9 +40,9 @@ import { useThemeContext, THEMES } from '@/context/ThemeContext'
 import React from 'react'
 
 export default function Home() {
-    const { theme, setTheme } = useThemeContext()
+    const { theme, selectTheme } = useThemeContext()
 
-    const onThemeChange = (ev) => setTheme(ev.target.value)
+    const onThemeChange = (ev) => selectTheme(ev.target.value)
 
     return (
         <>
