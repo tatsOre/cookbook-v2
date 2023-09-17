@@ -3,7 +3,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
 import { Button, UnstyledButton } from '@/components/Button'
 import DraggableItemsList from '../shared/DraggableList'
-import { ListIngrInput, NewIngredientInput } from './IngrInput'
+import { RegisteredInput, NewIngredientInput } from './IngrInput'
 import { default as FIELDS_ATTRIBUTES } from '../../constants'
 
 import styles from './Ingredients.module.scss'
@@ -39,7 +39,7 @@ function IngredientsFieldset() {
     const onToggleEditMode = () => setModeEditAll(prev => !prev)
 
     const content = ingredients.map((item, index) => {
-        return <ListIngrInput
+        return <RegisteredInput
             key={item._id}
             item={item}
             index={index}
@@ -72,6 +72,7 @@ function IngredientsFieldset() {
                     <ul className={styles['ingredients__list--inputs']}>
                         {content}
                     </ul>
+
                     {activeField.index === -1 || !ingredients.length
                         ? <NewIngredientInput
                             append={append}

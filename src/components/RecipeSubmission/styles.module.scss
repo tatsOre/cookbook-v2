@@ -55,9 +55,10 @@
 
     /** Accordion Trigger / Form Fieldset Headings: */
     [data-accordion-trigger] {
-        padding-block: calc(0.35rem + 1.5625vw);
+        //padding-block: calc(0.35rem + 1.5625vw);
         border-top: 3px solid g.$color-rich-black;
-        font-size: clamp(1.35rem, 4vw, 2rem);
+        padding-block: 0.5rem;
+        //font-size: clamp(1.35rem, 4vw, 2rem);
         font-family: g.$font-accent;
         font-stretch: 125%;
         font-weight: 800;

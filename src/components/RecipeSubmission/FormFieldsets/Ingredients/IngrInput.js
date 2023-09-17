@@ -10,7 +10,7 @@ import { default as FIELDS_ATTRIBUTES, RECIPE_SCHEMA } from '../../constants'
 
 import styles from './Ingredients.module.scss'
 
-function ListIngrInput({
+function RegisteredInput({
     index,
     item,
     activeField,
@@ -101,11 +101,7 @@ function ListIngrInput({
     </li>
 }
 
-function NewIngredientInput({
-    append,
-    onCancel,
-    className
-}) {
+function NewIngredientInput({ append, onCancel }) {
     const { assets } = useRecipeSubmissionContext()
 
     const { INGREDIENTS: { INGR_ATTRS } } = FIELDS_ATTRIBUTES
@@ -117,9 +113,8 @@ function NewIngredientInput({
     const [values, setValues] = React.useState(SCHEMA)
 
     const appendIngredient = () => {
-        console.log(values)
         append(values)
-        setValues(initialValues)
+        setValues(SCHEMA)
     }
 
     const onCancelHandler = () => {
@@ -143,14 +138,7 @@ function NewIngredientInput({
     }
 
     return (
-        <div className={className}>
-            <IconButton
-                data-action="close"
-                ariaLabel="Close"
-                icon={<IconCross />}
-                onClick={onCancelHandler}
-            />
-
+        <div>
             <div className={styles['ingredient__item--wrapper']}>
                 <NumberInput
                     label={QTY.LABEL}
@@ -188,13 +176,22 @@ function NewIngredientInput({
                 />
             </div>
 
-            <Button data-action="save"
+            <Button
+                data-action="close"
+                ariaLabel="Close"
+                icon={<IconCross />}
+                onClick={onCancelHandler}>
+                Cancel
+            </Button>
+
+            <Button
+                data-action="save"
                 disabled={!values.name}
                 onClick={appendIngredient}>
-                Save
+                Add to the list
             </Button>
         </div>
     )
 }
 
-export { ListIngrInput, NewIngredientInput }
+export { RegisteredInput, NewIngredientInput }
