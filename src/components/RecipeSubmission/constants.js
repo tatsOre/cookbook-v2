@@ -12,8 +12,8 @@ export const RECIPE_SCHEMA = {
     ingredients: [
         {
             quantity: '', /** Number */
-            fraction: null, /** Object */
-            measure: null, /** Object */
+            fraction: undefined, /** Object */
+            measure: undefined, /** Object */
             name: '',
             prepNote: ''
         }

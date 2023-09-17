@@ -3,8 +3,9 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
 import { Button, UnstyledButton } from '@/components/Button'
 import DraggableItemsList from '../shared/DraggableList'
-import { RegisteredInput, NewIngredientInput } from './IngrInput'
-import { default as FIELDS_ATTRIBUTES } from '../../constants'
+import IngredientInput from './IngredientInput'
+import { getIngredientLabel } from '@/components/RecipeView/RecipeView.helpers'
+import { default as FIELDS_ATTRIBUTES, RECIPE_SCHEMA } from '../../constants'
 
 import styles from './Ingredients.module.scss'
 
@@ -15,7 +16,7 @@ function IngredientsFieldset() {
 
     const { control, formState: { errors }, watch } = useFormContext()
 
-    const { fields, append, remove, move } = useFieldArray({
+    const { fields, append, remove, move, update } = useFieldArray({
         control, name: NAME, rules: {
             required: RULES.REQUIRED
         }
@@ -39,13 +40,30 @@ function IngredientsFieldset() {
     const onToggleEditMode = () => setModeEditAll(prev => !prev)
 
     const content = ingredients.map((item, index) => {
-        return <RegisteredInput
-            key={item._id}
-            item={item}
-            index={index}
-            activeField={activeField}
-            setActiveField={setActiveField}
-        />
+        return (
+            <li key={item._id}>
+                {activeField.index === index ?
+                    <IngredientInput
+                        data={item}
+                        index={index}
+                        onSave={(values) => {
+                            update(index, values)
+                            setActiveField({ index: null, active: false })
+                        }}
+                        onCancel={() => {
+                            setActiveField({ index: null, active: false })
+                        }}
+                    /> :
+                    <UnstyledButton
+                        data-action="step-idle"
+                        onClick={() => {
+                            setActiveField({ index, active: true })
+                        }}
+                    >
+                        <span>{getIngredientLabel(item)}</span>
+                    </UnstyledButton>}
+            </li>
+        )
     })
 
     return (
@@ -74,8 +92,12 @@ function IngredientsFieldset() {
                     </ul>
 
                     {activeField.index === -1 || !ingredients.length
-                        ? <NewIngredientInput
-                            append={append}
+                        ? <IngredientInput
+                            data={RECIPE_SCHEMA.ingredients[0]}
+                            onSave={(values) => {
+                                append(values)
+                                setActiveField({ index: null, active: false })
+                            }}
                             onCancel={() => setActiveField({ index: null, active: false })}
                         />
                         : <Button

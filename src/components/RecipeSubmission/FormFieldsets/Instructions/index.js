@@ -41,7 +41,7 @@ function InstructionsFieldset() {
     const content = steps.map((step, index) => {
         return (
             <ListItemInput
-                key={step.id}
+                key={`step-${index}`}
                 value={step.text}
                 index={index}
                 activeField={activeField}
