@@ -80,8 +80,8 @@ function InstructionsFieldset() {
             ) : null}
 
             {(fields.length > 1 || modeEditAll) && (
-                <div>
-                    <span>Tap "Edit All" to organize or delete steps.</span>
+                <div className={styles['edit__all--wrapper']}>
+                    <p>Tap "Edit All" to organize or delete steps.</p>
                     <UnstyledButton
                         disabled={activeField.active}
                         onClick={onToggleEditMode}

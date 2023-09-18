@@ -72,8 +72,8 @@ function IngredientsFieldset() {
     return (
         <React.Fragment>
             {(ingredients.length > 1 || modeEditAll) && (
-                <div>
-                    <span>Tap "Edit All" to organize or delete items.</span>
+                <div className={styles['edit__all--wrapper']}>
+                    <p>Tap "Edit All" to organize or delete items.</p>
                     <UnstyledButton
                         disabled={activeField.active}
                         onClick={onToggleEditMode}

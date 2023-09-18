@@ -3,6 +3,15 @@
 
 /* Instructions Steps - Editable Inputs List
 ============================ */
+div.edit__all--wrapper {
+    text-align: right;
+
+    button {
+        margin-block: 1.25rem;
+
+        @include t.overline($fw: 700)
+    }
+}
 
 div.step__item--wrapper {
     display: flex;
