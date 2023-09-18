@@ -31,8 +31,8 @@ const Button = React.forwardRef((props, ref) => {
         className,
         styles.button,
         styles[`button--${appearance}`],
-        compact && styles['button--compact'],
-        typeof children !== 'string' ? styles['action--button'] : styles['button--wide']
+        compact ? styles['button--compact'] : styles['button--wide'],
+        typeof children !== 'string' && styles['action--button']
     ])
 
     return (

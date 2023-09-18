@@ -1,9 +1,12 @@
-
-
+/** TYPOGRAPHY */
+$font-accent: 'Mona Sans', sans-serif;
+$font-heading: 'Kalam', cursive;
+$font-base: 'Inter', sans-serif;
 
 $line-height-base: 1.5;
-$line-height-extra: 1.6;
+$line-height-extra: 1.75;
 $line-height-headline: 1.35;
+$line-height-headline-extra: 2.25;
 
 $font-size-12: 0.75rem;
 $font-size-14: 0.875rem;
@@ -12,9 +15,33 @@ $font-size-16: 1rem;
 $font-size-18: 1.125rem;
 $font-size-20: 1.25rem;
 $font-size-24: 1.5rem;
+$font-size-36: 1.875rem;
 
-@mixin body--1($fs: $font-size-16, $lh: $line-height-base) {
+@mixin body($fs: $font-size-16, $lh: $line-height-base) {
     font-size: $fs;
     line-height: $lh;
     font-weight: normal;
+}
+
+@mixin lead($fs: $font-size-18, $lh: $line-height-extra) {
+    font-size: $fs;
+    line-height: $lh;
+    font-weight: normal;
+}
+
+@mixin headline-large($fs: $font-size-36,
+    $lh: $line-height-headline-extra,
+    $fw: 700) {
+    font-size: $fs;
+    line-height: $lh;
+    font-weight: $fw;
+}
+
+@mixin overline($fs: $font-size-12, $fw: 500) {
+    font-family: $font-accent;
+    font-size: $fs;
+    font-weight: $fw;
+    line-height: $line-height-base;
+    text-transform: uppercase;
+    letter-spacing: 1.25px;
 }

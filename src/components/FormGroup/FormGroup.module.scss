@@ -3,7 +3,7 @@
 
 .form__group {
     width: 100%;
-    @include t.body--1($fs: t.$font-size-14);
+    @include t.body($fs: t.$font-size-14);
 
     &>* {
         display: block;
@@ -11,7 +11,7 @@
     }
 
     .input__label {
-       font-weight: 500;
+        @include t.overline($fs: 10px, $fw: 500);
     }
 
     /* Input Hint Message */
@@ -25,7 +25,7 @@
         min-height: 50px; // check this
         padding-inline: 1rem;
         border: g.$border-default;
-        @include t.body--1;
+        @include t.body;
 
         &::placeholder {
             opacity: 0.5;

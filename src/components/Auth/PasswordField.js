@@ -31,7 +31,9 @@ function PasswordField({ mode, attrs: PASSWORD }) {
                     setPassword(ev.target.value)
                 })}
             />
-            <UnstyledButton onClick={() => setShow(prev => !prev)}>
+            <UnstyledButton
+                data-info="password-show"
+                onClick={() => setShow(prev => !prev)}>
                 {show ? 'hide' : 'show'}
             </UnstyledButton>
 

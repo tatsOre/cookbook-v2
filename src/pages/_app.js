@@ -1,7 +1,8 @@
-import '@/styles/globals.css'
 import Head from 'next/head'
 import { SWRConfig } from 'swr'
 import ThemeContextProvider, { useThemeContext } from '@/context/ThemeContext'
+
+import '@/styles/globals.scss'
 
 export const fetcher = async (url, arg) => {
     // wait for .5s to test loading state

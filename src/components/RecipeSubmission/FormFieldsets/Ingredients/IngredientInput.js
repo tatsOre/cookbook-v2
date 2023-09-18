@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRecipeSubmissionContext } from '../../context'
-import { Button, } from '@/components/Button'
+import { Button, IconButton, } from '@/components/Button'
 import CustomSelect from '@/components/Select'
 import { NumberInput, TextInput } from '@/components/FormInput'
 import { IconCross } from '@/components/Icon'
@@ -40,8 +40,15 @@ function IngredientInput({ onSave, onCancel, data, index }) {
     }
 
     return (
-        <div>
-            <div className={styles['ingredient__item--wrapper']}>
+        <div className={styles['ingredient__item--wrapper']}>
+            <div className={styles['ingredient__input--group']}>
+                <IconButton
+                    small
+                    data-action="close"
+                    ariaLabel="Close"
+                    icon={<IconCross size={22} />}
+                    onClick={onCancelHandler} />
+
                 <NumberInput
                     label={QTY.LABEL}
                     name={QTY.NAME}
@@ -82,14 +89,6 @@ function IngredientInput({ onSave, onCancel, data, index }) {
                     value={values[PREP_NOTE.NAME]}
                 />
             </div>
-
-            <Button
-                data-action="close"
-                ariaLabel="Close"
-                icon={<IconCross />}
-                onClick={onCancelHandler}>
-                Cancel
-            </Button>
 
             <Button
                 data-action="save"

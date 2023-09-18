@@ -4,66 +4,86 @@
 ============================ */
 
 div.ingredient__item--wrapper {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 0.25rem 0.5rem;
+    background-color: g.$color-warm-grey-100;
+    padding: 1rem;
+    margin-block: 1.5rem;
+    position: relative;
 
-    [data-input-wrapper="quantity"] {
-        flex-basis: 20%;
+    button[data-action="close"] {
+        position: absolute;
+        right: 0.5rem;
+        top: -1rem;
+        background-color: white;
+        border: g.$border-default;
+        border-radius: 50%;
     }
 
-    [data-input-wrapper="fraction"] {
-        flex: 1;
-
-        label {
-            color: transparent;
-        }
+    button[data-action="save"] {
+        margin-block-start: 0.5rem;
     }
 
-    @media only screen and (min-width: g.$breakpoint-extra-small) {
+    .ingredient__input--group {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 0.25rem 0.5rem;
+
         [data-input-wrapper="quantity"] {
             flex-basis: 20%;
         }
 
         [data-input-wrapper="fraction"] {
             flex: 1;
+
+            label {
+                color: transparent;
+            }
         }
 
-        [data-input-wrapper="measure"] {
-            flex: 1.5;
+        @media only screen and (min-width: g.$breakpoint-extra-small) {
+            [data-input-wrapper="quantity"] {
+                flex-basis: 20%;
+            }
+
+            [data-input-wrapper="fraction"] {
+                flex: 1;
+            }
+
+            [data-input-wrapper="measure"] {
+                flex: 1.5;
+            }
         }
+
+        @media only screen and (min-width: g.$breakpoint-medium) {
+            [data-input-wrapper="fraction"] {
+                flex-basis: 30%;
+            }
+
+            [data-input-wrapper="measure"] {
+                flex-basis: 40%;
+            }
+
+            [data-input-wrapper="name"] {
+                flex-basis: 50%;
+            }
+
+            [data-input-wrapper="prepNote"] {
+                flex: 1;
+            }
+        }
+
     }
-
-    @media only screen and (min-width: g.$breakpoint-medium) {
-        [data-input-wrapper="fraction"] {
-            flex-basis: 30%;
-        }
-
-        [data-input-wrapper="measure"] {
-            flex-basis: 40%;
-        }
-
-        [data-input-wrapper="name"] {
-            flex-basis: 50%;
-        }
-
-        [data-input-wrapper="prepNote"] {
-            flex: 1;
-        }
-    }
-
 }
 
 .ingredients__list--inputs {
     li {
         button[data-action="step-idle"] {
             width: 100%;
-            padding: 0.5rem;
+            padding: 0.5rem 1rem;
             margin-bottom: 0.65rem;
-            //background-color: g.$color-warm-grey-100;
+            background-color: g.$color-warm-grey-100;
 
             &:hover {
-                //background-color: g.$color-warm-grey-400;
+                background-color: g.$color-warm-grey-400;
             }
 
             span {

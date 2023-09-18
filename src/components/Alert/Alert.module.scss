@@ -7,11 +7,11 @@
 
     &__heading,
     &__body {
-        font-size: 0.8rem;
+       
     }
 
     &__heading {
-        font-weight: 500;
+        font-weight: bold;
         display: inline-block;
     }
 
@@ -20,7 +20,7 @@
     }
 
     a {
-        font-weight: 500;
+        font-weight: bold;
         text-decoration: underline;
     }
 

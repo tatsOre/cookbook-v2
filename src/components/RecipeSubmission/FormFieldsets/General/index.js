@@ -29,9 +29,7 @@ function GeneralInfo() {
 
     const categoriesLabel = <>
         {CATEGORIES.LABEL}.&nbsp;
-        <span style={{ fontSize: '12px' }}>
-            {CATEGORIES.DESC} {categoriesLeft}
-        </span>
+        <small style={{  }}>{CATEGORIES.DESC} {categoriesLeft}</small>
     </>
 
     return (

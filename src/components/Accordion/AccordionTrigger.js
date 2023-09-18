@@ -1,7 +1,7 @@
 import { useAccordionContext } from "."
 import { useAccordionItemContext } from "./AccordionItem"
 import { UnstyledButton } from "../Button"
-import { IconPlus } from "../Icon"
+import { IconChevronUp } from "../Icon"
 import cx from "@/components/utils/cx"
 
 import styles from './Alert.module.scss'
@@ -27,7 +27,7 @@ function AccordionTrigger(props) {
             {...rest}
         >
             <span>{children}</span>
-            <IconPlus size={26} title="Close panel" />
+            <IconChevronUp title="Close panel" />
         </UnstyledButton>
     )
 }

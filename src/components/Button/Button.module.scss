@@ -12,10 +12,10 @@
     display: grid;
     place-content: center;
     
-    @include size($size: 42px);
+    @include size($size: 35px);
 
     @media only screen and (min-width: g.$breakpoint-medium) {
-        @include size($size: 42px);
+        @include size($size: 40px);
     }
 }
 
@@ -43,7 +43,7 @@
     @include g.overline;
 
     &--compact {
-        padding: 0.3rem 0.5rem;
+        padding: 0.5rem 1rem;
     }
 
     &--wide {
@@ -89,4 +89,8 @@
 /** Action/Icon Buttons: **/
 .icon--button {
     @include icon--button;
+
+    &.icon--small {
+        @include size($size: 30px);
+    }
 }

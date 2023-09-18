@@ -108,7 +108,11 @@ function AuthorizationSubmission() {
             {state.displayName ? (
                 <p>
                     <b>{state.displayName}</b>&nbsp;&nbsp;
-                    <UnstyledButton onClick={resetState}>Change</UnstyledButton>
+                    <UnstyledButton
+                        data-info="change-email"
+                        onClick={resetState}>
+                        change
+                    </UnstyledButton>
                 </p>
             ) : null}
 

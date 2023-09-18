@@ -3,10 +3,11 @@ import UnstyledButton from "./UnstyledButton"
 
 import styles from './Button.module.scss'
 
-function IconButton({ icon, className, ...rest }) {
+function IconButton({ icon, className, small, ...rest }) {
+    const classes = cx([styles['icon--button'], small && styles['icon--small'], className])
     return (
         <UnstyledButton
-            className={cx([styles['icon--button'], className])}
+            className={classes}
             {...rest}>
             {icon}
         </UnstyledButton>
