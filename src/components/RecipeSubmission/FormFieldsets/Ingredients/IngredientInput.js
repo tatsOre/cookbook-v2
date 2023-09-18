@@ -17,7 +17,15 @@ function IngredientInput({ onSave, onCancel, data, index }) {
 
     const [values, setValues] = React.useState(data)
 
+    const [error, setError] = React.useState(null)
+
     const appendIngredient = () => {
+        if (!values.name) {
+            return setError({
+                type: 'required',
+                message: INGR.RULES.REQUIRED
+            })
+        }
         onSave(values)
         setValues(data)
     }
@@ -25,6 +33,7 @@ function IngredientInput({ onSave, onCancel, data, index }) {
     const onCancelHandler = () => onCancel()
 
     const onInputChange = (ev) => {
+        (ev.target.name === INGR.NAME && error) && setError(null)
         const updated = { ...values, [ev.target.name]: ev.target.value }
         setValues(updated)
     }
@@ -73,10 +82,11 @@ function IngredientInput({ onSave, onCancel, data, index }) {
                 />
 
                 <TextInput
+                    error={error}
                     label={INGR.LABEL}
-                    placeholder={INGR.PLACEHOLDER}
                     name={INGR.NAME}
                     onChange={onInputChange}
+                    placeholder={INGR.PLACEHOLDER}
                     value={values[INGR.NAME]}
                     required
                 />
@@ -92,7 +102,6 @@ function IngredientInput({ onSave, onCancel, data, index }) {
 
             <Button
                 data-action="save"
-                disabled={!values.name}
                 onClick={appendIngredient}>
                 {index !== undefined ? 'Save' : 'Add to the list'}
             </Button>

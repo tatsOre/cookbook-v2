@@ -1,4 +1,5 @@
 @use '../../../../styles/globals.module.scss' as g;
+@use '../../../../styles/typography' as t;
 
 /* Ingredients Editable Input/ New Ingr Input
 ============================ */
@@ -6,7 +7,7 @@
 div.ingredient__item--wrapper {
     background-color: g.$color-warm-grey-100;
     padding: 1rem;
-    margin-block: 1.5rem;
+    margin-block: 1.75rem;
     position: relative;
 
     button[data-action="close"] {
@@ -70,16 +71,16 @@ div.ingredient__item--wrapper {
                 flex: 1;
             }
         }
-
     }
 }
 
 .ingredients__list--inputs {
     li {
+        margin-block: 0.75rem;
+
         button[data-action="step-idle"] {
             width: 100%;
-            padding: 0.5rem 1rem;
-            margin-bottom: 0.65rem;
+            padding: 1rem;
             background-color: g.$color-warm-grey-100;
 
             &:hover {
@@ -87,7 +88,7 @@ div.ingredient__item--wrapper {
             }
 
             span {
-                @include g.body--2;
+                @include t.body($fs: g.$font-size-15);
                 overflow: hidden;
                 /* Partial support: */
                 text-overflow: ellipsis;

@@ -146,14 +146,22 @@ main {
     width: 100%;
 }
 
+:root {
+    --color--dark: black;
+}
+
 body {
     .theme--default {
        //$font--base: 'Inter', sans-serif;
         //font-family: $font--base;
+        --color--dark: blue;
     }
 
     .theme--dark {
         //$font--base: 'verdana';
         //font-family: $font--base;
+        --color--dark: orange;
     }
 }
+
+$color--dark: var(--color--dark);

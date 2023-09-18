@@ -52,16 +52,17 @@
     @include g.main--wrapper;
     margin-block-start: 1.5rem;
     margin-block-end: 2.5rem;
+    color: g.$color-rich-black;
 
     /** Accordion Trigger / Form Fieldset Headings: */
     [data-accordion-trigger] {
-        //padding-block: calc(0.35rem + 1.5625vw);
+        padding-block: calc(0.35rem + 1.5vh);
         border-top: 2px solid g.$color-rich-black;
-        padding-block: 0.5rem;
-        //font-size: clamp(1.35rem, 4vw, 2rem);
+        //padding-block: 0.5rem;
+        font-size: clamp(1.25rem, 4vw, 1.75rem);
         font-family: g.$font-accent;
-        font-stretch: 125%;
-        font-weight: 800;
+        font-stretch: 120%;
+        font-weight: 900;
         letter-spacing: 0.1px;
 
         &[aria-expanded="true"] {
@@ -298,7 +299,7 @@
         align-items: center;
         padding-block: 0.5rem;
         margin-bottom: 0.5rem;
-        //background-color: g.$color-warm-grey-100;
+        background-color: g.$color-warm-grey-100;
 
         /* Step No. Label Text */
         span {
@@ -315,7 +316,9 @@
 
         /* Button that triggers real delete button */
         button[data-action="show-delete"] {
-            //background-color: tomato;
+            svg {
+                stroke: g.$color-danger-base;
+            }
         }
 
         /* Button for Beautiful DnD */

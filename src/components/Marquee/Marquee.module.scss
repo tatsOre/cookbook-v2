@@ -17,7 +17,7 @@
 
         span {
             @include g.overline($fw: 600);
-            font-size: clamp(0.4rem, 2vw, 0.65rem);
+            font-size: clamp(0.5rem, 2vw, 0.75rem);
 
             &::after {
                 content: '•';
