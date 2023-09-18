@@ -2,7 +2,7 @@ import React from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
 import { Button, UnstyledButton } from '@/components/Button'
-import InstructionInput from './StepInput'
+import InstructionInput from './InstructionInput'
 import DraggableStepsList from '../shared/DraggableList'
 import { IconEdit } from '@/components/Icon'
 import { default as FIELDS_ATTRIBUTES } from '../../constants'
@@ -62,8 +62,8 @@ function InstructionsFieldset() {
                             setActiveField({ index, active: true })
                         }}
                     >
-                        <span><b>{TEXT_ATTRS.LABEL} {index}.</b> {step.text}</span>
-                        <IconEdit strokeWidth={1.5} />
+                        <span><b>{TEXT_ATTRS.LABEL} {index + 1}.</b> {step.text}</span>
+                        <IconEdit size={20} strokeWidth={1.5} />
                     </UnstyledButton>}
             </li>
         )

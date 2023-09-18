@@ -15,6 +15,74 @@ import { default as FIELDS_ATTRIBUTES } from '../../constants'
 
 import styles from './styles.module.scss'
 
+function DragDropFile({ onDropFile, accept }) {
+    const [dragActive, setDragActive] = React.useState(false)
+
+    const inputRef = React.useRef(null)
+
+    const onDragHandler = (ev) => {
+        ev.preventDefault()
+        ev.stopPropagation()
+
+        if (ev.type === "dragenter" || ev.type === "dragover") {
+            setDragActive(true)
+        } else if (ev.type === "dragleave") {
+            setDragActive(false)
+        }
+    }
+
+    const onDropHandler = () => {
+        ev.preventDefault()
+        ev.stopPropagation()
+        setDragActive(false)
+
+        let file = null
+
+        if (ev.dataTransfer.items) {
+            /** Use DataTransferItemList interface to access the file(s): */
+            file =
+                [...ev.dataTransfer.items]
+                    .find((item) => item.kind === "file")
+                    .getAsFile();
+        } else if (ev.dataTransfer.files?.[0]) {
+            /** Use DataTransfer interface to access the file(s): */
+            file = ev.dataTransfer.files[0];
+        }
+    }
+
+    const onInputChange = (ev) => {
+        ev.preventDefault()
+        if (ev.target.files && ev.target.files) {
+            onDropFile(ev.target.files)
+        }
+    }
+
+    const onButtonClick = () => {
+        inputRef.current.click()
+    }
+
+    return (
+        <div
+            className={styles.file__dropzone}
+            onDragEnter={onDragHandler}
+            onDragLeave={onDragHandler}
+            onDragOver={onDragHandler}
+            onDrop={onDropHandler}
+        >
+            <input
+                ref={inputRef}
+                type="file"
+                accept="image/png, image/jpeg"
+                id="input-file-upload"
+                onChange={onInputChange}
+            />
+            <label id="label-file-upload" htmlFor="input-file-upload" className={dragActive ? "drag-active" : ""}>
+                <span>Drag and drop your file here or</span>
+            </label>
+            <button className="upload-button" onClick={onButtonClick}>Upload a file</button>
+        </div>
+    )
+}
 
 function ExtraInfoFieldset() {
     const { PHOTO, COMMENTS } = FIELDS_ATTRIBUTES
@@ -61,6 +129,8 @@ function ExtraInfoFieldset() {
                         title={errors.photo.message}
                     />
                 ) : null}
+
+                <DragDropFile onDropFile={(file) => console.log({ file })} />
 
                 <div className={styles['image__input--wrapper']}>
                     {isMobile ? (
@@ -117,7 +187,6 @@ function ExtraInfoFieldset() {
                     </div>
                 ) : null}
             </div>
-
 
             <TextInput
                 multiline

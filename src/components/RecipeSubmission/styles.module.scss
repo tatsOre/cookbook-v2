@@ -91,7 +91,7 @@
 ============================ */
 .about__fieldset {
     display: flex;
-    gap: 1.5rem 0.75rem;
+    gap: 2rem 1rem;
     position: relative;
 
     @media only screen and (max-width: g.$breakpoint-small) {
@@ -129,7 +129,7 @@
         align-items: center;
         background-color: g.$color-warm-grey-100;
         margin-block-end: 1rem;
-        padding: 0.25rem 0.25rem;
+        padding: 0.5rem 0.25rem;
 
         /* Step No. Label Text */
         span {
@@ -145,6 +145,7 @@
 
         /* Button that triggers real delete button */
         button[data-action="show-delete"] {
+            margin-inline-end: 0.5rem;
             svg {
                 stroke: g.$color-danger-base;
             }

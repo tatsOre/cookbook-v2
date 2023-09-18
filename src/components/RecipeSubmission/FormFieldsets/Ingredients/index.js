@@ -62,7 +62,8 @@ function IngredientsFieldset() {
                             setActiveField({ index, active: true })
                         }}
                     >
-                        <span>{getIngredientLabel(item)}</span><IconEdit strokeWidth={1.5}/>
+                        <span>{getIngredientLabel(item)}</span>
+                        <IconEdit size={20} strokeWidth={1.5} />
                     </UnstyledButton>}
             </li>
         )

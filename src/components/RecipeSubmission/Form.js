@@ -31,7 +31,7 @@ function RecipeForm({ id, onSubmit }) {
             </Accordion.Item>
 
             <Accordion.Item value="item-4">
-                <Accordion.Trigger>Comments & Photos</Accordion.Trigger>
+                <Accordion.Trigger>Extra Details</Accordion.Trigger>
                 <Accordion.Panel >
                     <ExtraInfoFieldset />
                 </Accordion.Panel>

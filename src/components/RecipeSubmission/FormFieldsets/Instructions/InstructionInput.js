@@ -53,7 +53,7 @@ function InstructionInput({ data, onSave, onCancel, index, withCloseButton }) {
             <Button
                 data-action="save"
                 onClick={appendStep}>
-                {index !== undefined ? 'Save' : 'Add to the list'}
+                {index !== undefined ? 'Save' : 'Add step'}
             </Button>
         </div>
     )
