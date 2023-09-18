@@ -1,6 +1,6 @@
 @use "sass:color";
 @use '../../styles/globals.module.scss' as g;
-@use '../Button/Button.module.scss' as button;
+@use '../../styles/typography' as t;
 
 /* New Recipe / Edit Recipe Page Nav Bar
 ============================ */
@@ -58,11 +58,10 @@
     [data-accordion-trigger] {
         padding-block: calc(0.35rem + 1.5vh);
         border-top: 2px solid g.$color-rich-black;
-        //padding-block: 0.5rem;
         font-size: clamp(1.25rem, 4vw, 1.75rem);
         font-family: g.$font-accent;
         font-stretch: 120%;
-        font-weight: 900;
+        font-weight: 400;
         letter-spacing: 0.1px;
 
         &[aria-expanded="true"] {
@@ -92,7 +91,7 @@
 ============================ */
 .about__fieldset {
     display: flex;
-    gap: 1.15rem 0.75rem;
+    gap: 1.5rem 0.75rem;
     position: relative;
 
     @media only screen and (max-width: g.$breakpoint-small) {
@@ -103,191 +102,22 @@
         flex-flow: row wrap;
 
         [data-input-wrapper="mainIngredient"] {
-            flex-basis: 50%;
+            flex: 1 1 60%;
         }
 
+        [data-input-wrapper="servings"] {
+            flex-basis: 30%;
+        }
+    }
+
+    @media only screen and (min-width: g.$breakpoint-medium) {
         [data-input-wrapper="cuisine"] {
-            flex: 1;
+            flex-basis: 30%;
         }
 
         [data-input-wrapper="categories"] {
-            flex-basis: 100%;
+            flex: 1 1 60%;
         }
-
-        [data-input-wrapper="time.prep"],
-        [data-input-wrapper="servings"] {
-            flex-basis: calc(33.5% - 0.5rem);
-        }
-
-        [data-input-wrapper="time.cook"] {
-            flex: 1;
-        }
-
-        /*         [data-input-wrapper]:nth-child(n+6):not(:last-child) {
-            flex-basis: calc(33.5% - 0.5rem);
-        } */
-    }
-}
-
-/* 04. Extra Info Fieldset
-============================ */
-.extrainfo__fieldset {
-    .image__section {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        margin-block-end: 1.5rem;
-
-        h3 {
-            //color: g.$color-rich-black;
-            font-size: 0.9rem;
-        }
-
-        p {
-            @include g.caption;
-            //color: g.$color-smoke-gray;
-        }
-
-        .image__input--wrapper {
-            .box__file {
-                @include g.visually--hidden;
-
-                &+label {
-                    cursor: pointer;
-                }
-            }
-
-            // File input with drag and drop feature:
-            .box.advanced--upload {
-                //background-color: g.$color-white;
-                //outline: 1px dashed g.$color-rich-black;
-                outline-offset: -10px;
-                padding-block: 2.5rem;
-                -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-                transition: outline-offset .15s ease-in-out, background-color .15s linear;
-                display: grid;
-                place-content: center;
-
-                &.drag--active {
-                    outline-offset: -20px;
-                }
-
-                .box__file {
-                    &+label {
-                        //color: g.$color-rich-black;
-                        width: 100%;
-
-                        &:hover b {
-                            text-decoration: underline;
-                        }
-                    }
-
-                    &:focus+label b {
-                        text-decoration: underline;
-                    }
-                }
-            }
-
-            // File input for touchscreen devices:
-            .box.no--advanced--upload {
-                position: relative;
-                margin-block: 0.25rem;
-
-                .box__file+label {
-                    display: inline-block;
-                    padding: 0.65rem 1.25rem 0.65rem 2.5rem;
-
-                    b {
-                        //color: g.$color-white;
-                        font-size: 0.9rem;
-                        font-weight: normal
-                    }
-
-                    span {
-                        @include g.visually--hidden;
-                    }
-
-                    &:hover {}
-                }
-
-                svg {
-                    position: absolute;
-                    //stroke: g.$color-white;
-                    top: 0.5rem;
-                    left: 1rem;
-                }
-            }
-        }
-
-        .image__view--wrapper {
-            position: relative;
-            overflow: hidden;
-            width: 250px;
-            height: 250px;
-
-            img {
-                object-fit: cover;
-                width: 100%;
-                height: auto;
-            }
-
-            button {
-                position: absolute;
-                top: 0.5rem;
-                left: 0.5rem;
-            }
-        }
-
-        @media only screen and (min-width: g.$breakpoint-small) {
-            flex-flow: row wrap;
-
-            h3,
-            p,
-            div[role="alert"] {
-                flex-basis: 100%;
-            }
-
-            .image__input--wrapper {
-                flex: 1;
-
-                .box.advanced--upload {
-                    height: 100%;
-                }
-            }
-
-            .image__view--wrapper {
-                width: 200px;
-                height: 200px;
-            }
-        }
-    }
-}
-
-@-webkit-keyframes appear-from-inside {
-    from {
-        -webkit-transform: translateY(-50%) scale(0);
-    }
-
-    75% {
-        -webkit-transform: translateY(-50%) scale(1.1);
-    }
-
-    to {
-        -webkit-transform: translateY(-50%) scale(1);
-    }
-}
-
-@keyframes appear-from-inside {
-    from {
-        transform: translateY(-50%) scale(0);
-    }
-
-    75% {
-        transform: translateY(-50%) scale(1.1);
-    }
-
-    to {
-        transform: translateY(-50%) scale(1);
     }
 }
 
@@ -297,21 +127,20 @@
     li {
         display: flex;
         align-items: center;
-        padding-block: 0.5rem;
-        margin-bottom: 0.5rem;
         background-color: g.$color-warm-grey-100;
+        margin-block-end: 1rem;
+        padding: 0.25rem 0.25rem;
 
         /* Step No. Label Text */
         span {
-            @include g.body--2;
             flex: 1;
+            @include t.body($fs: g.$font-size-15);
             overflow: hidden;
             /* Partial support: */
             text-overflow: ellipsis;
             -webkit-box-orient: vertical;
             display: -webkit-box;
             -webkit-line-clamp: 2;
-            padding-inline: 0.5rem;
         }
 
         /* Button that triggers real delete button */

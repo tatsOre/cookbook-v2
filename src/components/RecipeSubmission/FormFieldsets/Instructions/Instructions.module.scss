@@ -1,89 +1,62 @@
 @use '../../../../styles/globals.module.scss' as g;
+@use '../../../../styles/typography' as t;
 
 /* Instructions Steps - Editable Inputs List
 ============================ */
+
+div.step__item--wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    gap: 1rem;
+    background-color: g.$color-warm-grey-100;
+    padding: 1rem;
+
+    button[data-action="close"] {
+        border: none;
+    }
+
+    /* Textarea Input Wrapper */
+    div[data-input-wrapper] {
+        flex-basis: 100%;
+    }
+}
+
 .steps__list--inputs {
     li {
-
-        /* Instruction Step Input Edit Wrapper */
-        &>div {
-            padding: 0.5rem;
-            //background-color: g.$color-warm-grey-100;
-            margin-block: 1rem;
-            position: relative;
-
-            /* 'Done' Button */
-            button[data-action="save"] {
-                position: absolute;
-                font-size: 0.75rem;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 0.25px;
-                top: 0;
-                right: 0.5rem;
-                z-index: 1;
-                padding: 0.5rem;
-            }
-
-            /* Textarea Input Wrapper */
-            div[data-input-wrapper] {
-                label {
-                    font-size: 0.825rem;
-                    margin-block-end: 0.5rem;
-                    letter-spacing: 0.25px;
-                }
-            }
-        }
+        margin-block-end: 1rem;
 
         button[data-action="step-idle"] {
+            display: flex;
             width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 0.65rem;
-            //background-color: g.$color-warm-grey-100;
+            display: flex;
+            background-color: g.$color-warm-grey-100;
+            padding: 0.75rem 1rem;
 
             &:hover {
-                //background-color: g.$color-warm-grey-400;
+                background-color: g.$color-warm-grey-400;
             }
 
             span {
-                @include g.body--2;
+                flex: 1;
+                @include t.body($fs: g.$font-size-15);
                 overflow: hidden;
                 /* Partial support: */
                 text-overflow: ellipsis;
                 -webkit-box-orient: vertical;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
+                margin-inline-end: 1.5rem;
             }
         }
     }
 }
 
-.edit__all--alert {
-    padding-block: 1.5rem;
-    margin-bottom: 0.65rem;
-    display: flex;
+/** Add new step button: */
+.add__new--button {
+    margin-block-start: 2rem;
 
-    button {}
-}
-
-.new__step--input {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    
-    button[data-action="close"] {
-
-    }
-}
-
-.instructions__fieldset {
-
-    /** Add new step button: */
-    &>button {
-        margin-block-start: 1rem;
-
-        @media only screen and (max-width: g.$breakpoint-small) {
-            width: 100%;
-        }
+    @media only screen and (max-width: g.$breakpoint-small) {
+        width: 100%;
     }
 }

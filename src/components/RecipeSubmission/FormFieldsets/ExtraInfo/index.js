@@ -13,7 +13,7 @@ import { getImageSrc } from '@/components/utils/file'
 import cx from '@/components/utils/cx'
 import { default as FIELDS_ATTRIBUTES } from '../../constants'
 
-import styles from '../../styles.module.scss'
+import styles from './styles.module.scss'
 
 
 function ExtraInfoFieldset() {

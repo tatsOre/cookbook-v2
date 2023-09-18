@@ -29,7 +29,8 @@ function Label(props) {
             {...rest}
         >
             {children}
-            {required && <small aria-hidden>{' (required)'}</small>}
+            {required
+                && <span style={{ color: 'tomato' }} aria-hidden>*</span>}
         </label>)
 }
 

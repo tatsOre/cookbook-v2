@@ -38,7 +38,7 @@ const BASE_RULES = {
 export default {
     TITLE: {
         DESC: 'Enter a catchy and descriptive title for your recipe. This will be the main identifier for your dish.',
-        LABEL: 'Title',
+        LABEL: 'Name your recipe',
         NAME: 'title',
         PLACEHOLDER: 'e.g. Spicy Thai Chicken Curry',
         RULES: {

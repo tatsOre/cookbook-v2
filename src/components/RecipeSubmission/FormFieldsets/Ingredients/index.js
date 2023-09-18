@@ -8,6 +8,7 @@ import { getIngredientLabel } from '@/components/RecipeView/RecipeView.helpers'
 import { default as FIELDS_ATTRIBUTES, RECIPE_SCHEMA } from '../../constants'
 
 import styles from './Ingredients.module.scss'
+import { IconEdit } from '@/components/Icon'
 
 function IngredientsFieldset() {
     const {
@@ -41,7 +42,7 @@ function IngredientsFieldset() {
 
     const content = ingredients.map((item, index) => {
         return (
-            <li key={item._id}>
+            <li key={item._id || index}>
                 {activeField.index === index ?
                     <IngredientInput
                         data={item}
@@ -53,6 +54,7 @@ function IngredientsFieldset() {
                         onCancel={() => {
                             setActiveField({ index: null, active: false })
                         }}
+                        withCloseButton
                     /> :
                     <UnstyledButton
                         data-action="step-idle"
@@ -60,7 +62,7 @@ function IngredientsFieldset() {
                             setActiveField({ index, active: true })
                         }}
                     >
-                        <span>{getIngredientLabel(item)}</span>
+                        <span>{getIngredientLabel(item)}</span><IconEdit strokeWidth={1.5}/>
                     </UnstyledButton>}
             </li>
         )
@@ -69,14 +71,14 @@ function IngredientsFieldset() {
     return (
         <React.Fragment>
             {(ingredients.length > 1 || modeEditAll) && (
-                <div className={styles['edit__all--alert']}>
-                    <p>Tap "Edit All" to organize or delete steps. Tap a step to edit.</p>
-                    <Button
+                <div>
+                    <span>Tap "Edit All" to organize or delete items.</span>
+                    <UnstyledButton
                         disabled={activeField.active}
                         onClick={onToggleEditMode}
                     >
                         {modeEditAll ? 'Done' : 'Edit All'}
-                    </Button>
+                    </UnstyledButton>
                 </div>
             )}
 
@@ -99,10 +101,12 @@ function IngredientsFieldset() {
                                 setActiveField({ index: null, active: false })
                             }}
                             onCancel={() => setActiveField({ index: null, active: false })}
+                            withCloseButton={!!ingredients.length}
                         />
                         : <Button
                             disabled={activeField.active}
                             onClick={() => setActiveField({ index: -1, active: true })}
+                            className={styles['add__new--button']}
                         >
                             + Add an ingredient
                         </Button>

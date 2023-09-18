@@ -29,7 +29,7 @@ function GeneralInfo() {
 
     const categoriesLabel = <>
         {CATEGORIES.LABEL}.&nbsp;
-        <small style={{  }}>{CATEGORIES.DESC} {categoriesLeft}</small>
+        <small style={{}}>{CATEGORIES.DESC} {categoriesLeft}</small>
     </>
 
     return (
@@ -66,15 +66,10 @@ function GeneralInfo() {
                 {...register(MAIN_INGR.NAME)}
             />
 
-            <Controller
-                control={control}
-                name={CUISINE.NAME}
-                render={({ field }) =>
-                    <CustomSelect
-                        label={CUISINE.LABEL}
-                        options={assets?.cuisine_options}
-                        {...field}
-                    />}
+            <NumberInput
+                label={SERVINGS.LABEL}
+                error={errors[SERVINGS.NAME]}
+                {...register(SERVINGS.NAME)}
             />
 
             <Controller
@@ -90,22 +85,15 @@ function GeneralInfo() {
                     />}
             />
 
-            <NumberInput
-                label={SERVINGS.LABEL}
-                error={errors[SERVINGS.NAME]}
-                {...register(SERVINGS.NAME)}
-            />
-
-            <NumberInput
-                label={TIME.PREP.LABEL}
-                error={errors.time?.prep}
-                {...register(TIME.PREP.NAME)}
-            />
-
-            <NumberInput
-                label={TIME.COOK.LABEL}
-                error={errors.time?.cook}
-                {...register(TIME.COOK.NAME)}
+            <Controller
+                control={control}
+                name={CUISINE.NAME}
+                render={({ field }) =>
+                    <CustomSelect
+                        label={CUISINE.LABEL}
+                        options={assets?.cuisine_options}
+                        {...field}
+                    />}
             />
 
             <CheckboxInput

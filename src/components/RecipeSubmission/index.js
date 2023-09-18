@@ -22,7 +22,7 @@ function RecipeSubmission({ endpoint, data, mode }) {
     const [photoError, setPhotoError] = React.useState(null)
 
     const [activeFieldset, setActiveFieldset] = React.useState(
-        ['item-2']
+        ['item-3']
     )
 
     const { status, responseData, errorMessage } = useFormSubmission({
@@ -32,7 +32,7 @@ function RecipeSubmission({ endpoint, data, mode }) {
     })
 
     const methods = useForm({
-        defaultValues: mode === 'edit' ? deNormalizeData(data) : {}
+        defaultValues: mode === 'edit' ? deNormalizeData(data) : null
     })
 
     const router = useRouter()

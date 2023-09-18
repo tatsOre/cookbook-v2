@@ -2,27 +2,25 @@ import React from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
 import { Button, UnstyledButton } from '@/components/Button'
-import { ListItemInput, NewStepInput } from './StepInput'
+import InstructionInput from './StepInput'
 import DraggableStepsList from '../shared/DraggableList'
+import { IconEdit } from '@/components/Icon'
 import { default as FIELDS_ATTRIBUTES } from '../../constants'
 
 import styles from './Instructions.module.scss'
 
 function InstructionsFieldset() {
     const {
-        INSTRUCTIONS: { NAME, RULES },
+        INSTRUCTIONS: { NAME, RULES, TEXT_ATTRS },
     } = FIELDS_ATTRIBUTES
 
     const { control, formState: { errors, isDirty }, watch } = useFormContext()
 
-    const { fields, append, remove, move } = useFieldArray({
+    const { fields, append, remove, move, update } = useFieldArray({
         control, name: NAME, rules: {
             required: RULES.REQUIRED
         }
     })
-
-    /** We will keep track of the steps text and arr length */
-    const steps = watch(NAME, fields)
 
     const [modeEditAll, setModeEditAll] = React.useState(false)
 
@@ -32,27 +30,48 @@ function InstructionsFieldset() {
         active: fields.length ? false : true
     })
 
+    /** We will keep track of the arr length */
+    watch(NAME, fields)
+
     React.useEffect(() => {
-        steps.length === 0 && setModeEditAll(false)
-    }, [steps.length])
+        fields.length === 0 && setModeEditAll(false)
+    }, [fields.length])
 
     const onToggleEditMode = () => setModeEditAll(prev => !prev)
 
-    const content = steps.map((step, index) => {
+    const content = fields.map((step, index) => {
+        /** step id comes from useFieldArray.  */
         return (
-            <ListItemInput
-                key={`step-${index}`}
-                value={step.text}
-                index={index}
-                activeField={activeField}
-                setActiveField={setActiveField}
-            />
+            <li key={step.id || index}>
+                {activeField.index === index ?
+                    <InstructionInput
+                        data={step.text}
+                        index={index}
+                        onSave={(value) => {
+                            update(index, value)
+                            setActiveField({ index: null, active: false })
+                        }}
+                        onCancel={() => {
+                            setActiveField({ index: null, active: false })
+                        }}
+                        withCloseButton
+                    /> :
+                    <UnstyledButton
+                        data-action="step-idle"
+                        onClick={() => {
+                            setActiveField({ index, active: true })
+                        }}
+                    >
+                        <span><b>{TEXT_ATTRS.LABEL} {index}.</b> {step.text}</span>
+                        <IconEdit strokeWidth={1.5} />
+                    </UnstyledButton>}
+            </li>
         )
     })
 
     return (
         <React.Fragment>
-            {errors[NAME]?.root || (!steps.length && isDirty) ? (
+            {errors[NAME]?.root || (!fields.length && isDirty) ? (
                 <Alert
                     appearance="danger"
                     variant='light'
@@ -60,21 +79,21 @@ function InstructionsFieldset() {
                 />
             ) : null}
 
-            {(steps.length > 1 || modeEditAll) && (
-                <div className={styles['edit__all--alert']}>
-                    <p>Tap "Edit All" to organize or delete steps. Tap a step to edit.</p>
-                    <Button
+            {(fields.length > 1 || modeEditAll) && (
+                <div>
+                    <span>Tap "Edit All" to organize or delete steps.</span>
+                    <UnstyledButton
                         disabled={activeField.active}
                         onClick={onToggleEditMode}
                     >
                         {modeEditAll ? 'Done' : 'Edit All'}
-                    </Button>
+                    </UnstyledButton>
                 </div>
             )}
 
             {modeEditAll
                 ? <DraggableStepsList
-                    items={steps}
+                    items={fields}
                     remove={remove}
                     move={move}
                     steps={true}
@@ -83,15 +102,18 @@ function InstructionsFieldset() {
                     <ul className={styles['steps__list--inputs']}>
                         {content}
                     </ul>
-                    {activeField.index === -1 || !steps.length
-                        ? <NewStepInput
-                            append={append}
+
+                    {activeField.index === -1 || !fields.length
+                        ? <InstructionInput
+                            data=""
+                            onSave={append}
                             onCancel={() => setActiveField({ index: null, active: false })}
-                            className={styles['new__step--input']}
+                            withCloseButton={!!fields.length}
                         />
                         : <Button
                             disabled={activeField.active}
                             onClick={() => setActiveField({ index: -1, active: true })}
+                            className={styles['add__new--button']}
                         >+ Add a step
                         </Button>
                     }

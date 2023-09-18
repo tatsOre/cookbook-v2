@@ -1,111 +1,62 @@
 import React from "react"
-import { useFormContext } from 'react-hook-form'
 import { TextInput } from "@/components/FormInput"
-import { Button, IconButton, UnstyledButton } from "@/components/Button"
-import { IconCross } from "@/components/Icon"
-
+import { Button } from "@/components/Button"
 import { default as FIELDS_ATTRIBUTES } from '../../constants'
 
-function ListItemInput({
-    index,
-    value,
-    activeField,
-    setActiveField
-}) {
-    const { register, formState: { errors, dirtyFields } } = useFormContext()
+import styles from './Instructions.module.scss'
 
-    const {
-        INSTRUCTIONS: { NAME, TEXT_ATTRS },
-    } = FIELDS_ATTRIBUTES
+function InstructionInput({ data, onSave, onCancel, index, withCloseButton }) {
+    const [value, setValue] = React.useState(data)
 
-    /*  Is there an error in steps? || has been touched and there is no value? && set error */
-    const fieldError = errors[NAME]?.[index]?.[TEXT_ATTRS.NAME] || (
-        dirtyFields[NAME]?.[index]?.[TEXT_ATTRS.NAME] && !value
-        && { type: 'required', message: TEXT_ATTRS.RULES.REQUIRED }
-    )
+    const [error, setError] = React.useState(null)
 
-    const label = `${TEXT_ATTRS.LABEL} ${index + 1}`
-
-    const onSave = () => {
-        setActiveField({ index: null, active: false })
-    }
-
-    const onClickHandler = () => {
-        setActiveField({ index, active: true })
-    }
-
-    return <li>
-        {activeField.index === index ? (
-            <div>
-                <Button
-                    data-action="save"
-                    disabled={!value}
-                    onClick={onSave}
-                >
-                    Done
-                </Button>
-
-                <TextInput
-                    multiline
-                    autoFocus={activeField.index === index}
-                    label={`Edit ${label}:`}
-                    error={fieldError}
-                    {...register(`${NAME}.${index}.${TEXT_ATTRS.NAME}`, {
-                        required: TEXT_ATTRS.RULES.REQUIRED
-                    })}
-                />
-            </div>
-        ) : (
-            <UnstyledButton data-action="step-idle" onClick={onClickHandler}>
-                <span><b>{label}.</b> {value}</span>
-            </UnstyledButton>
-        )}
-    </li>
-}
-
-function NewStepInput({
-    append,
-    placeholder,
-    description,
-    onCancel,
-    className
-}) {
-    const [value, setValue] = React.useState('')
+    const { INSTRUCTIONS: { PLACEHOLDER, TEXT_ATTRS } } = FIELDS_ATTRIBUTES
 
     const appendStep = () => {
-        append({ text: value })
-        setValue('')
+        if (!value) {
+            return setError({
+                type: 'required',
+                message: TEXT_ATTRS.RULES.REQUIRED
+            })
+        }
+        onSave({ text: value })
+        setValue(data) // Empty String when new
     }
 
-    const onCancelHandler = () => {
-        onCancel()
-        setValue('')
+    const onCancelHandler = () => onCancel()
+
+    const onInputChange = (ev) => {
+        error && setError(null)
+        setValue(ev.target.value)
     }
 
     return (
-        <div className={className}>
-            <IconButton
-                data-action="close"
-                ariaLabel="Close"
-                icon={<IconCross />}
-                onClick={onCancelHandler}
-            />
-
+        <div className={styles['step__item--wrapper']}>
             <TextInput
                 multiline
-                rows={2}
-                label="Add new step:"
-                onChange={(ev) => setValue(ev.target.value)}
+                autoFocus
+                error={error}
+                label={index !== undefined ? `Edit step ${index + 1}:` : 'Add new step'}
+                onChange={onInputChange}
+                placeholder={PLACEHOLDER}
                 value={value}
-                description={description}
-                placeholder={placeholder}
             />
 
-            <Button data-action="save" disabled={!value} onClick={appendStep}>
-                Save
+            {withCloseButton ? (
+                <Button
+                    data-action="close"
+                    onClick={onCancelHandler}>
+                    cancel
+                </Button>
+            ) : null}
+
+            <Button
+                data-action="save"
+                onClick={appendStep}>
+                {index !== undefined ? 'Save' : 'Add to the list'}
             </Button>
         </div>
     )
 }
 
-export { ListItemInput, NewStepInput }
+export default InstructionInput

@@ -1,14 +1,13 @@
 import React from 'react'
 import { useRecipeSubmissionContext } from '../../context'
-import { Button, IconButton, } from '@/components/Button'
+import { Button } from '@/components/Button'
 import CustomSelect from '@/components/Select'
 import { NumberInput, TextInput } from '@/components/FormInput'
-import { IconCross } from '@/components/Icon'
 import { default as FIELDS_ATTRIBUTES } from '../../constants'
 
 import styles from './Ingredients.module.scss'
 
-function IngredientInput({ onSave, onCancel, data, index }) {
+function IngredientInput({ onSave, onCancel, data, index, withCloseButton }) {
     const { assets } = useRecipeSubmissionContext()
 
     const { INGREDIENTS: { INGR_ATTRS } } = FIELDS_ATTRIBUTES
@@ -51,18 +50,12 @@ function IngredientInput({ onSave, onCancel, data, index }) {
     return (
         <div className={styles['ingredient__item--wrapper']}>
             <div className={styles['ingredient__input--group']}>
-                <IconButton
-                    small
-                    data-action="close"
-                    ariaLabel="Close"
-                    icon={<IconCross size={22} />}
-                    onClick={onCancelHandler} />
-
                 <NumberInput
                     label={QTY.LABEL}
                     name={QTY.NAME}
                     onChange={onInputChange}
                     value={values[QTY.NAME]}
+                    autoFocus
                 />
 
                 <CustomSelect
@@ -99,6 +92,14 @@ function IngredientInput({ onSave, onCancel, data, index }) {
                     value={values[PREP_NOTE.NAME]}
                 />
             </div>
+
+            {withCloseButton ? (
+                <Button
+                    data-action="close"
+                    onClick={onCancelHandler}>
+                    cancel
+                </Button>
+            ) : null}
 
             <Button
                 data-action="save"
