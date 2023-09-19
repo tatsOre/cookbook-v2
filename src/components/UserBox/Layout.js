@@ -49,17 +49,9 @@ function Layout({ children, user }) {
             </header>
 
             <main>
-                <div style={{
-                    width: '100%',
-                    height: '100%',
-                    padding: '2rem',
-                    backgroundColor: '#F2F3EF'
-                }}>
-                    <div className={styles.cards__section}>
-                        {children}
-                    </div>
+                <div className={styles.cards__section}>
+                    {children}
                 </div>
-
             </main>
         </React.Fragment>
     )

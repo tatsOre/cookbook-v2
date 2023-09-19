@@ -10,7 +10,9 @@
     display: flex;
     flex-flow: row wrap;
     gap: 1rem;
-    padding-block-start: 7rem;
+    padding-block-start: 8rem;
+    padding-inline: 1.25rem;
+    background-color: g.$color-warm-grey-100;
 }
 
 .sub__menu {
@@ -19,6 +21,7 @@
     border-bottom: g.$border-default;
     display: flex;
     align-items: center;
+    background-color: g.$color-warm-grey-200;
 
     a {
         display: inline-block;
@@ -56,6 +59,8 @@
                 left: 15px;
                 width: 16px;
                 height: 16px;
+                background-color: g.$color-rich-black;
+                color: white;
                 display: inline-flex;
                 justify-content: center;
                 align-items: center;
