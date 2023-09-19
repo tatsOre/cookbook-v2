@@ -1,10 +1,11 @@
 import React from 'react'
 import useSWRMutation from 'swr/mutation'
 import { fetcher } from '@/pages/_app'
-import { IconLoader } from '@/components/Icon'
+import { IconLoader, IconTrash } from '@/components/Icon'
 import Modal from '@/components/Modal'
 import UnstyledButton from '@/components/Button/UnstyledButton'
 import { default as PATHS } from '../../../../config'
+import { IconButton } from '@/components/Button'
 
 function DeleteRecipe({ recipe, onDelete }) {
     const [showModal, setShowModal] = React.useState(false)
@@ -42,10 +43,13 @@ function DeleteRecipe({ recipe, onDelete }) {
     return (
         <React.Fragment>
             {showModal && <Modal {...modalProps} />}
-
-            <UnstyledButton onClick={onDeleteClick} disabled={isMutating}>
-                {isMutating ? <IconLoader size={20} /> : <span>Delete</span>}
-            </UnstyledButton>
+            <IconButton
+                icon={isMutating
+                    ? <IconLoader />
+                    : <IconTrash strokeWidth={1.5} />}
+                onClick={onDeleteClick}
+                disabled={isMutating}
+            />
         </React.Fragment>
     )
 }

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { BookmarkRecipe } from './Actions'
 import { CardInfo, CardTag } from './CardElements'
 
-import styles from './Card.module.scss'
+import styles from './CardB.module.scss'
 
 function FavoriteCard({ recipe, onUpdateFavorites }) {
     return (

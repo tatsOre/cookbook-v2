@@ -1,8 +1,8 @@
 import React from 'react'
 import useSWRMutation from 'swr/mutation'
 import { fetcher } from '@/pages/_app'
+import { Button } from '@/components/Button'
 import { IconLoader } from '@/components/Icon'
-import UnstyledButton from '@/components/Button/UnstyledButton'
 import { default as PATHS } from '../../../../config'
 
 function PublishRecipe({ recipe, onPublish }) {
@@ -23,11 +23,11 @@ function PublishRecipe({ recipe, onPublish }) {
     const onPublishClick = () => trigger()
 
     return (
-        <UnstyledButton onClick={onPublishClick} disabled={isMutating}>
+        <Button data-info="publish" onClick={onPublishClick} disabled={isMutating}>
             {isMutating
                 ? <IconLoader size={20} />
                 : <span>Make {recipe.public ? 'Private' : 'Public'}</span>}
-        </UnstyledButton>
+        </Button>
     )
 }
 

@@ -1,8 +1,8 @@
 @use '../../styles/globals.module.scss' as g;
 
 .recipe__card {
-    width: 220px;
-    min-height: 220px;
+    width: 100%;
+    min-height: 230px;
     font-family: g.$font-accent;
     font-size: 0.825rem;
     position: relative;
@@ -11,18 +11,12 @@
     background-color: g.$color-white;
     border: g.$border-default;
 
-    .card__badge {
-        padding: 0.55rem 0.75rem 0.45rem;
-        background-color: g.$color-rich-black;
-        color: g.$color-white;
-        position: absolute;
-        z-index: 1;
-        @include g.overline($fs: 0.65rem);
+    @media only screen and (min-width: g.$breakpoint-small) {
+        width: calc(50% - 1.5rem);
+    }
 
-        &.card__tag {
-            top: -6px;
-            right: 10px;
-        }
+    @media only screen and (min-width: g.$breakpoint-large) {
+        width: calc(34% - 1.5rem);
     }
 
     .card__image--wrapper {
@@ -46,7 +40,6 @@
 
     .card__info--wrapper {
         padding: 0.5rem;
-        height: 90px;
 
         /* Title */
         h3 {
@@ -68,6 +61,10 @@
             -webkit-line-clamp: 2;
         }
 
+        span[data-info="date"] {
+            max-width: 50%;
+        }
+
         /* Author */
         span {
             display: inline-block;
@@ -83,15 +80,7 @@
     }
 
     /* Edit Recipe Control */
-    .card__controls--edit {
-        //color: g.$color-rich-black;
-        //background-color: g.$color-accent-yellow;
-        @include g.overline($fw: 600);
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
+    .card__controls--edit {}
 
     /* Bookmark Control */
     .card__controls--base {
@@ -116,77 +105,28 @@
 
     /* Publish & Delete Recipe Control */
     .card__controls--box {
-        margin-block-start: 0.5rem;
-        height: 35px;
-        border-top: g.$border-default;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.75rem;
+        z-index: 10;
         display: flex;
-        align-items: stretch;
-        justify-content: center;
+        gap: 0.5rem;
 
-        button {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 50%;
-
-            svg {
-                animation: rotate-animation 1.5s infinite linear;
-
-                @keyframes rotate-animation {
-                    0% {
-                        transform: rotate(0deg);
-                    }
-
-                    50% {
-                        transform: rotate(180deg);
-                    }
-
-                    100% {
-                        transform: rotate(360deg);
-                    }
-                }
-            }
-
-            &>span {
-                position: relative;
-                @include g.overline($fs: 0.65rem, $fw: 600);
-            }
-
-            &>span::before {
-                content: '';
-                position: absolute;
-                width: 100%;
-                height: 1px;
-                //background-color: g.$color-rich-black;
-                bottom: -4px;
-                left: 0;
-                transform-origin: right;
-                transform: scaleX(0);
-                transition: transform .1s ease-in-out;
-            }
-
-            &:hover {
-                &>span::before {
-                    transform-origin: left;
-                    transform: scaleX(1);
-                }
-            }
+        &>* {
+            color: g.$color-rich-black;
+            background-color: g.$color-white;
+            border: g.$border-default;
+            display: grid;
+            place-content: center;
+            width: 45px;
+            height: 45px;
         }
+    }
 
-        button:first-of-type {
-            border-right: g.$border-default;
-
-            &>span::before {
-                //background-color: g.$color-rich-black;
-            }
-        }
-
-        button:last-of-type {
-            //color: g.$color-danger-base;
-
-            &>span::before {
-                //background-color: g.$color-danger-base;
-            }
-        }
+    button[data-info="publish"] {
+        position: absolute;
+        right: 0.75rem;
+        bottom: 0.75rem;
+        z-index: 10;
     }
 }

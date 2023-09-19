@@ -1,7 +1,7 @@
 @use '../../styles/globals.module.scss' as g;
 
 .recipe__card {
-    width: 100%;
+    width: 230px;
     min-height: 220px;
     font-family: g.$font-accent;
     font-size: 0.825rem;
