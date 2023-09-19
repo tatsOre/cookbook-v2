@@ -24,6 +24,7 @@
         width: 100%;
         min-height: 50px; // check this
         padding-inline: 1rem;
+        margin-block-start: 0.5rem;
         border: g.$border-default;
         @include t.body;
 

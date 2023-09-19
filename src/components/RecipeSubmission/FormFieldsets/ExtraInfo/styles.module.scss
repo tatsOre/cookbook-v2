@@ -11,8 +11,8 @@
 
     p {
         color: g.$color-smoke-gray;
-        font-size: 0.9rem;
         margin-block: 1rem;
+        @include t.body($fs: g.$font-size-15);
     }
 
     // File input for touchscreen devices:
@@ -45,7 +45,6 @@
         overflow: hidden;
         width: 250px;
         height: 250px;
-        margin-block-end: 1.5rem;
 
         img {
             object-fit: cover;
@@ -68,5 +67,9 @@
             width: 200px;
             height: 200px;
         }
+    }
+
+    & + section {
+        margin-block-start: 2.5rem;
     }
 }

@@ -157,7 +157,7 @@ export default {
         }
     },
     PHOTO: {
-        DESC: 'Take photos using a phone or camera. You can always edit this field later. File must be JPEG, JPG or PNG format and up to 2MB.',
+        DESC: 'Take photos using a phone or camera. You can always edit this field later. File must be JPEG, JPG or PNG format and up to 2MB',
         LABEL: 'Liven up your recipe post with a picture',
         NAME: 'photo',
         RULES: {
