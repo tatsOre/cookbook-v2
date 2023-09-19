@@ -157,9 +157,16 @@ export default {
         }
     },
     PHOTO: {
-        DESC: 'Take photos using a phone or camera. You can always edit this field later.',
+        DESC: 'Take photos using a phone or camera. You can always edit this field later. File must be JPEG, JPG or PNG format and up to 2MB.',
         LABEL: 'Liven up your recipe post with a picture',
-        NAME: 'photo'
+        NAME: 'photo',
+        RULES: {
+            INVALID: "The images you upload must be JPEG or PNG files. Please check your file type and try again.",
+            SIZE: {
+                VALUE: 2097152,
+                MESSAGE: (value) => "The file size must be no more than " + parseInt(value/1024/1024) + "MB"
+            }
+        }
     },
     COMMENTS: {
         DESC: 'Share any additional notes or comments about your recipe. You can mention personal anecdotes, serving suggestions, variations, or any helpful tips.',

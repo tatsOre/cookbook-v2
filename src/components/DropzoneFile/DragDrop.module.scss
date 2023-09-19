@@ -1,0 +1,32 @@
+@use '../../styles/globals.module.scss' as g;
+@use '../../styles/typography' as t;
+
+.file__dropzone {
+    display: grid;
+    place-content: center;
+    padding: 1rem;
+    border: g.$border-default;
+    text-align: center;
+    font-size: 0.825rem;
+    font-weight: 600;
+
+    input[type="file"] {
+        @include g.visually--hidden;
+    }
+
+    label {
+        span {
+            display: block;
+        }
+    }
+
+    button {
+        background-color: transparent;
+        text-decoration-line: underline;
+        margin-block-start: 0.35rem;
+    }
+
+    &.drag__active {
+        background-color: aliceblue;
+    }
+}

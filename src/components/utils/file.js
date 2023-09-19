@@ -1,5 +1,6 @@
 export const isValidImageFile = (imageFile) => {
     const allowedTypes = ["image/jpeg", "image/png", "image/gif"]
+    console.log({ allowed: allowedTypes.includes(imageFile?.type)})
     return allowedTypes.includes(imageFile?.type)
 }
 

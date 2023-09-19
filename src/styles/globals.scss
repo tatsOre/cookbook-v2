@@ -93,6 +93,11 @@ a {
     outline: none;
 }
 
+a,
+button {
+    cursor: pointer;
+}
+
 /* Remove all animations and transitions for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
     * {
@@ -152,7 +157,7 @@ main {
 
 body {
     .theme--default {
-       //$font--base: 'Inter', sans-serif;
+        //$font--base: 'Inter', sans-serif;
         //font-family: $font--base;
         --color--dark: blue;
     }
