@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import cx from '../utils/cx'
 
-import styles from './CardB.module.scss'
+import styles from './Card.module.scss'
 
 function CardTag({ data: { categories, cuisine } }) {
     if (!categories && !cuisine) return

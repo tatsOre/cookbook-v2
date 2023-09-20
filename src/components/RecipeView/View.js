@@ -126,10 +126,9 @@ function RecipeView({ data }) {
 
             </header>
 
-            <main style={{ backgroundColor: '#F8F9F7' }}>
+            <main>
                 <article
                     className={styles['recipe__view--wrapper']}
-                    style={{ marginBlockStart: '90px', marginInline: 'auto' }}
                 >
                     <section data-info="header">
                         <h1>{title}</h1>
@@ -141,7 +140,6 @@ function RecipeView({ data }) {
                             <p>By <span>{author?.name || author?._id || 'No author'}</span></p>
                             <p>{date}</p>
                             <p>Serves {servings}</p>
-                            <p>Time 23 min</p>
                         </div>
                         <RecipeShowTags categories={categories} cuisine={cuisine} />
                     </section>

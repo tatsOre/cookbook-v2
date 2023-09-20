@@ -9,6 +9,10 @@
         margin-block: 2rem;
     }
 
+    h2 {
+        font-family: t.$font-accent;
+    }
+
     h2,
     &>p {
         text-align: center;

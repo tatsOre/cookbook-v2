@@ -1,4 +1,5 @@
 @use '../../styles/globals.module.scss' as g;
+@use '../../styles/typography' as t;
 
 .recipe__view--navigation {
     &> :first-child {
@@ -17,13 +18,13 @@
 }
 
 .recipe__view--wrapper {
-    @include g.main--wrapper;
+    max-width: g.$max-width;
     width: g.$page-width;
-    padding-block-end: 2rem;
     $paragraph-width: 65ch;
+    padding-block-start: 2rem;
 
     p {
-        @include g.body--1;
+        @include t.body;
     }
 
     h2 {
@@ -60,7 +61,7 @@
         }
 
         .recipe__tags {
-            @include g.overline($fs: 0.65rem, $fw: 600);
+            @include t.overline($fs: 0.65rem, $fw: 600);
 
             span {
                 display: inline-block;
