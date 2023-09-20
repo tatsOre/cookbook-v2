@@ -6,17 +6,13 @@
 }
 
 .cards__section {
+    width: 100%;
     background-color: g.$color-warm-grey-100;
-    padding: 5rem 1.5rem 2.5rem 6rem;
+    padding: 1rem 1rem 2.5rem 5rem;
     overflow: scroll;
-
-    section {
-        width: 100%;
-        max-width: g.$max-width;
-        display: flex;
-        flex-flow: row wrap;
-        gap: 1.5rem;
-    }
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1.5rem;
 }
 
 .menu__aside {

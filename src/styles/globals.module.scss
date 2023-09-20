@@ -126,10 +126,6 @@ $font-size-24: 1.5rem;
     padding: 0;
 }
 
-@mixin main--wrapper {
-    max-width: $max-width;
-}
-
 /** Modals and Loading Spinner Backdrop */
 @mixin overlay--backdrop($background: $color-rich-black) {
     position: fixed;

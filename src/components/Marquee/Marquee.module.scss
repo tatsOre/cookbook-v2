@@ -1,23 +1,28 @@
 @use '../../styles/globals.module.scss' as g;
+@use '../../styles/typography' as t;
 
 .marquee {
     display: flex;
     overflow: hidden;
     user-select: none;
-    margin-block-start: 55px; // change to variable that corresponds to nav height
 
     .marquee__content {
         flex-shrink: 0;
         display: flex;
         justify-content: space-around;
         min-width: 100%;
-        padding-block: 0.35rem;
+        padding-block: 0.5rem;
         background-color: g.$color-accent-yellow;
         border-bottom: g.$border-default;
 
         span {
-            @include g.overline($fw: 600);
-            font-size: clamp(0.5rem, 2vw, 0.75rem);
+            font-family: t.$font-accent;
+            font-size: 0.7rem;
+            font-weight: 600;
+            font-stretch: 110%;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.2;
 
             &::after {
                 content: '•';

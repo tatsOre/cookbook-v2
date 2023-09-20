@@ -6,9 +6,16 @@ import {
     ExtraInfoFieldset
 } from "./FormFieldsets"
 
+import styles from './styles.module.scss'
+
 function RecipeForm({ id, onSubmit }) {
     return (
-        <form id={id} onSubmit={onSubmit} noValidate>
+        <form
+            id={id}
+            onSubmit={onSubmit}
+            className={styles['recipe__form--wrapper']}
+            noValidate
+        >
             <Accordion.Item value="item-1">
                 <Accordion.Trigger>About</Accordion.Trigger>
                 <Accordion.Panel >

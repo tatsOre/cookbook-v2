@@ -132,21 +132,29 @@ body {
     min-height: 100%;
 }
 
-#__next>div {
+/* App Wrapper */
+#__next>div:first-of-type {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     min-height: 100%;
     height: 100%;
-    /* ? */
     width: 100%;
 }
 
+header {
+    width: 100%;
+    height: 55px;
+    position: fixed;
+    z-index: 10;
+}
+
 main {
+    margin-block-start: 55px;
+    padding-block-end: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-self: center;
+    align-items: center;
     flex-grow: 1;
     width: 100%;
 }

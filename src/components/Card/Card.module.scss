@@ -2,7 +2,7 @@
 
 .recipe__card {
     width: 100%;
-    min-height: 230px;
+    min-height: 210px;
     font-family: g.$font-accent;
     font-size: 0.825rem;
     position: relative;
@@ -106,13 +106,13 @@
     /* Publish & Delete Recipe Control */
     .card__controls--box {
         position: absolute;
-        right: 0.75rem;
-        top: 0.75rem;
         z-index: 1;
+        width: calc(100% - 0.5rem);
         display: flex;
         gap: 0.5rem;
+        padding: 0.7rem;
 
-        &>* {
+        &>*:not(:first-child) {
             color: g.$color-rich-black;
             background-color: g.$color-white;
             border: g.$border-default;
@@ -123,10 +123,13 @@
         }
     }
 
+    a {
+        margin-inline-start: auto;
+
+    }
+
     button[data-info="publish"] {
-        position: absolute;
-        right: 0.75rem;
-        bottom: 0.75rem;
-        z-index: 1;
+
+         height: 45px;
     }
 }

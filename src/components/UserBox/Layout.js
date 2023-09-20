@@ -48,8 +48,8 @@ function Layout({ children, user }) {
                     )
                 })}
             </div>
-            <main className={styles.cards__section}>
-                <section>
+            <main>
+                <section className={styles.cards__section}>
                     {children}
                 </section>
             </main>

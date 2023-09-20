@@ -7,11 +7,12 @@
 
     &>* {
         display: block;
-        margin-block-end: 0.3rem;
+        margin-block-end: 0.5rem;
     }
 
     .input__label {
         @include t.overline($fs: 10px, $fw: 500);
+        line-height: 1;
     }
 
     /* Input Hint Message */
@@ -24,7 +25,6 @@
         width: 100%;
         min-height: 50px; // check this
         padding-inline: 1rem;
-        margin-block-start: 0.5rem;
         border: g.$border-default;
         @include t.body;
 

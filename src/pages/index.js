@@ -38,7 +38,7 @@ export default function Home() {
             </Head>
 
             <header>
-                <NavBar fixed>
+                <NavBar>
                     {user ? (
                         <>
                             <MenuButton />
@@ -58,23 +58,13 @@ export default function Home() {
                         </>
                     )}
                 </NavBar>
-                <Marquee text="this is nonsense" />
             </header>
 
             <main>
-                <div style={{
-                    width: '100%',
-                    height: '100%',
-                    backgroundColor: '#F2F3EF',
-                    padding: '2rem'
-                }}>
-                    <h1>Hello{user && ', '}{user?.email}!</h1>
-
-                    <ul style={containerStyles}>
-                        {recipes?.length && recipes}
-                    </ul>
-                </div>
-
+                <h1>Hello{user && ', '}{user?.email}!</h1>
+                <ul style={containerStyles}>
+                    {recipes?.length && recipes}
+                </ul>
             </main>
         </>
     )

@@ -20,13 +20,13 @@ function Layout({ children, title, mode }) {
                         Save
                     </UnstyledButton>
                 </NavBar>
+            </header>
 
+            <main>
                 <Marquee text={heading} />
 
                 <h1 style={{ visibility: 'hidden', height: '0px' }}>{heading}</h1>
-            </header>
 
-            <main className={styles['recipe__form--wrapper']}>
                 {children}
             </main>
             <Footer />

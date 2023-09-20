@@ -44,7 +44,7 @@ function Accordion(props) {
             getPanelId: (v) => `${_id}-panel-${v}`
 
         }}>
-            <div {...rest}>{children}</div>
+           {children}
         </AccordionProvider>
     )
 }

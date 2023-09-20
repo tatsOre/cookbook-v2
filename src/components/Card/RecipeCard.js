@@ -2,11 +2,11 @@ import React from 'react'
 import Link from 'next/link'
 import { CardInfo } from './CardElements'
 import { DeleteRecipe, PublishRecipe } from './Actions'
+import { IconEdit } from '../Icon'
 import { getRecipeDate } from '../RecipeView/RecipeView.helpers'
 import cx from '../utils/cx'
 
 import styles from './Card.module.scss'
-import { IconEdit, IconTrash } from '../Icon'
 
 function RecipeCard({ recipe, onPublish, onDelete }) {
     const { _id: id, createdAt, updatedAt } = recipe
@@ -16,6 +16,8 @@ function RecipeCard({ recipe, onPublish, onDelete }) {
     return (
         <article className={styles.recipe__card}>
             <div className={styles['card__controls--box']}>
+                <PublishRecipe recipe={recipe} onPublish={onPublish} />
+
                 <Link
                     href={`/edit/${id}`}
                     className={cx([styles['card__controls--edit'], styles.card__badge])}>
@@ -30,8 +32,6 @@ function RecipeCard({ recipe, onPublish, onDelete }) {
                     {date && <span data-info="date">{date}</span>}
                 </CardInfo>
             </Link>
-
-            <PublishRecipe recipe={recipe} onPublish={onPublish} />
         </article>
     )
 }
