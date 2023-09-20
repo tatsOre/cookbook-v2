@@ -9,6 +9,7 @@ import { getIngredientLabel, getRecipeDate } from "./RecipeView.helpers"
 import cx from "../utils/cx"
 
 import styles from './styles.module.scss'
+import useUser from "@/lib/useUser"
 
 function RecipeShowPhoto({ photo }) {
     return (
@@ -91,6 +92,7 @@ function IngredientsSubmission({ items }) {
 }
 
 function RecipeView({ data }) {
+    const { user } = useUser()
     const {
         author,
         title,
@@ -118,12 +120,9 @@ function RecipeView({ data }) {
     return (
         <>
             <header>
-                <NavBar className={styles['recipe__view--navigation']} fixed>
-                    <MenuButton />
-                    <Logo />
-                    <Link href="/login">Login</Link>
+                <NavBar>
+                    {!user && <Link href="/login">Login</Link>}
                 </NavBar>
-
             </header>
 
             <main>

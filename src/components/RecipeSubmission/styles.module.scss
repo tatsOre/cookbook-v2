@@ -2,50 +2,6 @@
 @use '../../styles/globals.module.scss' as g;
 @use '../../styles/typography' as t;
 
-/* New Recipe / Edit Recipe Page Nav Bar
-============================ */
-.recipe__sub--navigation {
-    &> :first-child {
-        border-right: g.$border-default;
-    }
-
-    &> :nth-child(3) {
-        margin-left: auto;
-
-        svg {
-            -webkit-transform: scaleX(-1);
-            transform: scaleX(-1);
-        }
-
-        span {
-            display: none;
-        }
-
-        /* 'Go Back' Icon Button: */
-        @media only screen and (max-width: g.$breakpoint-small) {
-            span:first-of-type {
-                display: inline;
-            }
-        }
-
-        /* 'Go Back' Text Button: */
-        @media only screen and (min-width: g.$breakpoint-small) {
-            span:last-of-type {
-                display: inline;
-            }
-        }
-    }
-
-    &> :nth-child(3),
-    &> :last-child {
-        border-left: g.$border-default;
-    }
-
-    &> :last-child {
-        padding-inline: 2.25rem;
-    }
-}
-
 /* Form & Accordion Layout
 ============================ */
 .recipe__form--wrapper {
@@ -145,14 +101,13 @@
         /* Button that triggers real delete button */
         button[data-action="show-delete"] {
             margin-inline-end: 0.5rem;
+
             svg {
                 stroke: g.$color-danger-base;
             }
         }
 
         /* Button for Beautiful DnD */
-        button[data-action="drag-handler"] {
-            //background-color: aqua;
-        }
+        button[data-action="drag-handler"] {}
     }
 }

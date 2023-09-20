@@ -1,7 +1,4 @@
 import Link from 'next/link'
-import MenuButton from '@/components/Button/MenuButton'
-import Logo from '@/components/Logo'
-import Marquee from '@/components/Marquee'
 import NavBar from '@/components/Navigation'
 import Head from 'next/head'
 import useUser from '@/lib/useUser'
@@ -39,28 +36,23 @@ export default function Home() {
 
             <header>
                 <NavBar>
-                    {user ? (
-                        <>
-                            <MenuButton />
-                            <Logo />
-                            <Link href="/new">Create recipe</Link>
-                            <Link href="/recipe-box">Your box</Link>
-                            <button onClick={() => {
-                                logout()
-                                mutate(null)
-                                Router.replace("/")
-                            }}>Logout</button>
-                        </>
-                    ) : (
-                        <>
-                            <Logo />
-                            <Link href="/login">Login</Link>
-                        </>
-                    )}
+                    {!user && <Link href="/login">Login</Link>}
                 </NavBar>
             </header>
 
             <main>
+                <div>
+
+                    <Link href="/new">Create recipe</Link>
+                    <Link href="/recipe-box">Your box</Link>
+
+                    <button onClick={() => {
+                        logout()
+                        mutate(null)
+                        Router.replace("/")
+                    }}>Logout</button>
+                </div>
+
                 <h1>Hello{user && ', '}{user?.email}!</h1>
                 <ul style={containerStyles}>
                     {recipes?.length && recipes}

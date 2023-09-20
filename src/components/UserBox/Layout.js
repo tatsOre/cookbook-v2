@@ -1,8 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import Logo from '../Logo'
 import { IconBookmark, IconChefHat, IconShoppingList } from '../Icon'
-import { MenuButton } from '../Button'
 import NavBar from '../Navigation'
 
 import styles from './UserBox.module.scss'
@@ -11,10 +9,7 @@ function Layout({ children, user }) {
     return (
         <React.Fragment>
             <header>
-                <NavBar className={styles['recipe__box--navigation']} fixed>
-                    <MenuButton />
-                    <Logo />
-                </NavBar>
+                <NavBar />
             </header>
 
             <div className={styles.menu__aside}>

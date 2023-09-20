@@ -1,20 +1,5 @@
 @use '../../styles/globals.module.scss' as g;
 
-@mixin nav--label {
-    font-family: g.$font-accent;
-    font-stretch: extra-expanded;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 0.825rem;
-    letter-spacing: 1px;
-    padding-inline: 1.75rem;
-    height: 100%;
-
-    @media only screen and (max-width: g.$breakpoint-extra-small) {
-        padding-inline: 1rem;
-    }
-}
-
 .nav__bar {
     display: flex;
     flex-wrap: wrap;
@@ -24,16 +9,4 @@
     background-color: g.$color-white;
     border-top: g.$border-default;
     border-bottom: g.$border-default;
-
-    &>button,
-    &>a:not([data-info="logo"]) {
-        @include nav--label;
-
-        @media (hover: hover) {
-
-            &:hover:not([disabled]) {
-                background-color: g.$color-accent-yellow;
-            }
-        }
-    }
 }
