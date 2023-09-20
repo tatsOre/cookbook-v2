@@ -1,58 +1,41 @@
 @use '../../styles/globals.module.scss' as g;
 
 .recipe__box--navigation {
-    &>:first-child {
-        border-right: g.$border-default;
-    }
+
+    
 }
 
 .cards__section {
-    width: 100%;
-    max-width: g.$max-width;
-    display: flex;
-    flex-flow: row wrap;
-    gap: 1.5rem;
-    padding-block-start: 8rem;
-    padding-inline: 1.25rem;
     background-color: g.$color-warm-grey-100;
+    padding: 5rem 1.5rem 2.5rem 6rem;
+    overflow: scroll;
+
+    section {
+        width: 100%;
+        max-width: g.$max-width;
+        display: flex;
+        flex-flow: row wrap;
+        gap: 1.5rem;
+    }
 }
 
-.sub__menu {
-    width: 100%;
+.menu__aside {
+    position: fixed;
+    padding: 2rem 1rem;
+    top: 50px;
+    height: 100vh;
     border-top: g.$border-default;
-    border-bottom: g.$border-default;
-    display: flex;
-    align-items: center;
+    border-right: g.$border-default;
     background-color: g.$color-warm-grey-200;
 
     a {
-        display: inline-block;
-        position: relative;
-        padding: 1.15rem 0.75rem 0.35rem;
-        cursor: pointer;
-        height: 100%;
-
-        &::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            transform-origin: right;
-            transform: scaleX(0);
-            transition: transform .1s ease-in-out;
-        }
-
-        &:hover::before {
-            transform-origin: left;
-            transform: scaleX(1);
-        }
-
         div {
-            display: flex;
-            align-items: center;
             position: relative;
+            display: grid;
+            place-content: center;
+            width: 30px;
+            height: 30px;
+            margin-block-end: 1.5rem;
 
             &::after {
                 content: attr(data-count);
@@ -63,9 +46,8 @@
                 height: 18px;
                 background-color: g.$color-rich-black;
                 color: white;
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
+                display: grid;
+                place-content: center;
                 border-radius: 50%;
                 font-family: g.$font-base;
                 font-size: 0.625rem;
@@ -75,13 +57,10 @@
             /* Link Icon Wrapper */
             span:first-of-type {
                 overflow: hidden;
-                width: 24px;
-                height: 30px;
 
                 &[data-icon="recipes"] svg {
                     position: relative;
-                    top: -2px;
-                    left: -2px;
+
                 }
 
                 &[data-icon="bookmarks"] svg {
@@ -92,7 +71,7 @@
             }
 
             /* Link Icon Label */
-            span:last-of-type {
+            &+span {
                 font-size: clamp(0.75rem, 4vw, 1.35rem);
                 text-transform: capitalize;
                 font-family: g.$font-base;
