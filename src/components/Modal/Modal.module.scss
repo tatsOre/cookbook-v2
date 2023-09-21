@@ -1,12 +1,12 @@
 @use '../../styles/globals.module.scss' as g;
 
 .modal__wrapper {
-    //background-color: g.$color-white;
+    background-color: g.$color-white;
     width: clamp(450px, 40%, 85%);
     padding: 0.5rem;
-    //color: g.$color-rich-black;
+    color: g.$color-rich-black;
 
-    header {
+    div:first-of-type {
         padding: 1rem;
 
         h2 {
@@ -21,7 +21,7 @@
         }
     }
 
-    div {
+    div:last-of-type {
         display: flex;
         gap: 0.5rem;
 
@@ -30,12 +30,12 @@
             background-color: transparent;
             padding-block: 1rem;
             text-transform: uppercase;
-            @include g.overline($fw: 600);
+
 
             &:first-of-type {
                 border: g.$border-default;
             }
-    
+
             &:last-of-type {
                 color: tomato;
                 border: 1px solid tomato;

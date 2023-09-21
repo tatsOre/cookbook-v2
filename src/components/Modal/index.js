@@ -11,10 +11,10 @@ function Modal(props) {
         <InPortal id="portal-container">
             <Backdrop>
                 <div className={styles.modal__wrapper}>
-                    <header>
+                    <div>
                         <h2>{heading}</h2>
                         {children}
-                    </header>
+                    </div>
 
                     <div>
                         <button onClick={onCancel}>Cancel</button>
