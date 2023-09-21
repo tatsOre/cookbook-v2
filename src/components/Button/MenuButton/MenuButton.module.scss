@@ -1,7 +1,10 @@
 @use '../../../styles/globals.module.scss' as g;
 
 .button__menu {
-    position: relative;
+    width: 55px;
+    height: 100%;
+    display: grid;
+    place-content: center;
 
     &--bar {
         $duration: 200ms;

@@ -14,13 +14,11 @@ function RecipeCard({ recipe, onPublish, onDelete }) {
     const date = getRecipeDate(createdAt, updatedAt)
 
     return (
-        <article className={styles.recipe__card}>
+        <article className={cx([styles.card, styles.recipe__card])}>
             <div className={styles['card__controls--box']}>
                 <PublishRecipe recipe={recipe} onPublish={onPublish} />
 
-                <Link
-                    href={`/edit/${id}`}
-                    className={cx([styles['card__controls--edit'], styles.card__badge])}>
+                <Link href={`/edit/${id}`} data-action="edit">
                     <IconEdit strokeWidth={1.5} />
                 </Link>
 

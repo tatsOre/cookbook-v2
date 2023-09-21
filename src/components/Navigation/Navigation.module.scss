@@ -2,11 +2,33 @@
 
 .nav__bar {
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     align-items: center;
     width: 100%;
     height: 100%;
     background-color: g.$color-white;
     border-top: g.$border-default;
     border-bottom: g.$border-default;
+
+    &>button {
+        border-right: g.$border-default;
+    }
+
+    /* All links and buttons in addition to the logo and user menu: */
+    div {
+        height: 100%;
+        margin-left: auto;
+
+        a {
+            display: grid;
+            place-content: center;
+        }
+
+        a,
+        button {
+            height: 100%;
+            padding-inline: 1.5rem;
+            border-left: g.$border-default;
+        }
+    }
 }

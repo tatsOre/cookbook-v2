@@ -23,7 +23,7 @@ function PublishRecipe({ recipe, onPublish }) {
     const onPublishClick = () => trigger()
 
     return (
-        <Button data-info="publish" onClick={onPublishClick} disabled={isMutating}>
+        <Button data-action="publish" onClick={onPublishClick} disabled={isMutating}>
             {isMutating
                 ? <IconLoader size={20} />
                 : <span>Make {recipe.public ? 'Private' : 'Public'}</span>}

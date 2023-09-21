@@ -2,7 +2,7 @@ import React from 'react'
 import useSWRMutation from 'swr/mutation'
 import { fetcher } from '@/pages/_app'
 import { IconBookmark } from '@/components/Icon'
-import UnstyledButton from '@/components/Button/UnstyledButton'
+import { IconButton } from '@/components/Button'
 import { default as PATHS } from '../../../../config'
 
 function BookmarkRecipe({ recipe, onUpdateFavorites, className }) {
@@ -22,16 +22,16 @@ function BookmarkRecipe({ recipe, onUpdateFavorites, className }) {
     const onUpdateFavoritesClick = () => trigger()
 
     return (
-        <UnstyledButton
+        <IconButton
             aria-checked="true"
             ariaLabel="Delete from your favorites"
+            data-action="bookmark"
             role="switch"
             className={className}
             onClick={onUpdateFavoritesClick}
             disabled={isMutating}
-        >
-            <IconBookmark />
-        </UnstyledButton>
+            icon={<IconBookmark />}
+        />
     )
 }
 

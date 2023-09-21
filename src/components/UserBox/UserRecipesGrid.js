@@ -3,8 +3,9 @@ import Link from 'next/link'
 import LoaderOverlay from '../Loader/LoaderOverlay'
 import RecipeCard from '@/components/Card/RecipeCard'
 import { getRandomCardPattern } from '../Card/Card.helpers'
-
 import { default as PATHS } from '../../../config'
+
+import styles from './UserBox.module.scss'
 
 function UserRecipesGrid({ mutateUser }) {
     const [recipes, setRecipes] = React.useState([])
@@ -70,7 +71,11 @@ function UserRecipesGrid({ mutateUser }) {
         </div>
     )
 
-    return content?.length ? content : fallback
+    return (
+        <section data-section="user-recipes" className={styles.cards__section}>
+            {content?.length ? content : fallback}
+        </section>
+    )
 }
 
 export default UserRecipesGrid

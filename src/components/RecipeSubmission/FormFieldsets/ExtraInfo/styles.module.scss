@@ -15,21 +15,17 @@
         @include t.body($fs: g.$font-size-15);
     }
 
-    // File input for touchscreen devices:
-
-
     .draggable__input {
         width: 250px;
         height: 250px;
     }
 
+    // File input for touchscreen devices:
     .file__input {
-        display: flex;
-        align-items: center;
-        margin-block: 1rem;
-        padding: 0.75rem;
-        background-color: gray;
-        color: white;
+        display: inline-block;
+        padding: 1rem;
+        background-color: g.$color-accent-yellow;
+        color: g.$color-rich-black;
 
         input[type="file"] {
             @include g.visually--hidden;
@@ -69,7 +65,7 @@
         }
     }
 
-    & + section {
+    &+section {
         margin-block-start: 2.5rem;
     }
 }

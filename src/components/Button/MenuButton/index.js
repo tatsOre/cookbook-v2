@@ -17,12 +17,12 @@ function MenuButton({ open = false, handleClick, ...rest }) {
             onClick={onClick}
             {...rest}
         >
-            <div
+            <span
                 className={cx([
                     styles['button__menu--bar'], active && styles.animate
                 ])}
             >
-            </div>
+            </span>
         </UnstyledButton>
     )
 }

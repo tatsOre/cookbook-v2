@@ -2,12 +2,13 @@ import React from 'react'
 import Link from 'next/link'
 import { BookmarkRecipe } from './Actions'
 import { CardInfo, CardTag } from './CardElements'
+import cx from '../utils/cx'
 
-import styles from './CardB.module.scss'
+import styles from './Card.module.scss'
 
 function FavoriteCard({ recipe, onUpdateFavorites }) {
     return (
-        <article className={styles.recipe__card}>
+        <article className={cx([styles.card, styles.favorite__card])}>
             <CardTag data={recipe} />
 
             <Link href={`/recipes/${recipe._id}`}>
@@ -18,7 +19,6 @@ function FavoriteCard({ recipe, onUpdateFavorites }) {
 
             <div className={styles['card__controls--base']}>
                 <BookmarkRecipe
-                    className={styles['card__control--bookmark']}
                     recipe={recipe}
                     onUpdateFavorites={onUpdateFavorites}
                 />

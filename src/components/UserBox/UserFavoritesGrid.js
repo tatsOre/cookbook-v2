@@ -2,8 +2,9 @@ import React from 'react'
 import LoaderOverlay from '../Loader/LoaderOverlay'
 import FavoriteCard from '../Card/FavoriteCard'
 import { getRandomCardPattern } from '../Card/Card.helpers'
-
 import { default as PATHS } from '../../../config'
+
+import styles from './UserBox.module.scss'
 
 /**
  * This structure applies for User Favs.
@@ -69,7 +70,11 @@ function UserFavoritesGrid({ mutateUser }) {
         </div>
     )
 
-    return content?.length ? content : fallback
+    return (
+        <section data-section="favorites" className={styles.cards__section}>
+            {content?.length ? content : fallback}
+        </section>
+    )
 }
 
 export default UserFavoritesGrid

@@ -80,19 +80,27 @@
             position: relative;
 
             span {
-                background-color: g.$color-white;
+                background-color: g.$color-warm-grey-100;
                 padding-inline: 1rem;
             }
 
+            &::before,
             &::after {
                 position: absolute;
                 content: "";
                 height: 1px;
-                width: 100%;
+                width: 45%;
                 top: 50%;
-                left: 0;
+
                 background-color: g.$color-warm-grey-400;
-                z-index: -1;
+            }
+
+            &::before {
+                right: 0;
+            }
+
+            &::after {
+                left: 0;
             }
         }
 

@@ -11,7 +11,7 @@ function NavBar({ className, children }) {
         <nav className={cx([className, styles.nav__bar])}>
             {user && <MenuButton />}
             <Logo />
-            {children}
+            <div>{children}</div>
         </nav>
     )
 }

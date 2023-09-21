@@ -43,12 +43,7 @@ function Layout({ children, user }) {
                     )
                 })}
             </div>
-            <main>
-                <section className={styles.cards__section}>
-                    {children}
-                </section>
-            </main>
-
+            <main>{children}</main>
         </React.Fragment>
     )
 }
