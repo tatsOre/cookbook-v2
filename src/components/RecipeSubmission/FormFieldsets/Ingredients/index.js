@@ -4,18 +4,20 @@ import Alert from '@/components/Alert'
 import { Button, UnstyledButton } from '@/components/Button'
 import DraggableItemsList from '../shared/DraggableList'
 import IngredientInput from './IngredientInput'
+import { IconAlertCircle, IconEdit } from '@/components/Icon'
 import { getIngredientLabel } from '@/components/RecipeView/RecipeView.helpers'
 import { default as FIELDS_ATTRIBUTES, RECIPE_SCHEMA } from '../../constants'
 
 import styles from './Ingredients.module.scss'
-import { IconEdit } from '@/components/Icon'
 
 function IngredientsFieldset() {
     const {
         INGREDIENTS: { NAME, RULES }
     } = FIELDS_ATTRIBUTES
 
-    const { control, formState: { errors }, watch } = useFormContext()
+    const {
+        control, formState: { errors, dirtyFields }, watch
+    } = useFormContext()
 
     const { fields, append, remove, move, update } = useFieldArray({
         control, name: NAME, rules: {
@@ -40,7 +42,10 @@ function IngredientsFieldset() {
 
     const onToggleEditMode = () => setModeEditAll(prev => !prev)
 
-    const content = ingredients.map((item, index) => {
+    // Has dirtyFields.ingredients.[0].name been touched?
+    const isDirty = dirtyFields[NAME]?.[0]?.["name"]
+
+    const content = fields.map((item, index) => {
         return (
             <li key={item._id || index}>
                 {activeField.index === index ?
@@ -71,13 +76,17 @@ function IngredientsFieldset() {
 
     return (
         <React.Fragment>
-            {(ingredients.length > 1 || modeEditAll) && (
+            {errors[NAME]?.root || (!fields.length && isDirty) ? (
+                <Alert appearance="danger" icon={<IconAlertCircle />}>
+                    {errors[NAME]?.root.message || RULES.REQUIRED}
+                </Alert>
+            ) : null}
+
+            {fields.length > 0 && (
                 <div className={styles['edit__all--wrapper']}>
                     <p>Tap "Edit All" to organize or delete items.</p>
-                    <UnstyledButton
-                        disabled={activeField.active}
-                        onClick={onToggleEditMode}
-                    >
+
+                    <UnstyledButton onClick={onToggleEditMode} >
                         {modeEditAll ? 'Done' : 'Edit All'}
                     </UnstyledButton>
                 </div>
@@ -118,13 +127,3 @@ function IngredientsFieldset() {
 }
 
 export default IngredientsFieldset
-
-/**
-            {errors?.[NAME]?.root || !content?.length ? (
-                <Alert
-                    appearance="danger"
-                    variant='light'
-                    title={errors[NAME]?.root.message || RULES.REQUIRED}
-                />
-            ) : null}
- */

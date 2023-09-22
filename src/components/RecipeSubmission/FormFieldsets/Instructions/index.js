@@ -4,7 +4,7 @@ import Alert from '@/components/Alert'
 import { Button, UnstyledButton } from '@/components/Button'
 import InstructionInput from './InstructionInput'
 import DraggableStepsList from '../shared/DraggableList'
-import { IconEdit } from '@/components/Icon'
+import { IconAlertCircle, IconEdit } from '@/components/Icon'
 import { default as FIELDS_ATTRIBUTES } from '../../constants'
 
 import styles from './Instructions.module.scss'
@@ -14,7 +14,9 @@ function InstructionsFieldset() {
         INSTRUCTIONS: { NAME, RULES, TEXT_ATTRS },
     } = FIELDS_ATTRIBUTES
 
-    const { control, formState: { errors, isDirty }, watch } = useFormContext()
+    const {
+        control, formState: { errors, dirtyFields }, watch
+    } = useFormContext()
 
     const { fields, append, remove, move, update } = useFieldArray({
         control, name: NAME, rules: {
@@ -38,6 +40,9 @@ function InstructionsFieldset() {
     }, [fields.length])
 
     const onToggleEditMode = () => setModeEditAll(prev => !prev)
+
+    // Has dirtyFields.instructions.[0].text been touched?
+    const isDirty = dirtyFields[NAME]?.[0]?.[TEXT_ATTRS.NAME]
 
     const content = fields.map((step, index) => {
         /** step id comes from useFieldArray.  */
@@ -72,20 +77,16 @@ function InstructionsFieldset() {
     return (
         <React.Fragment>
             {errors[NAME]?.root || (!fields.length && isDirty) ? (
-                <Alert
-                    appearance="danger"
-                    variant='light'
-                    title={errors[NAME]?.root.message || RULES.REQUIRED}
-                />
+                <Alert appearance="danger" icon={<IconAlertCircle />}>
+                    {errors[NAME]?.root.message || RULES.REQUIRED}
+                </Alert>
             ) : null}
 
-            {(fields.length > 1 || modeEditAll) && (
+            {fields.length > 0 && (
                 <div className={styles['edit__all--wrapper']}>
                     <p>Tap "Edit All" to organize or delete steps.</p>
-                    <UnstyledButton
-                        disabled={activeField.active}
-                        onClick={onToggleEditMode}
-                    >
+
+                    <UnstyledButton onClick={onToggleEditMode} >
                         {modeEditAll ? 'Done' : 'Edit All'}
                     </UnstyledButton>
                 </div>
@@ -114,7 +115,8 @@ function InstructionsFieldset() {
                             disabled={activeField.active}
                             onClick={() => setActiveField({ index: -1, active: true })}
                             className={styles['add__new--button']}
-                        >+ Add a step
+                        >
+                            + Add a step
                         </Button>
                     }
                 </>}

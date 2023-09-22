@@ -3,7 +3,6 @@
 .cards__section {
     width: 100%;
     padding: 1rem 1rem 2rem 4.5rem;
-    overflow: scroll;
     display: flex;
 
     &[data-section="user-recipes"] {
@@ -16,10 +15,11 @@
         gap: 1rem;
 
         article {
-            height: 220px;
+            height: 230px;
             width: calc(50% - 0.5rem);
-            
+
             @media only screen and (min-width: 600px) {
+                height: 220px;
                 width: 200px;
             }
         }

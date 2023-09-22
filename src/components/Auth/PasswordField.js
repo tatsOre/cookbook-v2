@@ -1,8 +1,9 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
+import { IconButton } from "../Button"
+import { IconEye, IconEyeOff } from "../Icon"
 import { TextInput } from "../FormInput"
 import PasswordStrengthMeter from "../PasswordStrengthMeter"
-import { UnstyledButton } from "../Button"
 
 import styles from './styles.module.scss'
 
@@ -31,11 +32,12 @@ function PasswordField({ mode, attrs: PASSWORD }) {
                     setPassword(ev.target.value)
                 })}
             />
-            <UnstyledButton
-                data-info="password-show"
-                onClick={() => setShow(prev => !prev)}>
-                {show ? 'hide' : 'show'}
-            </UnstyledButton>
+
+            <IconButton
+                data-action="show-password"
+                icon={show ? <IconEyeOff size={20} /> : <IconEye size={20} />}
+                onClick={() => setShow(prev => !prev)}
+            />
 
             {mode === 'SIGNUP' ? (
                 <PasswordStrengthMeter

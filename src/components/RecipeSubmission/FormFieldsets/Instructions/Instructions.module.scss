@@ -8,7 +8,6 @@ div.edit__all--wrapper {
 
     button {
         margin-block: 1.25rem;
-
         @include t.overline($fw: 700)
     }
 }

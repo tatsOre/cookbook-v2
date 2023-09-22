@@ -1,22 +1,32 @@
 @use '../../styles/globals.module.scss' as g;
+@use '../../styles/typography' as t;
 
 .alert {
     width: 100%;
     padding: 0.5rem 1rem;
     position: relative;
-
-    &__heading,
-    &__body {
-       
-    }
-
+   
     &__heading {
         font-weight: bold;
         display: inline-block;
+        margin-block-end: 0.25rem;
     }
 
     &__body {
-        margin-block-start: 0.25rem;
+        @include t.body($fs: t.$font-size-15);
+        display: flex;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    &__icon {
+        width: 20px;
+        height: 20px;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
     }
 
     a {
@@ -24,81 +34,57 @@
         text-decoration: underline;
     }
 
-    button {
+    [data-action="close-alert"] {
         position: absolute;
-        top: 0.7rem;
-        right: 1rem;
+        top: 0;
+        right: 0;
     }
 
     &--filled#{&}--danger {
         color: g.$color-white;
         background-color: g.$color-danger-base;
-        border-color: g.$color-danger-base;
     }
 
     &--outline#{&}--danger {
-        background-color: g.$color-white;
-        border-color: g.$color-danger-base;
-
-        .alert__heading {
-            color: g.$color-danger-base;
-        }
+        color: g.$color-danger-base;
+        border: 1px solid g.$color-danger-base;
     }
 
     &--light#{&}--danger {
+        color: g.$color-danger-base;
         background-color: g.$color-danger-shade;
-        border-color: g.$color-danger-base;
-
-        .alert__heading {
-            color: g.$color-danger-base;
-        }
+        border: 1px solid g.$color-danger-base;
     }
 
     &--filled#{&}--success {
         color: g.$color-white;
         background-color: g.$color-success-base;
-        border-color: g.$color-success-base;
     }
 
     &--outline#{&}--success {
-        background-color: g.$color-white;
-        border-color: g.$color-success-base;
-
-        .alert__heading {
-            color: g.$color-success-base;
-        }
+        color: g.$color-success-base;
+        border: 1px solid g.$color-success-base;
     }
 
     &--light#{&}--success {
         background-color: g.$color-success-shade;
-        border-color: g.$color-success-shade;
-
-        .alert__heading {
-            color: g.$color-success-base;
-        }
+        color: g.$color-success-base;
+        border: 1px solid g.$color-success-base;
     }
 
     &--filled#{&}--info {
         color: g.$color-white;
         background-color: g.$color-info-base;
-        border-color: g.$color-info-base;
     }
 
     &--outline#{&}--info {
-        background-color: g.$color-white;
-        border-color: g.$color-info-base;
-
-        .alert__heading {
-            color: g.$color-info-base;
-        }
+        color: g.$color-info-base;
+        border: 1px solid g.$color-info-base;
     }
 
     &--light#{&}--info {
         background-color: g.$color-info-shade;
-        border-color: g.$color-info-shade;
-
-        .alert__heading {
-            color: g.$color-info-base;
-        }
+        color: g.$color-info-shade;
+        border: 1px solid g.$color-info-base;
     }
 }

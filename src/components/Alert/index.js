@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import UnstyledButton from '../Button/UnstyledButton'
+import { IconButton } from '../Button'
 import { IconCross } from '../Icon'
 import cx from '@/components/utils/cx'
 import { ALERT_APPEARANCES, ALERT_VARIANTS } from './Alert.constants'
@@ -8,7 +8,7 @@ import { ALERT_APPEARANCES, ALERT_VARIANTS } from './Alert.constants'
 import styles from './Alert.module.scss'
 
 function Alert(props) {
-    const [_, setOpen] = React.useState(true)
+    const [open, setOpen] = React.useState(true)
 
     const {
         className,
@@ -37,7 +37,7 @@ function Alert(props) {
         styles[`alert--${variant}`],
     ])
 
-    return (
+    return (open && (
         <div
             role="alert"
             aria-labelledby={label}
@@ -45,24 +45,26 @@ function Alert(props) {
             className={classes}
             {...rest}
         >
-            {icon ? (
-                <span className={styles.alert__icon}>{icon}</span>
-            ) : null}
-            {title ? (
-                <span className={styles.alert__heading} id={label}>{title}</span>
-            ) : null}
-
-            <p id={describedby} className={styles.alert__body}>{children}</p>
-
             {removable ? (
-                <UnstyledButton
+                <IconButton
+                    data-action="close-alert"
                     ariaLabel={closeLabel}
                     onClick={onCloseHandler}
-                    children={<IconCross size={18} />}
+                    icon={<IconCross size={18} />}
                 />
             ) : null}
+
+            {title ? (
+                <span className={styles.alert__heading} id={label}>
+                    {title}</span>
+            ) : null}
+
+            <p id={describedby} className={styles.alert__body}>
+                {icon && <span className={styles.alert__icon}>{icon}</span>}
+                {children}
+            </p>
         </div>
-    )
+    ))
 }
 
 Alert.defaultProps = {

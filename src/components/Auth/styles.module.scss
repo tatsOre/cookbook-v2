@@ -47,24 +47,28 @@
             position: relative;
 
             /**  Hide/Show Password Button: */
-            button {
+            [data-action="show-password"] {
                 position: absolute;
-                top: 2rem;
                 right: 0.5rem;
-                padding: 0.5rem;
+                top: 1.45rem;
                 z-index: 1;
                 background-color: g.$color-white;
-                font-size: t.$font-size-12;
-                font-weight: 600;
+
+                svg {
+                    stroke: g.$color-smoke-gray;
+                    stroke-width: 1.5px;
+                }
 
                 &:hover {
-                    text-decoration: underline;
+                    svg {
+                        stroke: currentColor;
+                    }
                 }
             }
         }
 
         /** Continue and Login/Create Acc Button */
-        button:not([data-info="password-show"]) {
+        button:not([data-action="show-password"]) {
             margin-block: 1.25rem;
         }
     }
