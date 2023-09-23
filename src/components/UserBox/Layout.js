@@ -1,17 +1,20 @@
 import React from 'react'
 import Link from 'next/link'
+import Header from '../Header'
 import { IconBookmark, IconChefHat, IconShoppingList } from '../Icon'
-import NavBar from '../Header'
 
 import styles from './UserBox.module.scss'
 
 function Layout({ children, user }) {
     return (
         <React.Fragment>
-            <header>
-                <NavBar />
-            </header>
+            <Header></Header>
+            <main>{children}</main>
+        </React.Fragment>
+    )
+}
 
+{/*
             <div className={styles.menu__aside}>
                 {[{
                     href: '/recipe-box',
@@ -38,16 +41,12 @@ function Layout({ children, user }) {
                             <div data-count={count < 100 ? count : ':)'}>
                                 <span data-icon={data}>{icon}</span>
                             </div>
-                            {/** <span>{label}</span> */}
-                        </Link>
-                    )
-                })}
-            </div>
-            <main>{children}</main>
-        </React.Fragment>
-    )
-}
-/**
- 
- */
+                            </Link>
+                            )
+                        })}
+                    </div>
+        */}
+
+{/** <span>{label}</span> */ }
+
 export default Layout

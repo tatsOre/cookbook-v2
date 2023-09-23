@@ -31,6 +31,7 @@ function BookmarkRecipe({ recipe, onUpdateFavorites, className }) {
             onClick={onUpdateFavoritesClick}
             disabled={isMutating}
             icon={<IconBookmark />}
+            small
         />
     )
 }

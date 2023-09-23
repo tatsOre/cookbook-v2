@@ -1,5 +1,5 @@
 export default function Bookmark({
-    size = 32,
+    size = 28,
     color = 'currentColor',
     ...restProps
 }) {

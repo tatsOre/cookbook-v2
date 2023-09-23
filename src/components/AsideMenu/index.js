@@ -1,5 +1,7 @@
+import React from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
+import useClickOutside from '@/lib/useClickOutside'
 import useUser from '@/lib/useUser'
 import { IconBookmark, IconChecklist, IconChefHat, IconShoppingList } from '../Icon'
 import { default as PATHS } from '../../../config'
@@ -9,6 +11,10 @@ import styles from './AsideMenu.module.scss'
 
 function AsideMenu({ isOpen, closeMenu }) {
     const { user, mutate } = useUser()
+
+    const menuRef = React.useRef()
+
+    useClickOutside(menuRef, closeMenu)
 
     const logout = async () => {
         const response = await fetch(PATHS.LOGOUT,
@@ -23,7 +29,12 @@ function AsideMenu({ isOpen, closeMenu }) {
     }
 
     return (
-        <div className={cx([styles.menu__aside, isOpen && styles['menu__aside--open']])}>
+        <div
+            ref={menuRef}
+            className={cx([
+                styles.menu__aside, isOpen && styles['menu__aside--open']])
+            }
+        >
             <nav>
                 <ul>
                     {[{

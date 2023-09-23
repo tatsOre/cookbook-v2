@@ -17,12 +17,10 @@ function FavoriteCard({ recipe, onUpdateFavorites }) {
                 </CardInfo>
             </Link>
 
-            <div className={styles['card__controls--base']}>
-                <BookmarkRecipe
-                    recipe={recipe}
-                    onUpdateFavorites={onUpdateFavorites}
-                />
-            </div>
+            <BookmarkRecipe
+                recipe={recipe}
+                onUpdateFavorites={onUpdateFavorites}
+            />
         </article>
     )
 }

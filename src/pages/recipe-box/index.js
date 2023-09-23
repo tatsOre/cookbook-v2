@@ -4,8 +4,8 @@ import useUser from '@/lib/useUser'
 import Layout from '@/components/UserBox/Layout'
 import LoaderOverlay from '@/components/Loader/LoaderOverlay'
 // todo: fix imports:
+// It has been decided to separate the pages to unmount the floating menu.
 import UserRecipesGrid from '@/components/UserBox/UserRecipesGrid'
-import UserFavoritesGrid from '@/components/UserBox/UserFavoritesGrid'
 
 function Page() {
     const { user, loading, loggedOut, mutate } = useUser()
@@ -20,19 +20,9 @@ function Page() {
 
     if (loggedOut) return "Redirecting..."
 
-    const route = router.asPath.split('/')
-    const routeKey = route[route.length - 1]
-
-    const grids = {
-        "recipe-box": UserRecipesGrid,
-        "favorites": UserFavoritesGrid
-    }
-
-    const Component = grids[routeKey]
-
     return (
         <Layout user={user}>
-            <Component mutateUser={mutate}/>
+            <UserRecipesGrid mutateUser={mutate}/>
         </Layout>
     )
 }
