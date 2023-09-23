@@ -69,7 +69,7 @@ function Alert(props) {
 
 Alert.defaultProps = {
     closeLabel: 'close alert',
-    variant: ALERT_VARIANTS.FILLED,
+    variant: ALERT_VARIANTS.LIGHT,
     appearance: ALERT_APPEARANCES.INFO
 }
 

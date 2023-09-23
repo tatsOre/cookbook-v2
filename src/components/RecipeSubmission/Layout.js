@@ -1,6 +1,6 @@
-import Marquee from "../Marquee"
-import NavBar from "../Navigation"
 import Footer from "../Footer"
+import Header from "../Header"
+import Marquee from "../Marquee"
 import { UnstyledButton } from "../Button"
 
 function Layout({ children, title, mode }) {
@@ -8,13 +8,11 @@ function Layout({ children, title, mode }) {
 
     return (
         <>
-            <header>
-                <NavBar>
-                    <UnstyledButton form="submit-recipe-form" type='submit' >
-                        Save
-                    </UnstyledButton>
-                </NavBar>
-            </header>
+            <Header>
+                <UnstyledButton form="submit-recipe-form" type='submit' >
+                    Save
+                </UnstyledButton>
+            </Header>
 
             <main>
                 <Marquee text={heading} />

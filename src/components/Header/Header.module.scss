@@ -1,21 +1,28 @@
 @use '../../styles/globals.module.scss' as g;
+@use '../../styles/typography' as t;
 
-.nav__bar {
+.header {
+    width: 100%;
+    height: 55px;
+    position: fixed;
+    z-index: 10;
+
     display: flex;
     flex-flow: row wrap;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+
     background-color: g.$color-white;
     border-top: g.$border-default;
     border-bottom: g.$border-default;
 
-    &>button {
+    /* Menu Button: */
+    &>button[aria-label$="menu"] {
         border-right: g.$border-default;
     }
 
+    [data-info="logo"] {}
+
     /* All links and buttons in addition to the logo and user menu: */
-    div {
+    div.children__section {
         height: 100%;
         margin-left: auto;
 
@@ -29,6 +36,12 @@
             height: 100%;
             padding-inline: 1.5rem;
             border-left: g.$border-default;
+            font-family: t.$font-accent;
+            font-weight: 500;
+
+            &:hover {
+                background-color: g.$color-accent-yellow;
+            }
         }
     }
 }

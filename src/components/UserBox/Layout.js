@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { IconBookmark, IconChefHat, IconShoppingList } from '../Icon'
-import NavBar from '../Navigation'
+import NavBar from '../Header'
 
 import styles from './UserBox.module.scss'
 

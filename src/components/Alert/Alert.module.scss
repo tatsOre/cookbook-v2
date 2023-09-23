@@ -51,9 +51,10 @@
     }
 
     &--light#{&}--danger {
+        padding: 0;
         color: g.$color-danger-base;
-        background-color: g.$color-danger-shade;
-        border: 1px solid g.$color-danger-base;
+        //background-color: g.$color-danger-shade;
+        //border: 1px solid g.$color-danger-base;
     }
 
     &--filled#{&}--success {
@@ -67,9 +68,10 @@
     }
 
     &--light#{&}--success {
+        padding: 0;
         background-color: g.$color-success-shade;
-        color: g.$color-success-base;
-        border: 1px solid g.$color-success-base;
+        //color: g.$color-success-base;
+        //border: 1px solid g.$color-success-base;
     }
 
     &--filled#{&}--info {
@@ -83,8 +85,9 @@
     }
 
     &--light#{&}--info {
+        padding: 0;
         background-color: g.$color-info-shade;
-        color: g.$color-info-shade;
-        border: 1px solid g.$color-info-base;
+        //color: g.$color-info-shade;
+        //border: 1px solid g.$color-info-base;
     }
 }

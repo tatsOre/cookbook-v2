@@ -4,7 +4,7 @@ import Logo from "../Logo"
 function Layout({ children }) {
     return (
         <>
-            <header style={{ display: 'flex', justifyContent: 'center' }}>
+            <header style={{ position: 'fixed', display: 'flex', justifyContent: 'center', height: '55px', width: '100%' }}>
                 <Logo />
             </header>
 

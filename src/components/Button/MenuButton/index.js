@@ -1,25 +1,18 @@
-import React from "react"
 import UnstyledButton from "../UnstyledButton"
 import cx from "@/components/utils/cx"
 import styles from './MenuButton.module.scss'
 
-/** Will handle parents state: Nav, Asides, etc */
-
-function MenuButton({ open = false, handleClick, ...rest }) {
-    const [active, setActive] = React.useState(open)
-
-    const onClick = () => setActive(state => !state)
-
+function MenuButton({ isOpen, toggleState, ...rest }) {
     return (
         <UnstyledButton
             className={styles.button__menu}
-            ariaLabel={active ? 'close menu' : 'open menu'}
-            onClick={onClick}
+            ariaLabel={isOpen ? 'close menu' : 'open menu'}
+            onClick={toggleState}
             {...rest}
         >
             <span
                 className={cx([
-                    styles['button__menu--bar'], active && styles.animate
+                    styles['button__menu--bar'], isOpen && styles.animate
                 ])}
             >
             </span>

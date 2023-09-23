@@ -1,15 +1,14 @@
 import React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Button, MenuButton } from "../Button"
+import useUser from "@/lib/useUser"
+import { Button } from "../Button"
 import CheckboxInput from "../Checkbox"
-import Logo from "../Logo"
-import NavBar from "../Navigation"
+import Header from "../Header"
 import { getIngredientLabel, getRecipeDate } from "./RecipeView.helpers"
 import cx from "../utils/cx"
 
 import styles from './styles.module.scss'
-import useUser from "@/lib/useUser"
 
 function RecipeShowPhoto({ photo }) {
     return (
@@ -119,11 +118,9 @@ function RecipeView({ data }) {
 
     return (
         <>
-            <header>
-                <NavBar>
-                    {!user && <Link href="/login">Login</Link>}
-                </NavBar>
-            </header>
+            <Header>
+                {!user && <Link href="/login">Login</Link>}
+            </Header>
 
             <main>
                 <article

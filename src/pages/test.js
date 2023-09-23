@@ -30,7 +30,7 @@ import {
     IconVerticalEllipsis
 } from '@/components/Icon'
 
-import NavBar from '@/components/Navigation'
+import NavBar from '@/components/Header'
 
 import Head from 'next/head'
 import Link from 'next/link'
