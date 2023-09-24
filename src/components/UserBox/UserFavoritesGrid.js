@@ -11,7 +11,7 @@ import styles from './UserBox.module.scss'
  * I decided to remove swr because it was only being used once. 
  * TODO: client service to reduce boilerplate
  */
-function UserFavoritesGrid({ mutateUser }) {
+function UserFavoritesGrid() {
     const [favorites, setFavorites] = React.useState([])
     const [isLoading, setIsLoading] = React.useState(false)
     const [error, setError] = React.useState(null)
@@ -47,8 +47,6 @@ function UserFavoritesGrid({ mutateUser }) {
     const onUpdateFavorites = (id) => {
         const updated = favorites.filter(rec => rec._id !== id)
         setFavorites(updated)
-        /* Update NavBar: */
-        mutateUser()
     }
 
     const content = favorites.map((item) => {

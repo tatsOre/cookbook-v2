@@ -2,15 +2,16 @@
 @use '../../styles/typography' as t;
 
 .menu__aside {
-    position: fixed;
-    padding-block: 1rem 1.5rem;
-    box-shadow: 5px 5px 0 #99f2fb, 5px 0 0 #99f2fb;
-    border-right: 1px solid #1b4d7a;
-    border-bottom: 1px solid #1b4d7a;
-    background-color: #fff;
     width: 100%;
     max-width: 300px;
     max-height: none;
+    position: fixed;
+    padding-block: 1rem 1.5rem;
+    box-shadow: 5px 5px 0 g.$color-accent-blue,
+        5px 0 0 g.$color-accent-blue;
+    border-right: g.$border-default;
+    border-bottom: g.$border-default;
+    background-color: g.$color-white;
     overflow: visible;
     transition: left .2s ease;
     top: 55px;
@@ -25,11 +26,8 @@
         margin-block-end: 0.25rem;
 
         a {
-            display: flex;
-            align-items: flex-start;
-            padding: 1rem;
-            padding-block-end: 0.75rem;
 
+            /* Counter Wrapper*/
             div {
                 position: relative;
                 display: grid;
@@ -71,25 +69,29 @@
                     text-transform: capitalize;
                     font-family: g.$font-accent;
                     letter-spacing: 0px;
-                    font-stretch: 100%;
-                    font-weight: 400;
                     margin-inline-start: 0.5rem;
                     margin-block-start: 0.15rem;
                 }
             }
         }
 
+        a,
+        button {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.75rem;
+            padding-block-end: 0.75rem;
+            position: relative;
+        }
     }
 
     .logout {
-        position: relative;
-
         &::before {
             content: "";
             display: block;
-            margin: 16px 0.9rem 2.25rem;
+            margin: 1rem 0.9rem 2.25rem;
             height: 1px;
-            border-bottom: 4px dotted #d6d6d6;
+            border-bottom: 4px dotted g.$color-warm-grey-400;
         }
     }
 }

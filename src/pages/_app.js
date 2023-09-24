@@ -50,11 +50,15 @@ export default function MyApp(props) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <SWRConfig
-                value={{
-                    fetcher: fetcher,
-                    revalidateOnFocus: false
-                }}>
+            <SWRConfig value={{
+                fetcher: fetcher,
+                revalidateOnFocus: false,
+                onError: (error, key) => {
+                    if (error.status !== 401 && error.status !== 404 && error.status !== 404) {
+                        console.log({ Err: error.message, key })
+                    }
+                }
+            }}>
                 <ThemeContextProvider>
                     <WrappedApp {...props} />
                 </ThemeContextProvider>

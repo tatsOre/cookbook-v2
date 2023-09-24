@@ -7,6 +7,8 @@ function MenuButton({ isOpen, toggleState, ...rest }) {
         <UnstyledButton
             className={styles.button__menu}
             ariaLabel={isOpen ? 'close menu' : 'open menu'}
+            aria-haspopup="true"
+            aria-expanded={isOpen}
             onClick={toggleState}
             {...rest}
         >

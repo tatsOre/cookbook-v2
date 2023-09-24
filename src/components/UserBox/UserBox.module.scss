@@ -8,22 +8,12 @@
 
     &[data-section="user-recipes"] {
         flex-flow: row wrap;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     &[data-section="favorites"] {
         flex-flow: row wrap;
         gap: 1rem;
-
-        article {
-            height: 230px;
-            width: calc(50% - 0.5rem);
-
-            @media only screen and (min-width: 600px) {
-                height: 220px;
-                width: 200px;
-            }
-        }
     }
 }
 

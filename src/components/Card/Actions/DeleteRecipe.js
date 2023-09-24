@@ -2,8 +2,8 @@ import React from 'react'
 import useSWRMutation from 'swr/mutation'
 import { fetcher } from '@/pages/_app'
 import { IconLoader, IconTrash } from '@/components/Icon'
-import { IconButton } from '@/components/Button'
 import Modal from '@/components/Modal'
+import { IconButton } from '@/components/Button'
 import { default as PATHS } from '../../../../config'
 
 function DeleteRecipe({ recipe, onDelete }) {
@@ -46,7 +46,7 @@ function DeleteRecipe({ recipe, onDelete }) {
                 data-action="delete"
                 icon={isMutating
                     ? <IconLoader />
-                    : <IconTrash strokeWidth={1.5} />}
+                    : <IconTrash size={20} strokeWidth={1.5} />}
                 onClick={onDeleteClick}
                 disabled={isMutating}
             />

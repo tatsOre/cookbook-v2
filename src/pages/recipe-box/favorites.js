@@ -7,7 +7,7 @@ import LoaderOverlay from '@/components/Loader/LoaderOverlay'
 import UserFavoritesGrid from '@/components/UserBox/UserFavoritesGrid'
 
 function Page() {
-    const { user, loading, loggedOut, mutate } = useUser()
+    const { user, loading, loggedOut } = useUser()
     const router = useRouter()
 
     // if logged out, redirect to the homepage
@@ -21,7 +21,7 @@ function Page() {
 
     return (
         <Layout user={user}>
-            <UserFavoritesGrid mutateUser={mutate} />
+            <UserFavoritesGrid />
         </Layout>
     )
 }

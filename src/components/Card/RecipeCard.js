@@ -15,21 +15,20 @@ function RecipeCard({ recipe, onPublish, onDelete }) {
 
     return (
         <article className={cx([styles.card, styles.recipe__card])}>
-            <div className={styles['card__controls--box']}>
-                <PublishRecipe recipe={recipe} onPublish={onPublish} />
-
-                <Link href={`/edit/${id}`} data-action="edit">
-                    <IconEdit strokeWidth={1.5} />
-                </Link>
-
-                <DeleteRecipe recipe={recipe} onDelete={onDelete} />
-            </div>
-
             <Link href={`/recipes/${id}`}>
                 <CardInfo data={recipe}>
                     {date && <span data-info="date">{date}</span>}
                 </CardInfo>
             </Link>
+
+            <div className={styles['card__controls--box']}>
+                <Link href={`/edit/${id}`} data-action="edit">
+                    <IconEdit size={20} strokeWidth={1.5} />
+                </Link>
+                <DeleteRecipe recipe={recipe} onDelete={onDelete} />
+            </div>
+
+            <PublishRecipe recipe={recipe} onPublish={onPublish} />
         </article>
     )
 }

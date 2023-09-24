@@ -8,6 +8,7 @@ import { default as PATHS } from '../../../config'
 import cx from '../utils/cx'
 
 import styles from './AsideMenu.module.scss'
+import { UnstyledButton } from '../Button'
 
 function AsideMenu({ isOpen, closeMenu }) {
     const { user, mutate } = useUser()
@@ -74,7 +75,7 @@ function AsideMenu({ isOpen, closeMenu }) {
                     </li>
 
                     <li className={styles['logout']}>
-                        <button onClick={logout}>Logout</button>
+                        <UnstyledButton onClick={logout}>Logout</UnstyledButton>
                     </li>
                 </ul>
             </nav>
