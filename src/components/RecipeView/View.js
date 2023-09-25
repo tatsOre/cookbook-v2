@@ -1,15 +1,14 @@
 import React from "react"
 import Link from "next/link"
 import Image from "next/image"
-
+import useUser from "@/lib/useUser"
 import { Button } from "../Button"
 import CheckboxInput from "../Checkbox"
-import Header from "../Header"
+import Layout from "../Layout"
 import { getIngredientLabel, getRecipeDate } from "./RecipeView.helpers"
 import cx from "../utils/cx"
 
 import styles from './styles.module.scss'
-import useUser from "@/lib/useUser"
 
 function RecipeShowPhoto({ photo, title }) {
     return (
@@ -119,52 +118,50 @@ function RecipeView({ data }) {
         ))
 
     return (
-        <>
-            <Header>
-                {!user && <Link href="/login">Login</Link>}
-            </Header>
+        <Layout
+            headerExtraContent={!user && <Link href="/login">Login</Link>}
+        >
+            <article
+                className={styles['recipe__view--wrapper']}
+            >
+                <section data-info="header">
+                    <h1>{title}</h1>
+                    <p
+                        className={cx([
+                            styles.recipe__description,
+                            description.length > 240 && styles.with__dropcap])}
+                    >
+                        {description}
+                    </p>
+                    <div>
+                        {user?._id !== author?._id && author?.name && (
+                            <p>by <b>{author.name}</b></p>
+                        )}
+                        <p>{date}</p>
+                        {servings > 0 && <p>Serves {servings}</p>}
+                    </div>
+                    <RecipeShowTags categories={categories} cuisine={cuisine} />
+                    <RecipeShowPhoto photo={photo} title={title} />
+                </section>
 
-            <main>
-                <article
-                    className={styles['recipe__view--wrapper']}
-                >
-                    <section data-info="header">
-                        <h1>{title}</h1>
-                        <p
-                            className={cx([styles.recipe__description, description.length > 240 && styles.with__dropcap])}>
-                            {description}
-                        </p>
-                        <div>
-                            {user?._id !== author?._id && author?.name && (
-                                <p>by <b>{author.name}</b></p>
-                            )}
-                            <p>{date}</p>
-                            {servings > 0 && <p>Serves {servings}</p>}
-                        </div>
-                        <RecipeShowTags categories={categories} cuisine={cuisine} />
-                        <RecipeShowPhoto photo={photo} title={title} />
+                <section data-info="ingredients">
+                    <h2>Ingredients</h2>
+                    {ingredients?.length && <IngredientsSubmission items={ingredients} />}
+                </section>
+
+                <section data-info="instructions">
+                    <h2>Directions</h2>
+                    <ul>{instructionsContent}</ul>
+                </section>
+
+                {comments ? (
+                    <section data-info="extra-info">
+                        <h2>Cooking Notes:</h2>
+                        <p>{comments}</p>
                     </section>
-
-                    <section data-info="ingredients">
-                        <h2>Ingredients</h2>
-                        {ingredients?.length && <IngredientsSubmission items={ingredients} />}
-                    </section>
-
-                    <section data-info="instructions">
-                        <h2>Directions</h2>
-                        <ul>{instructionsContent}</ul>
-                    </section>
-
-                    {comments ? (
-                        <section data-info="extra-info">
-                            <h2>Cooking Notes:</h2>
-                            <p>{comments}</p>
-                        </section>
-                    ) : null}
-                </article>
-
-            </main>
-        </>
+                ) : null}
+            </article>
+        </Layout>
     )
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from "next/router"
 import useUser from '@/lib/useUser'
-import Layout from '@/components/UserBox/Layout'
+import Layout from '@/components/Layout'
 import LoaderOverlay from '@/components/Loader/LoaderOverlay'
 // todo: fix imports:
 // It has been decided to separate the pages to unmount the floating menu.
@@ -21,8 +21,8 @@ function Page() {
     if (loggedOut) return "Redirecting..."
 
     return (
-        <Layout user={user}>
-            <UserRecipesGrid mutateUser={mutate}/>
+        <Layout>
+            <UserRecipesGrid mutateUser={mutate} />
         </Layout>
     )
 }

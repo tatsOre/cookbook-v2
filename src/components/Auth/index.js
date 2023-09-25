@@ -11,6 +11,8 @@ import LoadingOverlay from "../Loader"
 import { default as PATHS } from '../../../config'
 import { default as AUTH_FIELDS_ATTRS } from "./Auth.constants"
 
+import styles from './styles.module.scss'
+
 const authReducerInitialState = {
     displayName: null,
     mode: 'SIGNUP',
@@ -91,7 +93,7 @@ function AuthorizationSubmission() {
     }
 
     return (
-        <section>
+        <section className={styles['auth__page--section']}>
             <h2>{state.heading}</h2>
 
             {status === STATUS.REJECTED ? (

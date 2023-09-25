@@ -71,7 +71,11 @@ function AsideMenu({ isOpen, closeMenu }) {
                     })}
 
                     <li>
-                        <Link href="/new">Create recipe</Link>
+                        <Link href="/new">Create Recipe</Link>
+                    </li>
+
+                    <li>
+                        <Link href="/account">My Account</Link>
                     </li>
 
                     <li className={styles['logout']}>

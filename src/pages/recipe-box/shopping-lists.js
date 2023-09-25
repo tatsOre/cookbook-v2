@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import useUser from '@/lib/useUser'
-import Layout from '@/components/UserBox/Layout'
+import Layout from '@/components/Layout'
 
 function Page() {
     const { user, loggedOut } = useUser()
@@ -15,7 +15,7 @@ function Page() {
     if (loggedOut) return "Redirecting..."
 
     return (
-        <Layout user={user}>
+        <Layout>
             <p><b> Soon :)</b></p>
         </Layout>
     )

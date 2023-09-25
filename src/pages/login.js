@@ -3,7 +3,7 @@ import Router from "next/router";
 import Head from 'next/head'
 import useUser from '@/lib/useUser'
 import AuthorizationSubmission from '@/components/Auth'
-import Layout from '@/components/Auth/Layout'
+import Layout from '@/components/Layout';
 
 function Page() {
     const { loggedOut } = useUser()
