@@ -24,10 +24,10 @@ export const getRecipeDate = (createdAt, updatedAt) => {
 export const getIngredientLabel = (data) => {
     const { quantity, fraction, measure, name, prepNote } = data
 
-    const quantityElement = quantity ? quantity + ' ' : ''
+    const quantityElement = quantity > 0 ? quantity + ' ' : ''
     const fractionElement = fraction?.label ? fraction?.label + ' ' : ''
     const measureElement = measure?.label
-        ? measure?.label + (quantity > 1 || (quantity && fractionElement) ? 's' : '') + ' '
+        ? measure?.label + (quantity > 1 || (quantityElement && fractionElement) ? 's' : '') + ' '
         : ''
     const nameElement = name + (prepNote ? ', ' : '')
 

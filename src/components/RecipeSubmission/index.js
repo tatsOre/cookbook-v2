@@ -46,7 +46,7 @@ function RecipeSubmission({ endpoint, data, mode }) {
         // If photo || photo changed:
         if (
             typeof values.photo !== 'string'
-            && (values.photo?.length > 0 || values.photo.size)
+            && (values.photo?.length > 0 || values.photo?.size)
         ) {
             // If photo file comes from input+event, set 1st value:
             if (values.photo?.length > 0) {
@@ -72,9 +72,9 @@ function RecipeSubmission({ endpoint, data, mode }) {
         }
 
         const payload = normalizeData(values)
-        console.log({ errors: methods.formState.errors })
-        console.log(payload)
-        //setFormData(payload) // submit info
+        //console.log({ errors: methods.formState.errors })
+        //console.log(payload)
+        setFormData(payload) // submit info
     }
 
     const onErrors = (errors) => {

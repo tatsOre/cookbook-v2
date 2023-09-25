@@ -1,22 +1,6 @@
 @use '../../styles/globals.module.scss' as g;
 @use '../../styles/typography' as t;
 
-.recipe__view--navigation {
-    &> :first-child {
-        border-right: g.$border-default;
-    }
-
-    &> :last-child {
-        margin-left: auto;
-        padding-inline: 2rem !important;
-        border-left: g.$border-default;
-        /* Make an anchor component */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
 .recipe__view--wrapper {
     max-width: g.$max-width;
     width: g.$page-width;
@@ -25,10 +9,11 @@
 
     p {
         @include t.body;
+        white-space: pre-wrap;
     }
 
     h2 {
-        font-family: g.$font-accent;
+        font-family: g.$font-heading;
         font-stretch: 105%;
         letter-spacing: 0.25px;
         font-weight: 700;
@@ -41,7 +26,11 @@
     section[data-info="header"] {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1rem;
+
+        &>div:first-of-type {
+            font-family: g.$font-heading;
+        }
 
         h1 {
             font-family: g.$font-heading;
@@ -106,7 +95,7 @@
         /* Large screen devices (1024px and above) */
         @media only screen and (min-width: g.$breakpoint-large) {
             figure {
-                $size: 250px;
+                $size: 500px;
                 max-width: $size;
                 width: $size;
                 height: $size;

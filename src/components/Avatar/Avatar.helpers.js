@@ -1,0 +1,23 @@
+export const avatars = [
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608723/cookbook/avatars/01_vprwwa.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608723/cookbook/avatars/02_hvchdj.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608724/cookbook/avatars/03_qg8uq7.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608724/cookbook/avatars/04_oah4v8.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608724/cookbook/avatars/05_tyly1g.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608724/cookbook/avatars/06_kognlg.jpg",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608725/cookbook/avatars/07_jterdm.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608725/cookbook/avatars/08_ppmr18.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608726/cookbook/avatars/09_rcsxor.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608725/cookbook/avatars/10_i5kgjt.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608726/cookbook/avatars/11_iozqnu.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608726/cookbook/avatars/12_cqqxu6.jpg",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608726/cookbook/avatars/13_fa0iwl.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608729/cookbook/avatars/14_wixi75.jpg",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608727/cookbook/avatars/15_quytcj.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695609232/cookbook/avatars/16_bgou4c.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608727/cookbook/avatars/19_xipfaf.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608728/cookbook/avatars/20_gipxws.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608728/cookbook/avatars/22_sqkkt4.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608728/cookbook/avatars/23_oqkg2j.png",
+    "https://res.cloudinary.com/dshl3pgv4/image/upload/v1695608729/cookbook/avatars/24_ulilv4.jpg"
+]

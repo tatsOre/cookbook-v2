@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import useUser from "@/lib/useUser"
+
 import { Button } from "../Button"
 import CheckboxInput from "../Checkbox"
 import Header from "../Header"
@@ -9,8 +9,9 @@ import { getIngredientLabel, getRecipeDate } from "./RecipeView.helpers"
 import cx from "../utils/cx"
 
 import styles from './styles.module.scss'
+import useUser from "@/lib/useUser"
 
-function RecipeShowPhoto({ photo }) {
+function RecipeShowPhoto({ photo, title }) {
     return (
         photo ? (
             <figure>
@@ -29,7 +30,7 @@ function RecipeShowTags({ cuisine, categories }) {
                     {cuisine && cuisine.label !== 'other' && (
                         <li key='cuisine-tag'>{cuisine.label}</li>
                     )}
-                    {categories && categories.length &&
+                    {categories && categories.length > 0 &&
                         categories.map(cat => <li key={`category-${cat._id}`} >{cat.label}</li>)
                     }
                 </ul>
@@ -92,6 +93,7 @@ function IngredientsSubmission({ items }) {
 
 function RecipeView({ data }) {
     const { user } = useUser()
+
     const {
         author,
         title,
@@ -133,11 +135,14 @@ function RecipeView({ data }) {
                             {description}
                         </p>
                         <div>
-                            <p>By <span>{author?.name || author?._id || 'No author'}</span></p>
+                            {user?._id !== author?._id && author?.name && (
+                                <p>by <b>{author.name}</b></p>
+                            )}
                             <p>{date}</p>
-                            <p>Serves {servings}</p>
+                            {servings > 0 && <p>Serves {servings}</p>}
                         </div>
                         <RecipeShowTags categories={categories} cuisine={cuisine} />
+                        <RecipeShowPhoto photo={photo} title={title} />
                     </section>
 
                     <section data-info="ingredients">
