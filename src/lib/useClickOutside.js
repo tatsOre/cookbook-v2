@@ -1,14 +1,17 @@
 import { useEffect } from 'react'
 
-const useClickOutside = (ref, callback) => {
+/**
+ * Listen for click events that occur somewhere in the document, outside of the element itself.
+ */
+
+function useClickOutside(ref, callback) {
     useEffect(() => {
         const listener = (event) => {
             event.stopPropagation()
-            if (!ref.current || ref.current.contains(event.target)) {
-                return
+            
+            if (ref.current && !ref.current.contains(event.target)) {
+                callback();
             }
-
-            callback()
         }
 
         document.addEventListener('mousedown', listener)

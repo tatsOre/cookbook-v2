@@ -13,7 +13,7 @@ function FavoriteCard({ recipe, onUpdateFavorites }) {
 
             <Link href={`/recipes/${recipe._id}`}>
                 <CardInfo data={recipe}>
-                    <span>By: {recipe.author?.name}</span>
+                    <span data-info="author">By: {recipe.author?.name}</span>
                 </CardInfo>
             </Link>
 

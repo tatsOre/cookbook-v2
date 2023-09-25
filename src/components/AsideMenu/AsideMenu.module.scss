@@ -23,7 +23,6 @@
 
     li {
         width: 100%;
-        margin-block-end: 0.25rem;
 
         a {
 
@@ -35,7 +34,7 @@
                 width: 30px;
                 height: 30px;
 
-                &::after {
+                &[data-count]::after {
                     content: attr(data-count);
                     position: absolute;
                     top: -5px;
@@ -85,11 +84,11 @@
         }
     }
 
-    .logout {
+    li:nth-last-child(2) {
         &::before {
             content: "";
             display: block;
-            margin: 1rem 0.9rem 2.25rem;
+            margin: 0rem 0.9rem 1rem;
             height: 1px;
             border-bottom: 4px dotted g.$color-warm-grey-400;
         }

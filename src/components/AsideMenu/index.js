@@ -2,16 +2,19 @@ import React from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
 import useClickOutside from '@/lib/useClickOutside'
-import useUser from '@/lib/useUser'
-import { IconBookmark, IconChecklist, IconChefHat, IconShoppingList } from '../Icon'
+import { IconBookmark, IconChecklist, IconChefHat, IconNotebook } from '../Icon'
+import { MenuButton, UnstyledButton } from '../Button'
 import { default as PATHS } from '../../../config'
 import cx from '../utils/cx'
 
 import styles from './AsideMenu.module.scss'
-import { UnstyledButton } from '../Button'
 
-function AsideMenu({ isOpen, closeMenu }) {
-    const { user, mutate } = useUser()
+function AsideMenu({ user, mutateUser }) {
+    const [openMenu, setOpenMenu] = React.useState(false)
+
+    const toggleMenuState = () => setOpenMenu(prev => !prev)
+
+    const closeMenu = () => setOpenMenu(false)
 
     const menuRef = React.useRef()
 
@@ -22,21 +25,18 @@ function AsideMenu({ isOpen, closeMenu }) {
             { credentials: "include" })
 
         if (response.ok) {
-            closeMenu()
-            console.log('ok')
-            mutate(null)
+            mutateUser(null)
             Router.replace("/")
         }
     }
 
     return (
-        <div
-            ref={menuRef}
-            className={cx([
-                styles.menu__aside, isOpen && styles['menu__aside--open']])
-            }
-        >
-            <nav>
+        <div ref={menuRef}>
+            <MenuButton isOpen={openMenu} toggleState={toggleMenuState} />
+
+            <nav className={cx([
+                styles.menu__aside, openMenu && styles['menu__aside--open']])
+            }>
                 <ul>
                     {[{
                         href: '/recipe-box',
@@ -71,14 +71,17 @@ function AsideMenu({ isOpen, closeMenu }) {
                     })}
 
                     <li>
-                        <Link href="/new">Create Recipe</Link>
+                        <Link href="/new">
+                            <div><span>{<IconNotebook />}</span></div>
+                            <span>Add New Recipe</span>
+                        </Link>
                     </li>
 
                     <li>
                         <Link href="/account">My Account</Link>
                     </li>
 
-                    <li className={styles['logout']}>
+                    <li>
                         <UnstyledButton onClick={logout}>Logout</UnstyledButton>
                     </li>
                 </ul>

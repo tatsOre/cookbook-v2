@@ -2,11 +2,10 @@
 @use '../../styles/typography' as t;
 
 .recipe__card {
-    height: 230px;
+    height: 225px;
     width: calc(50% - 0.5rem);
 
     @media only screen and (min-width: 600px) {
-        height: 220px;
         width: 200px;
     }
 
@@ -53,8 +52,12 @@
     width: calc(50% - 0.5rem);
 
     @media only screen and (min-width: 600px) {
-        height: 220px;
         width: 200px;
+    }
+
+    [data-info="author"] {
+        font-family: t.$font-base;
+        color: g.$color-smoke-gray;
     }
 
     [data-action="bookmark"] {

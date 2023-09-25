@@ -15,7 +15,7 @@
     border-bottom: g.$border-default;
 
     /* Menu Button: */
-    &>button[aria-label$="menu"] {
+    button[aria-label$="menu"] {
         border-right: g.$border-default;
     }
 

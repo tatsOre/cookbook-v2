@@ -23,8 +23,8 @@
     &>input,
     &>textarea {
         width: 100%;
-        min-height: 50px; // check this
-        padding-inline: 1rem;
+        padding-block: 0.75rem;
+        padding-inline: 0.9rem;
         border: g.$border-default;
         @include t.body;
 
