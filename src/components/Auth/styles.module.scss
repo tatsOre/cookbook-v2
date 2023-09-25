@@ -1,120 +1,135 @@
 @use '../../styles/globals.module.scss' as g;
 @use '../../styles/typography' as t;
 
-.auth__section {
-    width: 340px;
-    margin: 0 auto;
+.auth__page--header {
+    position: fixed;
+    display: grid;
+    place-content: center;
+    height: 55px;
+    width: 100%;
+    border-bottom: g.$border-default;
+}
 
-    &>* {
-        margin-block: 2rem;
-    }
+.auth__page--main {
+    background-color: g.$color-warm-grey-100;
 
-    h2 {
-        font-family: t.$font-accent;
-    }
+    section {
+        width: 340px;
+        margin: 0 auto;
 
-    h2,
-    &>p {
-        text-align: center;
-
-    }
-
-    button[data-info="change-email"] {
-        font-size: t.$font-size-12;
-        font-weight: 600;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-
-    form {
-        label::after {
-            content: ':';
+        &>* {
+            margin-block: 2rem;
         }
 
-        .email__fieldset {
-            &[data-active=true] {
-                display: block;
+        h2 {
+            font-family: t.$font-accent;
+            font-weight: 300;
+            font-size: 1.4rem;
+            text-wrap: balance;
+        }
+
+        h2,
+        &>p {
+            text-align: center;
+
+        }
+
+        button[data-info="change-email"] {
+            font-size: t.$font-size-12;
+            font-weight: 600;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        form {
+            label::after {
+                content: ':';
             }
 
-            &[data-active=false] {
-                display: none;
-            }
-        }
-
-        .password__fieldset {
-            position: relative;
-
-            /**  Hide/Show Password Button: */
-            [data-action="show-password"] {
-                position: absolute;
-                right: 0.5rem;
-                top: 1.45rem;
-                z-index: 1;
-                background-color: g.$color-white;
-
-                svg {
-                    stroke: g.$color-smoke-gray;
-                    stroke-width: 1.5px;
+            .email__fieldset {
+                &[data-active=true] {
+                    display: block;
                 }
 
-                &:hover {
+                &[data-active=false] {
+                    display: none;
+                }
+            }
+
+            .password__fieldset {
+                position: relative;
+
+                /**  Hide/Show Password Button: */
+                [data-action="show-password"] {
+                    position: absolute;
+                    right: 0.5rem;
+                    top: 1.45rem;
+                    z-index: 1;
+                    background-color: g.$color-white;
+
                     svg {
-                        stroke: currentColor;
+                        stroke: g.$color-smoke-gray;
+                        stroke-width: 1.5px;
+                    }
+
+                    &:hover {
+                        svg {
+                            stroke: currentColor;
+                        }
                     }
                 }
             }
-        }
 
-        /** Continue and Login/Create Acc Button */
-        button:not([data-action="show-password"]) {
-            margin-block: 1.25rem;
-        }
-    }
-
-    .auth__providers {
-        text-align: center;
-
-        &>* {
-            margin-block: 1rem;
-        }
-
-        &>div {
-            position: relative;
-
-            span {
-                background-color: g.$color-warm-grey-100;
-                padding-inline: 1rem;
-            }
-
-            &::before,
-            &::after {
-                position: absolute;
-                content: "";
-                height: 1px;
-                width: 45%;
-                top: 50%;
-
-                background-color: g.$color-warm-grey-400;
-            }
-
-            &::before {
-                right: 0;
-            }
-
-            &::after {
-                left: 0;
+            /** Continue and Login/Create Acc Button */
+            button:not([data-action="show-password"]) {
+                margin-block: 1.25rem;
             }
         }
 
-        a {
-            display: block;
-            width: 100%;
-            border: 1px solid g.$color-warm-grey-400;
-            border-radius: 25px;
-            padding-block: 0.75rem;
-            font-size: 0.9rem;
+        [data-info="auth-providers"] {
+            text-align: center;
+
+            &>* {
+                margin-block: 1rem;
+            }
+
+            &>div {
+                position: relative;
+
+                span {
+                    background-color: g.$color-warm-grey-100;
+                    padding-inline: 1rem;
+                }
+
+                &::before,
+                &::after {
+                    position: absolute;
+                    content: "";
+                    height: 1px;
+                    width: 45%;
+                    top: 50%;
+                    background-color: g.$color-warm-grey-400;
+                }
+
+                &::before {
+                    right: 0;
+                }
+
+                &::after {
+                    left: 0;
+                }
+            }
+
+            a {
+                display: block;
+                width: 100%;
+                border: 1px solid g.$color-warm-grey-400;
+                border-radius: 25px;
+                padding-block: 0.75rem;
+                font-size: 0.9rem;
+            }
         }
     }
 }

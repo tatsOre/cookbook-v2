@@ -1,4 +1,5 @@
 @use '../../styles/globals.module.scss' as g;
+@use '../../styles/typography' as t;
 
 .recipe__card {
     height: 230px;
@@ -22,35 +23,28 @@
         [data-action="edit"] {
             color: g.$color-rich-black;
             background-color: g.$color-white;
-            border: g.$border-default;
             display: grid;
             place-content: center;
             width: 40px;
             height: 40px;
+            transition: all .25s cubic-bezier(.4, 0, .2, 1) 0ms;
+            @include g.border--image;
+    
+            @media (hover: hover) {
+                &:hover {
+                    transform: translate(-0.2rem, -0.2rem);
+                }
+            }
         }
     }
 
     [data-action="publish"] {
-        @include g.overline($fs: 0.65rem);
+        @include t.overline($fs: 0.65rem);
         position: absolute;
         z-index: 1;
         bottom: 0.75rem;
         right: 0.75rem;
-    }
-
-    [data-action="delete"],
-    [data-action="edit"],
-    [data-action="publish"] {
-        transition: all .25s cubic-bezier(.4, 0, .2, 1) 0ms;
-        box-shadow: 2px 2px 0 g.$color-accent-blue;
-        border-radius: 2px;
-
-        @media (hover: hover) {
-            &:hover {
-                transform: translate(-0.2rem, -0.2rem);
-                box-shadow: 0.2rem 0.2rem 0 g.$color-rich-black;
-            }
-        }
+        padding-inline: 1rem;
     }
 }
 
@@ -88,7 +82,7 @@
 }
 
 .card {
-    font-family: g.$font-accent;
+    font-family: t.$font-accent;
     font-size: 0.825rem;
     position: relative;
     padding: 4px;
@@ -120,7 +114,7 @@
 
         /* Title */
         h3 {
-            font-family: g.$font-accent;
+            font-family: t.$font-accent;
             font-weight: 600;
             text-transform: capitalize;
             line-height: 1.2;
@@ -151,5 +145,5 @@
     top: -6px;
     right: 10px;
 
-    @include g.overline($fs: 0.65rem);
+    @include t.overline($fs: 0.65rem);
 }

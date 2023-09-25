@@ -14,7 +14,7 @@
         padding-block: calc(0.35rem + 1.5vh);
         border-top: 2px solid g.$color-rich-black;
         font-size: clamp(1.25rem, 4vw, 1.75rem);
-        font-family: g.$font-accent;
+        font-family: t.$font-accent;
         font-stretch: 120%;
         font-weight: 400;
         letter-spacing: 0.1px;
@@ -93,7 +93,7 @@
         /* Step No. Label Text */
         span {
             flex: 1;
-            @include t.body($fs: g.$font-size-15);
+            @include t.body($fs: t.$font-size-15);
             overflow: hidden;
             /* Partial support: */
             text-overflow: ellipsis;

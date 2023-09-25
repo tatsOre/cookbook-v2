@@ -47,7 +47,7 @@ div.step__item--wrapper {
 
             span {
                 flex: 1;
-                @include t.body($fs: g.$font-size-15);
+                @include t.body($fs: t.$font-size-15);
                 overflow: hidden;
                 /* Partial support: */
                 text-overflow: ellipsis;

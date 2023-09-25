@@ -95,7 +95,7 @@ div.ingredient__item--wrapper {
             /* Step/Ingr Button Label */
             span {
                 flex: 1;
-                @include t.body($fs: g.$font-size-15);
+                @include t.body($fs: t.$font-size-15);
                 overflow: hidden;
                 /* Partial support: */
                 text-overflow: ellipsis;

@@ -13,10 +13,10 @@
     }
 
     h2 {
-        font-family: g.$font-heading;
+        font-family: t.$font-heading;
         font-stretch: 105%;
         letter-spacing: 0.25px;
-        font-weight: 700;
+        font-weight: 400;
     }
 
     section {
@@ -29,11 +29,11 @@
         gap: 1rem;
 
         &>div:first-of-type {
-            font-family: g.$font-heading;
+            font-family: t.$font-heading;
         }
 
         h1 {
-            font-family: g.$font-heading;
+            font-family: t.$font-heading;
             font-size: clamp(2rem, 4vw, 2.25rem);
             font-weight: 400;
             line-height: 1.35;
@@ -50,7 +50,7 @@
         }
 
         .recipe__tags {
-            @include t.overline($fs: 0.65rem, $fw: 600);
+            @include t.overline($fs: 0.75rem, $fw: 600);
 
             span {
                 display: inline-block;
@@ -65,14 +65,14 @@
                 li {
                     min-width: fit-content;
                     padding: 0.25rem 0.5rem;
-                    border: g.$border-default;
+                    @include g.border--image;
                 }
             }
         }
 
         .recipe__description.with__dropcap::first-letter {
             font-weight: 500;
-            font-family: g.$font-accent;
+            font-family: t.$font-accent;
             text-transform: uppercase;
             float: left;
             padding: 1rem 0.35rem 0rem 0rem;
@@ -132,10 +132,6 @@
         h2 {
             font-size: 1.25rem;
             margin-block-end: 0.5rem;
-        }
-
-        p {
-            font-size: 0.825rem;
         }
     }
 }

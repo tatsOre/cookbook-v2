@@ -1,14 +1,17 @@
 import Footer from "../Footer"
 import Logo from "../Logo"
 
+import styles from './styles.module.scss'
+
 function Layout({ children }) {
     return (
         <>
-            <header style={{ position: 'fixed', display: 'flex', justifyContent: 'center', height: '55px', width: '100%' }}>
+            <header className={styles['auth__page--header']}>
                 <Logo />
             </header>
 
-            <main style={{ backgroundColor: '#F8F9F7' }}>{children}</main>
+            <main className={styles['auth__page--main']}>{children}</main>
+            
             <Footer />
         </>
     )

@@ -1,4 +1,5 @@
 @use '../../styles/globals.module.scss' as g;
+@use '../../styles/typography' as t;
 
 @mixin size($size) {
     height: $size;
@@ -40,14 +41,14 @@
 
 /** Styled Buttons with label: **/
 .button {
-    @include g.overline;
+    @include t.overline();
 
     &--compact {
         padding: 0.5rem;
     }
 
     &--wide {
-        padding: 0.75rem;
+        padding: 0.75rem 1.5rem;
     }
 
     &,
@@ -70,16 +71,18 @@
         background-color: g.$color-white;
         //box-shadow: 2px 2px 0 0 g.$color-rich-black;
         //border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-        border: g.$border-default;
-        box-shadow: 2px 2px 0 g.$color-accent-blue;
-        border-radius: 1px;
+        //border: g.$border-default;
+        //box-shadow: 2px 2px 0 g.$color-accent-blue;
+        //border-radius: 1px;
         transition: all .25s cubic-bezier(.4, 0, .2, 1) 0ms;
+
+        @include g.border--image;
 
         &:disabled {
             color: g.$color-smoke-gray;
             background-color: g.$color-white;
-            border-color: g.$color-warm-grey-400;
-            box-shadow: none;
+            //border-color: g.$color-warm-grey-400;
+            //box-shadow: none;
         }
     }
 
@@ -91,8 +94,8 @@
         &--primary:hover:not([disabled]):not([aria-disabled="true"]) {
             //box-shadow: 4px 4px 0 0 g.$color-rich-black;
             background-color: g.$color-accent-yellow;
-            transform: translate(-0.2rem, -0.2rem);
-            box-shadow: 0.2rem 0.2rem 0 g.$color-rich-black;
+            //transform: translate(-0.2rem, -0.2rem);
+            box-shadow: 0.2rem 0.2rem 0 g.$color-accent-yellow;
         }
     }
 }

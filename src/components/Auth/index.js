@@ -5,13 +5,11 @@ import useFormSubmission, { STATUS } from "@/lib/useFormSubmission"
 import useUser from "@/lib/useUser"
 import Alert from "../Alert"
 import { Button, UnstyledButton } from "../Button"
-import LoadingOverlay from "../Loader"
 import EmailField from "./EmailField"
 import PasswordField from "./PasswordField"
+import LoadingOverlay from "../Loader"
 import { default as PATHS } from '../../../config'
 import { default as AUTH_FIELDS_ATTRS } from "./Auth.constants"
-
-import styles from './styles.module.scss'
 
 const authReducerInitialState = {
     displayName: null,
@@ -54,7 +52,7 @@ function AuthorizationSubmission() {
 
     const router = useRouter()
 
-    const { status, responseData, errorMessage } = useFormSubmission({
+    const { status, errorMessage } = useFormSubmission({
         endpoint: state.mode === 'SIGNUP' ? PATHS.SIGNUP : PATHS.LOGIN,
         data: formData,
     })
@@ -93,8 +91,8 @@ function AuthorizationSubmission() {
     }
 
     return (
-        <section className={styles.auth__section}>
-            <h2 style={{ fontWeight: '300', fontSize: '1.4rem', textWrap: 'balance' }}>{state.heading}</h2>
+        <section>
+            <h2>{state.heading}</h2>
 
             {status === STATUS.REJECTED ? (
                 <Alert
@@ -135,7 +133,7 @@ function AuthorizationSubmission() {
                         </>
                     ) : null}
 
-                    <div className={styles.auth__providers}>
+                    <div data-info="auth-providers">
                         <div><span>or</span></div>
                         <a>Continue with Google - soon</a>
                     </div>

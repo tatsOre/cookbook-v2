@@ -12,7 +12,7 @@
     p {
         color: g.$color-smoke-gray;
         margin-block: 1rem;
-        @include t.body($fs: g.$font-size-15);
+        @include t.body($fs: t.$font-size-15);
     }
 
     .draggable__input {
