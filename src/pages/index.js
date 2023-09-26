@@ -21,8 +21,8 @@ export default function Home() {
         width: '100%',
         display: 'flex',
         flexFlow: 'row wrap',
-        gap: '1rem',
-        padding: '2rem'
+        gap: '0.75rem',
+        padding: '1rem'
     }
 
     return (

@@ -41,7 +41,7 @@
 
 /** Styled Buttons with label: **/
 .button {
-    @include t.overline();
+    @include t.overline($fs: t.$font-size-14);
 
     &--compact {
         padding: 0.5rem;

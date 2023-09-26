@@ -72,7 +72,7 @@ function AsideMenu({ user, mutateUser }) {
 
                     <li>
                         <Link href="/new">
-                            <div><span>{<IconNotebook />}</span></div>
+                            <div><span>{<IconNotebook strokeWidth={1.5}/>}</span></div>
                             <span>Add New Recipe</span>
                         </Link>
                     </li>

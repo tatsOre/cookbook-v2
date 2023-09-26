@@ -50,21 +50,20 @@
         }
 
         .recipe__tags {
-            @include t.overline($fs: 0.75rem, $fw: 600);
+            @include t.overline($fs: t.$font-size-14);
 
             span {
-                display: inline-block;
-                margin-inline-end: 0.5rem;
+                font-size: t.$font-size-12;
             }
 
             ul {
                 display: inline-flex;
                 flex-wrap: wrap;
                 gap: 0.5rem;
+                margin-block-start: 0.5rem;
 
                 li {
-                    min-width: fit-content;
-                    padding: 0.25rem 0.5rem;
+                    padding: 0.55rem 0.75rem 0.45rem;
                     @include g.border--image;
                 }
             }
@@ -112,9 +111,15 @@
             margin-block-end: 1.25rem;
         }
 
-        label {
+        ul li label {
             font-size: 1rem;
         }
+
+        ul+button[type="submit"] {
+            min-width: 270px;
+        }
+
+
     }
 
     section[data-info="instructions"] {

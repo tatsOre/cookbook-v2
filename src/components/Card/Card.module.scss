@@ -12,7 +12,7 @@
     /* Publish & Delete Recipe Control */
     .card__controls--box {
         display: flex;
-        gap: 1rem;
+        gap: 0.75rem;
         position: absolute;
         z-index: 1;
         top: 0.75rem;
@@ -24,10 +24,9 @@
             background-color: g.$color-white;
             display: grid;
             place-content: center;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             transition: all .25s cubic-bezier(.4, 0, .2, 1) 0ms;
-            @include g.border--image;
     
             @media (hover: hover) {
                 &:hover {
@@ -38,12 +37,15 @@
     }
 
     [data-action="publish"] {
-        @include t.overline($fs: 0.65rem);
+        padding: 0.55rem 0.75rem 0.45rem;
+        background-color: g.$color-rich-black;
+        color: g.$color-white;
         position: absolute;
         z-index: 1;
         bottom: 0.75rem;
         right: 0.75rem;
-        padding-inline: 1rem;
+    
+        @include t.overline($fs: t.$font-size-14);
     }
 }
 
@@ -117,7 +119,6 @@
 
         /* Title */
         h3 {
-            font-family: t.$font-accent;
             font-weight: 600;
             text-transform: capitalize;
             line-height: 1.2;
