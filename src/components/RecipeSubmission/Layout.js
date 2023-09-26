@@ -16,9 +16,7 @@ function Layout({ children, title, mode }) {
 
             <main>
                 <Marquee text={heading} />
-
                 <h1 style={{ visibility: 'hidden', height: '0px' }}>{heading}</h1>
-
                 {children}
             </main>
             <Footer />

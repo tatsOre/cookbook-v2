@@ -1,0 +1,24 @@
+@use '../../styles/globals.module.scss' as g;
+
+.avatar__picker--wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+    max-width: 500px;
+
+    /* Image Wrappper */
+    label {
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: rgb(233, 233, 233);
+    }
+
+    input[type="radio"] {
+        @include g.visually--hidden;
+
+        &:checked + label {
+            outline: 2px solid g.$color-rich-black;
+            outline-offset: 2px;
+        }
+    }
+}
