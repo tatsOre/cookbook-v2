@@ -84,7 +84,7 @@ function IngredientsFieldset() {
 
             {fields.length > 0 && (
                 <div className={styles['edit__all--wrapper']}>
-                    <p>Tap "Edit All" to organize or delete items.</p>
+                    <p>Tap <b>"Edit All"</b> to organize or delete items.</p>
 
                     <UnstyledButton onClick={onToggleEditMode} >
                         {modeEditAll ? 'Done' : 'Edit All'}

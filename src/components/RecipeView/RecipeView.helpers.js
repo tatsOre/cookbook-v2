@@ -29,10 +29,11 @@ export const getIngredientLabel = (data) => {
     const measureElement = measure?.label
         ? measure?.label + (quantity > 1 || (quantityElement && fractionElement) ? 's' : '') + ' '
         : ''
-    const nameElement = name + (prepNote ? ', ' : '')
+    const nameElement = name.toLowerCase() + (prepNote ? ', ' : '')
+    const prepNoteElement = prepNote.toLowerCase()
 
     const label = <>
-        {quantityElement}{fractionElement}{measureElement}<b>{nameElement}</b>{prepNote}
+        {quantityElement}{fractionElement}{measureElement}<b>{nameElement}</b>{prepNoteElement}
     </>
 
     return label

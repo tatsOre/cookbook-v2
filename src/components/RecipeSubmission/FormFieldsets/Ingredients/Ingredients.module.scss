@@ -4,12 +4,20 @@
 /* Ingredients Editable Input/ New Ingr Input
 ============================ */
 div.edit__all--wrapper {
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    margin-block-end: 1rem;
+
+    p {
+        max-width: 75%;
+        text-wrap: balance;
+    }
 
     button {
-        margin-block: 1.25rem;
-
-        @include t.overline($fw: 700)
+        padding: 0.55rem 0.75rem 0.45rem;
+        background-color: g.$color-rich-black;
+        color: g.$color-white;
+        @include t.overline($fs: 0.65rem);
     }
 }
 
