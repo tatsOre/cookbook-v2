@@ -16,7 +16,7 @@ function AvatarPicker({ name = "avatar" }) {
             {avatars.map((image, index) => {
                 const id = `img--option--${index}`
                 return (
-                    <>
+                    <React.Fragment key={image}>
                         <input
                             checked={image === selected}
                             id={id}
@@ -27,7 +27,7 @@ function AvatarPicker({ name = "avatar" }) {
                         <label htmlFor={id}>
                             <Image height={50} width={50} src={image} alt={id} />
                         </label>
-                    </>
+                    </React.Fragment>
                 )
             })}
         </fieldset>

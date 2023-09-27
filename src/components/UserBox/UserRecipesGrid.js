@@ -73,7 +73,10 @@ function UserRecipesGrid({ mutateUser }) {
 
     return (
         <section data-section="user-recipes" className={styles.cards__section}>
-            {content?.length ? content : fallback}
+            {content?.length ? <>
+                <h2>Your Recipes:</h2>
+                {content}
+            </> : fallback}
         </section>
     )
 }

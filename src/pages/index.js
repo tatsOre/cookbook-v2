@@ -32,9 +32,6 @@ export default function Home() {
             </Head>
 
             <Layout headerExtraContent={!user && <Link href="/login">Login</Link>}>
-                <h1 style={{ fontSize: '1.3rem', marginBlockStart: '1rem' }}>Hello{user && ', '}
-                    <span>{user?.email}!</span>
-                </h1>
                 <div style={containerStyles}>{content}</div>
             </Layout>
         </>

@@ -10,76 +10,15 @@
     &[data-section="favorites"] {
         flex-flow: row wrap;
         gap: 1rem;
+
+        h2 {
+            width: 100%;
+            font-weight: 400;
+            font-family: t.$font-accent;
+        }
     }
 }
 
-.menu__aside {
-    position: fixed;
-    width: 55px;
-    padding-block: 1.75rem;
-    top: 50px;
-    height: 100vh;
-    border-top: g.$border-default;
-    border-right: g.$border-default;
-    background-color: g.$color-warm-grey-200;
+.user__box---fallback {
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-
-    a {
-        div {
-            position: relative;
-            display: grid;
-            place-content: center;
-            width: 30px;
-            height: 30px;
-            margin-block-end: 1.5rem;
-
-            &::after {
-                content: attr(data-count);
-                position: absolute;
-                top: -5px;
-                left: 15px;
-                width: 18px;
-                height: 18px;
-                background-color: g.$color-rich-black;
-                color: white;
-                display: grid;
-                place-content: center;
-                border-radius: 50%;
-                font-family: t.$font-base;
-                font-size: 0.625rem;
-                letter-spacing: 0;
-            }
-
-            /* Link Icon Wrapper */
-            span:first-of-type {
-                overflow: hidden;
-
-                &[data-icon="recipes"] svg {
-                    position: relative;
-
-                }
-
-                &[data-icon="bookmarks"] svg {
-                    position: relative;
-                    top: -1px;
-                    left: -2px;
-                }
-            }
-
-            /* Link Icon Label */
-            &+span {
-                font-size: clamp(0.75rem, 4vw, 1.35rem);
-                text-transform: capitalize;
-                font-family: t.$font-base;
-                letter-spacing: 0px;
-                font-stretch: 100%;
-                font-weight: 300;
-                margin-inline-start: 0.5rem;
-            }
-        }
-    }
 }

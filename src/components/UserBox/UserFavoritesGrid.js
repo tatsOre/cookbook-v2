@@ -60,8 +60,8 @@ function UserFavoritesGrid() {
     })
 
     const fallback = (
-        <div>
-            <p style={{ fontWeight: 'bold' }}>
+        <div className={styles['user__box---fallback']}>
+            <p>
                 Looks like you haven't saved anything yet! If you like a recipe,
                 simply tap on the bookmark icon to save it for later.
             </p>
@@ -70,7 +70,10 @@ function UserFavoritesGrid() {
 
     return (
         <section data-section="favorites" className={styles.cards__section}>
-            {content?.length ? content : fallback}
+            {content?.length ? <>
+                <h2>Saved Recipes:</h2>
+                {content}
+            </> : fallback}
         </section>
     )
 }
