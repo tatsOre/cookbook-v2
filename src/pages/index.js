@@ -13,7 +13,9 @@ export default function Home() {
     const { data } = useSWR(PATHS.RECIPES.ENDPOINT)
 
     const content = data && data.docs.map((item) => {
-        !item.photo && (item.photo = getRandomCardPattern())
+        if (!item.photo?.url) {
+            item.photo = { url: getRandomCardPattern() }
+        }
         return <FavoriteCard key={item._id} recipe={item} />
     })
 

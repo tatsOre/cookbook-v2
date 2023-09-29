@@ -54,8 +54,7 @@
         flex-flow: row wrap;
 
         h3,
-        p,
-        div[role="alert"] {
+        p {
             flex-basis: 100%;
         }
 
@@ -65,7 +64,7 @@
         }
     }
 
-    &+section {
+    & ~ [data-input-wrapper="comments"] {
         margin-block-start: 2.5rem;
     }
 }

@@ -2,14 +2,15 @@ import React from "react"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
 import { FormProvider, useForm } from "react-hook-form"
+
+
 import useFormSubmission, { STATUS } from "@/lib/useFormSubmission"
 import Accordion from "../Accordion"
 import Alert from "../Alert"
 import Layout from "./Layout"
 import LoaderOverlay from "../Loader/LoaderOverlay"
-
 import { deNormalizeData, normalizeData, getFormAccordionState } from "./helpers"
-import { CLOUDINARY } from "../../../config"
+import cloudinaryService from "@/services/cloudinary"
 
 const DynamicRecipeForm = dynamic(() => import('./Form')
     .catch(() => <span>Something went wrong.</span>),
@@ -22,7 +23,7 @@ function RecipeSubmission({ endpoint, data, mode }) {
     const [photoError, setPhotoError] = React.useState(null)
 
     const [activeFieldset, setActiveFieldset] = React.useState(
-        ['item-1']
+        ['item-4']
     )
 
     const { status, responseData, errorMessage } = useFormSubmission({
@@ -42,37 +43,18 @@ function RecipeSubmission({ endpoint, data, mode }) {
     }, [status])
 
     const onSubmit = async (values) => {
-        // TODO: Create a cloudinary service to add/delete resources
-        // If photo || photo changed:
-        if (
-            typeof values.photo !== 'string'
-            && (values.photo?.length > 0 || values.photo?.size)
-        ) {
-            // If photo file comes from input+event, set 1st value:
-            if (values.photo?.length > 0) {
-                values.photo = values.photo[0]
-            }
-            const imageUploadData = new FormData()
-            imageUploadData.append("file", values.photo)
-            imageUploadData.append("folder", CLOUDINARY.FOLDER)
-            imageUploadData.append("upload_preset", CLOUDINARY.PRESET)
+        if (values.photo?.size) {
 
-            const cloudinaryResponse = await fetch(CLOUDINARY.URL, {
-                method: 'POST',
-                body: imageUploadData
-            })
-
-            if (cloudinaryResponse.ok) {
-                const imageURL = await cloudinaryResponse.json()
-                values.photo = imageURL.secure_url;
+            const [data, error] = await cloudinaryService.upload(values.photo)
+  
+            if (error) {
+                return setPhotoError(error)
             } else {
-                setPhotoError('Something went wrong. Try later.')
-                return
+                values.photo = data
             }
         }
 
         const payload = normalizeData(values)
-        //console.log({ errors: methods.formState.errors })
         //console.log(payload)
         setFormData(payload) // submit info
     }

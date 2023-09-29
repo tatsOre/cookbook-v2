@@ -12,9 +12,9 @@ import styles from './styles.module.scss'
 
 function RecipeShowPhoto({ photo, title }) {
     return (
-        photo ? (
+        photo && photo.url ? (
             <figure>
-                <Image fill={true} src={photo} alt={`${title} picture`} />
+                <Image fill={true} src={photo.url} alt={`${title} picture`} />
             </figure>
         ) : null
     )

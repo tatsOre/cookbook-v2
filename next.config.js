@@ -15,5 +15,14 @@ module.exports = {
                 hostname: 'res.cloudinary.com'
             }
         ]
-    }
+    },
+    // Maybe NextJS wasn't the best idea for this project(?).
+    // Following config helps with Cloudinary and 
+    // https://stackoverflow.com/questions/64926174/module-not-found-cant-resolve-fs-in-next-js-application
+    webpack5: true,
+    webpack: (config) => {
+        config.resolve.fallback = { fs: false };
+
+        return config;
+    },
 }

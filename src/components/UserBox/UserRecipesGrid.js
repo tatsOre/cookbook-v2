@@ -54,7 +54,9 @@ function UserRecipesGrid({ mutateUser }) {
     }
 
     const content = recipes.map((item) => {
-        !item.photo && (item.photo = getRandomCardPattern())
+        if (!item.photo?.url) {
+            item.photo = { url: getRandomCardPattern() }
+        }
 
         return <RecipeCard
             key={item._id}

@@ -37,8 +37,6 @@ export const normalizeData = (values) => {
         instructions,
         cuisine: values.cuisine?._id ?? undefined,
         servings: values.servings || 0,
-        // If photo is empty, it comes as an object. Schema field type == string.
-        photo: typeof values.photo === 'string' ? values.photo : ''
     }
 }
 

@@ -125,5 +125,6 @@ notes.txt
 /drafts
 .DS_Store
 .env.local
+.env
 .gitignore
 /src/lib/test.js

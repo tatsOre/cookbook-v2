@@ -2,21 +2,23 @@ import React from 'react'
 import Image from 'next/image'
 import { useFormContext } from 'react-hook-form'
 import useDeviceDetect from '@/lib/useDeviceDetect'
-import useDraggableFile from '@/lib/useDraggableFile'
 import Alert from '@/components/Alert'
-import { FileInput, TextInput } from '@/components/FormInput'
-import { Button, IconButton } from '@/components/Button'
-import { IconCircleMinus, IconCloudUpload } from '@/components/Icon'
+import { Button } from '@/components/Button'
+import DragDropFile from '@/components/DropzoneFile/DragDropFile'
+import { TextInput } from '@/components/FormInput'
+import { IconAlertCircle, IconCloudUpload } from '@/components/Icon'
+import Modal from '@/components/Modal'
 
 
+import cloudinaryService from '@/services/cloudinary'
 import { getImageSrc, isValidImageFile } from '@/components/utils/file'
-import cx from '@/components/utils/cx'
 import { default as FIELDS_ATTRIBUTES } from '../../constants'
 
 import styles from './styles.module.scss'
-import DragDropFile from '@/components/DropzoneFile/DragDropFile'
 
 function ExtraInfoFieldset() {
+    const [showModal, setShowModal] = React.useState(false)
+
     const { PHOTO, COMMENTS } = FIELDS_ATTRIBUTES
 
     const {
@@ -27,16 +29,9 @@ function ExtraInfoFieldset() {
 
     const photo = watch('photo')
 
-    const onDeleteFileHandler = () => {
-        if (typeof photo === "string") {
-            console.log('File must be removed from Cloudinary', { photo })
-        }
-        setValue(PHOTO.NAME, "")
-    }
-
     const onFileInputChange = (file) => {
         errors[PHOTO.NAME] && clearErrors(PHOTO.NAME)
-        console.log({ file })
+
         if (!isValidImageFile(file)) {
             setError(PHOTO.NAME, {
                 type: 'custom',
@@ -52,20 +47,58 @@ function ExtraInfoFieldset() {
         }
     }
 
+    /* If photo.size we have a local file, otherwise we have an uploaded image. */
+    const onDeleteClick = () => {
+        photo.size ? setValue(PHOTO.NAME, {}) : setShowModal(true)
+    }
+
+    const removeFile = () => {
+        cloudinaryService.delete(photo.public_id).then(
+            async (result) => {
+                // we need to remove value from db
+
+/*                 const response = await fetch(KEYS.URL, {
+                    method: 'POST',
+                    body: imageUploadData
+                }) */
+
+                setValue(PHOTO.NAME, {})
+            },
+            (error) => {
+                // we need a global state for errors that are related to submission/services
+                console.log(error)
+            })
+    }
+
+    const modalProps = {
+        children: <p>If you delete this image, it will be permanently lost.</p>,
+        onCancel: () => setShowModal(false),
+        onConfirm: () => {
+            setShowModal(false)
+            removeFile()
+        }
+    }
+
     const photoObjectURL = photo && getImageSrc(photo)
 
     return (
         <>
-            <section className={styles['recipe--photo']}>
+            {showModal && <Modal {...modalProps} />}
+
+            {errors.photo?.message ? (
+                <Alert appearance="danger" icon={<IconAlertCircle />}>
+                    {errors.photo.message}
+                </Alert>
+            ) : null}
+
+            <div className={styles['recipe--photo']}>
                 <h3>{PHOTO.LABEL}</h3>
 
                 <p>{PHOTO.DESC}</p>
 
-                {errors?.photo?.message && <p>Error: {errors.photo.message}</p>}
-
                 {photoObjectURL ? (
                     <>
-                        <Button onClick={onDeleteFileHandler}> Delete File</Button>
+                        <Button onClick={onDeleteClick}> Delete File</Button>
 
                         <p>{typeof photo !== 'string' && photo?.name}</p>
 
@@ -93,17 +126,16 @@ function ExtraInfoFieldset() {
                         className={styles.draggable__input}
                     />
                 )}
-            </section>
+            </div>
 
-            <section>
-                <TextInput
-                    multiline
-                    description={COMMENTS.DESC}
-                    label={COMMENTS.LABEL}
-                    placeholder={COMMENTS.PLACEHOLDER}
-                    {...register(COMMENTS.NAME)}
-                />
-            </section>
+            <TextInput
+                multiline
+                description={COMMENTS.DESC}
+                label={COMMENTS.LABEL}
+                placeholder={COMMENTS.PLACEHOLDER}
+                {...register(COMMENTS.NAME)}
+            />
+
         </>
     )
 }

@@ -50,7 +50,9 @@ function UserFavoritesGrid() {
     }
 
     const content = favorites.map((item) => {
-        !item.photo && (item.photo = getRandomCardPattern())
+        if (!item.photo?.url) {
+            item.photo = { url: getRandomCardPattern() }
+        }
 
         return <FavoriteCard
             key={item._id}

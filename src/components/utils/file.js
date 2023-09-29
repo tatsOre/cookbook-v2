@@ -6,10 +6,9 @@ export const isValidImageFile = (imageFile) => {
 export const getImageSrc = (imageFile) => {
     if (!imageFile) return null
 
-    if (typeof imageFile === 'string') {
-        return imageFile
-    } else {
-        const src = imageFile.length > 0 ? imageFile[0] : imageFile
-        return src && isValidImageFile(src) ? URL.createObjectURL(src) : null
-    }
+    if (typeof imageFile.url === 'string') {
+        return imageFile.url
+    } 
+    
+    return isValidImageFile(imageFile) ? URL.createObjectURL(imageFile) : null
 }

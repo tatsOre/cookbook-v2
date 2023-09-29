@@ -20,7 +20,7 @@ function CardInfo({ data: { photo, title }, children }) {
     return (
         <>
             <div className={styles['card__image--wrapper']}>
-                <Image fill src={photo} alt={title} sizes='400px' />
+                <Image fill src={photo.url} alt={title} sizes='400px' />
             </div>
             <div className={styles['card__info--wrapper']}>
                 <h3>{title}</h3>
