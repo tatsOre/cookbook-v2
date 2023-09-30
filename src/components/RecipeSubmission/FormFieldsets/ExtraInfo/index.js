@@ -77,9 +77,9 @@ function ExtraInfoFieldset() {
     }
 
     const removeFile = async () => {
-        const result = await cloudinaryService.delete(photo.public_id)
+        const { result } = await cloudinaryService.delete(photo.public_id)
 
-        if (result) {
+        if (result === 'ok') {
             const response = await fetch(endpoint, {
                 method: 'PATCH',
                 body: JSON.stringify({ photo: PHOTO_SCHEMA }),
@@ -129,8 +129,8 @@ function ExtraInfoFieldset() {
 
                         <div className={styles['image__view--wrapper']}>
                             <Image
-                                fill={true}
-                                priority={true}
+                                height={350}
+                                width={350}
                                 src={photoObjectURL}
                                 alt="Picture of the dish"
                             />
