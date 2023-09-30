@@ -8,10 +8,10 @@ import {
 
 import styles from './styles.module.scss'
 
-function RecipeForm({ id, onSubmit }) {
+function RecipeForm({ onSubmit }) {
     return (
         <form
-            id={id}
+            id="submit-recipe-form"
             onSubmit={onSubmit}
             className={styles['recipe__form--wrapper']}
             noValidate

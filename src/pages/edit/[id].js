@@ -4,9 +4,12 @@ import Head from 'next/head'
 import useUser from '@/lib/useUser'
 import RecipeSubmission from '@/components/RecipeSubmission'
 import RecipeSubmissionProvider from '@/components/RecipeSubmission/context'
+import Layout from '@/components/Layout';
+import Marquee from '@/components/Marquee';
+import { UnstyledButton } from '@/components/Button';
 import { default as PATHS } from '../../../config'
-import { 
-    default as RECIPE_FIELDS_ATTRIBUTES 
+import {
+    default as RECIPE_FIELDS_ATTRIBUTES
 } from '@/components/RecipeSubmission/constants'
 
 /**
@@ -47,25 +50,36 @@ function Page({ assets, data }) {
 
     if (loggedOut) return "redirecting..."
 
+    const heading = `edit ${data.title}` || 'recipe'
+
     return <>
         <Head>
             <title>Edit Recipe</title>
         </Head>
-        <RecipeSubmission.Layout title={data?.title} mode='edit'>
+        <Layout headerExtraContent={
+            <UnstyledButton form="submit-recipe-form" type='submit' >
+                Save
+            </UnstyledButton>
+        }>
+            <Marquee text={heading} />
+
+            <h1 style={{ visibility: 'hidden', height: '0px' }}>{heading}</h1>
+
             <RecipeSubmissionProvider
                 value={{
                     assets,
-                    fieldsAttributes: RECIPE_FIELDS_ATTRIBUTES
+                    fieldsAttributes: RECIPE_FIELDS_ATTRIBUTES,
+                    recipe: data,
+                    endpoint: `${PATHS.RECIPES_ENDPOINT}/${data?._id}`
                 }}
             >
                 <RecipeSubmission
                     endpoint={`${PATHS.RECIPES_ENDPOINT}/${data?._id}`}
-                    data={data}
+                    recipe={data}
                     mode='edit'
                 />
-
             </RecipeSubmissionProvider>
-        </RecipeSubmission.Layout>
+        </Layout>
     </>
 }
 

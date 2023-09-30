@@ -2,12 +2,9 @@ import React from "react"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
 import { FormProvider, useForm } from "react-hook-form"
-
-
 import useFormSubmission, { STATUS } from "@/lib/useFormSubmission"
 import Accordion from "../Accordion"
 import Alert from "../Alert"
-import Layout from "./Layout"
 import LoaderOverlay from "../Loader/LoaderOverlay"
 import { deNormalizeData, normalizeData, getFormAccordionState } from "./helpers"
 import cloudinaryService from "@/services/cloudinary"
@@ -17,7 +14,7 @@ const DynamicRecipeForm = dynamic(() => import('./Form')
     { ssr: false }
 )
 
-function RecipeSubmission({ endpoint, data, mode }) {
+function RecipeSubmission({ endpoint, recipe, mode }) {
     const [formData, setFormData] = React.useState(null)
 
     const [photoError, setPhotoError] = React.useState(null)
@@ -33,7 +30,7 @@ function RecipeSubmission({ endpoint, data, mode }) {
     })
 
     const methods = useForm({
-        defaultValues: mode === 'edit' ? deNormalizeData(data) : null
+        defaultValues: mode === 'edit' ? deNormalizeData(recipe) : null
     })
 
     const router = useRouter()
@@ -43,8 +40,8 @@ function RecipeSubmission({ endpoint, data, mode }) {
     }, [status])
 
     const onSubmit = async (values) => {
+        // If we have a local file, upload it to Cloudinary
         if (values.photo?.size) {
-
             const [data, error] = await cloudinaryService.upload(values.photo)
   
             if (error) {
@@ -83,7 +80,6 @@ function RecipeSubmission({ endpoint, data, mode }) {
                     multiple
                 >
                     <DynamicRecipeForm
-                        id="submit-recipe-form"
                         onSubmit={methods.handleSubmit(onSubmit, onErrors)}
                     />
                 </Accordion>
@@ -94,5 +90,4 @@ function RecipeSubmission({ endpoint, data, mode }) {
     )
 }
 
-RecipeSubmission.Layout = Layout
 export default RecipeSubmission

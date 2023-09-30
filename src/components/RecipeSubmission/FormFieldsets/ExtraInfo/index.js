@@ -9,17 +9,41 @@ import { TextInput } from '@/components/FormInput'
 import { IconAlertCircle, IconCloudUpload } from '@/components/Icon'
 import Modal from '@/components/Modal'
 
-
+import { useRecipeSubmissionContext } from '../../context'
 import cloudinaryService from '@/services/cloudinary'
 import { getImageSrc, isValidImageFile } from '@/components/utils/file'
-import { default as FIELDS_ATTRIBUTES } from '../../constants'
 
 import styles from './styles.module.scss'
 
+const PHOTO_SCHEMA = {
+    url: '', /* String */
+    public_id: ''  /* String */
+}
+
+function FileInputMobile({ onInputChange }) {
+    const onChangeHandler = (ev) => onInputChange(ev.target.files[0])
+
+    return (
+        <label htmlFor="input-file" className={styles.file__input}>
+            <input
+                id="input-file"
+                type="file"
+                accept="image/png, image/jpeg"
+                onChange={onChangeHandler}
+            />
+            <IconCloudUpload size={16} aria-hidden="true" />
+            <span>Upload a file</span>
+        </label>
+    )
+}
+// Many things are happening here
 function ExtraInfoFieldset() {
     const [showModal, setShowModal] = React.useState(false)
 
-    const { PHOTO, COMMENTS } = FIELDS_ATTRIBUTES
+    const {
+        endpoint,
+        fieldsAttributes: { PHOTO, COMMENTS }
+    } = useRecipeSubmissionContext()
 
     const {
         register, formState: { errors }, setValue, setError, watch, clearErrors
@@ -52,22 +76,23 @@ function ExtraInfoFieldset() {
         photo.size ? setValue(PHOTO.NAME, {}) : setShowModal(true)
     }
 
-    const removeFile = () => {
-        cloudinaryService.delete(photo.public_id).then(
-            async (result) => {
-                // we need to remove value from db
+    const removeFile = async () => {
+        const result = await cloudinaryService.delete(photo.public_id)
 
-/*                 const response = await fetch(KEYS.URL, {
-                    method: 'POST',
-                    body: imageUploadData
-                }) */
-
-                setValue(PHOTO.NAME, {})
-            },
-            (error) => {
-                // we need a global state for errors that are related to submission/services
-                console.log(error)
+        if (result) {
+            const response = await fetch(endpoint, {
+                method: 'PATCH',
+                body: JSON.stringify({ photo: PHOTO_SCHEMA }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
             })
+
+            setValue(PHOTO.NAME, {})
+            // fetch service
+            // check if ok and setValue, set errors!
+        }
     }
 
     const modalProps = {
@@ -112,13 +137,9 @@ function ExtraInfoFieldset() {
                         </div>
                     </>
                 ) : isMobile ? (
-                    <label htmlFor="input-file" className={styles.file__input}>
-                        <input id="input-file" type="file" accept="image/png, image/jpeg"
-                            onChange={(ev) => onFileInputChange(ev.target.files[0])}
-                        />
-                        <IconCloudUpload size={16} aria-hidden="true" />
-                        <span>Upload a file</span>
-                    </label>
+                    <FileInputMobile
+                        onInputChange={onFileInputChange}
+                    />
                 ) : (
                     <DragDropFile
                         accept={"image/png, image/jpeg"}
@@ -135,7 +156,6 @@ function ExtraInfoFieldset() {
                 placeholder={COMMENTS.PLACEHOLDER}
                 {...register(COMMENTS.NAME)}
             />
-
         </>
     )
 }

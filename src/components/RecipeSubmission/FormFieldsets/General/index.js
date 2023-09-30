@@ -15,7 +15,6 @@ function GeneralInfo() {
         DESCRIPTION,
         MAIN_INGR,
         SERVINGS,
-        TIME,
         CUISINE,
         CATEGORIES,
         PUBLIC

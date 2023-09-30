@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mui/base": "^5.0.0-beta.17",
     "cloudinary": "^1.41.0",
     "date-fns": "^2.30.0",
     "next": "13.3.4",

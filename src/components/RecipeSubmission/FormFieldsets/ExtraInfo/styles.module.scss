@@ -3,6 +3,21 @@
 
 /* 04. Extra Info Fieldset
 ============================ */
+// File input for touchscreen devices:
+.file__input {
+    display: inline-block;
+    padding: 1rem;
+    background-color: g.$color-accent-yellow;
+    color: g.$color-rich-black;
+
+    input[type="file"] {
+        @include g.visually--hidden;
+    }
+
+    span {
+        padding-inline-start: 0.3rem;
+    }
+}
 
 .recipe--photo {
     h3 {
@@ -18,22 +33,6 @@
     .draggable__input {
         width: 250px;
         height: 250px;
-    }
-
-    // File input for touchscreen devices:
-    .file__input {
-        display: inline-block;
-        padding: 1rem;
-        background-color: g.$color-accent-yellow;
-        color: g.$color-rich-black;
-
-        input[type="file"] {
-            @include g.visually--hidden;
-        }
-
-        span {
-            padding-inline-start: 0.3rem;
-        }
     }
 
     .image__view--wrapper {
@@ -64,7 +63,7 @@
         }
     }
 
-    & ~ [data-input-wrapper="comments"] {
+    &~[data-input-wrapper="comments"] {
         margin-block-start: 2.5rem;
     }
 }

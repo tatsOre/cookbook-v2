@@ -2,8 +2,19 @@ import Head from 'next/head'
 import RecipeView from '@/components/RecipeView/View'
 import { default as PATHS } from '../../../config'
 
-// todo: getstaticprops with staticPaths and blocking flag
-export const getServerSideProps = async ({ params }) => {
+export async function getStaticPaths() {
+    const response = await fetch(PATHS.RECIPES_ENDPOINT)
+    const { docs } = await response.json()
+
+    // Get the paths we want to pre-render based on docs
+    const paths = docs.map((recipe) => ({
+        params: { id: recipe._id }
+    }))
+
+    return { paths, fallback: 'blocking' }
+}
+
+export async function getStaticProps({ params }) {
     try {
         const response = await fetch(`${PATHS.RECIPES_ENDPOINT}/${params.id}`)
 

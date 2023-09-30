@@ -4,6 +4,9 @@ import Head from 'next/head'
 import useUser from '@/lib/useUser'
 import RecipeSubmission from '@/components/RecipeSubmission'
 import RecipeSubmissionProvider from '@/components/RecipeSubmission/context'
+import Layout from '@/components/Layout';
+import Marquee from '@/components/Marquee';
+import { UnstyledButton } from '@/components/Button';
 import { default as PATHS } from '../../config'
 import {
     default as RECIPE_FIELDS_ATTRIBUTES
@@ -40,16 +43,25 @@ function Page({ assets }) {
         <Head>
             <title>Create Recipe</title>
         </Head>
-        <RecipeSubmission.Layout>
+        <Layout headerExtraContent={
+            <UnstyledButton form="submit-recipe-form" type='submit' >
+                Save
+            </UnstyledButton>
+        }>
+            <Marquee text="what's cooking" />
+
+            <h1 style={{ visibility: 'hidden', height: '0px' }}>Add New Recipe</h1>
+
             <RecipeSubmissionProvider
                 value={{
                     assets,
-                    fieldsAttributes: RECIPE_FIELDS_ATTRIBUTES
+                    fieldsAttributes: RECIPE_FIELDS_ATTRIBUTES,
+                    endpoint: PATHS.RECIPES_ENDPOINT
                 }}
             >
                 <RecipeSubmission endpoint={PATHS.RECIPES_ENDPOINT} />
             </RecipeSubmissionProvider>
-        </RecipeSubmission.Layout>
+        </Layout>
     </>
 }
 

@@ -50,11 +50,11 @@ function BookmarkRecipe({ recipe, onUpdateFavorites }) {
             {showModal && <Modal {...modalProps} />}
             <IconButton
                 aria-checked={user?.favorites?.includes(recipe._id)}
-                ariaLabel="Delete from your favorites"
+                ariaLabel="Add or Remove from your saved recipes"
                 data-action="bookmark"
                 role="switch"
                 onClick={onBookmarkClick}
-                disabled={isMutating}
+                disabled={isMutating || !user}
                 icon={<IconBookmark />}
                 small
             />

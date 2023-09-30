@@ -54,7 +54,9 @@ function DragDropFile({ onDropFile, accept, className }) {
 
     return (
         <div
-            className={cx([styles.file__dropzone, dragActive && styles.drag__active, className])}
+            className={cx([
+                styles.file__dropzone, dragActive && styles.drag__active, className
+            ])}
             onDragEnter={onDragHandler}
             onDragLeave={onDragHandler}
             onDragOver={onDragHandler}
@@ -71,7 +73,12 @@ function DragDropFile({ onDropFile, accept, className }) {
                 <IconCloudUpload size={50} strokeWidth={1} aria-hidden="true" />
                 <span>Drag and drop your file here or</span>
             </label>
-            <button type="button" className="upload-button" onClick={onButtonClick}>Upload a file</button>
+            <button
+                type="button"
+                className="upload-button"
+                onClick={onButtonClick}>
+                Upload a file
+            </button>
         </div>
     )
 }

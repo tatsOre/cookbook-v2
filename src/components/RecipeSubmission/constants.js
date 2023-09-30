@@ -7,7 +7,10 @@ export const RECIPE_SCHEMA = {
         cook: '', /** Number */
         total: '' /** Number */
     },
-    photo: '',
+    photo: {
+        url: '', /* String */
+        public_id: ''  /* String */
+    },
     servings: '', /** Number */
     ingredients: [
         {
@@ -164,7 +167,7 @@ export default {
             INVALID: "The images you upload must be JPEG or PNG files. Please check your file type and try again.",
             SIZE: {
                 VALUE: 3145728,
-                MESSAGE: (value) => "The file size must be no more than " + parseInt(value/1024/1024) + "MB"
+                MESSAGE: (value) => "The file size must be no more than " + parseInt(value / 1024 / 1024) + "MB"
             }
         }
     },

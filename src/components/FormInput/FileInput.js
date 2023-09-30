@@ -1,26 +1,20 @@
 import React from "react"
 
-const FileInput = React.forwardRef((props, ref) => {
-    const { id, ...rest } = props
-    const _id = id ?? React.useId()
+function FileInputMobile({ onInputChange }) {
+    const onChangeHandler = (ev) => onInputChange(ev.target.files[0])
 
     return (
-        <>
-            <label htmlFor={_id}>
-                <span>Drag and drop an image or </span>
-                <span>browse</span>
-                <p>File must be JPEG, JPG or PNG format and up to 17MB</p>
-            </label>
-
+        <label htmlFor="input-file" className={styles.file__input}>
             <input
-                id={_id}
+                id="input-file"
                 type="file"
                 accept="image/png, image/jpeg"
-                ref={ref}
-                {...rest}
+                onChange={onChangeHandler}
             />
-        </>
+            <IconCloudUpload size={16} aria-hidden="true" />
+            <span>Upload a file</span>
+        </label>
     )
-})
+}
 
-export default FileInput
+export default FileInputMobile
