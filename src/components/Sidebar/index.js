@@ -56,10 +56,10 @@ function Sidebar({ user, openMenu, logout }) {
           </Link>
         </li>
 
-        <li>
+{/*         <li>
           <Link href="/account">My Account</Link>
         </li>
-
+ */}
         <li>
           <UnstyledButton onClick={logout}>Logout</UnstyledButton>
         </li>

@@ -94,8 +94,9 @@ function RecipeView({ data }) {
 
             <div className="print:hidden">
               <button
-                className="w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex"
+                className="disabled:opacity-75 w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex"
                 type="button"
+                disabled
               >
                 <span class="text-white text-xs font-bold">Save</span>
               </button>
