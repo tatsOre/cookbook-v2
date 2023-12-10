@@ -31,6 +31,10 @@ module.exports = {
         140: '140%',
         150: '150%',
         160: '160%'
+      },
+      screens: {
+        'print': { 'raw': 'print' },
+        screen: { raw: 'screen' },
       }
     }
   },

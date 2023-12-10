@@ -5,7 +5,9 @@ import Loader from '.'
 function LoaderOverlay({ light }) {
   return (
     <InPortal id="portal-container">
-      <Backdrop light={light}><Loader /></Backdrop>
+      <Backdrop light={light}>
+        <Loader />
+      </Backdrop>
     </InPortal>
   )
 }

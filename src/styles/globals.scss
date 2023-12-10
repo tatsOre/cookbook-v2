@@ -31,12 +31,32 @@
 
 @layer utilities {
     .index-heading {
-        //font-size: clamp(1.25rem, 4vw, 1.75rem);
-        font-stretch: 120%;
+        font-size: clamp(3rem, 10vw, 5rem);
+        line-height: 0.9;
     }
-  
+
+    .font-semicondensed {
+        font-stretch: semi-condensed;
+    }
+
+    .font-condensed {
+        font-stretch: condensed;
+    }
+
+    .font-expanded {
+        font-stretch: expanded;
+    }
+
+    .font-extraexpanded {
+        font-stretch: extra-expanded;
+    }
+
+    .font-ultraexpanded {
+        font-stretch: ultra-expanded;
+    }
+
     .text-balance {
-      text-wrap: balance;
+        text-wrap: balance;
     }
 }
 
@@ -44,45 +64,8 @@
 body {
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
-    color: #5d1616;
+    color: #3b3b3b;
     background-color: #F8F9F7;
-}
-
-/* Remove list styles on ul, ol elements with a class attribute */
-ul,
-ol {
-    list-style: none;
-}
-
-/* Make images easier to work with */
-img {
-    max-width: 100%;
-    display: block;
-}
-
-/* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select,
-fieldset {
-    font: inherit;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    margin: 0;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-    outline: none;
-}
-
-a,
-button,
-label {
-    cursor: pointer;
 }
 
 /* Remove all animations and transitions for people that prefer not to see them */

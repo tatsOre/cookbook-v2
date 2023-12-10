@@ -29,7 +29,6 @@
     box-shadow: none;
     padding: 0;
     cursor: pointer;
-    border: none;
     color: inherit;
     position: relative;
 
@@ -76,7 +75,6 @@
         //border-radius: 1px;
         transition: all .25s cubic-bezier(.4, 0, .2, 1) 0ms;
 
-        @include g.border--image;
 
         &:disabled {
             color: g.$color-smoke-gray;

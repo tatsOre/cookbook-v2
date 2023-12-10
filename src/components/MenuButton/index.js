@@ -1,6 +1,6 @@
 import clsx from "clsx"
-import UnstyledButton from "../UnstyledButton"
-import styles from './MenuButton.module.scss'
+import UnstyledButton from "../Button/UnstyledButton"
+import styles from './styles.module.scss'
 
 function MenuButton({ isOpen, toggleState, ...rest }) {
   return (

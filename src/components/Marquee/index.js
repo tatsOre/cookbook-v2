@@ -8,7 +8,7 @@ function Marquee({ text }) {
   return (
     <div className={styles.marquee} aria-hidden="true">
       <div className={styles.marquee__content}>
-        <span style={{ textTransform: 'lowercase' }}>{content}</span>
+        <span>{content}</span>
       </div>
     </div>
 

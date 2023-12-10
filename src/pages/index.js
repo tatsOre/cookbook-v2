@@ -21,14 +21,29 @@ export default function Home() {
 
   return (
     <Layout headerExtraContent={!user && <Link href="/login">Login</Link>}>
-      <section className='w-full'>
-       {/*  <h1 className="font-display index-heading">
-          Introducing Our Cookbook
-        </h1> */}
+      <section className='w-11/12 pt-12 md:pt-20 font-display'>
+        <div className='ml-3 md:ml-4 max-w-prose text-balance'>
+          <h1 className="index-heading font-display font-black mb-4">
+            This is<br />cookbook
+          </h1>
+
+          <p className='font-bold text-lg md:text-2xl leading-150 mb-4'>
+            Create and manage your home-cook recipes. Save your favorites and jump right to them.
+          </p>
+
+          <p className='text-sm md:text-base'> Yes, no ads or long stories, —no-Frills, All Thrills. </p>
+
+          <p className='leading-160 mt-4 text-sm md:text-base'>
+            Unlock the power of your taste and unleash your inner chef!
+            <br />
+            <span className='text-xs md:text-sm'>Just kidding, —<span className='font-semibold italic'>or not</span>.</span>
+          </p>
+
+        </div>
       </section>
 
-      <section className='w-full'>
-        <h2 className="font-medium pl-4 text-xs uppercase">
+      <section className='w-11/12 pt-10'>
+        <h2 className="ml-3 md:ml-4 mb-2 w-fit lowercase text-3xl md:text-6xl font-bold font-display font-condensed border-b-4 border-black">
           Latest
         </h2>
         <ul>{content}</ul>

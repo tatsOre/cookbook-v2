@@ -5,113 +5,113 @@
 /* Form & Accordion Layout
 ============================ */
 .recipe__form--wrapper {
-    max-width: g.$max-width;
-    width: 100%;
-    padding-block-start: 2rem;
+  max-width: g.$max-width;
+  width: 100%;
+  padding-block-start: 2rem;
 
-    /** Accordion Trigger / Form Fieldset Headings: */
-    [data-accordion-trigger] {
-        padding-block: calc(0.35rem + 1.5vh);
-        border-top: 2px solid g.$color-rich-black;
-        font-size: clamp(1.25rem, 4vw, 1.75rem);
-        font-family: t.$font-accent;
-        font-stretch: 120%;
-        font-weight: 400;
-        letter-spacing: 0.1px;
+  /** Accordion Trigger / Form Fieldset Headings: */
+  [data-accordion-trigger] {
+    padding-block: calc(0.35rem + 1vh);
+    border-bottom: 2px solid g.$color-rich-black;
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    font-family: t.$font-accent;
+    font-stretch: expanded;
+    font-weight: 400;
+    letter-spacing: 0.1px;
 
-        &[aria-expanded="true"] {
-            background-color: g.$color-warm-grey-100;
-        }
-
-        @media (hover: hover) {
-            &:hover:not([disabled]) {
-                background-color: g.$color-rich-black;
-                color: g.$color-white;
-                background-color: g.$color-rich-black;
-            }
-        }
+    &[aria-expanded="true"] {
+      background-color: g.$color-warm-grey-100;
     }
 
-    [data-accordion-content] {
-        padding-block: clamp(1.25rem, 4vw, 2rem);
-
-        div[role="alert"] {
-            margin-block-end: 1rem;
-        }
+    @media (hover: hover) {
+      &:hover:not([disabled]) {
+        background-color: g.$color-rich-black;
+        color: g.$color-white;
+        background-color: g.$color-rich-black;
+      }
     }
+  }
 
-    [data-accordion-content],
-    [data-accordion-trigger] {
-        padding-inline: calc(0.5rem + 1.5625vw);
+  [data-accordion-content] {
+    padding-block: clamp(1.25rem, 4vw, 2rem);
+
+    div[role="alert"] {
+      margin-block-end: 1rem;
     }
+  }
+
+  [data-accordion-content],
+  [data-accordion-trigger] {
+    padding-inline: calc(0.5rem + 1.5625vw);
+  }
 }
 
 /* 01. About Fieldset
 ============================ */
 .about__fieldset {
-    display: flex;
-    gap: 1.5rem 1rem;
-    position: relative;
+  display: flex;
+  gap: 1.5rem 1rem;
+  position: relative;
 
-    @media only screen and (max-width: g.$breakpoint-small) {
-        flex-direction: column;
+  @media only screen and (max-width: g.$breakpoint-small) {
+    flex-direction: column;
+  }
+
+  @media only screen and (min-width: g.$breakpoint-small) {
+    flex-flow: row wrap;
+
+    [data-input-wrapper="mainIngredient"] {
+      flex: 1 1 60%;
     }
 
-    @media only screen and (min-width: g.$breakpoint-small) {
-        flex-flow: row wrap;
+    [data-input-wrapper="servings"] {
+      flex-basis: 30%;
+    }
+  }
 
-        [data-input-wrapper="mainIngredient"] {
-            flex: 1 1 60%;
-        }
-
-        [data-input-wrapper="servings"] {
-            flex-basis: 30%;
-        }
+  @media only screen and (min-width: g.$breakpoint-medium) {
+    [data-input-wrapper="cuisine"] {
+      flex-basis: 30%;
     }
 
-    @media only screen and (min-width: g.$breakpoint-medium) {
-        [data-input-wrapper="cuisine"] {
-            flex-basis: 30%;
-        }
-
-        [data-input-wrapper="categories"] {
-            flex: 1 1 60%;
-        }
+    [data-input-wrapper="categories"] {
+      flex: 1 1 60%;
     }
+  }
 }
 
 /* Instructions Steps/Ingredients - Draggable List
 ============================ */
 .draggable__list {
-    li {
-        display: flex;
-        align-items: center;
-        background-color: g.$color-warm-grey-100;
-        margin-block-end: 1rem;
-        padding: 0.5rem 0.25rem;
+  li {
+    display: flex;
+    align-items: center;
+    background-color: g.$color-warm-grey-100;
+    margin-block-end: 1rem;
+    padding: 0.5rem 0.25rem;
 
-        /* Step No. Label Text */
-        span {
-            flex: 1;
-            @include t.body($fs: t.$font-size-15);
-            overflow: hidden;
-            /* Partial support: */
-            text-overflow: ellipsis;
-            -webkit-box-orient: vertical;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-        }
-
-        /* Button that triggers real delete button */
-        button[data-action="show-delete"] {
-            margin-inline-end: 0.5rem;
-
-            svg {
-                stroke: g.$color-danger-base;
-            }
-        }
-
-        /* Button for Beautiful DnD */
-        button[data-action="drag-handler"] {}
+    /* Step No. Label Text */
+    span {
+      flex: 1;
+      @include t.body($fs: t.$font-size-15);
+      overflow: hidden;
+      /* Partial support: */
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
     }
+
+    /* Button that triggers real delete button */
+    button[data-action="show-delete"] {
+      margin-inline-end: 0.5rem;
+
+      svg {
+        stroke: g.$color-danger-base;
+      }
+    }
+
+    /* Button for Beautiful DnD */
+    button[data-action="drag-handler"] {}
+  }
 }
