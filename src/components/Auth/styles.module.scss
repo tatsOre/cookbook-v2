@@ -2,121 +2,121 @@
 @use '../../styles/typography' as t;
 
 .auth__page--section {
-    width: 340px;
-    margin: 0 auto;
+  width: 340px;
+  margin: 0 auto;
 
-    &>* {
-        margin-block: 2rem;
+  &>* {
+    margin-block: 2rem;
+  }
+
+  h2 {
+    font-family: t.$font-accent;
+    font-weight: 300;
+    font-size: 1.4rem;
+    text-wrap: balance;
+  }
+
+  h2,
+  &>p {
+    text-align: center;
+
+  }
+
+  button[data-info="change-email"] {
+    font-size: t.$font-size-12;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  form {
+    label::after {
+      content: ':';
     }
 
-    h2 {
-        font-family: t.$font-accent;
-        font-weight: 300;
-        font-size: 1.4rem;
-        text-wrap: balance;
+    .email__fieldset {
+      &[data-active=true] {
+        display: block;
+      }
+
+      &[data-active=false] {
+        display: none;
+      }
     }
 
-    h2,
-    &>p {
-        text-align: center;
+    .password__fieldset {
+      position: relative;
 
-    }
+      /**  Hide/Show Password Button: */
+      [data-action="show-password"] {
+        position: absolute;
+        right: 0.5rem;
+        top: 2rem;
+        z-index: 1;
+        background-color: g.$color-white;
 
-    button[data-info="change-email"] {
-        font-size: t.$font-size-12;
-        font-weight: 600;
+        svg {
+          stroke: g.$color-smoke-gray;
+          stroke-width: 1.5px;
+        }
 
         &:hover {
-            text-decoration: underline;
+          svg {
+            stroke: currentColor;
+          }
         }
+      }
     }
 
-    form {
-        label::after {
-            content: ':';
-        }
+    /** Continue and Login/Create Acc Button */
+    button:not([data-action="show-password"]) {
+      margin-block: 1.25rem;
+    }
+  }
 
-        .email__fieldset {
-            &[data-active=true] {
-                display: block;
-            }
+  [data-info="auth-providers"] {
+    text-align: center;
 
-            &[data-active=false] {
-                display: none;
-            }
-        }
-
-        .password__fieldset {
-            position: relative;
-
-            /**  Hide/Show Password Button: */
-            [data-action="show-password"] {
-                position: absolute;
-                right: 0.5rem;
-                top: 2rem;
-                z-index: 1;
-                background-color: g.$color-white;
-
-                svg {
-                    stroke: g.$color-smoke-gray;
-                    stroke-width: 1.5px;
-                }
-
-                &:hover {
-                    svg {
-                        stroke: currentColor;
-                    }
-                }
-            }
-        }
-
-        /** Continue and Login/Create Acc Button */
-        button:not([data-action="show-password"]) {
-            margin-block: 1.25rem;
-        }
+    &>* {
+      margin-block: 1rem;
     }
 
-    [data-info="auth-providers"] {
-        text-align: center;
+    &>div {
+      position: relative;
 
-        &>* {
-            margin-block: 1rem;
-        }
+      span {
+        background-color: g.$color-white;
+        padding-inline: 1rem;
+      }
 
-        &>div {
-            position: relative;
+      &::before,
+      &::after {
+        position: absolute;
+        content: "";
+        height: 1px;
+        width: 45%;
+        top: 50%;
+        background-color: g.$color-warm-grey-400;
+      }
 
-            span {
-                background-color: g.$color-white;
-                padding-inline: 1rem;
-            }
+      &::before {
+        right: 0;
+      }
 
-            &::before,
-            &::after {
-                position: absolute;
-                content: "";
-                height: 1px;
-                width: 45%;
-                top: 50%;
-                background-color: g.$color-warm-grey-400;
-            }
-
-            &::before {
-                right: 0;
-            }
-
-            &::after {
-                left: 0;
-            }
-        }
-
-        a {
-            display: block;
-            width: 100%;
-            border: 1px solid g.$color-warm-grey-400;
-            border-radius: 25px;
-            padding-block: 0.75rem;
-            font-size: 0.9rem;
-        }
+      &::after {
+        left: 0;
+      }
     }
+
+    a {
+      display: block;
+      width: 100%;
+      border: 1px solid g.$color-warm-grey-400;
+      border-radius: 25px;
+      padding-block: 0.75rem;
+      font-size: 0.9rem;
+    }
+  }
 }

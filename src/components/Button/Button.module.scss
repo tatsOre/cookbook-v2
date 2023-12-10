@@ -66,8 +66,13 @@
     }
 
     &--primary {
-        color: g.$color-rich-black;
-        background-color: g.$color-white;
+        color: g.$color-white;
+        background-color: #454242;
+        display: inline-flex;
+        padding: 1rem 1.875rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
         //box-shadow: 2px 2px 0 0 g.$color-rich-black;
         //border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
         //border: g.$border-default;
@@ -79,8 +84,6 @@
         &:disabled {
             color: g.$color-smoke-gray;
             background-color: g.$color-white;
-            //border-color: g.$color-warm-grey-400;
-            //box-shadow: none;
         }
     }
 
@@ -94,7 +97,7 @@
             background-color: g.$color-accent-yellow;
             color: g.$color-rich-black;
             //transform: translate(-0.2rem, -0.2rem);
-            box-shadow: 0.2rem 0.2rem 0 g.$color-accent-yellow;
+            //box-shadow: 0.2rem 0.2rem 0 g.$color-accent-yellow;
         }
     }
 }

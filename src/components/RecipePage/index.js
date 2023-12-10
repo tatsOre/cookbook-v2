@@ -17,14 +17,14 @@ function RecipeShowPhoto({ photo, title }) {
 
 function RecipeTags({ cuisine, categories }) {
   return (
-    cuisine || categories.length ? (
-      <div className="print:hidden flex flex-wrap uppercase text-xs tracking-widest">
-        <span>Recipe under:</span>
+    cuisine || categories?.length ? (
+      <div className="print:hidden uppercase text-xs tracking-widest">
+        <span className="inline-block mb-2 mr-4">Recipe under:</span>
 
-        <ul className="flex flex-wrap font-bold">
+        <ul className="inline-flex flex-wrap font-bold">
           {cuisine && cuisine.label !== 'other' && (
             <li
-              className="px-3 [&:not(:last-child)]:border-r border-black"
+              className="pr-3 [&:not(:last-child)]:border-r border-black"
               data-field="cuisine"
               key={cuisine._id}>
               {cuisine.label}
@@ -34,7 +34,7 @@ function RecipeTags({ cuisine, categories }) {
           {categories && categories.length > 0 &&
             categories.map(cat => (
               <li
-                className="px-3 [&:not(:last-child)]:border-r border-black"
+                className="px-3 [&:first-child]:pl-0 [&:not(:last-child)]:border-r border-black"
                 data-field="category" key={cat._id}>
                 {cat.label}
               </li>
@@ -87,33 +87,35 @@ function RecipeView({ data }) {
                 <><span>By <b>{author.name}</b></span><span className="px-2">|</span></>
               )}
 
-              <span className="">{date}</span>
+              <span>{date}</span>
 
               {servings > 0 && <span className="px-2">| Serves {servings}</span>}
             </div>
 
             <div className="print:hidden">
               <button
-                class="w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex"
+                className="w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex"
                 type="button"
               >
                 <span class="text-white text-xs font-bold">Save</span>
               </button>
 
               <button
-                class="mx-4 w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex"
+                className="mx-4 w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex"
                 type="button"
                 onClick={() => window.print()}
               >
                 <span class="text-white text-xs font-bold">Print</span>
               </button>
 
-              <Link
-                class="w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex"
-                href={`/edit/${_id}`}
-              >
-                <span class="text-white text-xs font-bold">Edit</span>
-              </Link>
+              {user?._id === author?._id && (
+                <Link
+                  className="w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex"
+                  href={`/edit/${_id}`}
+                >
+                  <span class="text-white text-xs font-bold">Edit</span>
+                </Link>
+              )}
             </div>
           </section>
 

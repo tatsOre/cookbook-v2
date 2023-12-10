@@ -23,22 +23,24 @@ function Header({ children }) {
 
   const router = useRouter()
 
-  const isHome = router.pathname ===  '/'
+  const isHome = router.pathname === '/'
 
   return (
     <header className="w-full h-[55px] fixed z-10 bg-white border-y border-black print:hidden">
       <nav className="w-full h-full flex flex-wrap items-center">
-        <div className="h-full border-r border-black" ref={menuRef}>
-          <MenuButton
-            isOpen={openMenu}
-            toggleState={toggleMenuState}
-          />
-          <Sidebar
-            user={user}
-            logout={logout}
-            openMenu={openMenu}
-          />
-        </div>
+        {user ? (
+          <div className="h-full border-r border-black" ref={menuRef}>
+            <MenuButton
+              isOpen={openMenu}
+              toggleState={toggleMenuState}
+            />
+            <Sidebar
+              user={user}
+              logout={logout}
+              openMenu={openMenu}
+            />
+          </div>
+        ) : null}
         {isHome ? null : <Logo />}
         <div
           className={clsx(

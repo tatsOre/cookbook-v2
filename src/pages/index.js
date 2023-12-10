@@ -27,18 +27,17 @@ export default function Home() {
             This is<br />cookbook
           </h1>
 
-          <p className='font-bold text-lg md:text-2xl leading-150 mb-4'>
+          <p className='font-bold text-lg md:text-2xl mb-4'>
             Create and manage your home-cook recipes. Save your favorites and jump right to them.
           </p>
 
-          <p className='text-sm md:text-base'> Yes, no ads or long stories, —no-Frills, All Thrills. </p>
-
-          <p className='leading-160 mt-4 text-sm md:text-base'>
-            Unlock the power of your taste and unleash your inner chef!
+          <p className='text-base leading-6'>
+            Yes, no ads or long stories, —no-Frills, All Thrills.
             <br />
-            <span className='text-xs md:text-sm'>Just kidding, —<span className='font-semibold italic'>or not</span>.</span>
+            <br />
+            Unlock the power of your taste and unleash your inner chef!
+            ...Just kidding, —<span className='font-semibold italic'>or not</span>.
           </p>
-
         </div>
       </section>
 
