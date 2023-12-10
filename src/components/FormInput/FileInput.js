@@ -1,4 +1,5 @@
 import React from "react"
+import { IconCloudUpload } from "../Icon"
 
 function FileInputMobile({ onInputChange }) {
   const onChangeHandler = (ev) => onInputChange(ev.target.files[0])

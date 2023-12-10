@@ -23,7 +23,8 @@ const CheckboxInput = React.forwardRef((props, ref) => {
     ...rest
   } = props
 
-  const _id = id || React.useId()
+  const uid = React.useId()
+  const _id = id || uid
 
   return (
     <div

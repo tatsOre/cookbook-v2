@@ -15,7 +15,9 @@ export const useAccordionContext = () => React.useContext(AccordionStateContext)
 
 function Accordion(props) {
   const { active, setActive, children, id, multiple, ...rest } = props
-  const _id = id || React.useId()
+
+  const uid = React.useId()
+  const _id = id || uid
 
   const isItemActive = (item) => active.includes(item)
 

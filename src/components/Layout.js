@@ -5,7 +5,7 @@ import Footer from "./Footer"
 function Layout({ children, headerExtraContent, withFooter = true }) {
   return (
     <React.Fragment>
-      <Header children={headerExtraContent} />
+      <Header>{headerExtraContent}</Header>
       <main>{children}</main>
       {withFooter && <Footer />}
     </React.Fragment>
