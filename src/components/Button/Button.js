@@ -1,7 +1,7 @@
 import React from 'react'
+import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import UnstyledButton from './UnstyledButton'
-import clsx from 'clsx'
 
 import { APPEARANCES } from './Button.constants'
 
@@ -13,84 +13,84 @@ import styles from './Button.module.scss'
  */
 
 const Button = React.forwardRef((props, ref) => {
-    const {
-        appearance,
-        children,
-        className,
-        compact,
-        fullWidth,
-        disabled,
-        isProcessing,
-        leftIcon,
-        rightIcon,
-        style,
-        uppercase,
-        ...rest
-    } = props
+  const {
+    appearance,
+    children,
+    className,
+    compact,
+    fullWidth,
+    disabled,
+    isProcessing,
+    leftIcon,
+    rightIcon,
+    style,
+    uppercase,
+    ...rest
+  } = props
 
-    const classes = clsx([
-        className,
-        styles.button,
-        styles[`button--${appearance}`],
-        compact ? styles['button--compact'] : styles['button--wide'],
-        typeof children !== 'string' && styles['action--button']
-    ])
+  const classes = clsx([
+    className,
+    styles.button,
+    styles[`button--${appearance}`],
+    compact ? styles['button--compact'] : styles['button--wide'],
+    typeof children !== 'string' && styles['action--button']
+  ])
 
-    return (
-        <UnstyledButton
-            className={classes}
-            disabled={disabled || isProcessing}
-            style={{
-                textTransform: uppercase ? 'uppercase' : undefined,
-                width: fullWidth ? '100%' : undefined,
-                ...style,
-            }}
-            ref={ref}
-            {...rest}
+  return (
+    <UnstyledButton
+      className={classes}
+      disabled={disabled || isProcessing}
+      style={{
+        textTransform: uppercase ? 'uppercase' : undefined,
+        width: fullWidth ? '100%' : undefined,
+        ...style,
+      }}
+      ref={ref}
+      {...rest}
+    >
+      {leftIcon && (
+        <span
+          aria-hidden="true"
+          className={clsx(
+            styles[`icon__container`],
+            styles[`icon__container--left`]
+          )}
         >
-            {leftIcon && (
-                <span
-                    aria-hidden="true"
-                    className={cx([
-                        styles[`icon__container`],
-                        styles[`icon__container--left`]
-                    ])}
-                >
-                    {leftIcon}
-                </span>
-            )}
-            {children}
-            {rightIcon && (
-                <span
-                    aria-hidden="true"
-                    className={cx([
-                        styles[`icon__container`],
-                        styles[`icon__container--right`]
-                    ])}
-                >
-                    {rightIcon}
-                </span>
-            )}
-        </UnstyledButton>
-    )
+          {leftIcon}
+        </span>
+      )}
+      {children}
+      {rightIcon && (
+        <span
+          aria-hidden="true"
+          className={clsx(
+            styles[`icon__container`],
+            styles[`icon__container--right`]
+          )}
+        >
+          {rightIcon}
+        </span>
+      )}
+    </UnstyledButton>
+  )
 })
 
 Button.defaultProps = {
-    appearance: APPEARANCES.PRIMARY
+  appearance: APPEARANCES.PRIMARY
 }
 
 Button.propTypes = {
-    /** Icon before the button text */
-    leftIcon: PropTypes.node,
+  /** Icon before the button text */
+  leftIcon: PropTypes.node,
 
-    /** Icon after the button text */
-    rightIcon: PropTypes.node,
+  /** Icon after the button text */
+  rightIcon: PropTypes.node,
 
-    /** Is the action intended to be finished or not? */
-    isProcessing: PropTypes.bool,
+  /** Is the action intended to be finished or not? */
+  isProcessing: PropTypes.bool,
 
-    /** HTML attribute */
-    type: PropTypes.oneOf(['button', 'reset', 'submit'])
+  /** HTML attribute */
+  type: PropTypes.oneOf(['button', 'reset', 'submit'])
 }
 
 export default Button
