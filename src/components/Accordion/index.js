@@ -14,50 +14,50 @@ export const useAccordionContext = () => React.useContext(AccordionStateContext)
  */
 
 function Accordion(props) {
-    const { active, setActive, children, id, multiple, ...rest } = props
-    const _id = id || React.useId()
+  const { active, setActive, children, id, multiple, ...rest } = props
+  const _id = id || React.useId()
 
-    const isItemActive = (item) => active.includes(item)
+  const isItemActive = (item) => active.includes(item)
 
-    const onItemChangeHandler = (item) => {
-        let nextState = []
+  const onItemChangeHandler = (item) => {
+    let nextState = []
 
-        if (multiple) {
-            if (active.includes(item)) {
-                nextState = active.filter(i => i !== item)
-            } else {
-                nextState = [...active, item]
-            }
-            setActive(nextState)
-        } else {
-            nextState = active.includes(item) ? nextState : [item]
-            setActive(nextState)
-        }
+    if (multiple) {
+      if (active.includes(item)) {
+        nextState = active.filter(i => i !== item)
+      } else {
+        nextState = [...active, item]
+      }
+      setActive(nextState)
+    } else {
+      nextState = active.includes(item) ? nextState : [item]
+      setActive(nextState)
     }
+  }
 
-    return (
-        <AccordionProvider value={{
-            id: _id,
-            onChange: onItemChangeHandler,
-            isItemActive,
-            getTriggerId: (v) => `${_id}-trigger-${v}`,
-            getPanelId: (v) => `${_id}-panel-${v}`
-
-        }}>
-           {children}
-        </AccordionProvider>
-    )
+  return (
+    <AccordionProvider value={{
+      id: _id,
+      onChange: onItemChangeHandler,
+      isItemActive,
+      getTriggerId: (v) => `${_id}-trigger-${v}`,
+      getPanelId: (v) => `${_id}-panel-${v}`,
+      ...rest
+    }}>
+      {children}
+    </AccordionProvider>
+  )
 }
 
 Accordion.defaultProps = {
-    active: []
+  active: []
 }
 
 Accordion.propTypes = {
-    active: PropTypes.arrayOf(PropTypes.string),
-    setActive: PropTypes.func,
-    children: PropTypes.node,
-    id: PropTypes.string
+  active: PropTypes.arrayOf(PropTypes.string),
+  setActive: PropTypes.func,
+  children: PropTypes.node,
+  id: PropTypes.string
 }
 
 Accordion.Item = AccordionItem

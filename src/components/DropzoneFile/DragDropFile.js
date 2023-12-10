@@ -1,6 +1,6 @@
 import React from "react"
+import clsx from "clsx"
 import { IconCloudUpload } from "../Icon"
-import cx from "../utils/cx"
 
 import styles from './DragDrop.module.scss'
 
@@ -54,9 +54,7 @@ function DragDropFile({ onDropFile, accept, className }) {
 
     return (
         <div
-            className={cx([
-                styles.file__dropzone, dragActive && styles.drag__active, className
-            ])}
+            className={clsx(styles.file__dropzone, dragActive && styles.drag__active, className)}
             onDragEnter={onDragHandler}
             onDragLeave={onDragHandler}
             onDragOver={onDragHandler}

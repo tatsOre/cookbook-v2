@@ -1,9 +1,10 @@
 import React from "react"
 import PropTypes from 'prop-types'
 import { useFormContext } from "react-hook-form"
-import useFormSubmission, { STATUS } from "@/lib/useFormSubmission"
+import useFormSubmission, { STATUS } from "@/hooks/useFormSubmission"
 import Alert from "../Alert"
 import { Button } from "../Button"
+import { IconAlertCircle } from "../Icon"
 import LoaderOverlay from "../Loader/LoaderOverlay"
 import { TextInput } from "../FormInput"
 import { default as PATHS } from '../../../config'
@@ -11,7 +12,7 @@ import { default as PATHS } from '../../../config'
 import styles from './styles.module.scss'
 
 function EmailField({ setStatus, displayNameIsSet, attrs: EMAIL }) {
-    const [formData, setFormData] = React.useState('')
+    const [formData, setFormData] = React.useState()
 
     const {
         register,
@@ -42,7 +43,8 @@ function EmailField({ setStatus, displayNameIsSet, attrs: EMAIL }) {
         }
     })
 
-    const checkIfEmailExists = () => {
+    const lookUpByEmail = () => {
+        // Verify rules
         trigger(EMAIL.NAME, { shouldFocus: true })
 
         isValid && setFormData({
@@ -58,12 +60,9 @@ function EmailField({ setStatus, displayNameIsSet, attrs: EMAIL }) {
             data-active={!displayNameIsSet}
         >
             {status === STATUS.REJECTED ? (
-                <Alert
-                    appearance="danger"
-                    variant='light'
-                    title={errorMessage}
-                    style={{ marginBottom: '1rem' }}
-                />
+                <Alert appearance="danger" icon={<IconAlertCircle />}>
+                    {errorMessage}
+                </Alert>
             ) : null}
 
             <TextInput
@@ -78,9 +77,10 @@ function EmailField({ setStatus, displayNameIsSet, attrs: EMAIL }) {
                     emailRegister.onChange(ev)
                     errors.email && clearErrors(EMAIL.NAME)
                 })}
+                hideInputLabel
             />
 
-            <Button onClick={checkIfEmailExists} fullWidth>Continue</Button>
+            <Button onClick={lookUpByEmail} fullWidth>Continue</Button>
 
             {status === STATUS.PENDING ? <LoaderOverlay /> : null}
         </div>

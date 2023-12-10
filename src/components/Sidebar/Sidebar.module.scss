@@ -1,7 +1,7 @@
 @use '../../styles/globals.module.scss' as g;
 @use '../../styles/typography' as t;
 
-.menu__aside {
+.sidebar {
     font-family: t.$font-accent;
     width: 100%;
     max-width: 300px;

@@ -61,7 +61,7 @@ export default {
         DESC: '',
         LABEL: 'What is the main ingredient of your dish?',
         NAME: 'mainIngredient',
-        PLACEHOLDER: 'e.g. Passion Fruit',
+        PLACEHOLDER: 'e.g. Chicken',
         RULES: {
             REQUIRED: 'Main ingredient is required.'
         }
@@ -112,6 +112,7 @@ export default {
         RULES: {
             REQUIRED: 'At least one ingredient is required.'
         },
+        SCHEMA: RECIPE_SCHEMA.ingredients,
         INGR_ATTRS: {
             QTY: {
                 LABEL: 'Amount',
@@ -169,7 +170,8 @@ export default {
                 VALUE: 3145728,
                 MESSAGE: (value) => "The file size must be no more than " + parseInt(value / 1024 / 1024) + "MB"
             }
-        }
+        },
+        SCHEMA: RECIPE_SCHEMA.photo
     },
     COMMENTS: {
         DESC: 'Share any additional notes or comments about your recipe. You can mention personal anecdotes, serving suggestions, variations, or any helpful tips.',

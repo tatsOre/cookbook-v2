@@ -1,6 +1,6 @@
 import React from 'react'
 import useSWRMutation from 'swr/mutation'
-import useUser from '@/lib/useUser'
+import useUser from '@/hooks/useUser'
 import { fetcher } from '@/pages/_app'
 import { IconBookmark } from '@/components/Icon'
 import { IconButton } from '@/components/Button'
@@ -21,7 +21,6 @@ function BookmarkRecipe({ recipe, onUpdateFavorites }) {
     const { user, mutate: mutateUser } = useUser()
 
     React.useEffect(() => {
-        console.log({ data })
         if (data) {
             onUpdateFavorites && onUpdateFavorites(recipe._id)
             mutateUser()

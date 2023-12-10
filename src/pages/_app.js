@@ -37,7 +37,7 @@ const WrappedApp = ({ Component, pageProps }) => {
     const { theme } = useThemeContext()
 
     return (
-        <div className={`theme--${theme}`}>
+        <div className={`theme--${theme}`} data-theme={`theme--${theme}`}>
             <Component {...pageProps} />
         </div>
     )
@@ -54,9 +54,10 @@ export default function MyApp(props) {
                 fetcher: fetcher,
                 revalidateOnFocus: false,
                 onError: (error, key) => {
-                    if (error.status !== 401 && error.status !== 404 && error.status !== 404) {
+                    if (![401, 403, 404].includes(error.status)) {
                         console.log({ Err: error.message, key })
                     }
+                    // handle error with UI
                 }
             }}>
                 <ThemeContextProvider>

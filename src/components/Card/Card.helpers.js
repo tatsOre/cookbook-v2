@@ -1,4 +1,4 @@
-import { getRandomNumber } from "../utils/number";
+import { getRandomNumber } from "@/utils/number";
 
 const images = [
     'https://res.cloudinary.com/dshl3pgv4/image/upload/v1692626960/cookbook/card_patterns/01_tray84.png',

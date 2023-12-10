@@ -1,6 +1,13 @@
 import cloudinary from "cloudinary/lib/cloudinary"
 
-import { CLOUDINARY as KEYS } from "../../config"
+export const KEYS = {
+    API_KEY: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+    API_KEY_SECRET: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY_SECRET,
+    CLOUD_NAME: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    FOLDER: process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER,
+    PRESET: process.env.NEXT_PUBLIC_CLOUDINARY_PRESET,
+    URL: process.env.NEXT_PUBLIC_CLOUDINARY_URL
+}
 
 cloudinary.config({
     cloud_name: KEYS.CLOUD_NAME,

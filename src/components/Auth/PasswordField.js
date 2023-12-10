@@ -8,45 +8,45 @@ import PasswordStrengthMeter from "../PasswordStrengthMeter"
 import styles from './styles.module.scss'
 
 function PasswordField({ mode, attrs: PASSWORD }) {
-    const [show, setShow] = React.useState(false)
-    const [password, setPassword] = React.useState('')
+  const [show, setShow] = React.useState(false)
+  const [password, setPassword] = React.useState('')
 
-    const { register, formState: { errors } } = useFormContext()
+  const { register, formState: { errors } } = useFormContext()
 
-    const passwordRegister = register(PASSWORD.NAME, {
-        required: PASSWORD.RULES.REQUIRED,
-        minLength: PASSWORD.RULES.MIN_LENGTH.VALUE
-    })
+  const passwordRegister = register(PASSWORD.NAME, {
+    required: PASSWORD.RULES.REQUIRED,
+    minLength: PASSWORD.RULES.MIN_LENGTH.VALUE
+  })
 
-    return (
-        <div className={styles.password__fieldset}>
-            <TextInput
-                label={mode === 'SIGNUP'
-                    ? PASSWORD.LABEL.SIGNUP : PASSWORD.LABEL.LOGIN}
-                error={errors[PASSWORD.NAME]}
-                type={show ? 'text' : 'password'}
-                {...passwordRegister}
-                onChange={(ev => {
-                    passwordRegister.onChange(ev)
-                    /** Set value to pass it to PasswordStrengthMeter as prop **/
-                    setPassword(ev.target.value)
-                })}
-            />
+  return (
+    <div className={styles.password__fieldset}>
+      <TextInput
+        label={mode === 'SIGNUP'
+          ? PASSWORD.LABEL.SIGNUP : PASSWORD.LABEL.LOGIN}
+        error={errors[PASSWORD.NAME]}
+        type={show ? 'text' : 'password'}
+        {...passwordRegister}
+        onChange={(ev => {
+          passwordRegister.onChange(ev)
+          /** Set value to pass it to PasswordStrengthMeter as prop **/
+          setPassword(ev.target.value)
+        })}
+      />
 
-            <IconButton
-                data-action="show-password"
-                icon={show ? <IconEyeOff size={20} /> : <IconEye size={20} />}
-                onClick={() => setShow(prev => !prev)}
-            />
+      <IconButton
+        data-action="show-password"
+        icon={show ? <IconEyeOff size={20} /> : <IconEye size={20} />}
+        onClick={() => setShow(prev => !prev)}
+      />
 
-            {mode === 'SIGNUP' ? (
-                <PasswordStrengthMeter
-                    password={password}
-                    description={PASSWORD.RULES.MIN_LENGTH.MESSAGE}
-                />
-            ) : null}
-        </div>
-    )
+      {mode === 'SIGNUP' ? (
+        <PasswordStrengthMeter
+          password={password}
+          description={PASSWORD.RULES.MIN_LENGTH.MESSAGE}
+        />
+      ) : null}
+    </div>
+  )
 }
 
 export default PasswordField

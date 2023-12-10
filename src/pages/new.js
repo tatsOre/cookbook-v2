@@ -1,10 +1,10 @@
 import React from 'react'
 import Router from "next/router";
 import Head from 'next/head'
-import useUser from '@/lib/useUser'
+import useUser from '@/hooks/useUser'
 import RecipeSubmission from '@/components/RecipeSubmission'
 import RecipeSubmissionProvider from '@/components/RecipeSubmission/context'
-import Layout from '@/components/Layout';
+import Layout from '../components/Layout'
 import Marquee from '@/components/Marquee';
 import { UnstyledButton } from '@/components/Button';
 import { default as PATHS } from '../../config'

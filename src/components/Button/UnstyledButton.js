@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import cx from '../utils/cx'
+import clsx from 'clsx'
 
 import styles from './Button.module.scss'
 
@@ -19,7 +19,7 @@ const UnstyledButton = React.forwardRef((props, ref) => {
         ...rest
     } = props
 
-    const classes = cx([styles.button__base, className])
+    const classes = clsx(styles.button__base, className)
     
     return (
         <button

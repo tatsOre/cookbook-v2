@@ -11,8 +11,8 @@
     }
 
     .input__label {
-        @include t.overline($fs: 10px, $fw: 500);
-        line-height: 1;
+        font-size: clamp(0.75rem, 0.662rem + 0.3756vw, 1rem);
+        font-weight: 500;
     }
 
     /* Input Hint Message */

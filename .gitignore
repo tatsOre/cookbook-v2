@@ -128,3 +128,13 @@ notes.txt
 .env
 .gitignore
 /src/lib/test.js
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

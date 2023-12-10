@@ -1,13 +1,12 @@
 import { IconAlertCircle } from '../Icon'
+import clsx from 'clsx'
 import Label from './Label'
-import cx from '../utils/cx'
-
 import styles from './FormGroup.module.scss'
 
 const Wrapper = ({ className, children, name }) => {
     return (
         <div
-            className={cx([className, styles.form__group])}
+            className={clsx(className, styles.form__group)}
             data-input-wrapper={name}
         >
             {children}

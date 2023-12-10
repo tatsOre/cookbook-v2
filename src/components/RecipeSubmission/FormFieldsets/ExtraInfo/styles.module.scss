@@ -17,6 +17,10 @@
     span {
         padding-inline-start: 0.3rem;
     }
+
+    @media only screen and (max-width: g.$breakpoint-small) {
+        width: 100%;
+    }
 }
 
 .recipe--photo {

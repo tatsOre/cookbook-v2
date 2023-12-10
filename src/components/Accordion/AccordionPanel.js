@@ -1,36 +1,31 @@
-import cx from "@/components/utils/cx"
+import clsx from "clsx"
 import { useAccordionContext } from "."
 import { useAccordionItemContext } from "./AccordionItem"
 
-import styles from './Alert.module.scss'
-
 function AccordionPanel(props) {
-    const { className, children, ...rest } = props
-    const context = useAccordionContext()
-    const { value } = useAccordionItemContext()
-    const isItemActive = context.isItemActive(value)
+  const { className, children, ...rest } = props
+  const context = useAccordionContext()
+  const { value } = useAccordionItemContext()
+  const isItemActive = context.isItemActive(value)
 
-    return (
-        <div
-            aria-labelledby={context.getTriggerId(value)}
-            data-active={isItemActive}
-            data-accordion-panel
-            id={context.getPanelId(value)}
-            className={cx([styles['accordion__panel--collapsible']])}
-            {...rest}
-        >
-            <div
-                data-accordion-content
-                data-active={isItemActive}
-                className={cx([
-                    className,
-                    styles['accordion__panel--content'],
-                ])}>
-                {children}
-            </div>
-        </div>
-    )
+  return (
+    <div
+      aria-labelledby={context.getTriggerId(value)}
+      data-active={isItemActive}
+      data-accordion-panel
+      id={context.getPanelId(value)}
+      className={clsx("overflow-hidden", isItemActive ? "h-auto" : "h-0")}
+      {...rest}
+    >
+      <div
+        data-accordion-content
+        data-active={isItemActive}
+        className={clsx(className, { "sr-only": !isItemActive })}
+      >
+        {children}
+      </div>
+    </div>
+  )
 }
-
 
 export default AccordionPanel

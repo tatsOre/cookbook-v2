@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import useUser from '@/lib/useUser'
+import useUser from '@/hooks/useUser'
 import Layout from '@/components/Layout'
 
 function Page() {

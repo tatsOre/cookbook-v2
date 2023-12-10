@@ -2,7 +2,7 @@ import React from "react"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
 import { FormProvider, useForm } from "react-hook-form"
-import useFormSubmission, { STATUS } from "@/lib/useFormSubmission"
+import useFormSubmission, { STATUS } from "@/hooks/useFormSubmission"
 import Accordion from "../Accordion"
 import Alert from "../Alert"
 import LoaderOverlay from "../Loader/LoaderOverlay"
@@ -10,84 +10,84 @@ import { deNormalizeData, normalizeData, getFormAccordionState } from "./helpers
 import cloudinaryService from "@/services/cloudinary"
 
 const DynamicRecipeForm = dynamic(() => import('./Form')
-    .catch(() => <span>Something went wrong.</span>),
-    { ssr: false }
+  .catch(() => <span>Something went wrong.</span>),
+  { ssr: false }
 )
 
 function RecipeSubmission({ endpoint, recipe, mode }) {
-    const [formData, setFormData] = React.useState(null)
+  const [formData, setFormData] = React.useState(null)
 
-    const [photoError, setPhotoError] = React.useState(null)
+  const [photoError, setPhotoError] = React.useState(null)
 
-    const [activeFieldset, setActiveFieldset] = React.useState(
-        ['item-4']
-    )
+  const [activeFieldset, setActiveFieldset] = React.useState(
+    ['item-1']
+  )
 
-    const { status, responseData, errorMessage } = useFormSubmission({
-        endpoint,
-        method: mode === 'edit' ? 'PATCH' : 'POST',
-        data: formData,
-    })
+  const { status, responseData, errorMessage } = useFormSubmission({
+    endpoint,
+    method: mode === 'edit' ? 'PATCH' : 'POST',
+    data: formData,
+  })
 
-    const methods = useForm({
-        defaultValues: mode === 'edit' ? deNormalizeData(recipe) : null
-    })
+  const methods = useForm({
+    defaultValues: mode === 'edit' ? deNormalizeData(recipe) : null
+  })
 
-    const router = useRouter()
+  const router = useRouter()
 
-    React.useEffect(() => {
-        status === STATUS.RESOLVED && router.push(`/recipes/${responseData.doc}`)
-    }, [status])
+  React.useEffect(() => {
+    status === STATUS.RESOLVED && router.push(`/recipes/${responseData.doc}`)
+  }, [status])
 
-    const onSubmit = async (values) => {
-        // If we have a local file, upload it to Cloudinary
-        if (values.photo?.size) {
-            const [data, error] = await cloudinaryService.upload(values.photo)
-  
-            if (error) {
-                return setPhotoError(error)
-            } else {
-                values.photo = data
-            }
-        }
+  const onSubmit = async (values) => {
+    // If we have a local file, upload it to Cloudinary
+    if (values.photo?.size) {
+      const [data, error] = await cloudinaryService.upload(values.photo)
 
-        const payload = normalizeData(values)
-        //console.log(payload)
-        setFormData(payload) // submit info
+      if (error) {
+        return setPhotoError(error)
+      } else {
+        values.photo = data
+      }
     }
 
-    const onErrors = (errors) => {
-        const withErrors = getFormAccordionState(errors)
-        const newState = [...activeFieldset, ...withErrors]
-        setActiveFieldset(newState)
-    }
+    const payload = normalizeData(values)
+    //console.log(payload)
+    setFormData(payload) // submit info
+  }
 
-    return (
-        <>
-            {status === STATUS.REJECTED || photoError ? (
-                <Alert
-                    appearance="danger"
-                    variant='light'
-                    title={errorMessage || photoError}
-                    style={{ marginBottom: '1rem' }}
-                />
-            ) : null}
+  const onErrors = (errors) => {
+    const withErrors = getFormAccordionState(errors)
+    const newState = [...activeFieldset, ...withErrors]
+    setActiveFieldset(newState)
+  }
 
-            <FormProvider {...methods}>
-                <Accordion
-                    active={activeFieldset}
-                    setActive={setActiveFieldset}
-                    multiple
-                >
-                    <DynamicRecipeForm
-                        onSubmit={methods.handleSubmit(onSubmit, onErrors)}
-                    />
-                </Accordion>
-            </FormProvider>
+  return (
+    <>
+      {status === STATUS.REJECTED || photoError ? (
+        <Alert
+          appearance="danger"
+          variant='light'
+          title={errorMessage || photoError}
+          style={{ marginBottom: '1rem' }}
+        />
+      ) : null}
 
-            {status === STATUS.PENDING ? <LoaderOverlay /> : null}
-        </>
-    )
+      <FormProvider {...methods}>
+        <Accordion
+          active={activeFieldset}
+          setActive={setActiveFieldset}
+          multiple
+        >
+          <DynamicRecipeForm
+            onSubmit={methods.handleSubmit(onSubmit, onErrors)}
+          />
+        </Accordion>
+      </FormProvider>
+
+      {status === STATUS.PENDING ? <LoaderOverlay /> : null}
+    </>
+  )
 }
 
 export default RecipeSubmission

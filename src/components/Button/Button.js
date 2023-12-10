@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import UnstyledButton from './UnstyledButton'
-import cx from '../utils/cx'
+import clsx from 'clsx'
+
 import { APPEARANCES } from './Button.constants'
 
 import styles from './Button.module.scss'
@@ -27,7 +28,7 @@ const Button = React.forwardRef((props, ref) => {
         ...rest
     } = props
 
-    const classes = cx([
+    const classes = clsx([
         className,
         styles.button,
         styles[`button--${appearance}`],

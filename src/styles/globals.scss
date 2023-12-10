@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&display=swap');
 
 @font-face {
@@ -25,41 +29,23 @@
     font-weight: 300 400;
 }
 
-/* Box sizing rules */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-/* Remove default padding */
-ul,
-ol {
-    padding: 0;
-}
-
-/* Remove default margin */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-ul,
-ol,
-li,
-figure,
-figcaption,
-blockquote,
-dl,
-dd {
-    margin: 0;
+@layer utilities {
+    .index-heading {
+        //font-size: clamp(1.25rem, 4vw, 1.75rem);
+        font-stretch: 120%;
+    }
+  
+    .text-balance {
+      text-wrap: balance;
+    }
 }
 
 /* Set core body defaults */
 body {
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
+    color: #5d1616;
+    background-color: #F8F9F7;
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
