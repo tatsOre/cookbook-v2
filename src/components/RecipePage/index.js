@@ -19,7 +19,7 @@ function RecipeTags({ cuisine, categories }) {
   return (
     cuisine || categories?.length ? (
       <div className="print:hidden uppercase text-xs tracking-widest">
-        <span className="inline-block mb-2 mr-4">Recipe under:</span>
+        <span className="inline-block mb-2 mr-2">Recipe under:</span>
 
         <ul className="inline-flex flex-wrap font-bold">
           {cuisine && cuisine.label !== 'other' && (
@@ -76,25 +76,27 @@ function RecipeView({ data }) {
           <section>
             <RecipeTags categories={categories} cuisine={cuisine} />
 
-            <h1 className="capitalize text-balance font-display font-black text-3xl screen:md:text-[40px] mb-4 md:mb-8 mt-8 print:my-4">{title}</h1>
+            <h1 className="capitalize text-balance font-display font-black text-3xl screen:md:text-[40px] screen:md:leading-120 my-4 md:mb-8">
+              {title}
+            </h1>
 
-            <p className="screen:leading-7 screen:text-balance">
+            <p className="screen:leading-7 screen:text-balance whitespace-break-spaces">
               {description}
             </p>
 
-            <div className="text-sm mt-3 mb-6">
+            <div className="text-sm mt-3 mb-6 [&>*:not(:last-child)]:after:content-['|'] [&>*]:after:mx-2">
               {user?._id !== author?._id && author?.name && (
-                <><span>By <b>{author.name}</b></span><span className="px-2">|</span></>
+                <span>By <b>{author.name}</b></span>
               )}
 
               <span>{date}</span>
 
-              {servings > 0 && <span className="px-2">| Serves {servings}</span>}
+              {servings > 0 && <span>Serves {servings}</span>}
             </div>
 
             <div className="print:hidden">
               <button
-                className="disabled:opacity-75 w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex"
+                className="disabled:opacity-75 w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex tracking-wide"
                 type="button"
                 disabled
               >
@@ -102,7 +104,7 @@ function RecipeView({ data }) {
               </button>
 
               <button
-                className="mx-4 w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex"
+                className="mx-4 w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex tracking-wide"
                 type="button"
                 onClick={() => window.print()}
               >
@@ -111,7 +113,7 @@ function RecipeView({ data }) {
 
               {user?._id === author?._id && (
                 <Link
-                  className="w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex"
+                  className="w-fit h-8 px-7 py-4 bg-neutral-700 justify-center items-center gap-2.5 inline-flex tracking-wide"
                   href={`/edit/${_id}`}
                 >
                   <span class="text-white text-xs font-bold">Edit</span>
@@ -149,7 +151,7 @@ function RecipeView({ data }) {
               <h2 className="mt-10 print:mt-4 mb-6 w-fit screen:lowercase screen:text-2xl screen:md:text-3xl font-bold font-display screen:font-condensed screen:border-b-4 border-black">
                 Cooking Notes
               </h2>
-              <p className="screen:leading-8">{comments}</p>
+              <p className="screen:leading-6 text-sm whitespace-break-spaces">{comments}</p>
             </section>
           )}
         </article>

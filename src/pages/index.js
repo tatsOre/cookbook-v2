@@ -20,8 +20,8 @@ export default function Home() {
   })
 
   return (
-    <Layout headerExtraContent={!user && <Link href="/login">Login</Link>}>
-      <section className='w-11/12 pt-12 md:pt-20 font-display'>
+    <Layout headerExtraContent={!user && <Link href="/login">Login/Register</Link>}>
+      <section className='w-11/12 md:w-10/12 pt-12 md:pt-20 font-display'>
         <div className='ml-3 md:ml-4 max-w-prose text-balance'>
           <h1 className="index-heading font-display font-black mb-4">
             This is<br />cookbook
@@ -31,7 +31,7 @@ export default function Home() {
             Create and manage your home-cook recipes. Save your favorites and jump right to them.
           </p>
 
-          <p className='text-base leading-6'>
+          <p className='text-base md:text-lg leading-6'>
             Yes, no ads or long stories, —no-Frills, All Thrills.
             <br />
             <br />
@@ -41,8 +41,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className='w-11/12 pt-10'>
-        <h2 className="ml-3 md:ml-4 mb-2 w-fit lowercase text-3xl md:text-6xl font-bold font-display font-condensed border-b-4 border-black">
+      <section className='w-11/12 md:w-10/12 pt-10'>
+        <h2 className="ml-3 md:ml-4 mb-2 md:mb-8 w-fit lowercase text-3xl md:text-6xl font-bold font-display font-condensed border-b-4 border-black">
           Latest
         </h2>
         <ul>{content}</ul>

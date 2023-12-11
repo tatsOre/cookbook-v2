@@ -51,6 +51,7 @@ $size: 1.15rem;
         cursor: pointer;
         margin-inline-start: 0.5rem;
         margin-block-start: -0.1rem;
+        text-wrap: balance;
         @include t.body($fs: t.$font-size-14);
 
         &--checked {

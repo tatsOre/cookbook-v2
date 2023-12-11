@@ -55,7 +55,7 @@ function AuthorizationSubmission() {
 
   const { mutate } = useUser()
 
-  const { status, errorMessage } = useFormSubmission({
+  const { status, responseData, errorMessage } = useFormSubmission({
     endpoint: state.mode === 'SIGNUP' ? PATHS.SIGNUP : PATHS.LOGIN,
     data: formData,
   })
@@ -70,6 +70,7 @@ function AuthorizationSubmission() {
   React.useEffect(() => {
     if (status === STATUS.RESOLVED) {
       // send back user with the response (?)
+      //console.log(responseData)
       mutate()
       router.back()
       //user && router.back()

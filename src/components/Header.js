@@ -26,10 +26,7 @@ function Header({ children }) {
   const isHome = router.pathname === '/'
 
   return (
-    <header className={clsx(
-      "w-full h-[55px] fixed z-10 bg-white border-y border-black print:hidden",
-      !user && isHome && "bg-red-400"
-    )}>
+    <header className="w-full h-[55px] fixed z-10 bg-white border-y border-black print:hidden">
       <nav className="w-full h-full flex flex-wrap items-center">
         {user ? (
           <div className="h-full border-r border-black" ref={menuRef}>

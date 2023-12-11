@@ -7,23 +7,23 @@ import LoaderOverlay from '@/components/Loader/LoaderOverlay'
 import UserFavoritesGrid from '@/components/UserBox/UserFavoritesGrid'
 
 function Page() {
-    const { user, loading, loggedOut } = useUser()
-    const router = useRouter()
+  const { user, loading, loggedOut } = useUser()
+  const router = useRouter()
 
-    // if logged out, redirect to the homepage
-    React.useEffect(() => {
-        if (loggedOut) router.replace("/")
-    }, [loggedOut])
+  // if logged out, redirect to the homepage
+  React.useEffect(() => {
+    if (loggedOut) router.replace("/")
+  }, [loggedOut])
 
-    if (loading) return <LoaderOverlay />
+  if (loading) return <LoaderOverlay />
 
-    if (loggedOut) return "Redirecting..."
+  if (loggedOut) return "Redirecting..."
 
-    return (
-        <Layout>
-            <UserFavoritesGrid />
-        </Layout>
-    )
+  return (
+    <Layout>
+      <UserFavoritesGrid />
+    </Layout>
+  )
 }
 
 export default Page
