@@ -37,6 +37,7 @@ function PasswordField({ mode, attrs: PASSWORD }) {
         data-action="show-password"
         icon={show ? <IconEyeOff size={20} /> : <IconEye size={20} />}
         onClick={() => setShow(prev => !prev)}
+        small
       />
 
       {mode === 'SIGNUP' ? (

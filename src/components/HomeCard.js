@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { getRecipeDate } from "./RecipePage/RecipeView.helpers"
 import Figure from "./Figure"
+import { getRecipeDate } from "../utils/recipe-format"
 
 function HomeCard({ recipe }) {
   const { _id, categories, cuisine, createdAt, updatedAt } = recipe
@@ -26,7 +26,7 @@ function HomeCard({ recipe }) {
   }
 
   return (
-    <li className="group cursor-pointer flex flex-row items-center gap-x-3 md:gap-x-4 justify-between border-b border-neutral-200 last-of-type:border-b-0 hover:bg-white max-w-[450px] p-3 md:p-4">
+    <li className="group flex flex-row items-center gap-x-3 md:gap-x-4 justify-between border-b border-neutral-200 last-of-type:border-b-0 hover:bg-white max-w-[450px] p-3 md:p-4">
       <div className="md:flex md:items-center flex-1">
         <span
           className="text-xs uppercase tracking-widest md:[writing-mode:vertical-lr] md:-rotate-180 border-b border-b-black md:border-l md:border-l-black md:border-b-0 mr-4"

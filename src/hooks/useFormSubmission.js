@@ -34,7 +34,13 @@ function formSubmissionReducer(state, action) {
             throw new Error(`Unsupported type: ${action.type}`)
     }
 }
-
+/**
+ * `useFormSubmission` hook uses the useEffect hook to trigger the form submission 
+ * when the fetchBody (stringified data) changes. It performs a network request 
+ * using the fetch API and updates the state based on the response.
+ * @param {*} param0 
+ * @returns 
+ */
 function useFormSubmission({ endpoint, data, method }) {
     const [state, dispatch] = React.useReducer(formSubmissionReducer, {
         status: STATUS.IDLE,

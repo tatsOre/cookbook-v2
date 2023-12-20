@@ -24,7 +24,7 @@ export const fetcher = async (url, arg) => {
     const response = await fetch(url, options)
 
     if (!response.ok) {
-        const error = new Error('An error occurred. Please try again later.')
+        const error = new Error('An unexpected error has occurred. Please try later.')
         error.info = await response.json()
         error.status = response.status
         throw error

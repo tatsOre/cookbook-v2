@@ -35,7 +35,7 @@ export default function Home() {
             Yes, no ads or long stories, —no-Frills, All Thrills.
             <br />
             <br />
-            Unlock the power of your taste and unleash your inner chef!
+            Unlock the power of your taste and unleash your inner chef!<br />
             ...Just kidding, —<span className='font-semibold italic'>or not</span>.
           </p>
         </div>

@@ -1,12 +1,15 @@
 import React from 'react'
-import Router from "next/router";
 import Head from 'next/head'
-import useUser from '@/hooks/useUser'
-import RecipeSubmission from '@/components/RecipeSubmission'
+import Router from "next/router"
+import useUser from '../hooks/useUser';
+
 import RecipeSubmissionProvider from '@/components/RecipeSubmission/context'
-import Layout from '../components/Layout'
-import Marquee from '@/components/Marquee';
-import { UnstyledButton } from '@/components/Button';
+import Layout from '../components/Layout';
+import { UnstyledButton } from '../components/Button';
+import Marquee from '../components/Marquee';
+import RecipeSubmission from '../components/RecipeSubmission';
+import LoaderOverlay from '../components/Loader/LoaderOverlay';
+
 import { default as PATHS } from '../../config'
 import {
   default as RECIPE_FIELDS_ATTRIBUTES
@@ -30,38 +33,38 @@ export const getStaticProps = async () => {
  */
 
 function Page({ assets }) {
-  const { loggedOut } = useUser();
+  const { user, loggedOut } = useUser();
 
-  // if logged out, redirect to the login
-  React.useEffect(() => {
-    if (loggedOut) Router.replace("/login")
-  }, [loggedOut])
-
-  if (loggedOut) return "redirecting..."
+  if (loggedOut) Router.replace('/login')
 
   return <>
     <Head>
-      <title>Create Recipe</title>
+      <title>Cookbook - Create New Recipe</title>
     </Head>
-    <Layout headerExtraContent={
-      <UnstyledButton form="submit-recipe-form" type='submit' >
-        Save
-      </UnstyledButton>
-    }>
-      <Marquee text="what's cooking" />
+    <RecipeSubmissionProvider
+      value={{
+        assets,
+        fieldsAttributes: RECIPE_FIELDS_ATTRIBUTES,
+        endpoint: PATHS.RECIPES_ENDPOINT
+      }}
+    >
+      <Layout headerExtraContent={
+        user
+          ? <UnstyledButton form="submit-recipe-form" type="submit" >
+            Save
+          </UnstyledButton>
+          : null
+      }>
+        <h1 className='sr-only'>Add New Recipe</h1>
+        {user ? (
+          <>
+            <Marquee text="what's cooking" />
+            <RecipeSubmission endpoint={PATHS.RECIPES_ENDPOINT} />
+          </>
+        ) : <LoaderOverlay />}
+      </Layout>
 
-      <h1 style={{ visibility: 'hidden', height: '0px' }}>Add New Recipe</h1>
-
-      <RecipeSubmissionProvider
-        value={{
-          assets,
-          fieldsAttributes: RECIPE_FIELDS_ATTRIBUTES,
-          endpoint: PATHS.RECIPES_ENDPOINT
-        }}
-      >
-        <RecipeSubmission endpoint={PATHS.RECIPES_ENDPOINT} />
-      </RecipeSubmissionProvider>
-    </Layout>
+    </RecipeSubmissionProvider>
   </>
 }
 

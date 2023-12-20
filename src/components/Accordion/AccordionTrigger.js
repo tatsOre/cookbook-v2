@@ -27,7 +27,7 @@ function AccordionTrigger(props) {
       {...rest}
     >
       <span>{children}</span>
-      <span className={clsx("transition-all", { "-rotate-180": isItemActive })}>
+      <span className={clsx("rotate-180 transition-all", { "rotate-0": isItemActive })}>
         <IconChevronUp title="Close panel" />
       </span>
     </UnstyledButton>

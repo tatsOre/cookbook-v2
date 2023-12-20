@@ -26,7 +26,7 @@ div.ingredient__item--wrapper {
     flex-flow: row wrap;
     justify-content: flex-end;
     gap: 1rem;
-    background-color: g.$color-warm-grey-100;
+    background-color: g.$color-white;
     padding: 1rem;
 
     button[data-action="close"] {
@@ -93,11 +93,11 @@ div.ingredient__item--wrapper {
             display: flex;
             width: 100%;
             display: flex;
-            background-color: g.$color-warm-grey-100;
+            background-color: g.$color-white;
             padding: 1.05rem 1rem;
 
             &:hover {
-                background-color: g.$color-warm-grey-400;
+                background-color: g.$color-warm-grey-200;
             }
 
             /* Step/Ingr Button Label */

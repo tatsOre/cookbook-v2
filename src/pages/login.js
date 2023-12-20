@@ -5,22 +5,15 @@ import AuthorizationSubmission from '@/components/Auth'
 import Layout from '@/components/Layout'
 
 function Page() {
-    const { loggedOut } = useUser()
+  const { user, loggedOut } = useUser()
 
-    // if logged in, redirect to dashboard
-    React.useEffect(() => {
-        window.document.title = 'Hello Friend.'
+  if (user) Router.replace('/recipe-box')
 
-        if (!loggedOut) Router.replace("/recipe-box")
-    }, [loggedOut])
-
-    if (!loggedOut) return "redirecting..."
-
-    return (
-        <Layout>
-            <AuthorizationSubmission />
-        </Layout>
-    )
+  return loggedOut && (
+    <Layout>
+      <AuthorizationSubmission />
+    </Layout>
+  )
 }
 
 export default Page

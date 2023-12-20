@@ -1,45 +1,40 @@
-import Head from 'next/head'
-import RecipePage from '@/components/RecipePage'
-import { default as PATHS } from '../../../config'
+import React from "react"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import useSWR from "swr"
+import useUser from '@/hooks/useUser'
 
-export async function getStaticPaths() {
-  const response = await fetch(PATHS.RECIPES_ENDPOINT)
-  const { docs } = await response.json()
-
-  // Get the paths we want to pre-render based on docs
-  const paths = docs.map((recipe) => ({
-    params: { id: recipe._id }
-  }))
-
-  return { paths, fallback: 'blocking' }
-}
-
-export async function getStaticProps({ params }) {
-  try {
-    const response = await fetch(`${PATHS.RECIPES_ENDPOINT}/${params.id}`)
-
-    if (response.ok) {
-      const { doc } = await response.json()
-      return { props: { data: doc } }
-    }
-    return { notFound: true }
-
-  } catch (err) {
-    return { notFound: true }
-  }
-}
+import Layout from '@/components/Layout';
+import RecipeArticle from "@/components/RecipePage/RecipeArticle"
+import { default as PATHS } from "../../constants/paths"
 
 /**
- * @returns Page for Create New Recipe
+changed the fetch data strategy to be able to request it with credentials. 
+check: return to staticPaths and if data is not available to improve speed and make a second request? (?)
  */
+function Page() {
+  const router = useRouter()
+  const { user } = useUser()
+  
+  const recipe = router.query['id']
+  const endpoint = `${PATHS.RECIPES_ENDPOINT}/${recipe}`
 
-function Page({ data }) {
-  return <>
-    <Head>
-      <title>{data?.title}</title>
-    </Head>
-    <RecipePage data={data} />
-  </>
+  const { data, error } = useSWR(endpoint)
+
+// If resource/recipe is forbidden (public: false) or error:
+  if (error) router.push('/404')
+
+  return (
+    <Layout
+      headerExtraContent={!user && <Link href="/login">Login</Link>}
+    >
+      <div className="w-11/12 md:w-10/12 screen:pt-12 screen:md:pt-14">
+        {data && (
+          <RecipeArticle data={data} isAuthor={user?._id === data.author?._id} />
+        )}
+      </div>
+    </Layout>
+  )
 }
 
 export default Page

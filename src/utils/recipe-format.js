@@ -9,9 +9,7 @@ export const getRecipeDate = (createdAt, updatedAt) => {
 
     const isUpdateAfter = isAfter(updated, created)
 
-    return isUpdateAfter
-      ? `${format(updated, "PP")}`
-      : `${format(created, "PP")}`
+    return format(isUpdateAfter ? updated : created, "PP")
 
   } catch (e) {
     /** Catch format or DB dates errors  */

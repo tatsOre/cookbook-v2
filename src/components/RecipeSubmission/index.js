@@ -6,15 +6,11 @@ import useFormSubmission, { STATUS } from "@/hooks/useFormSubmission"
 import Accordion from "../Accordion"
 import Alert from "../Alert"
 import LoaderOverlay from "../Loader/LoaderOverlay"
+import RecipeForm from "./Form"
 import { deNormalizeData, normalizeData, getFormAccordionState } from "./helpers"
 import cloudinaryService from "@/services/cloudinary"
 
-const DynamicRecipeForm = dynamic(() => import('./Form')
-  .catch(() => <span>Something went wrong.</span>),
-  { ssr: false }
-)
-
-function RecipeSubmission({ endpoint, recipe, mode }) {
+function RecipeSubmission({ endpoint, recipe, isEdit }) {
   const [formData, setFormData] = React.useState(null)
 
   const [photoError, setPhotoError] = React.useState(null)
@@ -25,12 +21,12 @@ function RecipeSubmission({ endpoint, recipe, mode }) {
 
   const { status, responseData, errorMessage } = useFormSubmission({
     endpoint,
-    method: mode === 'edit' ? 'PATCH' : 'POST',
+    method: isEdit ? 'PATCH' : 'POST',
     data: formData,
   })
 
   const methods = useForm({
-    defaultValues: mode === 'edit' ? deNormalizeData(recipe) : null
+    defaultValues: isEdit ? deNormalizeData(recipe) : null
   })
 
   const router = useRouter()
@@ -79,7 +75,7 @@ function RecipeSubmission({ endpoint, recipe, mode }) {
           setActive={setActiveFieldset}
           multiple
         >
-          <DynamicRecipeForm
+          <RecipeForm
             onSubmit={methods.handleSubmit(onSubmit, onErrors)}
           />
         </Accordion>

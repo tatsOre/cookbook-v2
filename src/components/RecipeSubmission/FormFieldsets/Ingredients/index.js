@@ -5,8 +5,9 @@ import { Button, UnstyledButton } from '@/components/Button'
 import DraggableItemsList from '../shared/DraggableList'
 import IngredientInput from './IngredientInput'
 import { IconAlertCircle, IconEdit } from '@/components/Icon'
-import { getIngredientLabel } from '@/components/RecipeView/RecipeView.helpers'
+
 import { default as FIELDS_ATTRIBUTES, RECIPE_SCHEMA } from '../../constants'
+import { getIngredientLabel } from '../../../../utils/recipe-format'
 
 import styles from './Ingredients.module.scss'
 

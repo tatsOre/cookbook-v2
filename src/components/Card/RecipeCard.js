@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { CardInfo } from './CardElements'
 import { DeleteRecipe, PublishRecipe } from './Actions'
 import { IconEdit } from '../Icon'
-import { getRecipeDate } from '../RecipeView/RecipeView.helpers'
+import { getRecipeDate } from '../../utils/recipe-format'
 
 import styles from './Card.module.scss'
 

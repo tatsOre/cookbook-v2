@@ -1,7 +1,10 @@
 import React from 'react'
-import Router from "next/router";
 import Head from 'next/head'
+import { useRouter } from "next/router";
+import useSWR from 'swr';
 import useUser from '@/hooks/useUser'
+
+import LoaderOverlay from '../../components/Loader/LoaderOverlay';
 import RecipeSubmission from '@/components/RecipeSubmission'
 import RecipeSubmissionProvider from '@/components/RecipeSubmission/context'
 import Layout from '@/components/Layout';
@@ -9,78 +12,84 @@ import Marquee from '@/components/Marquee';
 import { UnstyledButton } from '@/components/Button';
 import { default as PATHS } from '../../../config'
 import {
-    default as RECIPE_FIELDS_ATTRIBUTES
+  default as RECIPE_FIELDS_ATTRIBUTES
 } from '@/components/RecipeSubmission/constants'
 
 /**
- * Fetches initial values and form assets.
- * @returns Initial Props || Error Page
+ * https://stackoverflow.com/questions/65783199/error-getstaticpaths-is-required-for-dynamic-ssg-pages-and-is-missing-for-xxx
  */
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: "blocking"
+  }
+}
 
-export const getServerSideProps = async ({ params }) => {
-    try {
-        const assetsRequest = fetch(PATHS.RECIPE_ASSETS)
-        const recipeRequest = fetch(`${PATHS.RECIPES_ENDPOINT}/${params.id}`)
-
-        const responses = await Promise.all([assetsRequest, recipeRequest])
-
-        if (responses[0].ok && responses[1].ok) {
-            const assets = await responses[0].json()
-            const { doc } = await responses[1].json()
-            return { props: { assets, data: doc } }
-        }
-        return { notFound: true }
-
-    } catch {
-        return { notFound: true }
+export const getStaticProps = async () => {
+  try {
+    const response = await fetch(PATHS.RECIPE_ASSETS)
+    if (response.ok) {
+      const assets = await response.json()
+      return { props: { assets } }
     }
+    return { notFound: true }
+  } catch {
+    return { notFound: true }
+  }
 }
 
 /**
  * @returns Edit Recipe Page
  */
 
-function Page({ assets, data }) {
-    const { loggedOut } = useUser();
+function Page({ assets }) {
+  const router = useRouter()
+  const { user, loggedOut } = useUser()
 
-    // if logged out, redirect to the login
-    React.useEffect(() => {
-        if (loggedOut) Router.replace("/login")
-    }, [loggedOut])
+  const query = router.query['id']
+  const endpoint = `${PATHS.RECIPES_ENDPOINT}/${query}`
+  const { data: recipe, error } = useSWR(endpoint)
 
-    if (loggedOut) return "redirecting..."
+  // If user is logged out:
+  if (loggedOut) router.replace('/login')
 
-    const heading = `edit ${data.title}` || 'recipe'
+  // If resource/recipe is forbidden (public: false) or error:
+  if (error) router.push('/404')
 
-    return <>
-        <Head>
-            <title>Edit Recipe</title>
-        </Head>
-        <Layout headerExtraContent={
-            <UnstyledButton form="submit-recipe-form" type='submit' >
-                Save
-            </UnstyledButton>
-        }>
+  const heading = `edit ${recipe?.title}` || 'recipe'
+
+  return <>
+    <Head>
+      <title>Cookbook - Edit Recipe</title>
+    </Head>
+    <RecipeSubmissionProvider
+      value={{
+        assets,
+        recipe,
+        fieldsAttributes: RECIPE_FIELDS_ATTRIBUTES,
+      }}
+    >
+      <Layout headerExtraContent={
+        user
+          ? <UnstyledButton form="submit-recipe-form" type="submit" >
+            Save
+          </UnstyledButton>
+          : null
+      }>
+        <h1 className='sr-only'>{heading}</h1>
+        {user && recipe ? (
+          <>
             <Marquee text={heading} />
-
-            <h1 style={{ visibility: 'hidden', height: '0px' }}>{heading}</h1>
-
-            <RecipeSubmissionProvider
-                value={{
-                    assets,
-                    fieldsAttributes: RECIPE_FIELDS_ATTRIBUTES,
-                    recipe: data,
-                    endpoint: `${PATHS.RECIPES_ENDPOINT}/${data?._id}`
-                }}
-            >
-                <RecipeSubmission
-                    endpoint={`${PATHS.RECIPES_ENDPOINT}/${data?._id}`}
-                    recipe={data}
-                    mode='edit'
-                />
-            </RecipeSubmissionProvider>
-        </Layout>
-    </>
+            <RecipeSubmission
+              endpoint={endpoint}
+              recipe={recipe}
+              isEdit
+            />
+          </>
+        ) : <LoaderOverlay />}
+      </Layout>
+    </RecipeSubmissionProvider>
+  </>
 }
 
 export default Page

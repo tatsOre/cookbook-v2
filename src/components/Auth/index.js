@@ -53,7 +53,7 @@ function AuthorizationSubmission() {
 
   const router = useRouter()
 
-  const { mutate } = useUser()
+  const { mutateUser } = useUser()
 
   const { status, responseData, errorMessage } = useFormSubmission({
     endpoint: state.mode === 'SIGNUP' ? PATHS.SIGNUP : PATHS.LOGIN,
@@ -71,7 +71,7 @@ function AuthorizationSubmission() {
     if (status === STATUS.RESOLVED) {
       // send back user with the response (?)
       //console.log(responseData)
-      mutate()
+      mutateUser()
       router.back()
       //user && router.back()
     }
