@@ -69,11 +69,9 @@ function AuthorizationSubmission() {
 
   React.useEffect(() => {
     if (status === STATUS.RESOLVED) {
-      // send back user with the response (?)
-      //console.log(responseData)
       mutateUser()
-      router.back()
-      //user && router.back()
+      router.replace('/recipe-box')
+
     }
   }, [status])
 

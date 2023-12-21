@@ -1,4 +1,4 @@
-import { Button } from '@/components/Button'
+
 import {
   IconAlertCircle,
   IconArrowDownRight,
@@ -30,20 +30,13 @@ import {
   IconVerticalEllipsis
 } from '@/components/Icon'
 
-import NavBar from '@/components/Header'
-
 import Head from 'next/head'
 import Link from 'next/link'
-
-import styles from '../styles/globals.module.scss'
-import { useThemeContext, THEMES } from '@/context/ThemeContext'
 import React from 'react'
+import Button from '../components/Button2'
 
 export default function Home() {
-  const { theme, selectTheme } = useThemeContext()
-
-  const onThemeChange = (ev) => selectTheme(ev.target.value)
-
+  const sectionClasses = "bg-white p-8 mb-8 [&>h2]:font-bold [&>h2]:mb-4"
   return (
     <>
       <Head>
@@ -53,46 +46,59 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <div className={styles.theming}>
-          <p>Testing Theming</p>
-        </div>
-        <form>
-          {Object.values(THEMES).map((el, index) => {
-            return (
-              <label key={index}>
-                <input type='radio' value={el} checked={el === theme} onChange={onThemeChange} />
-                {el}
-              </label>
-            )
-          })}
-        </form>
-        <div>
+      <main className='p-8'>
+        <div className='w-full'>
+          <section className={sectionClasses}>
+            <h2>
+              Unstyled Button:
+            </h2>
+            <div>
+              <Button unstyled>Unstyled Button</Button>
+            </div>
+          </section>
 
+          <section className={sectionClasses}>
+            <h2>
+              Label Styled Buttons:
+            </h2>
 
-        </div>
-        <h2>
-          Action Buttons:
-        </h2>
-        <Button appearance='danger'>
-          <IconChefHat />
-        </Button>
-        <h2>
-          Label Buttons:
-        </h2>
-        <div style={{ display: 'flex', alignItems: 'flex-start', flexFlow: 'row wrap', gap: '1rem', marginBlockEnd: '2rem' }}>
-          <div style={{ width: '200px' }}>
-            <Button uppercase>Cancel any time, entrance, front entrance</Button>
-          </div>
-          <Button uppercase leftIcon={<IconBookmark size={20} />}>Cancel</Button>
-          <Button appearance='danger' rightIcon={<IconGridDots size={16} />}>Super Button</Button>
-          <Button appearance='danger' leftIcon={<IconGridDots size={16} />} rightIcon={<IconGridDots size={16} />}>Button</Button>
+            <div className='flex flex-wrap gap-4'>
+              <Button primary>Edit</Button>
+              <Button primary disabled>Primary Disabled</Button>
+              <Button primary uppercase>primary</Button>
+              <Button secondary uppercase>secondary</Button>
+              <Button danger uppercase>danger</Button>
+              <Button danger uppercase compact>compact</Button>
+              <Button danger uppercase compact withLeftIcon={<IconTrash size={14} />}>compact & Left Icon</Button>
+              <Button primary withLeftIcon={<IconTrash size={14} />}>With Left Icon</Button>
+              <Button primary withRightIcon={<IconArrowRight size={14} />}>With Right Icon</Button>
+              <Button secondary uppercase withRightIcon={<IconArrowRight size={14} />}>Secondary & R Icon</Button>
+              <Button compact primary withRightIcon={<IconArrowRight size={14} />}>Compact & Right Icon</Button>
+              <Button primary uppercase fullWidth>Button w-full</Button>
+            </div>
+          </section>
 
-          <Button appearance='secondary' compact leftIcon={<IconCheck size={16} />}>Button</Button>
-          <Button appearance='secondary' rightIcon={<IconCheck size={16} />} >Button</Button>
-          <Button appearance='secondary' leftIcon={<IconCheck size={16} />} rightIcon={<IconCheck size={16} />}>Button</Button>
+          <section className={sectionClasses}>
+            <h2>
+              Action Buttons:
+            </h2>
+
+            <div className='flex flex-wrap gap-4'>
+              <Button compact primary withLeftIcon={<IconTrash size={14} />}></Button>
+              <Button compact secondary withLeftIcon={<IconTrash size={14} />}></Button>
+              <Button compact danger withLeftIcon={<IconTrash size={14} />}></Button>
+              <Button primary withLeftIcon={<IconNotebook size={16} />}></Button>
+              <Button secondary withLeftIcon={<IconCalendarEvent size={16} />}></Button>
+              <Button danger withLeftIcon={<IconTrash size={16} />}></Button>
+            </div>
+          </section>
         </div>
-        <div>
+      </main>
+    </>
+  )
+}
+
+/*         <div>
           <IconCircleMinus />
           <IconShoppingList />
           <IconAlertCircle />
@@ -121,56 +127,5 @@ export default function Home() {
           <IconShoppingCartPlus />
           <IconTrash />
           <IconVerticalEllipsis />
-        </div>
-      </main>
-    </>
-  )
-}
-/**
- 
-                <Link href="/new">Create recipe</Link>
-                <p style={{ fontSize: '16px', lineHeight: '1.5' }}>The Lorem ipsum text is derived from sections 1.10.32 and 1.10.33 of Cicero's De finibus bonorum et malorum. The physical source may have been the 1914 Loeb Classical Library edition of De finibus, where the Latin text, presented on the left-hand (even) pages, breaks off on page 34 with "Neque porro quisquam est qui do-" and continues on page 36 with "lorem ipsum ...", suggesting that the galley type of that page was mixed up to make the dummy text seen today.
-                    <br />
-                    The discovery of the text's origin is attributed to Richard McClintock, a Latin scholar at Hampden–Sydney College. McClintock connected Lorem ipsum to Cicero's writing sometime before 1982 while searching for instances of the Latin word consectetur, which was rarely used in classical literature.[4] McClintock first published his discovery in a 1994 letter to the</p>
-                <hr />
-                <hr />
+        </div> */
 
-                <h2>
-                    Action Buttons:
-                </h2>
-                <Button appearance='danger'>
-                    <IconChefHat />
-                </Button>
-                <h2>
-                    Label Buttons:
-                </h2>
-                <div style={{ display: 'flex', alignItems: 'flex-start', flexFlow: 'row wrap', gap: '1rem', marginBlockEnd: '2rem' }}>
-                    <Button uppercase leftIcon={<IconCalendarEvent size={18} />}>Cancel</Button>
-                    <Button appearance='danger' rightIcon={<IconGridDots size={16} />}>Super Button</Button>
-                    <Button appearance='danger' leftIcon={<IconGridDots size={16} />} rightIcon={<IconGridDots size={16} />}>Button</Button>
-
-                    <Button appearance='secondary' compact leftIcon={<IconCheck size={16} />}>Button</Button>
-                    <Button appearance='secondary' rightIcon={<IconCheck size={16} />} >Button</Button>
-                    <Button appearance='secondary' leftIcon={<IconCheck size={16} />} rightIcon={<IconCheck size={16} />}>Button</Button>
-                </div>
-                <hr />
-                <hr />
-
-                <hr />
-                <hr />
-                <Alert appearance="danger" title="Error">
-                    This is danger, I am danger. <a href='/'>Follow the rabbit.</a>
-                </Alert>
-                <Alert appearance="danger" title="Error" variant="outline">Hakuna Matata</Alert>
-                <Alert appearance="danger" title="Error" variant="light" removable>Hey!</Alert>
-
-                <Alert appearance="success" title="Success" removable>This is success, I am success.</Alert>
-                <Alert appearance="success" title="Success" variant="outline">Hakuna Matata</Alert>
-                <Alert appearance="success" title="Success" variant="light">Hey!</Alert>
-
-                <Alert appearance="info" title="Info">This is info, I am Info.</Alert>
-                <Alert appearance="info" title="Info" variant="outline" removable>Hakuna Matata</Alert>
-                <Alert appearance="info" title="Info" variant="light">Hey!</Alert>
-
-
- */

@@ -1,14 +1,14 @@
 import React from 'react'
 import Head from 'next/head'
 import Router from "next/router"
-import useUser from '../hooks/useUser';
+import useUser from '@/hooks/useUser';
 
 import RecipeSubmissionProvider from '@/components/RecipeSubmission/context'
-import Layout from '../components/Layout';
-import { UnstyledButton } from '../components/Button';
-import Marquee from '../components/Marquee';
-import RecipeSubmission from '../components/RecipeSubmission';
-import LoaderOverlay from '../components/Loader/LoaderOverlay';
+import Layout from '@/components/Layout';
+import { UnstyledButton } from '@/components/Button';
+import Marquee from '@/components/Marquee'
+import RecipeSubmission from '@/components/RecipeSubmission';
+import LoaderOverlay from '@/components/Loader/LoaderOverlay';
 
 import { default as PATHS } from '../../config'
 import {
