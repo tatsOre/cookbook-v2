@@ -4,7 +4,7 @@ import { FormProvider, useForm } from "react-hook-form"
 import useFormSubmission, { STATUS } from "@/hooks/useFormSubmission"
 import useUser from "@/hooks/useUser"
 import Alert from "../Alert"
-import { Button, UnstyledButton } from "../Button"
+import Button from "../Button"
 import EmailField from "./EmailField"
 import PasswordField from "./PasswordField"
 import LoadingOverlay from "../Loader"
@@ -104,12 +104,16 @@ function AuthorizationSubmission() {
 
       {state.displayName ? (
         <p>
-          <b>{state.displayName}</b>&nbsp;&nbsp;
-          <UnstyledButton
+          <b>{state.displayName}</b>
+          <Button
             data-info="change-email"
-            onClick={resetForm}>
+            className="ml-4"
+            onClick={resetForm}
+            unstyled
+            compact
+          >
             change
-          </UnstyledButton>
+          </Button>
         </p>
       ) : null}
 
@@ -127,7 +131,7 @@ function AuthorizationSubmission() {
               {/** Render the password field component and strength meter **/}
               <PasswordField mode={state.mode} attrs={PASSWORD} />
 
-              <Button type="submit" fullWidth>
+              <Button type="submit" primary uppercase fullWidth>
                 {state.mode == 'LOGIN' ? 'Log in' : 'Create Account'}
               </Button>
             </>

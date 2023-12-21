@@ -1,5 +1,5 @@
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
-import { IconButton } from '@/components/Button'
+import Button from '@/components/Button'
 import { IconCircleMinus, IconGripVertical } from '@/components/Icon'
 
 
@@ -39,11 +39,12 @@ function DraggableItemsList({ items, remove, move, className, steps }) {
             ref={provided.innerRef}
             {...provided.draggableProps}
           >
-            <IconButton
+            <Button
               ariaLabel={labelDelete}
               onClick={() => remove(index)}
               data-action="show-delete"
-              icon={<IconCircleMinus />}
+              withLeftIcon={<IconCircleMinus />}
+              unstyled
             />
 
             {steps
@@ -51,11 +52,12 @@ function DraggableItemsList({ items, remove, move, className, steps }) {
               : <span>{getIngredientLabel(item)}</span>
             }
 
-            <IconButton
+            <Button
               ariaLabel={labelDragHandler}
               {...provided.dragHandleProps}
               data-action="drag-handler"
-              icon={<IconGripVertical />}
+              withLeftIcon={<IconGripVertical />}
+              unstyled
             />
           </li>
         )}

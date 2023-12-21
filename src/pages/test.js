@@ -33,7 +33,7 @@ import {
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
-import Button from '../components/Button2'
+import Button from '@/components/Button'
 
 export default function Home() {
   const sectionClasses = "bg-white p-8 mb-8 [&>h2]:font-bold [&>h2]:mb-4"
@@ -91,7 +91,7 @@ export default function Home() {
               <Button secondary withLeftIcon={<IconCalendarEvent size={16} />}></Button>
               <Button danger withLeftIcon={<IconTrash size={16} />}></Button>
 
-              <Button unstyled withLeftIcon={<IconGridDots size={16} />}></Button>
+              <Button unstyled withLeftIcon={<IconGridDots size={20} />}></Button>
             </div>
           </section>
         </div>

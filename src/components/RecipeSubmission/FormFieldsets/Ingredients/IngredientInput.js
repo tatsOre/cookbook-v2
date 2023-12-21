@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRecipeSubmissionContext } from '../../context'
-import { Button } from '@/components/Button'
+import Button from '@/components/Button'
 import Dropdown from '@/components/Dropdown'
 import { NumberInput, TextInput } from '@/components/FormInput'
 import { default as FIELDS_ATTRIBUTES } from '../../constants'
@@ -96,14 +96,18 @@ function IngredientInput({ onSave, onCancel, data, index, withCloseButton }) {
       {withCloseButton ? (
         <Button
           data-action="close"
-          onClick={onCancelHandler}>
-          cancel
+          onClick={onCancelHandler}
+          secondary
+        >
+          Cancel
         </Button>
       ) : null}
 
       <Button
         data-action="save"
-        onClick={appendIngredient}>
+        onClick={appendIngredient}
+        primary
+      >
         {index !== undefined ? 'Save' : 'Add to the list'}
       </Button>
     </div>

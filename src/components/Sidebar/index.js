@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { IconBookmark, IconChecklist, IconChefHat, IconNotebook } from '../Icon'
-import { UnstyledButton } from '../Button'
 
 import styles from './Sidebar.module.scss'
 
@@ -61,7 +60,7 @@ function Sidebar({ user, openMenu, logout }) {
         </li>
  */}
         <li>
-          <UnstyledButton onClick={logout}>Logout</UnstyledButton>
+          <button onClick={logout}>Logout</button>
         </li>
       </ul>
     </div>

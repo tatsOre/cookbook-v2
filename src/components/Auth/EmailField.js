@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useFormContext } from "react-hook-form"
 import useFormSubmission, { STATUS } from "@/hooks/useFormSubmission"
 import Alert from "../Alert"
-import { Button } from "../Button"
+import Button from "../Button"
 import { IconAlertCircle } from "../Icon"
 import LoaderOverlay from "../Loader/LoaderOverlay"
 import { TextInput } from "../FormInput"
@@ -80,7 +80,7 @@ function EmailField({ setStatus, displayNameIsSet, attrs: EMAIL }) {
                 hideInputLabel
             />
 
-            <Button onClick={lookUpByEmail} fullWidth>Continue</Button>
+            <Button onClick={lookUpByEmail} primary uppercase fullWidth>Continue</Button>
 
             {status === STATUS.PENDING ? <LoaderOverlay /> : null}
         </div>

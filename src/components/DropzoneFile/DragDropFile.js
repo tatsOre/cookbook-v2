@@ -68,7 +68,7 @@ function DragDropFile({ onDropFile, accept, className }) {
                 onChange={onInputChange}
             />
             <label id="label-file-upload" htmlFor="input-file-upload">
-                <IconCloudUpload size={50} strokeWidth={1} aria-hidden="true" />
+                {/* <IconCloudUpload size={50} strokeWidth={1} aria-hidden="true" /> */}
                 <span>Drag and drop your file here or</span>
             </label>
             <button

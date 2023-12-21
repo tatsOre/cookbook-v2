@@ -3,7 +3,7 @@ import useSWRMutation from 'swr/mutation'
 import { fetcher } from '@/pages/_app'
 import { IconLoader, IconTrash } from '@/components/Icon'
 import Modal from '@/components/Modal'
-import { IconButton } from '@/components/Button'
+import Button from '@/components/Button'
 import { default as PATHS } from '../../../../config'
 
 function DeleteRecipe({ recipe, onDelete }) {
@@ -42,13 +42,14 @@ function DeleteRecipe({ recipe, onDelete }) {
   return (
     <React.Fragment>
       {showModal && <Modal {...modalProps} />}
-      <IconButton
+      <Button
         data-action="delete"
-        icon={isMutating
+        withLeftIcon={isMutating
           ? <IconLoader />
           : <IconTrash size={20} strokeWidth={1.5} />}
         onClick={onDeleteClick}
         disabled={isMutating}
+        unstyled
       />
     </React.Fragment>
   )

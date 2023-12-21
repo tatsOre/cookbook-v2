@@ -5,7 +5,6 @@ import useUser from '@/hooks/useUser';
 
 import RecipeSubmissionProvider from '@/components/RecipeSubmission/context'
 import Layout from '@/components/Layout';
-import { UnstyledButton } from '@/components/Button';
 import Marquee from '@/components/Marquee'
 import RecipeSubmission from '@/components/RecipeSubmission';
 import LoaderOverlay from '@/components/Loader/LoaderOverlay';
@@ -50,9 +49,9 @@ function Page({ assets }) {
     >
       <Layout headerExtraContent={
         user
-          ? <UnstyledButton form="submit-recipe-form" type="submit" >
+          ? <button form="submit-recipe-form" type="submit">
             Save
-          </UnstyledButton>
+          </button>
           : null
       }>
         <h1 className='sr-only'>Add New Recipe</h1>

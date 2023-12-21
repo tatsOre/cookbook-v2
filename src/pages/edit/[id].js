@@ -9,7 +9,7 @@ import RecipeSubmission from '@/components/RecipeSubmission'
 import RecipeSubmissionProvider from '@/components/RecipeSubmission/context'
 import Layout from '@/components/Layout';
 import Marquee from '@/components/Marquee';
-import { UnstyledButton } from '@/components/Button';
+import Button from '@/components/Button';
 import { default as PATHS } from '../../../config'
 import {
   default as RECIPE_FIELDS_ATTRIBUTES
@@ -71,9 +71,9 @@ function Page({ assets }) {
     >
       <Layout headerExtraContent={
         user
-          ? <UnstyledButton form="submit-recipe-form" type="submit" >
+          ? <button form="submit-recipe-form" type="submit">
             Save
-          </UnstyledButton>
+          </button>
           : null
       }>
         <h1 className='sr-only'>{heading}</h1>

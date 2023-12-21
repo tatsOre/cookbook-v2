@@ -1,6 +1,6 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
-import { IconButton } from "../Button"
+import Button from "../Button"
 import { IconEye, IconEyeOff } from "../Icon"
 import { TextInput } from "../FormInput"
 import PasswordStrengthMeter from "../PasswordStrengthMeter"
@@ -33,11 +33,11 @@ function PasswordField({ mode, attrs: PASSWORD }) {
         })}
       />
 
-      <IconButton
+      <Button
         data-action="show-password"
-        icon={show ? <IconEyeOff size={20} /> : <IconEye size={20} />}
+        withLeftIcon={show ? <IconEyeOff size={20} /> : <IconEye size={20} />}
         onClick={() => setShow(prev => !prev)}
-        small
+        unstyled
       />
 
       {mode === 'SIGNUP' ? (

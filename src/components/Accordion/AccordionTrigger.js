@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import { useAccordionContext } from "."
 import { useAccordionItemContext } from "./AccordionItem"
-import { UnstyledButton } from "../Button"
+import Button from "../Button"
 import { IconChevronUp } from "../Icon"
 
 function AccordionTrigger(props) {
@@ -14,23 +14,22 @@ function AccordionTrigger(props) {
   const onClickHandler = () => context.onChange(value)
 
   return (
-    <UnstyledButton
+    <button
       aria-controls={context.getPanelId(value)}
       aria-expanded={isItemActive}
-      className={clsx(
-        "w-full flex justify-between items-center"
-      )}
       data-active={isItemActive}
       data-accordion-trigger
       id={context.getTriggerId(value)}
       onClick={onClickHandler}
+      className="w-full flex justify-between items-center"
+      type="button"
       {...rest}
     >
       <span>{children}</span>
       <span className={clsx("rotate-180 transition-all", { "rotate-0": isItemActive })}>
         <IconChevronUp title="Close panel" />
       </span>
-    </UnstyledButton>
+    </button>
   )
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
-import { Button, UnstyledButton } from '@/components/Button'
+import Button from '@/components/Button'
 import DraggableItemsList from '../shared/DraggableList'
 import IngredientInput from './IngredientInput'
 import { IconAlertCircle, IconEdit } from '@/components/Icon'
@@ -10,6 +10,7 @@ import { default as FIELDS_ATTRIBUTES, RECIPE_SCHEMA } from '../../constants'
 import { getIngredientLabel } from '../../../../utils/recipe-format'
 
 import styles from './Ingredients.module.scss'
+import clsx from 'clsx'
 
 function IngredientsFieldset() {
   const {
@@ -62,15 +63,16 @@ function IngredientsFieldset() {
             }}
             withCloseButton
           /> :
-          <UnstyledButton
+          <button
             data-action="step-idle"
             onClick={() => {
               setActiveField({ index, active: true })
             }}
+            type='button'
           >
             <span>{getIngredientLabel(item)}</span>
             <IconEdit size={20} strokeWidth={1.5} />
-          </UnstyledButton>}
+          </button>}
       </li>
     )
   })
@@ -87,9 +89,9 @@ function IngredientsFieldset() {
         <div className={styles['edit__all--wrapper']}>
           <p>Tap <b>"Edit All"</b> to organize or delete items.</p>
 
-          <UnstyledButton onClick={onToggleEditMode} >
+          <Button onClick={onToggleEditMode} uppercase primary compact>
             {modeEditAll ? 'Done' : 'Edit All'}
-          </UnstyledButton>
+          </Button>
         </div>
       )}
 
@@ -117,9 +119,11 @@ function IngredientsFieldset() {
             : <Button
               disabled={activeField.active}
               onClick={() => setActiveField({ index: -1, active: true })}
-              className={styles['add__new--button']}
+              className={clsx(styles['add__new--button'])}
+              primary
+              uppercase
             >
-              + Add an ingredient
+              + Add new ingredient
             </Button>
           }
         </>}

@@ -4,7 +4,7 @@ import { useFormContext } from 'react-hook-form'
 
 import useDeviceDetect from '@/hooks/useDeviceDetect'
 import Alert from '@/components/Alert'
-import { Button } from '@/components/Button'
+import Button from '@/components/Button'
 import DragDropFile from '@/components/DropzoneFile/DragDropFile'
 import { TextInput } from '@/components/FormInput'
 import { IconAlertCircle, IconCloudUpload } from '@/components/Icon'
@@ -27,7 +27,7 @@ function FileInputMobile({ onInputChange }) {
         accept="image/png, image/jpeg"
         onChange={onChangeHandler}
       />
-      <IconCloudUpload size={16} aria-hidden="true" />
+      {/* <IconCloudUpload size={16} aria-hidden="true" /> */}
       <span>Upload a file</span>
     </label>
   )

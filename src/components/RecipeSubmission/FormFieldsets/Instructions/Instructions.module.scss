@@ -12,13 +12,6 @@ div.edit__all--wrapper {
         max-width: 75%;
         text-wrap: balance;
     }
-
-    button {
-        padding: 0.55rem 0.75rem 0.45rem;
-        background-color: g.$color-rich-black;
-        color: g.$color-white;
-        @include t.overline($fs: 0.65rem);
-    }
 }
 
 div.step__item--wrapper {
@@ -28,10 +21,6 @@ div.step__item--wrapper {
     gap: 1rem;
     background-color: g.$color-white;
     padding: 1rem;
-
-    button[data-action="close"] {
-        border: none;
-    }
 
     /* Textarea Input Wrapper */
     div[data-input-wrapper] {
@@ -56,6 +45,7 @@ div.step__item--wrapper {
 
             span {
                 flex: 1;
+                text-align: left;
                 @include t.body($fs: t.$font-size-15);
                 overflow: hidden;
                 /* Partial support: */

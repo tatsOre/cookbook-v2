@@ -1,7 +1,7 @@
 import React from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import Alert from '@/components/Alert'
-import { Button, UnstyledButton } from '@/components/Button'
+import Button from '@/components/Button'
 import InstructionInput from './InstructionInput'
 import DraggableStepsList from '../shared/DraggableList'
 import { IconAlertCircle, IconEdit } from '@/components/Icon'
@@ -61,15 +61,16 @@ function InstructionsFieldset() {
             }}
             withCloseButton
           /> :
-          <UnstyledButton
+          <button
             data-action="step-idle"
             onClick={() => {
               setActiveField({ index, active: true })
             }}
+            type='button'
           >
             <span><b>{TEXT_ATTRS.LABEL} {index + 1}.</b> {step.text}</span>
             <IconEdit size={20} strokeWidth={1.5} />
-          </UnstyledButton>}
+          </button>}
       </li>
     )
   })
@@ -86,9 +87,9 @@ function InstructionsFieldset() {
         <div className={styles['edit__all--wrapper']}>
           <p>Tap <b>"Edit All"</b> to organize or delete steps.</p>
 
-          <UnstyledButton onClick={onToggleEditMode} >
+          <Button onClick={onToggleEditMode} uppercase primary compact>
             {modeEditAll ? 'Done' : 'Edit All'}
-          </UnstyledButton>
+          </Button>
         </div>
       )}
 
@@ -115,8 +116,10 @@ function InstructionsFieldset() {
               disabled={activeField.active}
               onClick={() => setActiveField({ index: -1, active: true })}
               className={styles['add__new--button']}
+              primary
+              uppercase
             >
-              + Add a step
+              + Add new step
             </Button>
           }
         </>}

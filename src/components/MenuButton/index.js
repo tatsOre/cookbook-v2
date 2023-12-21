@@ -1,15 +1,16 @@
 import clsx from "clsx"
-import UnstyledButton from "../Button/UnstyledButton"
+//import Button from "../Button"
 import styles from './styles.module.scss'
 
 function MenuButton({ isOpen, toggleState, ...rest }) {
   return (
-    <UnstyledButton
+    <button
       className={styles.button__menu}
-      ariaLabel={isOpen ? 'close menu' : 'open menu'}
+      aria-label={isOpen ? 'close menu' : 'open menu'}
       aria-haspopup="true"
       aria-expanded={isOpen}
       onClick={toggleState}
+      unstyled
       {...rest}
     >
       <span
@@ -18,7 +19,7 @@ function MenuButton({ isOpen, toggleState, ...rest }) {
         )}
       >
       </span>
-    </UnstyledButton>
+    </button>
   )
 }
 

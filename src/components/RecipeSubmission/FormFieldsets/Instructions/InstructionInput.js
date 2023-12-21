@@ -1,6 +1,6 @@
 import React from "react"
 import { TextInput } from "@/components/FormInput"
-import { Button } from "@/components/Button"
+import Button from "@/components/Button"
 import { default as FIELDS_ATTRIBUTES } from '../../constants'
 
 import styles from './Instructions.module.scss'
@@ -45,14 +45,18 @@ function InstructionInput({ data, onSave, onCancel, index, withCloseButton }) {
             {withCloseButton ? (
                 <Button
                     data-action="close"
-                    onClick={onCancelHandler}>
-                    cancel
+                    onClick={onCancelHandler}
+                    secondary
+                >
+                    Cancel
                 </Button>
             ) : null}
 
             <Button
                 data-action="save"
-                onClick={appendStep}>
+                onClick={appendStep}
+                primary
+            >
                 {index !== undefined ? 'Save' : 'Add step'}
             </Button>
         </div>

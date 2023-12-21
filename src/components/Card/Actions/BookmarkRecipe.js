@@ -3,7 +3,7 @@ import useSWRMutation from 'swr/mutation'
 import useUser from '@/hooks/useUser'
 import { fetcher } from '@/pages/_app'
 import { IconBookmark } from '@/components/Icon'
-import { IconButton } from '@/components/Button'
+import Button from '@/components/Button'
 import Modal from '@/components/Modal'
 import { default as PATHS } from '../../../../config'
 
@@ -47,15 +47,15 @@ function BookmarkRecipe({ recipe, onUpdateFavorites }) {
     return (
         <React.Fragment>
             {showModal && <Modal {...modalProps} />}
-            <IconButton
+            <Button
                 aria-checked={user?.favorites?.includes(recipe._id)}
                 ariaLabel="Add or Remove from your saved recipes"
                 data-action="bookmark"
                 role="switch"
                 onClick={onBookmarkClick}
                 disabled={isMutating || !user}
-                icon={<IconBookmark />}
-                small
+                withIconLeft={<IconBookmark />}
+                compact
             />
         </React.Fragment>
     )
