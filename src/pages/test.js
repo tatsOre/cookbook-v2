@@ -90,6 +90,8 @@ export default function Home() {
               <Button primary withLeftIcon={<IconNotebook size={16} />}></Button>
               <Button secondary withLeftIcon={<IconCalendarEvent size={16} />}></Button>
               <Button danger withLeftIcon={<IconTrash size={16} />}></Button>
+
+              <Button unstyled withLeftIcon={<IconGridDots size={16} />}></Button>
             </div>
           </section>
         </div>

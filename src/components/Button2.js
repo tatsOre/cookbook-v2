@@ -31,14 +31,15 @@ const Button = (props) => {
   const isActionButton = !children && !!(withLeftIcon || withRightIcon)
 
   const classes = clsx(
-    !unstyled && "justify-center items-center gap-2 inline-flex border transition-all",
-    !unstyled && !isActionButton ? compact ? "px-3.5 h-7" : "px-7 py-2" : undefined,
+    "justify-center items-center inline-flex",
+    !unstyled && "gap-2 border transition-all",
+    !unstyled && !isActionButton ? compact ? "px-3.5 h-8 sm:h-7" : "px-8 py-2.5 sm:py-2" : undefined,
+    isActionButton ? compact ? "h-10 w-10 md:h-8 md:w-8" : "h-10 w-10" : undefined,
     primary && "bg-neutral-700 border-neutral-700 text-white", // temp colors
     secondary && "bg-neutral-100 border-neutral-700",
     danger && "bg-red-500 border-red-500 text-white",
     disabled && "disabled:opacity-75",
     fullWidth && "w-full",
-    isActionButton ? compact ? "h-8 w-8" : "h-10 w-10" : undefined,
     className
   )
 
