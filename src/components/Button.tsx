@@ -45,8 +45,7 @@ const Button = (props) => {
 
   const labelClasses = clsx(
     "w-full",
-    !unstyled && "font-semibold tracking-wider",
-    !unstyled ? compact ? "text-[0.65rem]" : "text-xs" : undefined,
+    !unstyled && "font-semibold text-xs tracking-wider",
     uppercase && "uppercase",
   )
 

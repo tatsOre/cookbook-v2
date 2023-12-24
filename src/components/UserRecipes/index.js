@@ -78,7 +78,7 @@ function UserRecipesGrid({ mutateUser }) {
     <section data-section="user-recipes" className={styles.cards__section}>
       {content?.length ? <>
         <h2>Your Recipes</h2>
-        <ul className='flex flex-col gap-y-4 w-full'>
+        <ul className='flex flex-wrap gap-4 w-full'>
           {content}
         </ul>
       </> : fallback}

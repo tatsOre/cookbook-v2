@@ -18,8 +18,8 @@ function Page() {
 
   return user && (
     <Layout>
-      {/* <UserRecipes mutateUser={mutateUser} /> */}
-      <UserRecipesGrid mutateUser={mutateUser} />
+      <UserRecipes mutateUser={mutateUser} />
+      {/*<UserRecipesGrid mutateUser={mutateUser} /> */}
     </Layout>
   )
 }

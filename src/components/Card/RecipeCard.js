@@ -13,7 +13,7 @@ function RecipeCard({ recipe, onPublish, onDelete }) {
 
   const date = getRecipeDate(createdAt, updatedAt)
 
-  const tempLinkClasses = "text-[0.65rem] font-semibold tracking-wider justify-center items-center gap-2 border transition-all inline-flex bg-neutral-700 border-neutral-700 text-white px-3.5 h-8 sm:h-7"
+  const tempLinkClasses = "text-xs font-semibold tracking-wider justify-center items-center gap-2 border transition-all inline-flex bg-neutral-700 border-neutral-700 text-white px-3.5 h-8 sm:h-7"
 
   return (
     <article className={clsx(styles.card, styles.recipe__card)}>
