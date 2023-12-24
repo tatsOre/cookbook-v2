@@ -25,7 +25,7 @@ const Figure: React.FC<{
         width={width}
         height={height}
         sizes="100vw"
-        className="w-full h-auto"
+        className="w-full h-auto object-cover"
       />
     </div>
   );

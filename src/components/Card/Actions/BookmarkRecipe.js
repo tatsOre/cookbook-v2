@@ -54,7 +54,8 @@ function BookmarkRecipe({ recipe, onUpdateFavorites }) {
                 role="switch"
                 onClick={onBookmarkClick}
                 disabled={isMutating || !user}
-                withIconLeft={<IconBookmark />}
+                withLeftIcon={<IconBookmark />}
+                unstyled
                 compact
             />
         </React.Fragment>

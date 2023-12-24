@@ -13,22 +13,27 @@ function RecipeCard({ recipe, onPublish, onDelete }) {
 
   const date = getRecipeDate(createdAt, updatedAt)
 
+  const tempLinkClasses = "text-[0.65rem] font-semibold tracking-wider justify-center items-center gap-2 border transition-all inline-flex bg-neutral-700 border-neutral-700 text-white px-3.5 h-8 sm:h-7"
+
   return (
     <article className={clsx(styles.card, styles.recipe__card)}>
-      <Link href={`/recipes/${id}`}>
-        <CardInfo data={recipe}>
-          {date && <span data-info="date">{date}</span>}
-        </CardInfo>
-      </Link>
-
-      <div className={styles['card__controls--box']}>
-        <Link href={`/edit/${id}`} data-action="edit">
-          <IconEdit size={20} strokeWidth={1.5} />
+      <div className='flex-1'>
+        <Link href={`/recipes/${id}`}>
+          <CardInfo data={recipe}>
+            {date && <span data-info="date">Last updated: {date}</span>}
+          </CardInfo>
         </Link>
-        <DeleteRecipe recipe={recipe} onDelete={onDelete} />
       </div>
 
-      <PublishRecipe recipe={recipe} onPublish={onPublish} />
+      <div className='flex flex-wrap gap-1.5 p-1.5'>
+        <PublishRecipe recipe={recipe} onPublish={onPublish} />
+
+        <Link href={`/edit/${id}`} className={tempLinkClasses}>
+          Edit
+        </Link>
+
+        <DeleteRecipe recipe={recipe} onDelete={onDelete} />
+      </div>
     </article>
   )
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import useSWRMutation from 'swr/mutation'
 import { fetcher } from '@/pages/_app'
-import { IconLoader, IconTrash } from '@/components/Icon'
 import Modal from '@/components/Modal'
 import Button from '@/components/Button'
 import { default as PATHS } from '../../../../config'

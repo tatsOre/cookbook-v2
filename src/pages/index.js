@@ -20,7 +20,9 @@ export default function Home() {
   })
 
   return (
-    <Layout headerExtraContent={!user && <Link href="/login">Login/Register</Link>}>
+    <Layout headerExtraContent={
+      user ? <Link href="/recipe-box">Recipe Box</Link> : <Link href="/login">Login/Register</Link>
+    }>
       <section className='w-11/12 md:w-10/12 pt-12 md:pt-20 font-display'>
         <div className='ml-3 md:ml-4 max-w-prose text-balance'>
           <h1 className="index-heading font-display font-black mb-4">

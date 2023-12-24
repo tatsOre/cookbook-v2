@@ -1,0 +1,24 @@
+@use '../../styles/globals.module.scss' as g;
+@use '../../styles/typography' as t;
+
+.cards__section {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+
+    &[data-section="user-recipes"],
+    &[data-section="favorites"] {
+        flex-flow: row wrap;
+        gap: 1rem;
+
+        h2 {
+            width: 100%;
+            font-weight: 400;
+            font-family: t.$font-accent;
+        }
+    }
+}
+
+.user__box---fallback {
+
+}

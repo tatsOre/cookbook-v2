@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import LoaderOverlay from '../Loader/LoaderOverlay'
-import RecipeCard from '@/components/Card/RecipeCard'
+import UserRecipeCard from './RecipeCard'
+
 import { getRandomCardPattern } from '../Card/Card.helpers'
 import { default as PATHS } from '../../../config'
 
@@ -58,7 +59,7 @@ function UserRecipesGrid({ mutateUser }) {
       item.photo = { url: getRandomCardPattern() }
     }
 
-    return <RecipeCard
+    return <UserRecipeCard
       key={item._id}
       recipe={item}
       onPublish={onTogglePrivacy}
@@ -76,8 +77,10 @@ function UserRecipesGrid({ mutateUser }) {
   return (
     <section data-section="user-recipes" className={styles.cards__section}>
       {content?.length ? <>
-        <h2>Your Recipes:</h2>
-        {content}
+        <h2>Your Recipes</h2>
+        <ul className='flex flex-col gap-y-4 w-full'>
+          {content}
+        </ul>
       </> : fallback}
     </section>
   )

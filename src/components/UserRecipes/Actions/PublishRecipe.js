@@ -2,7 +2,6 @@ import React from 'react'
 import useSWRMutation from 'swr/mutation'
 import { fetcher } from '@/pages/_app'
 import Button from '@/components/Button'
-import { IconLoader } from '@/components/Icon'
 import { default as PATHS } from '../../../../config'
 
 function PublishRecipe({ recipe, onPublish }) {
@@ -23,7 +22,12 @@ function PublishRecipe({ recipe, onPublish }) {
   const onPublishClick = () => trigger()
 
   return (
-    <Button onClick={onPublishClick} disabled={isMutating} primary compact>
+    <Button
+      onClick={onPublishClick}
+      disabled={isMutating}
+      secondary
+      compact
+    >
       Make {recipe.public ? 'Private' : 'Public'}
     </Button>
   )

@@ -3,9 +3,9 @@ import Router from "next/router"
 import useUser from '@/hooks/useUser'
 import Layout from '@/components/Layout'
 import LoaderOverlay from '@/components/Loader/LoaderOverlay'
-// todo: fix imports:
-// It has been decided to separate the pages to unmount the floating menu.
+import UserRecipes from '@/components/UserRecipes'
 import UserRecipesGrid from '@/components/UserBox/UserRecipesGrid'
+
 
 function Page() {
   const { user, isLoading, loggedOut, mutateUser } = useUser()
@@ -18,6 +18,7 @@ function Page() {
 
   return user && (
     <Layout>
+      {/* <UserRecipes mutateUser={mutateUser} /> */}
       <UserRecipesGrid mutateUser={mutateUser} />
     </Layout>
   )
