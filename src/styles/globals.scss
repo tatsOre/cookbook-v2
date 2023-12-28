@@ -34,11 +34,14 @@
     textarea,
     input[type="text"],
     input[type="button"],
-    input[type="submit"],
-    input[type=”email”],
-    input[type=”tel”],
-    input[type=”number”] {
+    input[type="search"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="password"] {
+        appearance: none;
         -webkit-appearance: none;
+        -moz-appearance: none;
         border-radius: 0;
     }
 }

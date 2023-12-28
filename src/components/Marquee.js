@@ -7,8 +7,8 @@ function Marquee({ text }) {
 
   return (
     <div className="flex overflow-hidden select-none" aria-hidden="true">
-      <div className="shrink-0 flex justify-around min-w-full py-2 text-[#e9e8e1] bg-[#333333]">
-        {content}
+      <div className="shrink-0 flex justify-around min-w-full">
+        <span className="pt-0.5 pb-1.5 text-[#e9e8e1] bg-[#333333]">{content}</span>
       </div>
     </div>
 

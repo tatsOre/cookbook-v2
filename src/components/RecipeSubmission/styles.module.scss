@@ -11,12 +11,12 @@
 
   /** Accordion Trigger / Form Fieldset Headings: */
   [data-accordion-trigger] {
-    padding-block: calc(0.35rem + 1vh);
+    padding-block: calc(0.25rem + 1vh);
     border-bottom: 2px solid g.$color-rich-black;
     font-size: clamp(1.25rem, 4vw, 1.75rem);
     font-family: t.$font-accent;
-    font-stretch: expanded;
     font-weight: 400;
+    font-stretch: semi-expanded;
     letter-spacing: 0.1px;
 
     &[aria-expanded="true"] {
