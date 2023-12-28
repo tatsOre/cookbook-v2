@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
-import styles from './FormGroup.module.scss'
-
 function Label(props) {
   const {
     children,
@@ -15,9 +13,7 @@ function Label(props) {
   } = props
 
   const classes = clsx(
-    className,
-    styles.input__label,
-    hideInputLabel && styles['visually-hidden']
+    className, "input-label font-semibold inline-block", { "sr-only": hideInputLabel }
   )
 
   return (
@@ -29,8 +25,7 @@ function Label(props) {
       {...rest}
     >
       {children}
-      {required
-        && <span style={{ color: 'tomato' }} aria-hidden>*</span>}
+      {required && <span className='text-red-400' aria-hidden>*</span>}
     </label>)
 }
 

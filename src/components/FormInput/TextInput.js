@@ -14,7 +14,6 @@ const TextInput = React.forwardRef((props, ref) => {
     <FormGroup {...wrapperProps}>
       {multiline ?
         <textarea
-          style={{ paddingBlock: '0.65rem' }}
           rows={rows || MIN_ROWS_VALUE}
           {...rest}
           ref={ref}

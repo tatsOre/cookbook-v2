@@ -6,7 +6,7 @@ import styles from './FormGroup.module.scss'
 const Wrapper = ({ className, children, name }) => {
   return (
     <div
-      className={clsx(className, styles.form__group)}
+      className={clsx(className, styles.form__group, "w-full")}
       data-input-wrapper={name}
     >
       {children}
@@ -29,7 +29,7 @@ function FormGroup(props) {
 
       {description?.children ?
         <p
-          className={styles.input__description}
+          className="text-neutral-500 text-xs md:text-sm"
           id={description.id}>
           {description.children}
         </p>
@@ -38,7 +38,11 @@ function FormGroup(props) {
       {children}
 
       {error?.children ?
-        <p className={styles.input__error} id={error.id} role='alert'>
+        <p
+          id={error.id}
+          role="alert"
+          className="text-red-500 text-xs inline-flex items-center"
+        >
           <IconAlertCircle size={16} />&nbsp;{error.children}
         </p>
         : null}

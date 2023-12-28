@@ -33,6 +33,7 @@ module.exports = {
         160: '160%'
       },
       screens: {
+        'xxs': '375px',
         'xs': '420px',
         'print': { 'raw': 'print' },
         screen: { raw: 'screen' },

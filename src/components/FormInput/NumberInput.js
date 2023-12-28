@@ -8,6 +8,7 @@ const NumberInput = React.forwardRef((props, ref) => {
   return (
     <FormGroup {...wrapperProps}>
       <input
+      className="pr-2"
         ref={ref}
         type="number"
         min={inputProps.min ?? 0}
