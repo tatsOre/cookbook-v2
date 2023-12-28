@@ -28,7 +28,6 @@ function AccountForm() {
     <form style={{ marginBlockStart: '1rem' }} onSubmit={handleSubmit(onSubmit)} noValidate>
       <TextInput label="name" {...register('name')} />
       <TextInput label="about" {...register('about')} multiline />
-      <AvatarPicker />
     </form>
   )
 }

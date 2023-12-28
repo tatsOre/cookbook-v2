@@ -7,17 +7,14 @@ import { default as PATHS } from '../../../../config'
 function PublishRecipe({ recipe, onPublish }) {
   const PUBLISH_URL = PATHS.RECIPES.PUBLISH + recipe._id
 
-  const {
-    data, error, isMutating, trigger
-  } = useSWRMutation(
+  const { isMutating, trigger } = useSWRMutation(
     PUBLISH_URL,
-    () => fetcher(PUBLISH_URL, { method: 'PATCH' })
+    () => fetcher(PUBLISH_URL, { method: 'PATCH' }),
+    {
+      onSuccess: (data) => onPublish(data.doc, data.public),
+      onError: (err) => console.log(err)
+    }
   )
-
-  React.useEffect(() => {
-    error && console.log(error)
-    data && onPublish(data.doc, data.public)
-  }, [data])
 
   const onPublishClick = () => trigger()
 
@@ -28,7 +25,7 @@ function PublishRecipe({ recipe, onPublish }) {
       secondary
       compact
     >
-      Make {recipe.public ? 'Private' : 'Public'}
+      {recipe.public ? 'Unpublish' : 'Publish'}
     </Button>
   )
 }

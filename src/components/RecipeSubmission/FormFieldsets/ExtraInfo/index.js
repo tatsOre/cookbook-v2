@@ -113,7 +113,7 @@ function ExtraInfoFieldset() {
       ) : null}
 
       <div className={styles['recipe--photo']}>
-        <h3>{PHOTO.LABEL}</h3>
+        <h3 className='font-bold text-base'>{PHOTO.LABEL}</h3>
 
         <p>{PHOTO.DESC}</p>
 

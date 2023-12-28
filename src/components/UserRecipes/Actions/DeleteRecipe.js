@@ -10,16 +10,14 @@ function DeleteRecipe({ recipe, onDelete }) {
 
   const DELETE_URL = PATHS.RECIPES_ENDPOINT + '/' + recipe._id
 
-  const {
-    data, error, isMutating, trigger
-  } = useSWRMutation(
+  const { isMutating, trigger } = useSWRMutation(
     DELETE_URL,
-    () => fetcher(DELETE_URL, { method: 'DELETE' })
+    () => fetcher(DELETE_URL, { method: 'DELETE' }),
+    {
+      onSuccess: () => onDelete(recipe._id),
+      onError: (err) => console.log(err)
+    }
   )
-
-  React.useEffect(() => {
-    if (data && !error) onDelete(recipe._id)
-  }, [data])
 
   const onDeleteClick = () => setShowModal(true)
 

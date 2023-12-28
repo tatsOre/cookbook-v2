@@ -176,7 +176,7 @@ export default {
     COMMENTS: {
         DESC: 'Share any additional notes or comments about your recipe. You can mention personal anecdotes, serving suggestions, variations, or any helpful tips.',
         LABEL: 'Comments & Notes',
-        PLACEHOLDER: 'e.g. Feel free to adjust the spiciness level by adding more or less red curry paste. This dish pairs wonderfully with steamed jasmine rice and a refreshing cucumber salad...',
+        PLACEHOLDER: 'e.g. Feel free to adjust the spiciness level by adding more or less red curry paste...',
         NAME: 'comments'
     }
 }

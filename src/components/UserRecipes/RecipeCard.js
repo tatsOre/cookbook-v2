@@ -17,7 +17,7 @@ function UserRecipeCard({ recipe, onPublish, onDelete }) {
     <li className="group flex flex-row gap-x-3 md:gap-x-4 justify-between border border-neutral-400 hover:bg-white p-2 font-display">
       <Link href={`/recipes/${_id}`} title={`Go to ${title} article`}>
         <Figure
-          className="hidden xxs:block w-20 h-full overflow-hidden [&>img]:scale-150 bg-neutral-900"
+          className="hidden xxs:block w-20 h-full overflow-hidden [&>img]:scale-150"
           src={src}
           alt={recipe.title}
         />

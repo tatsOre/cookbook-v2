@@ -10,7 +10,6 @@ function MenuButton({ isOpen, toggleState, ...rest }) {
       aria-haspopup="true"
       aria-expanded={isOpen}
       onClick={toggleState}
-      unstyled
       {...rest}
     >
       <span
