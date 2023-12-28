@@ -29,6 +29,20 @@
     font-weight: 300 400;
 }
 
+@layer base {
+
+    textarea,
+    input[type="text"],
+    input[type="button"],
+    input[type="submit"],
+    input[type=”email”],
+    input[type=”tel”],
+    input[type=”number”] {
+        -webkit-appearance: none;
+        border-radius: 0;
+    }
+}
+
 @layer utilities {
     .index-heading {
         font-size: clamp(3rem, 10vw, 5rem);

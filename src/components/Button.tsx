@@ -33,7 +33,7 @@ const Button = (props) => {
   const classes = clsx(
     "justify-center items-center inline-flex",
     !unstyled && "gap-2 border transition-all",
-    !unstyled && !isActionButton ? compact ? "px-3 sm:px-3.5 h-8 sm:h-7" : "px-8 py-2.5" : undefined,
+    !unstyled && !isActionButton ? compact ? "px-3 sm:px-3.5 h-8 sm:h-7" : "px-8 py-3" : undefined,
     isActionButton ? compact ? "h-10 w-10 md:h-8 md:w-8" : "h-10 w-10" : undefined,
     primary && "bg-neutral-700 border-neutral-700 text-white", // temp colors
     secondary && "bg-neutral-100 border-neutral-700",
